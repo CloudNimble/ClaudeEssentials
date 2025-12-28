@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dotnet:*)"
+      "Bash(dotnet:*)",
+      "mcp__github__*",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

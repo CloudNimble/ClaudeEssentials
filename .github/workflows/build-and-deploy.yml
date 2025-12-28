@@ -152,11 +152,6 @@ jobs:
           echo "BRANCH_TYPE=dev" >> $env:GITHUB_OUTPUT
         }
 
-    - name: NuGet login (Trusted Publishing)
-      uses: nuget/login@v1
-      with:
-        user: CloudNimble
-
     - name: Push to NuGet
       id: nuget_push
       shell: pwsh
@@ -167,6 +162,7 @@ jobs:
           Write-Host "📤 Pushing $($_.Name) to NuGet..."
           try {
             dotnet nuget push $_.FullName `
+              --api-key ${{ secrets.NUGET_API_KEY }} `
               --source https://api.nuget.org/v3/index.json `
               --skip-duplicate
             Write-Host "✅ Pushed successfully"
