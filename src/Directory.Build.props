@@ -39,7 +39,7 @@
 		<Authors>CloudNimble</Authors>
 		<Company>CloudNimble Inc.</Company>
 		<RpmPackageVendor>CloudNimble</RpmPackageVendor>
-		<Copyright>Copyright © 2019-2026 CloudNimble, Inc. All rights reserved.</Copyright>
+		<Copyright>Copyright © 2025-2026 CloudNimble, Inc. All rights reserved.</Copyright>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<!-- The SPDX name for the source license. See https://spdx.org/licenses/. -->
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>

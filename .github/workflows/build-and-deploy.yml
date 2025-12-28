@@ -152,6 +152,11 @@ jobs:
           echo "BRANCH_TYPE=dev" >> $env:GITHUB_OUTPUT
         }
 
+    - name: NuGet login (Trusted Publishing)
+      uses: nuget/login@v1
+      with:
+        user: CloudNimble
+
     - name: Push to NuGet
       id: nuget_push
       shell: pwsh
@@ -162,7 +167,6 @@ jobs:
           Write-Host "📤 Pushing $($_.Name) to NuGet..."
           try {
             dotnet nuget push $_.FullName `
-              --api-key ${{ secrets.NUGET_API_KEY }} `
               --source https://api.nuget.org/v3/index.json `
               --skip-duplicate
             Write-Host "✅ Pushed successfully"
@@ -180,7 +184,7 @@ jobs:
       if: steps.version.outputs.BRANCH_TYPE == 'dev' && steps.nuget_push.outputs.DEPLOYMENT_SUCCESS == 'true'
       shell: pwsh
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
       run: |
         $nextSuffix = "${{ steps.version.outputs.NEXT_PREVIEW_SUFFIX }}"
         Write-Host "🔄 Updating VERSION_PREVIEW_SUFFIX to $nextSuffix"
@@ -190,7 +194,7 @@ jobs:
       if: steps.version.outputs.BRANCH_TYPE == 'main' && steps.nuget_push.outputs.DEPLOYMENT_SUCCESS == 'true'
       shell: pwsh
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
       run: |
         $nextPatch = "${{ steps.version.outputs.NEXT_PATCH_VERSION }}"
         Write-Host "🔄 Updating VERSION_PATCH to $nextPatch"
