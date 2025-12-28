@@ -9,6 +9,8 @@
         <ConceptualDocsEnabled>true</ConceptualDocsEnabled>
         <ShowPlaceholders>false</ShowPlaceholders>
 
+        <ExcludePatterns>Samples</ExcludePatterns>
+
         <MintlifyTemplate>
             <Name>ClaudeEssentials</Name>
             <Theme>maple</Theme>
@@ -21,7 +23,11 @@
                 <Pages>
                     <Groups>
                         <Group Name="Getting Started" Icon="stars">
-                            <Pages>index;why-claudeessentials;quickstart</Pages>
+                            <Pages>
+                                index;
+                                why-claudeessentials;
+                                quickstart;
+                            </Pages>
                         </Group>
                     </Groups>
                 </Pages>

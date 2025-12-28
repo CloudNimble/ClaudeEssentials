@@ -1,7 +1,3 @@
-# Usage
-
-## Common Patterns
-
 ```csharp
 // Check hook event type
 if (input.HookEventName == HookEventName.PreToolUse)

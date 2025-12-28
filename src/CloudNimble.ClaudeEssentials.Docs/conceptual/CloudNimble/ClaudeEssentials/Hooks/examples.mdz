@@ -1,6 +1,4 @@
-# Examples
-
-## PreToolUse: Auto-approve safe tools
+### PreToolUse: Auto-approve safe tools
 
 ```csharp
 var input = ClaudeHooksSerializer.DeserializePreToolUseInput(Console.In.ReadToEnd());
@@ -19,7 +17,7 @@ var output = new PreToolUseHookOutput<object>
 Console.WriteLine(ClaudeHooksSerializer.SerializePreToolUseOutput(output));
 ```
 
-## PostToolUse: Log tool executions
+### PostToolUse: Log tool executions
 
 ```csharp
 var input = ClaudeHooksSerializer.DeserializePostToolUseInput(Console.In.ReadToEnd());
@@ -29,7 +27,7 @@ File.AppendAllText("hooks.log", $"{DateTime.Now}: {input?.ToolName}\n");
 Console.WriteLine(ClaudeHooksSerializer.SerializePostToolUseOutput(new PostToolUseHookOutput()));
 ```
 
-## Stop: Require confirmation before stopping
+### Stop: Require confirmation before stopping
 
 ```csharp
 var input = ClaudeHooksSerializer.DeserializeStopInput(Console.In.ReadToEnd());

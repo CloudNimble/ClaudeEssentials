@@ -1,8 +1,6 @@
-# Usage
-
 `ClaudeHooksSerializer` provides AOT-compatible static methods for JSON serialization using source-generated contexts.
 
-## Deserializing Input
+### Deserializing Input
 
 ```csharp
 // Read and deserialize from stdin
@@ -14,7 +12,7 @@ var stop = ClaudeHooksSerializer.DeserializeStopInput(json);
 var notification = ClaudeHooksSerializer.DeserializeNotificationInput(json);
 ```
 
-## Serializing Output
+### Serializing Output
 
 ```csharp
 // Create and serialize output
@@ -23,7 +21,7 @@ string json = ClaudeHooksSerializer.SerializePreToolUseOutput(output);
 Console.WriteLine(json);
 ```
 
-## Using Custom Types
+### Using Custom Types
 
 For strongly-typed tool inputs, create your own `JsonSerializerContext`:
 

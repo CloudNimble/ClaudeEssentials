@@ -1,5 +1,3 @@
-# Summary
-
 The `Inputs` namespace contains classes for deserializing JSON data that Claude Code sends to hooks via stdin. Each hook event type has a corresponding input class.
 
 ## Input Classes

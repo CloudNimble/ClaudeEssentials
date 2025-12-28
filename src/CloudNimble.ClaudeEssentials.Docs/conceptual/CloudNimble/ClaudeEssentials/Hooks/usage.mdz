@@ -1,6 +1,4 @@
-# Usage
-
-## Basic Hook Pattern
+### Basic Hook Pattern
 
 A Claude Code hook is an executable that:
 1. Reads JSON from stdin
@@ -22,7 +20,7 @@ var output = new PreToolUseHookOutput<object> { Continue = true };
 Console.WriteLine(ClaudeHooksSerializer.SerializePreToolUseOutput(output));
 ```
 
-## Hook Configuration
+### Hook Configuration
 
 Configure hooks in `~/.claude/settings.json` or `.claude/settings.json`:
 

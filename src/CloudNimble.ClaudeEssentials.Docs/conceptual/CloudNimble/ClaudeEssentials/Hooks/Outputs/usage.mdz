@@ -1,6 +1,4 @@
-# Usage
-
-## Creating and Serializing Output
+### Creating and Serializing Output
 
 ```csharp
 // Simple output - allow operation to continue
@@ -16,13 +14,13 @@ var blockOutput = new StopHookOutput
 Console.WriteLine(ClaudeHooksSerializer.SerializeStopOutput(blockOutput));
 ```
 
-## Exit Codes
+### Exit Codes
 
 - **0**: Success - stdout is parsed as JSON
 - **2**: Blocking error - stderr is shown to Claude/user
 - **Other**: Non-blocking error - shown in verbose mode only
 
-## Common Base Properties
+### Common Base Properties
 
 All outputs inherit from `HookOutputBase`:
 

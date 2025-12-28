@@ -6,7 +6,7 @@
 		<IsTestAssetProject Condition="$(RepoRelativeProjectDir.Contains('testassets'))">true</IsTestAssetProject>
 		<IsSampleProject Condition="$(MSBuildProjectName.ToLower().Contains('samples'))">true</IsSampleProject>
 		<IsNetCore Condition=" '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0' OR '$(TargetFramework)' == 'net10.0' ">true</IsNetCore>
-		<IsPrimaryProject Condition=" ('$(IsBenchmarkProject)' != 'true' And '$(IsTestProject)' != 'true' And '$(IsTestAssetProject)' != 'true' And '$(IsSampleProject)' != 'true' And '$(IsSampleProject)' != 'true') or '$(IsTemplatePackageProject)' == 'true' ">true</IsPrimaryProject>
+		<IsPrimaryProject Condition=" ('$(IsDocumentationProject)' != 'true' And '$(IsBenchmarkProject)' != 'true' And '$(IsTestProject)' != 'true' And '$(IsTestAssetProject)' != 'true' And '$(IsSampleProject)' != 'true' And '$(IsSampleProject)' != 'true') or '$(IsTemplatePackageProject)' == 'true' ">true</IsPrimaryProject>
 		<IncludeReadmeFile Condition="Exists('$(MSBuildProjectDirectory)\readme.md')">true</IncludeReadmeFile>
         <IncludePackageIcon Condition="Exists('$(MSBuildThisFileDirectory)\ClaudeEssentials-logo.png')">true</IncludePackageIcon>
 
@@ -101,7 +101,7 @@
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
-	<ItemGroup Condition=" $(IsTestProject) != 'true' and $(IsSampleProject) != 'true' ">
+	<ItemGroup Condition=" $(IsDocumentationProject) != 'true' and $(IsTestProject) != 'true' and $(IsSampleProject) != 'true' ">
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.*" PrivateAssets="All" />
         <!--<InternalsVisibleTo Include="$(AssemblyName.Replace('CloudNimble.ClaudeEssentials', 'CloudNimble.ClaudeEssentials.Tests')), $(StrongNamePublicKey)" />-->
         <InternalsVisibleTo Include="$(AssemblyName.Replace('CloudNimble.ClaudeEssentials', 'CloudNimble.ClaudeEssentials.Tests'))" />

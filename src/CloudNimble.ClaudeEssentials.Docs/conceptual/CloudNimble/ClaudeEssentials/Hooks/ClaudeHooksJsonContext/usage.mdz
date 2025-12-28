@@ -1,8 +1,6 @@
-# Usage
-
 `ClaudeHooksJsonContext` is a source-generated `JsonSerializerContext` that enables AOT-compatible JSON serialization.
 
-## Direct Usage
+### Direct Usage
 
 ```csharp
 using System.Text.Json;
@@ -18,14 +16,14 @@ string output = JsonSerializer.Serialize(
     ClaudeHooksJsonContext.Default.PostToolUseHookOutput);
 ```
 
-## Accessing Options
+### Accessing Options
 
 ```csharp
 // Get the configured JsonSerializerOptions
 JsonSerializerOptions options = ClaudeHooksJsonContext.Default.Options;
 ```
 
-## Extending for Custom Types
+### Extending for Custom Types
 
 Create your own context for strongly-typed tool inputs:
 

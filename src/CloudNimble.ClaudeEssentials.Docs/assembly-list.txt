@@ -1,2 +1,1 @@
 D:\GitHub\ClaudeEssentials\src\CloudNimble.ClaudeEssentials\bin\Debug\net10.0\CloudNimble.ClaudeEssentials.dll
-D:\GitHub\ClaudeEssentials\src\CloudNimble.ClaudeEssentials.Samples.HookProcessor\bin\Debug\net10.0\CloudNimble.ClaudeEssentials.Samples.HookProcessor.dll

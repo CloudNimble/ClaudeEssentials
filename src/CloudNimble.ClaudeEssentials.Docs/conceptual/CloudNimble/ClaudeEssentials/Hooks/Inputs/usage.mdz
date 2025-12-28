@@ -1,6 +1,4 @@
-# Usage
-
-## Deserializing Hook Input
+### Deserializing Hook Input
 
 Use `ClaudeHooksSerializer` to deserialize input from stdin:
 
@@ -15,7 +13,7 @@ var typedInput = ClaudeHooksSerializer.DeserializePreToolUseInput<MyToolInput>(
     json, MyJsonContext.Default.PreToolUseHookInputMyToolInput);
 ```
 
-## Common Base Properties
+### Common Base Properties
 
 All inputs include these properties from `HookInputBase`:
 
