@@ -1,0 +1,11 @@
+# Summary
+
+The `CloudNimble.ClaudeEssentials.Hooks` namespace provides strongly-typed C# models for building Claude Code hooks. These models represent the JSON input/output schemas that Claude Code uses to communicate with hook executables.
+
+## Key Components
+
+- **Inputs**: Classes for deserializing JSON received from Claude Code via stdin
+- **Outputs**: Classes for serializing JSON responses to stdout
+- **Enums**: Type-safe representations of hook events, decisions, and modes
+- **ClaudeHooksSerializer**: AOT-compatible helper methods for JSON serialization
+- **ClaudeHooksJsonContext**: Source-generated JSON context for Native AOT support

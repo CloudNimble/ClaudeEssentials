@@ -1,0 +1,20 @@
+# Summary
+
+The `Inputs` namespace contains classes for deserializing JSON data that Claude Code sends to hooks via stdin. Each hook event type has a corresponding input class.
+
+## Input Classes
+
+| Class | Hook Event | Description |
+|-------|------------|-------------|
+| `PreToolUseHookInput<T>` | PreToolUse | Received before a tool executes |
+| `PostToolUseHookInput<T,R>` | PostToolUse | Received after a tool completes |
+| `PermissionRequestHookInput<T>` | PermissionRequest | Received when permission is requested |
+| `UserPromptSubmitHookInput` | UserPromptSubmit | Received when user submits a prompt |
+| `StopHookInput` | Stop | Received when Claude finishes responding |
+| `SubagentStopHookInput` | SubagentStop | Received when a subagent completes |
+| `NotificationHookInput` | Notification | Received for notifications |
+| `SessionStartHookInput` | SessionStart | Received when a session starts |
+| `SessionEndHookInput` | SessionEnd | Received when a session ends |
+| `PreCompactHookInput` | PreCompact | Received before context compaction |
+
+All input classes inherit from `HookInputBase` which provides common properties like `SessionId`, `TranscriptPath`, and `CurrentWorkingDirectory`.

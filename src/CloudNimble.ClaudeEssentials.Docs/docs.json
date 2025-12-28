@@ -1,0 +1,110 @@
+{
+  "colors": {
+    "dark": "#3CD0E2",
+    "light": "#419AC5",
+    "primary": "#419AC5"
+  },
+  "name": "ClaudeEssentials",
+  "navigation": {
+    "pages": [
+      {
+        "group": "Getting Started",
+        "icon": "stars",
+        "pages": [
+          "index",
+          "why-CloudNimble-ClaudeEssentials",
+          "quickstart"
+        ]
+      },
+      {
+        "group": "API Reference",
+        "icon": "code",
+        "pages": [
+          {
+            "group": "CloudNimble",
+            "icon": "folder-tree",
+            "pages": [
+              {
+                "group": "ClaudeEssentials",
+                "icon": "folder-tree",
+                "pages": [
+                  {
+                    "group": "Hooks",
+                    "icon": "folder-tree",
+                    "pages": [
+                      "api-reference/CloudNimble/ClaudeEssentials/Hooks/index",
+                      "api-reference/CloudNimble/ClaudeEssentials/Hooks/ClaudeHooksJsonContext",
+                      "api-reference/CloudNimble/ClaudeEssentials/Hooks/ClaudeHooksSerializer",
+                      {
+                        "group": "Enums",
+                        "icon": "folder-tree",
+                        "pages": [
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Enums/index",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Enums/CompactTrigger",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Enums/HookDecision",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Enums/HookEventName",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Enums/NotificationType",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Enums/PermissionDecision",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Enums/PermissionMode",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Enums/PermissionRequestBehavior",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Enums/SessionEndReason",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Enums/SessionStartSource"
+                        ]
+                      },
+                      {
+                        "group": "Inputs",
+                        "icon": "folder-tree",
+                        "pages": [
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/index",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/HookInputBase",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/NotificationHookInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/PermissionRequestHookInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/PostToolUseHookInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/PreCompactHookInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/PreToolUseHookInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/SessionEndHookInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/SessionStartHookInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/StopHookInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/SubagentStopHookInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/ToolHookInputBase",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/UserPromptSubmitHookInput"
+                        ]
+                      },
+                      {
+                        "group": "Outputs",
+                        "icon": "folder-tree",
+                        "pages": [
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/index",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/HookOutputBase",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/HookSpecificOutputBase",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/NotificationHookOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/PermissionRequestDecision",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/PermissionRequestHookOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/PermissionRequestSpecificOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/PostToolUseHookOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/PostToolUseSpecificOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/PreCompactHookOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/PreToolUseHookOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/PreToolUseSpecificOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/SessionEndHookOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/SessionStartHookOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/SessionStartSpecificOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/StopHookOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/SubagentStopHookOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/UserPromptSubmitHookOutput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/UserPromptSubmitSpecificOutput"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple"
+}

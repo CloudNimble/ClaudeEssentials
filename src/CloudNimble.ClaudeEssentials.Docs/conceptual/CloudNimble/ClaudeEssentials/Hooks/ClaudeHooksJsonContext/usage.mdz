@@ -1,0 +1,36 @@
+# Usage
+
+`ClaudeHooksJsonContext` is a source-generated `JsonSerializerContext` that enables AOT-compatible JSON serialization.
+
+## Direct Usage
+
+```csharp
+using System.Text.Json;
+
+// Deserialize using the context directly
+var input = JsonSerializer.Deserialize(
+    json, 
+    ClaudeHooksJsonContext.Default.PreToolUseHookInputObject);
+
+// Serialize using the context directly
+string output = JsonSerializer.Serialize(
+    hookOutput,
+    ClaudeHooksJsonContext.Default.PostToolUseHookOutput);
+```
+
+## Accessing Options
+
+```csharp
+// Get the configured JsonSerializerOptions
+JsonSerializerOptions options = ClaudeHooksJsonContext.Default.Options;
+```
+
+## Extending for Custom Types
+
+Create your own context for strongly-typed tool inputs:
+
+```csharp
+[JsonSerializable(typeof(PreToolUseHookInput<BashToolInput>))]
+[JsonSerializable(typeof(PreToolUseHookInput<WriteToolInput>))]
+public partial class MyHooksJsonContext : JsonSerializerContext { }
+```

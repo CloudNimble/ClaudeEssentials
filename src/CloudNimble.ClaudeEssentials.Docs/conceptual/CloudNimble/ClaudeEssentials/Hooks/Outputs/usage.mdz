@@ -1,0 +1,32 @@
+# Usage
+
+## Creating and Serializing Output
+
+```csharp
+// Simple output - allow operation to continue
+var output = new PreToolUseHookOutput<object> { Continue = true };
+Console.WriteLine(ClaudeHooksSerializer.SerializePreToolUseOutput(output));
+
+// Block an operation
+var blockOutput = new StopHookOutput
+{
+    Decision = HookDecision.Block,
+    Reason = "Tests must pass before stopping"
+};
+Console.WriteLine(ClaudeHooksSerializer.SerializeStopOutput(blockOutput));
+```
+
+## Exit Codes
+
+- **0**: Success - stdout is parsed as JSON
+- **2**: Blocking error - stderr is shown to Claude/user
+- **Other**: Non-blocking error - shown in verbose mode only
+
+## Common Base Properties
+
+All outputs inherit from `HookOutputBase`:
+
+- `Continue` - Whether to continue (default: true)
+- `StopReason` - Message when Continue is false
+- `SuppressOutput` - Hide from transcript
+- `SystemMessage` - Warning message for Claude

@@ -1,0 +1,28 @@
+# Usage
+
+## Common Patterns
+
+```csharp
+// Check hook event type
+if (input.HookEventName == HookEventName.PreToolUse)
+{
+    // Handle pre-tool-use logic
+}
+
+// Make permission decisions
+output.HookSpecificOutput = new PreToolUseSpecificOutput<object>
+{
+    PermissionDecision = PermissionDecision.Allow,
+    PermissionDecisionReason = "Auto-approved by policy"
+};
+
+// Block operations
+output.Decision = HookDecision.Block;
+output.Reason = "Operation not permitted";
+
+// Check permission mode
+if (input.PermissionMode == PermissionMode.BypassPermissions)
+{
+    // Skip checks in bypass mode
+}
+```

@@ -1,0 +1,26 @@
+# Usage
+
+## Deserializing Hook Input
+
+Use `ClaudeHooksSerializer` to deserialize input from stdin:
+
+```csharp
+// For PreToolUse hooks
+var input = ClaudeHooksSerializer.DeserializePreToolUseInput(Console.In.ReadToEnd());
+Console.WriteLine($"Tool: {input?.ToolName}");
+Console.WriteLine($"Session: {input?.SessionId}");
+
+// For strongly-typed tool input (requires custom JsonSerializerContext)
+var typedInput = ClaudeHooksSerializer.DeserializePreToolUseInput<MyToolInput>(
+    json, MyJsonContext.Default.PreToolUseHookInputMyToolInput);
+```
+
+## Common Base Properties
+
+All inputs include these properties from `HookInputBase`:
+
+- `SessionId` - Unique session identifier
+- `TranscriptPath` - Path to conversation transcript
+- `CurrentWorkingDirectory` - Active working directory
+- `PermissionMode` - Current permission mode
+- `HookEventName` - The event that triggered this hook

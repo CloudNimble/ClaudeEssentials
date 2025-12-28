@@ -1,0 +1,83 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [ main, dev ]
+    types: [opened, synchronize, reopened]
+    paths-ignore:
+      - 'src/CloudNimble.ClaudeEssentials.Docs/**'
+      - '*.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_VERSION: '10.0.x'
+
+jobs:
+  validate:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    - name: Install .NET
+      shell: pwsh
+      run: |
+        Write-Host "📥 Installing .NET 10..."
+        Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile "dotnet-install.ps1"
+        ./dotnet-install.ps1 -Channel 10.0 -InstallDir "$env:ProgramFiles\dotnet"
+        echo "$env:ProgramFiles\dotnet" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        dotnet --list-sdks
+
+    - name: Get version
+      id: version
+      shell: pwsh
+      run: |
+        $majorVersion = "${{ vars.VERSION_MAJOR }}"
+        if ([string]::IsNullOrEmpty($majorVersion)) { $majorVersion = "1" }
+
+        $minorVersion = "${{ vars.VERSION_MINOR }}"
+        if ([string]::IsNullOrEmpty($minorVersion)) { $minorVersion = "0" }
+
+        $timestamp = Get-Date -Format "yyyyMMdd-HHmmss" -AsUTC
+        $version = "$majorVersion.$minorVersion.0-PR-$timestamp"
+
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+        Write-Host "📦 PR validation version: $version"
+
+    - name: Restore dependencies
+      working-directory: src
+      run: dotnet restore
+
+    - name: Build
+      working-directory: src
+      run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.version.outputs.VERSION }}
+
+    - name: Test
+      working-directory: src
+      run: dotnet test --configuration Release --no-build
+
+    - name: Pack
+      working-directory: src
+      run: dotnet pack CloudNimble.ClaudeEssentials/CloudNimble.ClaudeEssentials.csproj --configuration Release --no-build --output ../artifacts /p:PackageVersion=${{ steps.version.outputs.VERSION }}
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: nuget-packages-pr
+        path: ./artifacts/*.nupkg
+        retention-days: 7
+
+    - name: Validate packages
+      shell: pwsh
+      run: |
+        Write-Host "📦 Validating NuGet packages..."
+        Get-ChildItem ./artifacts/*.nupkg | ForEach-Object {
+          Write-Host "✅ Package: $($_.Name)"
+        }
+        Write-Host "✅ PR validation completed successfully"

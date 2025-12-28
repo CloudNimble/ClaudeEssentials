@@ -1,0 +1,20 @@
+# Summary
+
+The `Outputs` namespace contains classes for serializing JSON responses that hooks send to Claude Code via stdout.
+
+## Output Classes
+
+| Class | Hook Event | Purpose |
+|-------|------------|---------|
+| `PreToolUseHookOutput<T>` | PreToolUse | Allow, deny, or modify tool execution |
+| `PostToolUseHookOutput` | PostToolUse | Add context after tool execution |
+| `PermissionRequestHookOutput<T>` | PermissionRequest | Auto-respond to permission dialogs |
+| `UserPromptSubmitHookOutput` | UserPromptSubmit | Block or augment user prompts |
+| `StopHookOutput` | Stop | Prevent Claude from stopping |
+| `SubagentStopHookOutput` | SubagentStop | Prevent subagent from stopping |
+| `SessionStartHookOutput` | SessionStart | Add context at session start |
+| `NotificationHookOutput` | Notification | Control notification behavior |
+| `PreCompactHookOutput` | PreCompact | Control compaction behavior |
+| `SessionEndHookOutput` | SessionEnd | Respond to session end |
+
+All output classes inherit from `HookOutputBase` which provides `Continue`, `StopReason`, `SuppressOutput`, and `SystemMessage` properties.

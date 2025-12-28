@@ -1,0 +1,40 @@
+# Usage
+
+## Basic Hook Pattern
+
+A Claude Code hook is an executable that:
+1. Reads JSON from stdin
+2. Processes the input
+3. Writes JSON to stdout
+4. Exits with an appropriate code (0 = success, 2 = blocking error)
+
+```csharp
+using CloudNimble.ClaudeEssentials.Hooks;
+using CloudNimble.ClaudeEssentials.Hooks.Inputs;
+using CloudNimble.ClaudeEssentials.Hooks.Outputs;
+
+// Read input from stdin
+var json = Console.In.ReadToEnd();
+var input = ClaudeHooksSerializer.DeserializePreToolUseInput(json);
+
+// Process and respond
+var output = new PreToolUseHookOutput<object> { Continue = true };
+Console.WriteLine(ClaudeHooksSerializer.SerializePreToolUseOutput(output));
+```
+
+## Hook Configuration
+
+Configure hooks in `~/.claude/settings.json` or `.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [{ "type": "command", "command": "my-hook.exe" }]
+      }
+    ]
+  }
+}
+```

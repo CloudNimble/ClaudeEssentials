@@ -1,0 +1,272 @@
+name: Build and Deploy to NuGet
+
+on:
+  push:
+    branches: [ main, dev ]
+    paths-ignore:
+      - 'src/CloudNimble.ClaudeEssentials.Docs/**'
+      - '*.md'
+  workflow_dispatch:
+    inputs:
+      deploy_to_nuget:
+        description: 'Deploy to NuGet'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+permissions:
+  contents: write
+  actions: write
+  id-token: write
+
+env:
+  DOTNET_VERSION: '10.0.x'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    - name: Install .NET
+      shell: pwsh
+      run: |
+        Write-Host "📥 Installing .NET 10..."
+        Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile "dotnet-install.ps1"
+        ./dotnet-install.ps1 -Channel 10.0 -InstallDir "$env:ProgramFiles\dotnet"
+        echo "$env:ProgramFiles\dotnet" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        dotnet --list-sdks
+
+    - name: Get version variables
+      id: version
+      shell: pwsh
+      run: |
+        $majorVersion = "${{ vars.VERSION_MAJOR }}"
+        if ([string]::IsNullOrEmpty($majorVersion)) { $majorVersion = "1" }
+
+        $minorVersion = "${{ vars.VERSION_MINOR }}"
+        if ([string]::IsNullOrEmpty($minorVersion)) { $minorVersion = "0" }
+
+        $patchVersion = "${{ vars.VERSION_PATCH }}"
+        if ([string]::IsNullOrEmpty($patchVersion)) { $patchVersion = "0" }
+
+        $previewSuffix = "${{ vars.VERSION_PREVIEW_SUFFIX }}"
+        if ([string]::IsNullOrEmpty($previewSuffix)) { $previewSuffix = "0" }
+
+        $ref = "${{ github.ref }}"
+        if ($ref -eq "refs/heads/main") {
+          $version = "$majorVersion.$minorVersion.$patchVersion"
+          $nextPatchVersion = [int]$patchVersion + 1
+          echo "NEXT_PATCH_VERSION=$nextPatchVersion" >> $env:GITHUB_OUTPUT
+          Write-Host "✅ Main branch version: $version"
+        }
+        elseif ($ref -eq "refs/heads/dev") {
+          $nextPreviewSuffix = [int]$previewSuffix + 1
+          $version = "$majorVersion.$minorVersion.$patchVersion-preview.$nextPreviewSuffix"
+          echo "NEXT_PREVIEW_SUFFIX=$nextPreviewSuffix" >> $env:GITHUB_OUTPUT
+          Write-Host "✅ Dev branch version: $version"
+        }
+        else {
+          $timestamp = Get-Date -Format "yyyyMMdd-HHmmss" -AsUTC
+          $version = "$majorVersion.$minorVersion.$patchVersion-CI-$timestamp"
+          Write-Host "✅ Feature branch version: $version"
+        }
+
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+        echo "BRANCH_TYPE=$(if ($ref -eq 'refs/heads/main') { 'main' } elseif ($ref -eq 'refs/heads/dev') { 'dev' } else { 'feature' })" >> $env:GITHUB_OUTPUT
+        Write-Host "📦 Final version: $version"
+
+    - name: Restore dependencies
+      working-directory: src
+      run: dotnet restore
+
+    - name: Build
+      working-directory: src
+      run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.version.outputs.VERSION }}
+
+    - name: Test
+      working-directory: src
+      run: dotnet test --configuration Release --no-build
+
+    - name: Pack
+      working-directory: src
+      run: dotnet pack CloudNimble.ClaudeEssentials/CloudNimble.ClaudeEssentials.csproj --configuration Release --no-build --output ../artifacts /p:PackageVersion=${{ steps.version.outputs.VERSION }}
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: nuget-packages
+        path: ./artifacts/*.nupkg
+        retention-days: 7
+
+  deploy:
+    needs: build
+    runs-on: windows-latest
+    environment: production
+    if: |
+      (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')) ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_to_nuget == 'true')
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v7
+      with:
+        name: nuget-packages
+        path: ./artifacts
+
+    - name: Get version data
+      id: version
+      shell: pwsh
+      run: |
+        $majorVersion = "${{ vars.VERSION_MAJOR }}"
+        if ([string]::IsNullOrEmpty($majorVersion)) { $majorVersion = "1" }
+
+        $minorVersion = "${{ vars.VERSION_MINOR }}"
+        if ([string]::IsNullOrEmpty($minorVersion)) { $minorVersion = "0" }
+
+        $patchVersion = "${{ vars.VERSION_PATCH }}"
+        if ([string]::IsNullOrEmpty($patchVersion)) { $patchVersion = "0" }
+
+        $previewSuffix = "${{ vars.VERSION_PREVIEW_SUFFIX }}"
+        if ([string]::IsNullOrEmpty($previewSuffix)) { $previewSuffix = "0" }
+
+        $ref = "${{ github.ref }}"
+        if ($ref -eq "refs/heads/main") {
+          $nextPatchVersion = [int]$patchVersion + 1
+          echo "NEXT_PATCH_VERSION=$nextPatchVersion" >> $env:GITHUB_OUTPUT
+          echo "BRANCH_TYPE=main" >> $env:GITHUB_OUTPUT
+        }
+        elseif ($ref -eq "refs/heads/dev") {
+          $nextPreviewSuffix = [int]$previewSuffix + 1
+          echo "NEXT_PREVIEW_SUFFIX=$nextPreviewSuffix" >> $env:GITHUB_OUTPUT
+          echo "BRANCH_TYPE=dev" >> $env:GITHUB_OUTPUT
+        }
+
+    - name: NuGet login (Trusted Publishing)
+      uses: nuget/login@v1
+      with:
+        user: CloudNimble
+
+    - name: Push to NuGet
+      id: nuget_push
+      shell: pwsh
+      run: |
+        $deploymentSuccess = $true
+
+        Get-ChildItem ./artifacts/*.nupkg | ForEach-Object {
+          Write-Host "📤 Pushing $($_.Name) to NuGet..."
+          try {
+            dotnet nuget push $_.FullName `
+              --source https://api.nuget.org/v3/index.json `
+              --skip-duplicate
+            Write-Host "✅ Pushed successfully"
+          }
+          catch {
+            $deploymentSuccess = $false
+            Write-Host "❌ Push failed: $($_.Exception.Message)"
+          }
+        }
+
+        echo "DEPLOYMENT_SUCCESS=$deploymentSuccess" >> $env:GITHUB_OUTPUT
+        if (-not $deploymentSuccess) { exit 1 }
+
+    - name: Update preview suffix (dev branch)
+      if: steps.version.outputs.BRANCH_TYPE == 'dev' && steps.nuget_push.outputs.DEPLOYMENT_SUCCESS == 'true'
+      shell: pwsh
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        $nextSuffix = "${{ steps.version.outputs.NEXT_PREVIEW_SUFFIX }}"
+        Write-Host "🔄 Updating VERSION_PREVIEW_SUFFIX to $nextSuffix"
+        gh variable set VERSION_PREVIEW_SUFFIX --body "$nextSuffix"
+
+    - name: Update patch version (main branch)
+      if: steps.version.outputs.BRANCH_TYPE == 'main' && steps.nuget_push.outputs.DEPLOYMENT_SUCCESS == 'true'
+      shell: pwsh
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        $nextPatch = "${{ steps.version.outputs.NEXT_PATCH_VERSION }}"
+        Write-Host "🔄 Updating VERSION_PATCH to $nextPatch"
+        gh variable set VERSION_PATCH --body "$nextPatch"
+        gh variable set VERSION_PREVIEW_SUFFIX --body "0"
+
+  create-release:
+    needs: [build, deploy]
+    runs-on: windows-latest
+    if: |
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.event.inputs.deploy_to_nuget == 'true')
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v7
+      with:
+        name: nuget-packages
+        path: ./artifacts
+
+    - name: Get version from build
+      id: version
+      shell: pwsh
+      run: |
+        # Extract version from package name
+        $packageFile = Get-ChildItem ./artifacts/*.nupkg | Select-Object -First 1
+        $version = $packageFile.Name -replace '.*\.(.+?)\.nupkg', '$1'
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+        Write-Host "📦 Creating release for version: $version"
+
+    - name: Prepare Release Content
+      id: create_release
+      shell: pwsh
+      run: |
+        $version = "${{ steps.version.outputs.VERSION }}"
+        $packages = Get-ChildItem ./artifacts/*.nupkg | ForEach-Object { $_.Name -replace '\.nupkg$', '' }
+        $packageList = ""
+        foreach ($package in $packages) {
+          $packageName = $package -replace "\.$version$", ""
+          $packageList += "- [$packageName](https://www.nuget.org/packages/$packageName/$version)`n"
+        }
+
+        $body = @"
+        ## CloudNimble.ClaudeEssentials v$version
+
+        ### NuGet Packages
+        $packageList
+
+        ### What's Changed
+        See [full changelog](https://github.com/${{ github.repository }}/compare/v${{ steps.version.outputs.PREVIOUS_VERSION }}...v$version)
+
+        ### Installation
+        ``````bash
+        dotnet add package CloudNimble.ClaudeEssentials --version $version
+        ``````
+
+        ### Package Details
+        This release includes the following NuGet packages:
+        $packageList
+        "@
+
+        echo "RELEASE_BODY=$body" >> $env:GITHUB_OUTPUT
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v${{ steps.version.outputs.VERSION }}
+        name: Release v${{ steps.version.outputs.VERSION }}
+        body: ${{ steps.create_release.outputs.RELEASE_BODY }}
+        files: ./artifacts/*.nupkg
+        draft: false
+        prerelease: false
