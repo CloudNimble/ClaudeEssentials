@@ -4,7 +4,8 @@
       "Bash(dotnet:*)",
       "mcp__github__*",
       "WebFetch(domain:github.com)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(gh run view:*)"
     ]
   }
 }

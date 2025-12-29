@@ -223,25 +223,24 @@ jobs:
         }
 
         $body = @"
-        ## ClaudeEssentials v$version
+## ClaudeEssentials v$version
 
-        ### NuGet Packages
-        $packageList
+### NuGet Packages
+$packageList
 
-        ### What's Changed
-        See [full changelog](https://github.com/${{ github.repository }}/compare/v${{ steps.version.outputs.PREVIOUS_VERSION }}...v$version)
+### What's Changed
+See [full changelog](https://github.com/${{ github.repository }}/commits/v$version)
 
-        ### Installation
-        ``````bash
-        dotnet add package laudeEssentials --version $version
-        ``````
+### Installation
+``````bash
+dotnet add package ClaudeEssentials --version $version
+``````
+"@
 
-        ### Package Details
-        This release includes the following NuGet packages:
-        $packageList
-        "@
-
-        echo "RELEASE_BODY=$body" >> $env:GITHUB_OUTPUT
+        # Multi-line output requires EOF delimiter
+        "RELEASE_BODY<<EOF" >> $env:GITHUB_OUTPUT
+        $body >> $env:GITHUB_OUTPUT
+        "EOF" >> $env:GITHUB_OUTPUT
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
