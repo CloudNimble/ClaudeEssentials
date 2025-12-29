@@ -154,34 +154,15 @@ jobs:
 
     - name: NuGet login (Trusted Publishing)
       uses: nuget/login@v1
+      id: nuget_login
       with:
-        user: CloudNimble
+        user: ${{ secrets.NUGET_USER }}
 
     - name: Push to NuGet
-      id: nuget_push
-      shell: pwsh
-      run: |
-        $deploymentSuccess = $true
-
-        Get-ChildItem ./artifacts/*.nupkg | ForEach-Object {
-          Write-Host "📤 Pushing $($_.Name) to NuGet..."
-          try {
-            dotnet nuget push $_.FullName `
-              --source https://api.nuget.org/v3/index.json `
-              --skip-duplicate
-            Write-Host "✅ Pushed successfully"
-          }
-          catch {
-            $deploymentSuccess = $false
-            Write-Host "❌ Push failed: $($_.Exception.Message)"
-          }
-        }
-
-        echo "DEPLOYMENT_SUCCESS=$deploymentSuccess" >> $env:GITHUB_OUTPUT
-        if (-not $deploymentSuccess) { exit 1 }
+      run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ steps.nuget_login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
     - name: Update preview suffix (dev branch)
-      if: steps.version.outputs.BRANCH_TYPE == 'dev' && steps.nuget_push.outputs.DEPLOYMENT_SUCCESS == 'true'
+      if: steps.version.outputs.BRANCH_TYPE == 'dev'
       shell: pwsh
       env:
         GH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
@@ -191,7 +172,7 @@ jobs:
         gh variable set VERSION_PREVIEW_SUFFIX --body "$nextSuffix"
 
     - name: Update patch version (main branch)
-      if: steps.version.outputs.BRANCH_TYPE == 'main' && steps.nuget_push.outputs.DEPLOYMENT_SUCCESS == 'true'
+      if: steps.version.outputs.BRANCH_TYPE == 'main'
       shell: pwsh
       env:
         GH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
@@ -241,7 +222,7 @@ jobs:
         }
 
         $body = @"
-        ## CloudNimble.ClaudeEssentials v$version
+        ## ClaudeEssentials v$version
 
         ### NuGet Packages
         $packageList
@@ -251,7 +232,7 @@ jobs:
 
         ### Installation
         ``````bash
-        dotnet add package CloudNimble.ClaudeEssentials --version $version
+        dotnet add package laudeEssentials --version $version
         ``````
 
         ### Package Details
