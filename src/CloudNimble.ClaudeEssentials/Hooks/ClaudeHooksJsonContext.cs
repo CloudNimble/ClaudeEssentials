@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using CloudNimble.ClaudeEssentials.Hooks.Enums;
 using CloudNimble.ClaudeEssentials.Hooks.Inputs;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
+using CloudNimble.ClaudeEssentials.Hooks.Tools;
 
 namespace CloudNimble.ClaudeEssentials.Hooks
 {
@@ -77,6 +78,36 @@ namespace CloudNimble.ClaudeEssentials.Hooks
     [JsonSerializable(typeof(NotificationHookOutput))]
     [JsonSerializable(typeof(PreCompactHookOutput))]
     [JsonSerializable(typeof(SessionEndHookOutput))]
+
+    // Tool input types
+    [JsonSerializable(typeof(ReadToolInput))]
+    [JsonSerializable(typeof(WriteToolInput))]
+    [JsonSerializable(typeof(EditToolInput))]
+    [JsonSerializable(typeof(BashToolInput))]
+    [JsonSerializable(typeof(GlobToolInput))]
+    [JsonSerializable(typeof(GrepToolInput))]
+    [JsonSerializable(typeof(TaskToolInput))]
+    [JsonSerializable(typeof(WebFetchToolInput))]
+    [JsonSerializable(typeof(WebSearchToolInput))]
+    [JsonSerializable(typeof(TodoWriteToolInput))]
+    [JsonSerializable(typeof(TodoItem))]
+    [JsonSerializable(typeof(TodoItem[]))]
+    [JsonSerializable(typeof(NotebookEditToolInput))]
+    [JsonSerializable(typeof(KillShellToolInput))]
+
+    // Strongly-typed hook inputs with specific tool types
+    [JsonSerializable(typeof(PreToolUseHookInput<ReadToolInput>), TypeInfoPropertyName = "PreToolUseHookInputRead")]
+    [JsonSerializable(typeof(PreToolUseHookInput<WriteToolInput>), TypeInfoPropertyName = "PreToolUseHookInputWrite")]
+    [JsonSerializable(typeof(PreToolUseHookInput<EditToolInput>), TypeInfoPropertyName = "PreToolUseHookInputEdit")]
+    [JsonSerializable(typeof(PreToolUseHookInput<BashToolInput>), TypeInfoPropertyName = "PreToolUseHookInputBash")]
+    [JsonSerializable(typeof(PreToolUseHookInput<GlobToolInput>), TypeInfoPropertyName = "PreToolUseHookInputGlob")]
+    [JsonSerializable(typeof(PreToolUseHookInput<GrepToolInput>), TypeInfoPropertyName = "PreToolUseHookInputGrep")]
+    [JsonSerializable(typeof(PreToolUseHookInput<TaskToolInput>), TypeInfoPropertyName = "PreToolUseHookInputTask")]
+    [JsonSerializable(typeof(PreToolUseHookInput<WebFetchToolInput>), TypeInfoPropertyName = "PreToolUseHookInputWebFetch")]
+    [JsonSerializable(typeof(PreToolUseHookInput<WebSearchToolInput>), TypeInfoPropertyName = "PreToolUseHookInputWebSearch")]
+    [JsonSerializable(typeof(PreToolUseHookInput<TodoWriteToolInput>), TypeInfoPropertyName = "PreToolUseHookInputTodoWrite")]
+    [JsonSerializable(typeof(PreToolUseHookInput<NotebookEditToolInput>), TypeInfoPropertyName = "PreToolUseHookInputNotebookEdit")]
+    [JsonSerializable(typeof(PreToolUseHookInput<KillShellToolInput>), TypeInfoPropertyName = "PreToolUseHookInputKillShell")]
     public partial class ClaudeHooksJsonContext : JsonSerializerContext
     {
 

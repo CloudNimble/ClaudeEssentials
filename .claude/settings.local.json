@@ -3,7 +3,8 @@
     "allow": [
       "Bash(dotnet:*)",
       "mcp__github__*",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(cd:*)"
     ]
   }
 }

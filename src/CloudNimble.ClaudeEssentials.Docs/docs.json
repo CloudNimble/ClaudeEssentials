@@ -94,6 +94,26 @@
                           "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/UserPromptSubmitHookOutput",
                           "api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/UserPromptSubmitSpecificOutput"
                         ]
+                      },
+                      {
+                        "group": "Tools",
+                        "icon": "folder-tree",
+                        "pages": [
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/index",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EditToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GlobToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GrepToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/KillShellToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/NotebookEditToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoItem",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoWriteToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebFetchToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebSearchToolInput",
+                          "api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WriteToolInput"
+                        ]
                       }
                     ]
                   }
