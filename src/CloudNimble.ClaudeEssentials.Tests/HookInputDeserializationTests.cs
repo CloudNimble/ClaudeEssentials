@@ -1,6 +1,4 @@
 using CloudNimble.ClaudeEssentials.Hooks;
-using CloudNimble.ClaudeEssentials.Hooks.Enums;
-using CloudNimble.ClaudeEssentials.Hooks.Inputs;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

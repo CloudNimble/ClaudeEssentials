@@ -1,7 +1,5 @@
 using System.Text.Json;
 using CloudNimble.ClaudeEssentials.Hooks;
-using CloudNimble.ClaudeEssentials.Hooks.Enums;
-using CloudNimble.ClaudeEssentials.Hooks.Inputs;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

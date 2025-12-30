@@ -7,8 +7,4 @@
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Hooks\Tools\" />
-    </ItemGroup>
-
 </Project>

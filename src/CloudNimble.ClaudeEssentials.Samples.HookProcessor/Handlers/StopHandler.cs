@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using CloudNimble.ClaudeEssentials.Hooks.Enums;
+using CloudNimble.ClaudeEssentials.Hooks;
 using CloudNimble.ClaudeEssentials.Hooks.Inputs;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
 

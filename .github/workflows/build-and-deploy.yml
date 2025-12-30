@@ -212,35 +212,22 @@ jobs:
 
     - name: Prepare Release Content
       id: create_release
-      shell: pwsh
+      shell: bash
       run: |
-        $version = "${{ steps.version.outputs.VERSION }}"
-        $packages = Get-ChildItem ./artifacts/*.nupkg | ForEach-Object { $_.Name -replace '\.nupkg$', '' }
-        $packageList = ""
-        foreach ($package in $packages) {
-          $packageName = $package -replace "\.$version$", ""
-          $packageList += "- [$packageName](https://www.nuget.org/packages/$packageName/$version)`n"
-        }
-
-        $body = @"
-## ClaudeEssentials v$version
-
-### NuGet Packages
-$packageList
-
-### What's Changed
-See [full changelog](https://github.com/${{ github.repository }}/commits/v$version)
-
-### Installation
-``````bash
-dotnet add package ClaudeEssentials --version $version
-``````
-"@
-
-        # Multi-line output requires EOF delimiter
-        "RELEASE_BODY<<EOF" >> $env:GITHUB_OUTPUT
-        $body >> $env:GITHUB_OUTPUT
-        "EOF" >> $env:GITHUB_OUTPUT
+        version="${{ steps.version.outputs.VERSION }}"
+        {
+          echo "RELEASE_BODY<<BODY"
+          echo "## ClaudeEssentials v${version}"
+          echo ""
+          echo "### Installation"
+          echo "\`\`\`bash"
+          echo "dotnet add package ClaudeEssentials --version ${version}"
+          echo "\`\`\`"
+          echo ""
+          echo "### What's Changed"
+          echo "See [full changelog](https://github.com/${{ github.repository }}/commits/v${version})"
+          echo "BODY"
+        } >> $GITHUB_OUTPUT
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2

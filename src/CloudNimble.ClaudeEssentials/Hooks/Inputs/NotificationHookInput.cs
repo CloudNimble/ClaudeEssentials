@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using CloudNimble.ClaudeEssentials.Hooks.Enums;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
 {

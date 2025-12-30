@@ -1,5 +1,4 @@
 using System.Text;
-using System.Text.Json;
 using CloudNimble.ClaudeEssentials.Hooks.Inputs;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
 

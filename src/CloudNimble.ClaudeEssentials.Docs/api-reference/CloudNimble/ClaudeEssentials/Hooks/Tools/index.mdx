@@ -3,7 +3,7 @@ title: Overview
 description: "Summary of the CloudNimble.ClaudeEssentials.Hooks.Tools Namespace"
 icon: folder-tree
 mode: wide
-keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools', 'namespace', 'BashToolInput', 'EditToolInput', 'GlobToolInput', 'GrepToolInput', 'KillShellToolInput', 'NotebookEditToolInput', 'ReadToolInput', 'TaskToolInput', 'TodoWriteToolInput', 'TodoItem']
+keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools', 'namespace', 'BashPostToolUsePayload', 'BashPreToolUsePayload', 'EditPostToolUsePayload', 'EditPreToolUsePayload', 'GlobPostToolUsePayload', 'GlobPreToolUsePayload', 'GrepPostToolUsePayload', 'GrepPreToolUsePayload', 'KillShellPostToolUsePayload', 'KillShellPreToolUsePayload']
 ---
 
 ## Types
@@ -12,17 +12,28 @@ keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools', 'namespace', 'BashToolInp
 
 | Name | Summary |
 | ---- | ------- |
-| [BashToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashToolInput) | Represents the input parameters for the Bash tool.              The Bash tool executes shell commands in a persistent bash session. |
-| [EditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EditToolInput) | Represents the input parameters for the Edit tool.              The Edit tool performs exact string replacements in files. |
-| [GlobToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GlobToolInput) | Represents the input parameters for the Glob tool.              The Glob tool provides fast file pattern matching that works with any codebase size. |
-| [GrepToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GrepToolInput) | Represents the input parameters for the Grep tool.              The Grep tool is a powerful content search built on ripgrep. |
-| [KillShellToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/KillShellToolInput) | Represents the input parameters for the KillShell tool.              The KillShell tool terminates a running background bash shell by its ID. |
-| [NotebookEditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/NotebookEditToolInput) | Represents the input parameters for the NotebookEdit tool.              The NotebookEdit tool replaces the contents of a specific cell in a Jupyter notebook. |
-| [ReadToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadToolInput) | Represents the input parameters for the Read tool.              The Read tool reads files from the local filesystem. |
-| [TaskToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskToolInput) | Represents the input parameters for the Task tool.              The Task tool launches specialized agents (subprocesses) that autonomously handle complex tasks. |
-| [TodoWriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoWriteToolInput) | Represents the input parameters for the TodoWrite tool.              The TodoWrite tool creates and manages a structured task list for the current coding session. |
-| [TodoItem](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoItem) | Represents a single todo item in the task list. |
-| [WebFetchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebFetchToolInput) | Represents the input parameters for the WebFetch tool.              The WebFetch tool fetches content from a URL and processes it using an AI model. |
-| [WebSearchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebSearchToolInput) | Represents the input parameters for the WebSearch tool.              The WebSearch tool allows Claude to search the web and use the results to inform responses. |
-| [WriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WriteToolInput) | Represents the input parameters for the Write tool.              The Write tool writes a file to the local filesystem. |
+| [BashPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Bash tool has executed. |
+| [BashPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Bash tool is about to be invoked. |
+| [EditPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EditPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Edit tool has executed. |
+| [EditPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EditPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Edit tool is about to be invoked. |
+| [GlobPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GlobPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Glob tool has executed. |
+| [GlobPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GlobPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Glob tool is about to be invoked. |
+| [GrepPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GrepPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Grep tool has executed. |
+| [GrepPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GrepPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Grep tool is about to be invoked. |
+| [KillShellPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/KillShellPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the KillShell tool has executed. |
+| [KillShellPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/KillShellPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the KillShell tool is about to be invoked. |
+| [NotebookEditPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/NotebookEditPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the NotebookEdit tool has executed. |
+| [NotebookEditPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/NotebookEditPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the NotebookEdit tool is about to be invoked. |
+| [ReadPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Read tool has executed. |
+| [ReadPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Read tool is about to be invoked. |
+| [TaskPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Task tool has executed. |
+| [TaskPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Task tool is about to be invoked. |
+| [TodoWritePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoWritePostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the TodoWrite tool has executed. |
+| [TodoWritePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoWritePreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the TodoWrite tool is about to be invoked. |
+| [WebFetchPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebFetchPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the WebFetch tool has executed. |
+| [WebFetchPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebFetchPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the WebFetch tool is about to be invoked. |
+| [WebSearchPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebSearchPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the WebSearch tool has executed. |
+| [WebSearchPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebSearchPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the WebSearch tool is about to be invoked. |
+| [WritePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WritePostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Write tool has executed. |
+| [WritePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WritePreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Write tool is about to be invoked. |
 

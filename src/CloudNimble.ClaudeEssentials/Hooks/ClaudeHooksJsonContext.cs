@@ -1,9 +1,10 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using CloudNimble.ClaudeEssentials.Hooks.Enums;
 using CloudNimble.ClaudeEssentials.Hooks.Inputs;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
 using CloudNimble.ClaudeEssentials.Hooks.Tools;
+using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
+using CloudNimble.ClaudeEssentials.Hooks.Tools.Responses;
 
 namespace CloudNimble.ClaudeEssentials.Hooks
 {
@@ -95,19 +96,51 @@ namespace CloudNimble.ClaudeEssentials.Hooks
     [JsonSerializable(typeof(NotebookEditToolInput))]
     [JsonSerializable(typeof(KillShellToolInput))]
 
-    // Strongly-typed hook inputs with specific tool types
-    [JsonSerializable(typeof(PreToolUseHookInput<ReadToolInput>), TypeInfoPropertyName = "PreToolUseHookInputRead")]
-    [JsonSerializable(typeof(PreToolUseHookInput<WriteToolInput>), TypeInfoPropertyName = "PreToolUseHookInputWrite")]
-    [JsonSerializable(typeof(PreToolUseHookInput<EditToolInput>), TypeInfoPropertyName = "PreToolUseHookInputEdit")]
-    [JsonSerializable(typeof(PreToolUseHookInput<BashToolInput>), TypeInfoPropertyName = "PreToolUseHookInputBash")]
-    [JsonSerializable(typeof(PreToolUseHookInput<GlobToolInput>), TypeInfoPropertyName = "PreToolUseHookInputGlob")]
-    [JsonSerializable(typeof(PreToolUseHookInput<GrepToolInput>), TypeInfoPropertyName = "PreToolUseHookInputGrep")]
-    [JsonSerializable(typeof(PreToolUseHookInput<TaskToolInput>), TypeInfoPropertyName = "PreToolUseHookInputTask")]
-    [JsonSerializable(typeof(PreToolUseHookInput<WebFetchToolInput>), TypeInfoPropertyName = "PreToolUseHookInputWebFetch")]
-    [JsonSerializable(typeof(PreToolUseHookInput<WebSearchToolInput>), TypeInfoPropertyName = "PreToolUseHookInputWebSearch")]
-    [JsonSerializable(typeof(PreToolUseHookInput<TodoWriteToolInput>), TypeInfoPropertyName = "PreToolUseHookInputTodoWrite")]
-    [JsonSerializable(typeof(PreToolUseHookInput<NotebookEditToolInput>), TypeInfoPropertyName = "PreToolUseHookInputNotebookEdit")]
-    [JsonSerializable(typeof(PreToolUseHookInput<KillShellToolInput>), TypeInfoPropertyName = "PreToolUseHookInputKillShell")]
+    // Tool response types
+    [JsonSerializable(typeof(ReadToolResponse))]
+    [JsonSerializable(typeof(ReadToolFileInfo))]
+    [JsonSerializable(typeof(WriteToolResponse))]
+    [JsonSerializable(typeof(EditToolResponse))]
+    [JsonSerializable(typeof(StructuredPatchHunk))]
+    [JsonSerializable(typeof(BashToolResponse))]
+    [JsonSerializable(typeof(GlobToolResponse))]
+    [JsonSerializable(typeof(GrepToolResponse))]
+    [JsonSerializable(typeof(TaskToolResponse))]
+    [JsonSerializable(typeof(WebFetchToolResponse))]
+    [JsonSerializable(typeof(WebSearchToolResponse))]
+    [JsonSerializable(typeof(WebSearchResultContainer))]
+    [JsonSerializable(typeof(WebSearchResultItem))]
+    [JsonSerializable(typeof(TodoWriteToolResponse))]
+    [JsonSerializable(typeof(NotebookEditToolResponse))]
+    [JsonSerializable(typeof(KillShellToolResponse))]
+
+    // Strongly-typed PreToolUse payloads for each tool
+    [JsonSerializable(typeof(ReadPreToolUsePayload))]
+    [JsonSerializable(typeof(WritePreToolUsePayload))]
+    [JsonSerializable(typeof(EditPreToolUsePayload))]
+    [JsonSerializable(typeof(BashPreToolUsePayload))]
+    [JsonSerializable(typeof(GlobPreToolUsePayload))]
+    [JsonSerializable(typeof(GrepPreToolUsePayload))]
+    [JsonSerializable(typeof(TaskPreToolUsePayload))]
+    [JsonSerializable(typeof(WebFetchPreToolUsePayload))]
+    [JsonSerializable(typeof(WebSearchPreToolUsePayload))]
+    [JsonSerializable(typeof(TodoWritePreToolUsePayload))]
+    [JsonSerializable(typeof(NotebookEditPreToolUsePayload))]
+    [JsonSerializable(typeof(KillShellPreToolUsePayload))]
+
+    // Strongly-typed PostToolUse payloads for each tool
+    [JsonSerializable(typeof(ReadPostToolUsePayload))]
+    [JsonSerializable(typeof(WritePostToolUsePayload))]
+    [JsonSerializable(typeof(EditPostToolUsePayload))]
+    [JsonSerializable(typeof(BashPostToolUsePayload))]
+    [JsonSerializable(typeof(GlobPostToolUsePayload))]
+    [JsonSerializable(typeof(GrepPostToolUsePayload))]
+    [JsonSerializable(typeof(TaskPostToolUsePayload))]
+    [JsonSerializable(typeof(WebFetchPostToolUsePayload))]
+    [JsonSerializable(typeof(WebSearchPostToolUsePayload))]
+    [JsonSerializable(typeof(TodoWritePostToolUsePayload))]
+    [JsonSerializable(typeof(NotebookEditPostToolUsePayload))]
+    [JsonSerializable(typeof(KillShellPostToolUsePayload))]
     public partial class ClaudeHooksJsonContext : JsonSerializerContext
     {
 

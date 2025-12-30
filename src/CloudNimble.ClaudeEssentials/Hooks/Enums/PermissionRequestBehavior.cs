@@ -1,4 +1,4 @@
-namespace CloudNimble.ClaudeEssentials.Hooks.Enums
+namespace CloudNimble.ClaudeEssentials.Hooks
 {
 
     /// <summary>

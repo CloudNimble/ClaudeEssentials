@@ -35,6 +35,9 @@ namespace CloudNimble.ClaudeEssentials.Samples.HookProcessor
     internal class Program
     {
 
+        private static readonly string LogDirectory = Path.Combine(
+            AppContext.BaseDirectory, "..", "..", "..", "..", "..", "logs");
+
         /// <summary>
         /// Entry point for the hook processor.
         /// </summary>
@@ -55,6 +58,9 @@ namespace CloudNimble.ClaudeEssentials.Samples.HookProcessor
             {
                 // Read JSON input from stdin
                 var inputJson = Console.In.ReadToEnd();
+
+                // Log raw payload to file for debugging
+                LogPayload(hookType, inputJson);
 
                 if (string.IsNullOrWhiteSpace(inputJson))
                 {
@@ -79,13 +85,51 @@ namespace CloudNimble.ClaudeEssentials.Samples.HookProcessor
             }
             catch (JsonException ex)
             {
+                LogError(hookType, $"JSON parsing error: {ex.Message}\n{ex.StackTrace}");
                 Console.Error.WriteLine($"JSON parsing error: {ex.Message}");
                 return 1;
             }
             catch (Exception ex)
             {
+                LogError(hookType, $"Error: {ex.Message}\n{ex.StackTrace}");
                 Console.Error.WriteLine($"Error processing {hookType} hook: {ex.Message}");
                 return 1;
+            }
+        }
+
+        /// <summary>
+        /// Logs raw payload to file for debugging.
+        /// </summary>
+        private static void LogPayload(string hookType, string payload)
+        {
+            try
+            {
+                Directory.CreateDirectory(LogDirectory);
+                var timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-fff");
+                var filename = Path.Combine(LogDirectory, $"{timestamp}_{hookType}.json");
+                File.WriteAllText(filename, payload);
+            }
+            catch
+            {
+                // Silently ignore logging errors to not break the hook
+            }
+        }
+
+        /// <summary>
+        /// Logs errors to file for debugging.
+        /// </summary>
+        private static void LogError(string hookType, string error)
+        {
+            try
+            {
+                Directory.CreateDirectory(LogDirectory);
+                var timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-fff");
+                var filename = Path.Combine(LogDirectory, $"{timestamp}_{hookType}_ERROR.txt");
+                File.WriteAllText(filename, error);
+            }
+            catch
+            {
+                // Silently ignore logging errors
             }
         }
 
