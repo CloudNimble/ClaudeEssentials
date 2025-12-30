@@ -37,7 +37,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             // Assert
             doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
             doc.RootElement.GetProperty("hookSpecificOutput")
-                .GetProperty("permissionDecision").GetString().Should().Be("Allow");
+                .GetProperty("permissionDecision").GetString().Should().Be("allow");
             doc.RootElement.GetProperty("hookSpecificOutput")
                 .GetProperty("permissionDecisionReason").GetString().Should().Be("Auto-approved");
         }
@@ -62,7 +62,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
 
             // Assert
             doc.RootElement.GetProperty("hookSpecificOutput")
-                .GetProperty("permissionDecision").GetString().Should().Be("Deny");
+                .GetProperty("permissionDecision").GetString().Should().Be("deny");
         }
 
         [TestMethod]

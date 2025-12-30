@@ -93,7 +93,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             doc.RootElement.GetProperty("continue").GetBoolean().Should().Be(original.Continue);
             doc.RootElement.GetProperty("systemMessage").GetString().Should().Be(original.SystemMessage);
             doc.RootElement.GetProperty("hookSpecificOutput")
-                .GetProperty("permissionDecision").GetString().Should().Be("Allow");
+                .GetProperty("permissionDecision").GetString().Should().Be("allow");
             doc.RootElement.GetProperty("hookSpecificOutput")
                 .GetProperty("permissionDecisionReason").GetString()
                 .Should().Be("Approved by policy");
