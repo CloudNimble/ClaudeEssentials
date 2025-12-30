@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using CloudNimble.ClaudeEssentials.Hooks.Inputs;
@@ -113,6 +114,11 @@ namespace CloudNimble.ClaudeEssentials.Hooks
     [JsonSerializable(typeof(TodoWriteToolResponse))]
     [JsonSerializable(typeof(NotebookEditToolResponse))]
     [JsonSerializable(typeof(KillShellToolResponse))]
+
+    // MCP tool response wrapper types
+    [JsonSerializable(typeof(ContentBlock))]
+    [JsonSerializable(typeof(ContentBlock[]))]
+    [JsonSerializable(typeof(List<ContentBlock>))]
 
     // Strongly-typed PreToolUse payloads for each tool
     [JsonSerializable(typeof(ReadPreToolUsePayload))]

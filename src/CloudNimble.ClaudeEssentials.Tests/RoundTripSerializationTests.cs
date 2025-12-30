@@ -161,7 +161,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
                     "session_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
                     "transcript_path": "/Users/dev/.claude/transcripts/session.jsonl",
                     "cwd": "/Users/dev/myproject",
-                    "permission_mode": "Default",
+                    "permission_mode": "default",
                     "hook_event_name": "PreToolUse",
                     "tool_name": "Edit",
                     "tool_input": {
@@ -193,7 +193,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
                     "session_id": "new-session-id",
                     "transcript_path": "/tmp/transcript.jsonl",
                     "cwd": "/home/user/project",
-                    "permission_mode": "AcceptEdits",
+                    "permission_mode": "acceptEdits",
                     "hook_event_name": "SessionStart",
                     "source": "Startup",
                     "env_file": "/tmp/env_vars.txt"
@@ -253,7 +253,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
                     "session_id": "test",
                     "transcript_path": "/path",
                     "cwd": "/dir",
-                    "permission_mode": "Default",
+                    "permission_mode": "default",
                     "hook_event_name": "PreToolUse",
                     "tool_name": "Bash",
                     "tool_input": {},

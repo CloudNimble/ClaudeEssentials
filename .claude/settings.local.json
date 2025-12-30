@@ -5,7 +5,42 @@
       "mcp__github__*",
       "WebFetch(domain:github.com)",
       "Bash(cd:*)",
-      "Bash(gh run view:*)"
+      "Bash(gh run view:*)",
+      "WebFetch(domain:docs.github.com)",
+      "Bash(find:*)",
+      "Bash(grep:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "D:/GitHub/ClaudeEssentials/src/CloudNimble.ClaudeEssentials.Samples.HookProcessor/bin/Debug/net10.0/CloudNimble.ClaudeEssentials.Samples.HookProcessor.exe PreToolUse"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "D:/GitHub/ClaudeEssentials/src/CloudNimble.ClaudeEssentials.Samples.HookProcessor/bin/Debug/net10.0/CloudNimble.ClaudeEssentials.Samples.HookProcessor.exe PostToolUse"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "D:/GitHub/ClaudeEssentials/src/CloudNimble.ClaudeEssentials.Samples.HookProcessor/bin/Debug/net10.0/CloudNimble.ClaudeEssentials.Samples.HookProcessor.exe SessionStart"
+          }
+        ]
+      }
     ]
   }
 }
