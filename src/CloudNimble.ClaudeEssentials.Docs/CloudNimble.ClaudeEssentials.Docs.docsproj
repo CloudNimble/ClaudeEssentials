@@ -35,4 +35,8 @@
         </MintlifyTemplate>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Include="guides\understanding-hooks.mdx" />
+    </ItemGroup>
+
 </Project>

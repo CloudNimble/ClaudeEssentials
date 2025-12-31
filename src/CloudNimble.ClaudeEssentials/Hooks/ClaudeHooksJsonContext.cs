@@ -115,11 +115,6 @@ namespace CloudNimble.ClaudeEssentials.Hooks
     [JsonSerializable(typeof(NotebookEditToolResponse))]
     [JsonSerializable(typeof(KillShellToolResponse))]
 
-    // MCP tool response wrapper types
-    [JsonSerializable(typeof(ContentBlock))]
-    [JsonSerializable(typeof(ContentBlock[]))]
-    [JsonSerializable(typeof(List<ContentBlock>))]
-
     // Strongly-typed PreToolUse payloads for each tool
     [JsonSerializable(typeof(ReadPreToolUsePayload))]
     [JsonSerializable(typeof(WritePreToolUsePayload))]

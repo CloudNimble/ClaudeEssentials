@@ -8,7 +8,10 @@
       "Bash(gh run view:*)",
       "WebFetch(domain:docs.github.com)",
       "Bash(find:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "WebSearch",
+      "WebFetch(domain:spec.modelcontextprotocol.io)",
+      "WebFetch(domain:modelcontextprotocol.github.io)"
     ]
   },
   "hooks": {
