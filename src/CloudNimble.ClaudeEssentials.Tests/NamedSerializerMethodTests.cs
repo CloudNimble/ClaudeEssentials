@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using CloudNimble.ClaudeEssentials.Hooks;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;

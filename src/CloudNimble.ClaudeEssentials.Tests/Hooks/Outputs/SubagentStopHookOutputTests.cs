@@ -1,63 +1,20 @@
+using System.Text.Json;
 using CloudNimble.ClaudeEssentials.Hooks;
-using CloudNimble.ClaudeEssentials.Hooks.Inputs;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text.Json;
 
-namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
+namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Outputs
 {
 
     /// <summary>
-    /// Tests for <see cref="SubagentStopHookInput"/> and <see cref="SubagentStopHookOutput"/>
-    /// deserialization and serialization.
+    /// Tests for serializing <see cref="SubagentStopHookOutput"/> payloads to JSON.
     /// </summary>
     [TestClass]
-    public class SubagentStopHookTests
+    public class SubagentStopHookOutputTests
     {
 
-        #region Input Deserialization Tests
-
-        [TestMethod]
-        public void DeserializeSubagentStopInput_WithStopHookActive_ShouldDeserializeCorrectly()
-        {
-            var json = """
-                {
-                    "session_id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-                    "cwd": "D:\\Projects\\TestProject",
-                    "hook_event_name": "SubagentStop",
-                    "stop_hook_active": true
-                }
-                """;
-
-            var result = ClaudeHooksSerializer.DeserializeSubagentStopInput(json);
-
-            result.Should().NotBeNull();
-            result!.HookEventName.Should().Be(HookEventName.SubagentStop);
-            result.StopHookActive.Should().BeTrue();
-        }
-
-        [TestMethod]
-        public void DeserializeSubagentStopInput_WithStopHookInactive_ShouldDeserializeCorrectly()
-        {
-            var json = """
-                {
-                    "session_id": "11111111-2222-3333-4444-555555555555",
-                    "cwd": "D:\\Projects\\TestProject",
-                    "hook_event_name": "SubagentStop",
-                    "stop_hook_active": false
-                }
-                """;
-
-            var result = ClaudeHooksSerializer.DeserializeSubagentStopInput(json);
-
-            result.Should().NotBeNull();
-            result!.StopHookActive.Should().BeFalse();
-        }
-
-        #endregion
-
-        #region Output Serialization Tests
+        #region Serialization Tests
 
         [TestMethod]
         public void SerializeSubagentStopOutput_WithBlockDecision_ShouldSerializeCorrectly()

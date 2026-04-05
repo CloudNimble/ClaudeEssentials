@@ -5,7 +5,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text.Json;
 
-namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
+namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Outputs
 {
 
     /// <summary>

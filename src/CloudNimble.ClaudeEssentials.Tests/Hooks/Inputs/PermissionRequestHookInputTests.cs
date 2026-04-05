@@ -1,14 +1,14 @@
+using System.Text.Json;
 using CloudNimble.ClaudeEssentials.Hooks;
 using CloudNimble.ClaudeEssentials.Hooks.Inputs;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text.Json;
 
-namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
+namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Inputs
 {
 
     /// <summary>
-    /// Tests for <see cref="PermissionRequestHookInput{TToolInput}"/> deserialization.
+    /// Tests for deserializing <see cref="PermissionRequestHookInput{TToolInput}"/> payloads from JSON.
     /// </summary>
     [TestClass]
     public class PermissionRequestHookInputTests
@@ -65,6 +65,39 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.Should().NotBeNull();
             result!.ToolName.Should().Be("Write");
             result.Message.Should().BeNull();
+        }
+
+        #endregion
+
+        #region Malformed Payload Tests
+
+        [TestMethod]
+        public void DeserializePermissionRequestInput_WithGarbageJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializePermissionRequestInput("not json");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializePermissionRequestInput_WithNullLiteral_ShouldReturnNull()
+        {
+            var result = ClaudeHooksSerializer.DeserializePermissionRequestInput("null");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializePermissionRequestInput_WithEmptyObject_ShouldReturnObjectWithDefaults()
+        {
+            var result = ClaudeHooksSerializer.DeserializePermissionRequestInput("{}");
+            result.Should().NotBeNull();
+            result!.SessionId.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void DeserializePermissionRequestInput_WithStringLiteral_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializePermissionRequestInput("\"just a string\"");
+            action.Should().Throw<JsonException>();
         }
 
         #endregion

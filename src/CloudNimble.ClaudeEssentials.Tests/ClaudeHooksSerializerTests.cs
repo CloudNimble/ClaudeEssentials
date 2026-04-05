@@ -1,15 +1,10 @@
 using CloudNimble.ClaudeEssentials.Hooks;
-using CloudNimble.ClaudeEssentials.Hooks.Inputs;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
-using CloudNimble.ClaudeEssentials.Hooks.Tools;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
-using CloudNimble.ClaudeEssentials.Hooks.Tools.Responses;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
 
 namespace CloudNimble.ClaudeEssentials.Tests
 {

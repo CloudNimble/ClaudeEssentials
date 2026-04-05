@@ -1,4 +1,3 @@
-using CloudNimble.ClaudeEssentials.Hooks;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 using System.Text.Json.Serialization;
 
