@@ -11,7 +11,8 @@
       "Bash(grep:*)",
       "WebSearch",
       "WebFetch(domain:spec.modelcontextprotocol.io)",
-      "WebFetch(domain:modelcontextprotocol.github.io)"
+      "WebFetch(domain:modelcontextprotocol.github.io)",
+      "WebFetch(domain:docs.anthropic.com)"
     ]
   },
   "hooks": {
