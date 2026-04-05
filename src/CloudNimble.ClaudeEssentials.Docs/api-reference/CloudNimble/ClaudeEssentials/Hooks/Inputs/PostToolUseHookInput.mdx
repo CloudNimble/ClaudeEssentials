@@ -1,6 +1,6 @@
 ---
 title: PostToolUseHookInput
-description: "Represents the input received by a PostToolUse hook.             This hook runs after tool calls complete and includes the tool's response."
+description: "Represents the input received by a PostToolUse hook. This hook runs after tool calls complete and includes the tool's response."
 icon: code-branch
 keywords: ['PostToolUseHookInput', 'CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<TToolInput, TToolResponse>', 'CloudNimble.ClaudeEssentials.Hooks.Inputs', 'class', 'CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<TToolInput>']
 ---
@@ -22,14 +22,14 @@ CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<TToolInput, TTool
 ## Summary
 
 Represents the input received by a PostToolUse hook.
-            This hook runs after tool calls complete and includes the tool's response.
+This hook runs after tool calls complete and includes the tool's response.
 
 ## Type Parameters
 
 - `TToolInput` - The type representing the tool's input parameters.
-            Use a specific tool input class or [Object](https://learn.microsoft.com/dotnet/api/system.object) for dynamic inputs.
+Use a specific tool input class or [Object](https://learn.microsoft.com/dotnet/api/system.object) for dynamic inputs.
 - `TToolResponse` - The type representing the tool's response data.
-            Use a specific tool response class or [Object](https://learn.microsoft.com/dotnet/api/system.object) for dynamic responses.
+Use a specific tool response class or [Object](https://learn.microsoft.com/dotnet/api/system.object) for dynamic responses.
 
 ## Constructors
 
@@ -142,7 +142,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<TToolInput>`</Note>
 
 Gets or sets the input parameters for the tool.
-            The schema depends on the specific tool being invoked.
+The schema depends on the specific tool being invoked.
 
 #### Syntax
 
@@ -159,8 +159,8 @@ Type: `TToolInput?`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<TToolInput>`</Note>
 
 Gets or sets the name of the tool being invoked.
-            Common tool names include: Write, Edit, Bash, Read, Grep, Glob, Task, WebFetch, WebSearch.
-            MCP tools follow the pattern: mcp__&lt;server&gt;__&lt;tool&gt;.
+Common tool names include: Write, Edit, Bash, Read, Grep, Glob, Task, WebFetch, WebSearch.
+MCP tools follow the pattern: mcp__&lt;server&gt;__&lt;tool&gt;.
 
 #### Syntax
 
@@ -175,7 +175,7 @@ Type: `string`
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToolResponse
 
 Gets or sets the response data returned by the tool.
-            The schema depends on the specific tool that was invoked.
+The schema depends on the specific tool that was invoked.
 
 #### Syntax
 
@@ -192,7 +192,7 @@ Type: `TToolResponse?`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<TToolInput>`</Note>
 
 Gets or sets the unique identifier for this specific tool use instance.
-            Typically follows the pattern: toolu_01ABC123...
+Typically follows the pattern: toolu_01ABC123...
 
 #### Syntax
 
@@ -209,7 +209,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
 
 Gets or sets the file path to the transcript JSONL file for the current session.
-            This file contains the full conversation history.
+This file contains the full conversation history.
 
 #### Syntax
 

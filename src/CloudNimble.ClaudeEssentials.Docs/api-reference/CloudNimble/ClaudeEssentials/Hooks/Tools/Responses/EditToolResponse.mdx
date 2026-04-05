@@ -1,6 +1,6 @@
 ---
 title: EditToolResponse
-description: "Represents the response payload returned by the Claude Code Edit tool after performing             a string replacement in a file."
+description: "Represents the response payload returned by the Claude Code Edit tool after performing a string replacement in a file."
 icon: file-brackets-curly
 keywords: ['EditToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.EditToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
 ---
@@ -22,31 +22,20 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.EditToolResponse
 ## Summary
 
 Represents the response payload returned by the Claude Code Edit tool after performing
-            a string replacement in a file.
+a string replacement in a file.
 
 ## Remarks
 
+The Edit tool performs exact string replacements in files. It requires that the target
+file has been read at least once in the conversation before editing. This response is
+received in the [EditPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EditPostToolUsePayload)
+when the `tool_name` is "Edit".
 
+The Edit tool will fail if the [EditToolInput.OldString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EditToolInput#oldstring) is not unique in
+the file, unless [EditToolInput.ReplaceAll](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EditToolInput#replaceall) is set to `true`.
 
-
-            The Edit tool performs exact string replacements in files. It requires that the target
-            file has been read at least once in the conversation before editing. This response is
-            received in the [EditPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EditPostToolUsePayload)
-            when the `tool_name` is "Edit".
-            
-
-
-
-
-            The Edit tool will fail if the [EditToolInput.OldString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EditToolInput#oldstring) is not unique in
-            the file, unless [EditToolInput.ReplaceAll](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EditToolInput#replaceall) is set to `true`.
-            
-
-
-
-
-            Example JSON payload:
-            ```csharp
+Example JSON payload:
+```csharp
 {
   "filePath": "C:\\Projects\\MyApp\\Program.cs",
   "oldString": "Console.WriteLine(\"Hello\");",
@@ -65,8 +54,6 @@ Represents the response payload returned by the Claude Code Edit tool after perf
   "replaceAll": false
 }
 ```
-
-
 
 ## Constructors
 
@@ -113,7 +100,7 @@ Type: `string`
 #### Remarks
 
 This is always an absolute path, regardless of whether the original request
-            used a relative or absolute path. On Windows, this will use backslash separators.
+used a relative or absolute path. On Windows, this will use backslash separators.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NewString
 
@@ -132,7 +119,7 @@ Type: `string`
 #### Remarks
 
 This is the replacement text that now appears in the file where
-            [EditToolResponse.OldString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#oldstring) was previously located.
+[EditToolResponse.OldString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#oldstring) was previously located.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OldString
 
@@ -151,7 +138,7 @@ Type: `string`
 #### Remarks
 
 This is the exact string that was matched in the file. The Edit tool preserves
-            the exact indentation (tabs/spaces) from the original file content.
+the exact indentation (tabs/spaces) from the original file content.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OriginalFile
 
@@ -170,13 +157,13 @@ Type: `string`
 #### Remarks
 
 This contains the full file content prior to the replacement, which can be useful
-            for implementing undo functionality, auditing changes, or verifying the context
-            of the edit.
+for implementing undo functionality, auditing changes, or verifying the context
+of the edit.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReplaceAll
 
 Gets or sets a value indicating whether all occurrences of the old string
-            were replaced, or just the first occurrence.
+were replaced, or just the first occurrence.
 
 #### Syntax
 
@@ -190,22 +177,12 @@ Type: `bool`
 
 #### Remarks
 
+When `false` (the default), the Edit tool requires that [EditToolResponse.OldString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#oldstring)
+appears exactly once in the file, and only that single occurrence is replaced.
 
-
-
-            When `false` (the default), the Edit tool requires that [EditToolResponse.OldString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#oldstring)
-            appears exactly once in the file, and only that single occurrence is replaced.
-            
-
-
-
-
-            When `true`, all occurrences of [EditToolResponse.OldString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#oldstring) in the file are
-            replaced with [EditToolResponse.NewString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#newstring). This is useful for renaming variables
-            or updating repeated patterns throughout a file.
-            
-
-
+When `true`, all occurrences of [EditToolResponse.OldString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#oldstring) in the file are
+replaced with [EditToolResponse.NewString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#newstring). This is useful for renaming variables
+or updating repeated patterns throughout a file.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> StructuredPatch
 
@@ -223,27 +200,17 @@ Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.
 
 #### Remarks
 
+This contains a unified diff representation showing what changed between the
+original and edited content. Each [StructuredPatchHunk](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/StructuredPatchHunk) represents
+a contiguous block of changes.
 
-
-
-            This contains a unified diff representation showing what changed between the
-            original and edited content. Each [StructuredPatchHunk](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/StructuredPatchHunk) represents
-            a contiguous block of changes.
-            
-
-
-
-
-            When [EditToolResponse.ReplaceAll](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#replaceall) is `true` and multiple replacements were made,
-            there may be multiple hunks in the patch, one for each replacement location.
-            
-
-
+When [EditToolResponse.ReplaceAll](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#replaceall) is `true` and multiple replacements were made,
+there may be multiple hunks in the patch, one for each replacement location.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> UserModified
 
 Gets or sets a value indicating whether the file was modified by the user
-            since it was last read by Claude.
+since it was last read by Claude.
 
 #### Syntax
 
@@ -257,22 +224,12 @@ Type: `bool`
 
 #### Remarks
 
+If `true`, Claude detected that the file content changed between when it
+was read and when the edit was applied. This can happen if the user edits the
+file externally while Claude is working.
 
-
-
-            If `true`, Claude detected that the file content changed between when it
-            was read and when the edit was applied. This can happen if the user edits the
-            file externally while Claude is working.
-            
-
-
-
-
-            This flag helps track potential merge conflicts or unexpected changes in the
-            editing workflow.
-            
-
-
+This flag helps track potential merge conflicts or unexpected changes in the
+editing workflow.
 
 ## Methods
 

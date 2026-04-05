@@ -1,6 +1,6 @@
 ---
 title: WebSearchToolResponse
-description: "Represents the response payload returned by the Claude Code WebSearch tool after             performing a web search."
+description: "Represents the response payload returned by the Claude Code WebSearch tool after performing a web search."
 icon: file-brackets-curly
 keywords: ['WebSearchToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.WebSearchToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
 ---
@@ -22,30 +22,19 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.WebSearchToolResponse
 ## Summary
 
 Represents the response payload returned by the Claude Code WebSearch tool after
-            performing a web search.
+performing a web search.
 
 ## Remarks
 
+The WebSearch tool allows Claude to search the web for up-to-date information beyond
+its training data cutoff. This response is received in the
+[WebSearchPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebSearchPostToolUsePayload) when the
+`tool_name` is "WebSearch".
 
+Note: Web search is currently only available in the US region.
 
-
-            The WebSearch tool allows Claude to search the web for up-to-date information beyond
-            its training data cutoff. This response is received in the
-            [WebSearchPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebSearchPostToolUsePayload) when the
-            `tool_name` is "WebSearch".
-            
-
-
-
-
-            Note: Web search is currently only available in the US region.
-            
-
-
-
-
-            Example JSON payload:
-            ```csharp
+Example JSON payload:
+```csharp
 {
   "query": "Claude Code documentation 2025",
   "results": [
@@ -66,8 +55,6 @@ Represents the response payload returned by the Claude Code WebSearch tool after
   "durationSeconds": 2.45
 }
 ```
-
-
 
 ## Constructors
 
@@ -108,8 +95,8 @@ Type: `double`
 #### Remarks
 
 This includes the time taken to perform the web search and process the results.
-            Web searches typically complete within a few seconds, but may take longer
-            depending on network conditions and search complexity.
+Web searches typically complete within a few seconds, but may take longer
+depending on network conditions and search complexity.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Query
 
@@ -128,7 +115,7 @@ Type: `string`
 #### Remarks
 
 This is the exact query string that was sent to the search engine.
-            It matches the [WebSearchToolInput.Query](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebSearchToolInput#query) from the input.
+It matches the [WebSearchToolInput.Query](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebSearchToolInput#query) from the input.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Results
 
@@ -146,21 +133,11 @@ Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.
 
 #### Remarks
 
+Results are grouped into containers, each containing multiple search result items.
+The structure allows for multiple result sets from a single search operation.
 
-
-
-            Results are grouped into containers, each containing multiple search result items.
-            The structure allows for multiple result sets from a single search operation.
-            
-
-
-
-
-            Use these results to inform responses about current events, recent documentation,
-            or other information that may have changed since Claude's training data cutoff.
-            
-
-
+Use these results to inform responses about current events, recent documentation,
+or other information that may have changed since Claude's training data cutoff.
 
 ## Methods
 

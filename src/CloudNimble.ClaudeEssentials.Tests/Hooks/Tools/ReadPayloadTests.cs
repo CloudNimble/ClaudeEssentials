@@ -1,3 +1,4 @@
+using System;
 using CloudNimble.ClaudeEssentials.Hooks;
 using CloudNimble.ClaudeEssentials.Hooks.Tools;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
@@ -20,7 +21,6 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         [TestMethod]
         public void DeserializeReadPreToolUse_WithFilePath_ShouldDeserializeCorrectly()
         {
-            // Arrange
             var json = """
                 {
                     "session_id": "test-session-read-001",
@@ -35,10 +35,8 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
                 }
                 """;
 
-            // Act
             var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPreToolUsePayload);
 
-            // Assert
             result.Should().NotBeNull();
             result!.ToolName.Should().Be("Read");
             result.HookEventName.Should().Be(HookEventName.PreToolUse);
@@ -49,7 +47,6 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         [TestMethod]
         public void DeserializeReadPreToolUse_WithOffsetAndLimit_ShouldDeserializeCorrectly()
         {
-            // Arrange
             var json = """
                 {
                     "tool_name": "Read",
@@ -62,10 +59,8 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
                 }
                 """;
 
-            // Act
             var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPreToolUsePayload);
 
-            // Assert
             result.Should().NotBeNull();
             result!.ToolInput.Should().NotBeNull();
             result.ToolInput!.FilePath.Should().Contain("LargeFile.cs");
@@ -80,7 +75,6 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         [TestMethod]
         public void DeserializeReadPostToolUse_WithFileContent_ShouldDeserializeCorrectly()
         {
-            // Arrange - Real payload structure from Claude Code with sanitized content
             var json = """
                 {
                     "session_id": "test-session-read-002",
@@ -106,28 +100,26 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
                 }
                 """;
 
-            // Act
             var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPostToolUsePayload);
 
-            // Assert
             result.Should().NotBeNull();
             result!.ToolName.Should().Be("Read");
             result.HookEventName.Should().Be(HookEventName.PostToolUse);
             result.ToolInput.Should().NotBeNull();
             result.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Type.Should().Be("text");
-            result.ToolResponse.File.Should().NotBeNull();
-            result.ToolResponse.File!.FilePath.Should().Contain("README.md");
-            result.ToolResponse.File.Content.Should().Contain("# Test Project");
-            result.ToolResponse.File.NumLines.Should().Be(8);
-            result.ToolResponse.File.StartLine.Should().Be(1);
-            result.ToolResponse.File.TotalLines.Should().Be(8);
+            result.ToolResponse.Should().BeOfType<TextReadToolResponse>();
+            var textResponse = (TextReadToolResponse)result.ToolResponse!;
+            textResponse.File.Should().NotBeNull();
+            textResponse.File.FilePath.Should().Contain("README.md");
+            textResponse.File.Content.Should().Contain("# Test Project");
+            textResponse.File.NumLines.Should().Be(8);
+            textResponse.File.StartLine.Should().Be(1);
+            textResponse.File.TotalLines.Should().Be(8);
         }
 
         [TestMethod]
         public void DeserializeReadPostToolUse_WithPaginatedContent_ShouldDeserializeCorrectly()
         {
-            // Arrange
             var json = """
                 {
                     "tool_name": "Read",
@@ -150,22 +142,21 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
                 }
                 """;
 
-            // Act
             var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPostToolUsePayload);
 
-            // Assert
             result.Should().NotBeNull();
             result!.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.File.Should().NotBeNull();
-            result.ToolResponse.File!.NumLines.Should().Be(25);
-            result.ToolResponse.File.StartLine.Should().Be(50);
-            result.ToolResponse.File.TotalLines.Should().Be(500);
+            result.ToolResponse.Should().BeOfType<TextReadToolResponse>();
+            var textResponse = (TextReadToolResponse)result.ToolResponse!;
+            textResponse.File.Should().NotBeNull();
+            textResponse.File.NumLines.Should().Be(25);
+            textResponse.File.StartLine.Should().Be(50);
+            textResponse.File.TotalLines.Should().Be(500);
         }
 
         [TestMethod]
         public void DeserializeReadPostToolUse_WithLargeFile_ShouldDeserializeCorrectly()
         {
-            // Arrange - Simulating a larger file read
             var json = """
                 {
                     "tool_name": "Read",
@@ -186,15 +177,15 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
                 }
                 """;
 
-            // Act
             var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPostToolUsePayload);
 
-            // Assert
             result.Should().NotBeNull();
             result!.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.File.Should().NotBeNull();
-            result.ToolResponse.File!.Content.Should().Contain("using System;");
-            result.ToolResponse.File.Content.Should().Contain("Hello, World!");
+            result.ToolResponse.Should().BeOfType<TextReadToolResponse>();
+            var textResponse = (TextReadToolResponse)result.ToolResponse!;
+            textResponse.File.Should().NotBeNull();
+            textResponse.File.Content.Should().Contain("using System;");
+            textResponse.File.Content.Should().Contain("Hello, World!");
         }
 
         #endregion
@@ -204,7 +195,6 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         [TestMethod]
         public void ReadToolInput_RoundTrip_ShouldMaintainData()
         {
-            // Arrange
             var input = new ReadToolInput
             {
                 FilePath = "D:\\Projects\\TestProject\\test.cs",
@@ -212,11 +202,9 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
                 Limit = 100
             };
 
-            // Act
             var json = JsonSerializer.Serialize(input, ClaudeHooksJsonContext.Default.ReadToolInput);
             var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadToolInput);
 
-            // Assert
             result.Should().NotBeNull();
             result!.FilePath.Should().Be(input.FilePath);
             result.Offset.Should().Be(input.Offset);
@@ -224,12 +212,10 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         }
 
         [TestMethod]
-        public void ReadToolResponse_RoundTrip_ShouldMaintainData()
+        public void TextReadToolResponse_RoundTrip_ShouldMaintainData()
         {
-            // Arrange
-            var response = new ReadToolResponse
+            var response = new TextReadToolResponse
             {
-                Type = "text",
                 File = new ReadToolFileInfo
                 {
                     FilePath = "D:\\test.txt",
@@ -240,16 +226,112 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
                 }
             };
 
-            // Act
-            var json = JsonSerializer.Serialize(response, ClaudeHooksJsonContext.Default.ReadToolResponse);
+            var json = JsonSerializer.Serialize<ReadToolResponse>(response, ClaudeHooksJsonContext.Default.ReadToolResponse);
             var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadToolResponse);
 
-            // Assert
             result.Should().NotBeNull();
-            result!.Type.Should().Be(response.Type);
-            result.File.Should().NotBeNull();
-            result.File!.FilePath.Should().Be(response.File.FilePath);
-            result.File.Content.Should().Be(response.File.Content);
+            result.Should().BeOfType<TextReadToolResponse>();
+            var textResult = (TextReadToolResponse)result!;
+            textResult.File.Should().NotBeNull();
+            textResult.File.FilePath.Should().Be(response.File.FilePath);
+            textResult.File.Content.Should().Be(response.File.Content);
+        }
+
+        #endregion
+
+        #region Malformed Payload Tests
+
+        [TestMethod]
+        public void DeserializeReadPostToolUse_WithMissingTypeDiscriminator_ShouldThrowNotSupportedException()
+        {
+            var json = """
+                {
+                    "tool_name": "Read",
+                    "tool_input": {
+                        "file_path": "D:\\Projects\\TestProject\\README.md"
+                    },
+                    "tool_response": {
+                        "file": {
+                            "filePath": "D:\\Projects\\TestProject\\README.md",
+                            "content": "# Test",
+                            "numLines": 1,
+                            "startLine": 1,
+                            "totalLines": 1
+                        }
+                    },
+                    "tool_use_id": "toolu_01TestMalformed001"
+                }
+                """;
+
+            var action = () => JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPostToolUsePayload);
+
+            action.Should().Throw<NotSupportedException>();
+        }
+
+        [TestMethod]
+        public void DeserializeReadPostToolUse_WithUnknownTypeValue_ShouldThrowJsonException()
+        {
+            var json = """
+                {
+                    "tool_name": "Read",
+                    "tool_input": {
+                        "file_path": "D:\\Projects\\TestProject\\README.md"
+                    },
+                    "tool_response": {
+                        "type": "unknown_type_value",
+                        "file": {
+                            "filePath": "D:\\Projects\\TestProject\\README.md",
+                            "content": "# Test",
+                            "numLines": 1,
+                            "startLine": 1,
+                            "totalLines": 1
+                        }
+                    },
+                    "tool_use_id": "toolu_01TestMalformed002"
+                }
+                """;
+
+            var action = () => JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPostToolUsePayload);
+
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeReadPostToolUse_WithNullToolResponse_ShouldHaveNullToolResponse()
+        {
+            var json = """
+                {
+                    "tool_name": "Read",
+                    "tool_input": {
+                        "file_path": "D:\\Projects\\TestProject\\README.md"
+                    },
+                    "tool_response": null,
+                    "tool_use_id": "toolu_01TestMalformed003"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPostToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolResponse.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeReadPreToolUse_WithFilePathAsNumber_ShouldThrowJsonException()
+        {
+            var json = """
+                {
+                    "tool_name": "Read",
+                    "tool_input": {
+                        "file_path": 12345
+                    },
+                    "tool_use_id": "toolu_01TestMalformed004"
+                }
+                """;
+
+            var action = () => JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPreToolUsePayload);
+
+            action.Should().Throw<JsonException>();
         }
 
         #endregion

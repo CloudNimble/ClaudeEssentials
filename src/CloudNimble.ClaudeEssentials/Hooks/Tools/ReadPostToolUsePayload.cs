@@ -30,7 +30,10 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools
     /// <example>
     /// <code>
     /// var payload = JsonSerializer.Deserialize&lt;ReadPostToolUsePayload&gt;(json);
-    /// Console.WriteLine($"Read {payload.ToolResponse.File?.NumLines} lines from {payload.ToolInput.FilePath}");
+    /// if (payload.ToolResponse is TextReadToolResponse textResponse)
+    /// {
+    ///     Console.WriteLine($"Read {textResponse.File?.NumLines} lines from {payload.ToolInput.FilePath}");
+    /// }
     /// </code>
     /// </example>
     public sealed class ReadPostToolUsePayload : PostToolUseHookInput<ReadToolInput, ReadToolResponse>

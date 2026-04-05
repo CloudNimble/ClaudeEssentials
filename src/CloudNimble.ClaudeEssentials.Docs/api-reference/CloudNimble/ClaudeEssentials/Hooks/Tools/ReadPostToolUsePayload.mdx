@@ -26,28 +26,14 @@ Represents the complete payload delivered to a PostToolUse hook after the Read t
 
 ## Remarks
 
+This payload contains all context provided to your hook after Claude executes the Read tool,
+including session information, the original tool input, and the tool's response. Use this
+type for strongly-typed deserialization of PostToolUse hook payloads when `tool_name` is "Read".
 
+The Read tool reads files from the local filesystem. Your hook receives both the file path
+that was requested and the content that was read, enabling logging, auditing, or post-processing.
 
-
-            This payload contains all context provided to your hook after Claude executes the Read tool,
-            including session information, the original tool input, and the tool's response. Use this
-            type for strongly-typed deserialization of PostToolUse hook payloads when `tool_name` is "Read".
-            
-
-
-
-
-            The Read tool reads files from the local filesystem. Your hook receives both the file path
-            that was requested and the content that was read, enabling logging, auditing, or post-processing.
-            
-
-
-
-
-  &lt;strong&gt;Terminology:&lt;/strong&gt;
-  
-
-
+&lt;strong&gt;Terminology:&lt;/strong&gt;
 
 
 
@@ -55,7 +41,10 @@ Represents the complete payload delivered to a PostToolUse hook after the Read t
 
 ```csharp
 var payload = JsonSerializer.Deserialize&lt;ReadPostToolUsePayload&gt;(json);
-Console.WriteLine($"Read {payload.ToolResponse.File?.NumLines} lines from {payload.ToolInput.FilePath}");
+if (payload.ToolResponse is TextReadToolResponse textResponse)
+{
+    Console.WriteLine($"Read {textResponse.File?.NumLines} lines from {payload.ToolInput.FilePath}");
+}
 ```
 
 ## Constructors
@@ -179,7 +168,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadToolInput>`</Note>
 
 Gets or sets the input parameters for the tool.
-            The schema depends on the specific tool being invoked.
+The schema depends on the specific tool being invoked.
 
 #### Syntax
 
@@ -196,8 +185,8 @@ Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadToolInput?`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadToolInput>`</Note>
 
 Gets or sets the name of the tool being invoked.
-            Common tool names include: Write, Edit, Bash, Read, Grep, Glob, Task, WebFetch, WebSearch.
-            MCP tools follow the pattern: mcp__&lt;server&gt;__&lt;tool&gt;.
+Common tool names include: Write, Edit, Bash, Read, Grep, Glob, Task, WebFetch, WebSearch.
+MCP tools follow the pattern: mcp__&lt;server&gt;__&lt;tool&gt;.
 
 #### Syntax
 
@@ -214,7 +203,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadToolInput, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.ReadToolResponse>`</Note>
 
 Gets or sets the response data returned by the tool.
-            The schema depends on the specific tool that was invoked.
+The schema depends on the specific tool that was invoked.
 
 #### Syntax
 
@@ -231,7 +220,7 @@ Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.ReadToolResponse?`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadToolInput>`</Note>
 
 Gets or sets the unique identifier for this specific tool use instance.
-            Typically follows the pattern: toolu_01ABC123...
+Typically follows the pattern: toolu_01ABC123...
 
 #### Syntax
 
@@ -248,7 +237,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
 
 Gets or sets the file path to the transcript JSONL file for the current session.
-            This file contains the full conversation history.
+This file contains the full conversation history.
 
 #### Syntax
 

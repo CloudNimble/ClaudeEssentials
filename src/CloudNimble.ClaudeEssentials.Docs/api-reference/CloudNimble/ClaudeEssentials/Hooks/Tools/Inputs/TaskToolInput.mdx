@@ -1,6 +1,6 @@
 ---
 title: TaskToolInput
-description: "Represents the input parameters for the Task tool.             The Task tool launches specialized agents (subprocesses) that autonomously handle complex tasks."
+description: "Represents the input parameters for the Task tool. The Task tool launches specialized agents (subprocesses) that autonomously handle complex tasks."
 icon: file-brackets-curly
 keywords: ['TaskToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.TaskToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'class', 'System.Object']
 ---
@@ -22,18 +22,12 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.TaskToolInput
 ## Summary
 
 Represents the input parameters for the Task tool.
-            The Task tool launches specialized agents (subprocesses) that autonomously handle complex tasks.
+The Task tool launches specialized agents (subprocesses) that autonomously handle complex tasks.
 
 ## Remarks
 
-
-
-
-            Each agent type has specific capabilities and tools available to it.
-            Available agent types include: general-purpose, Explore, Plan, and others.
-            
-
-
+Each agent type has specific capabilities and tools available to it.
+Available agent types include: general-purpose, Explore, Plan, and others.
 
 ## Constructors
 
@@ -71,6 +65,39 @@ public string Description { get; set; }
 
 Type: `string`
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Isolation
+
+Gets or sets the isolation mode. Set to `"worktree"` to create a temporary git worktree
+so the agent works on an isolated copy of the repo.
+
+#### Syntax
+
+```csharp
+public string Isolation { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Mode
+
+Gets or sets the permission mode for the spawned teammate (e.g., "plan" to require plan approval).
+
+#### Syntax
+
+```csharp
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.PermissionMode> Mode { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.PermissionMode?>?`
+
+#### Remarks
+
+See [PermissionMode](/api-reference/CloudNimble/ClaudeEssentials/Hooks/PermissionMode) for possible values.
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Model
 
 Gets or sets the optional model to use for this agent.
@@ -78,17 +105,32 @@ Gets or sets the optional model to use for this agent.
 #### Syntax
 
 ```csharp
-public string Model { get; set; }
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.ClaudeModel> Model { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.ClaudeModel?>?`
+
+#### Remarks
+
+See [ClaudeModel](/api-reference/CloudNimble/ClaudeEssentials/Hooks/ClaudeModel) for possible values.
+If not specified, inherits from parent.
+Prefer [ClaudeModel.Haiku](/api-reference/CloudNimble/ClaudeEssentials/Hooks/ClaudeModel#haiku) for quick, straightforward tasks to minimize cost and latency.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Name
+
+Gets or sets the name for the spawned agent. Makes it addressable via SendMessage({to: name}) while running.
+
+#### Syntax
+
+```csharp
+public string Name { get; set; }
 ```
 
 #### Property Value
 
 Type: `string?`
-
-#### Remarks
-
-If not specified, inherits from parent. Options: "sonnet", "opus", "haiku".
-            Prefer haiku for quick, straightforward tasks to minimize cost and latency.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Prompt
 
@@ -134,7 +176,7 @@ public System.Nullable<bool> RunInBackground { get; set; }
 
 #### Property Value
 
-Type: `System.Nullable<bool>`
+Type: `System.Nullable<bool>?`
 
 #### Remarks
 
@@ -152,11 +194,25 @@ public string SubagentType { get; set; }
 
 #### Property Value
 
-Type: `string`
+Type: `string?`
 
 #### Remarks
 
 Examples: "general-purpose", "Explore", "Plan", "statusline-setup"
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TeamName
+
+Gets or sets the team name for spawning. Uses current team context if omitted.
+
+#### Syntax
+
+```csharp
+public string TeamName { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
 
 ## Methods
 

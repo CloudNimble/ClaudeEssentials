@@ -1,3 +1,4 @@
+using CloudNimble.ClaudeEssentials.Hooks;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -36,14 +37,10 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// Gets or sets the type of write operation that was performed.
         /// </summary>
         /// <remarks>
-        /// Known values include:
-        /// <list type="bullet">
-        /// <item><description><c>"create"</c> - A new file was created (file did not exist before)</description></item>
-        /// <item><description><c>"overwrite"</c> - An existing file was completely overwritten</description></item>
-        /// </list>
+        /// See <see cref="WriteOperationType"/> for possible values.
         /// </remarks>
         [JsonPropertyName("type")]
-        public string Type { get; set; } = string.Empty;
+        public WriteOperationType Type { get; set; }
 
         /// <summary>
         /// Gets or sets the absolute path to the file that was written.
@@ -105,5 +102,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonPropertyName("originalFile")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? OriginalFile { get; set; }
+
+        /// <summary>
+        /// Gets or sets git diff information for this file change, when available.
+        /// </summary>
+        /// <remarks>
+        /// This is populated when the written file is in a git repository and git tracking
+        /// is available. It provides a summary of the changes as they would appear in <c>git diff</c>.
+        /// </remarks>
+        [JsonPropertyName("gitDiff")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public GitDiffInfo? GitDiff { get; set; }
     }
 }

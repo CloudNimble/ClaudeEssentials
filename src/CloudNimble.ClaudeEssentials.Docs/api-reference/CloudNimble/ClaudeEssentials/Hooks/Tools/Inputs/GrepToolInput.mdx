@@ -1,6 +1,6 @@
 ---
 title: GrepToolInput
-description: "Represents the input parameters for the Grep tool.             The Grep tool is a powerful content search built on ripgrep."
+description: "Represents the input parameters for the Grep tool. The Grep tool is a powerful content search built on ripgrep."
 icon: file-brackets-curly
 keywords: ['GrepToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.GrepToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'class', 'System.Object']
 ---
@@ -22,18 +22,12 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.GrepToolInput
 ## Summary
 
 Represents the input parameters for the Grep tool.
-            The Grep tool is a powerful content search built on ripgrep.
+The Grep tool is a powerful content search built on ripgrep.
 
 ## Remarks
 
-
-
-
-            Supports full regex syntax (e.g., "log.*Error", "function\s+\w+").
-            Filter files with glob parameter or type parameter.
-            
-
-
+Supports full regex syntax (e.g., "log.*Error", "function\s+\w+").
+Filter files with glob parameter or type parameter.
 
 ## Constructors
 
@@ -71,6 +65,24 @@ public System.Nullable<bool> CaseInsensitive { get; set; }
 
 Type: `System.Nullable<bool>?`
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Context
+
+Gets or sets the number of lines to show before and after each match (rg -C).
+
+#### Syntax
+
+```csharp
+public System.Nullable<int> Context { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<int>?`
+
+#### Remarks
+
+Requires output_mode: "content", ignored otherwise.
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Glob
 
 Gets or sets the glob pattern to filter files.
@@ -105,7 +117,7 @@ Type: `System.Nullable<int>?`
 
 #### Remarks
 
-Equivalent to "| head -N". Defaults to 0 (unlimited).
+Equivalent to "| head -N". Defaults to 250 when unspecified. Pass 0 for unlimited.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> LinesAfter
 
@@ -146,6 +158,7 @@ Requires output_mode: "content", ignored otherwise.
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> LinesContext
 
 Gets or sets the number of lines to show before and after each match.
+Alias for [GrepToolInput.Context](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GrepToolInput#context).
 
 #### Syntax
 
@@ -204,16 +217,16 @@ Gets or sets the output mode.
 #### Syntax
 
 ```csharp
-public string OutputMode { get; set; }
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.GrepOutputMode> OutputMode { get; set; }
 ```
 
 #### Property Value
 
-Type: `string?`
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.GrepOutputMode?>?`
 
 #### Remarks
 
-Options: "content" (shows matching lines), "files_with_matches" (shows only file paths, default), "count" (shows match counts).
+See [GrepOutputMode](/api-reference/CloudNimble/ClaudeEssentials/Hooks/GrepOutputMode) for possible values. Defaults to [GrepOutputMode.FilesWithMatches](/api-reference/CloudNimble/ClaudeEssentials/Hooks/GrepOutputMode#fileswithmatches).
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Path
 

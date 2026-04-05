@@ -25,30 +25,20 @@ Represents a single hunk (contiguous block of changes) in a unified diff patch.
 
 ## Remarks
 
+A structured patch hunk follows the unified diff format, showing context lines
+and changed lines together. Each hunk represents changes to a contiguous section
+of the file.
 
+The [StructuredPatchHunk.Lines](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/StructuredPatchHunk#lines) collection uses standard diff prefixes:
 
-
-            A structured patch hunk follows the unified diff format, showing context lines
-            and changed lines together. Each hunk represents changes to a contiguous section
-            of the file.
-            
-
-
-
-
-            The [StructuredPatchHunk.Lines](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/StructuredPatchHunk#lines) collection uses standard diff prefixes:
-            
 - `"-"` prefix indicates a line removed from the original
 - `"+"` prefix indicates a line added in the new version
 - `" "` (space) prefix indicates an unchanged context line
 - `"\"` indicates metadata like "No newline at end of file"
 
 
-
-
-
-            Example hunk from an Edit operation:
-            ```csharp
+Example hunk from an Edit operation:
+```csharp
 {
   "oldStart": 10,
   "oldLines": 3,
@@ -62,8 +52,6 @@ Represents a single hunk (contiguous block of changes) in a unified diff patch.
   ]
 }
 ```
-
-
 
 ## Constructors
 
@@ -113,17 +101,12 @@ Type: `System.Collections.Generic.List<string>`
 
 #### Remarks
 
+Each line is prefixed with a character indicating its status:
 
-
-
-            Each line is prefixed with a character indicating its status:
-            
 - `"-"` - Line was removed from the original file
 - `"+"` - Line was added in the new file
 - `" "` - Line is unchanged (context)
 - `"\"` - Metadata (e.g., "\ No newline at end of file")
-
-
 
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NewLines
@@ -143,7 +126,7 @@ Type: `int`
 #### Remarks
 
 This count includes both added lines (prefixed with `"+"`) and unchanged
-            context lines (prefixed with `" "`) in the new file.
+context lines (prefixed with `" "`) in the new file.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NewStart
 
@@ -162,8 +145,8 @@ Type: `int`
 #### Remarks
 
 Line numbers are 1-based. This indicates where in the modified file the changes
-            represented by this hunk are now located. This may differ from [StructuredPatchHunk.OldStart](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/StructuredPatchHunk#oldstart)
-            if previous hunks added or removed lines.
+represented by this hunk are now located. This may differ from [StructuredPatchHunk.OldStart](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/StructuredPatchHunk#oldstart)
+if previous hunks added or removed lines.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OldLines
 
@@ -182,7 +165,7 @@ Type: `int`
 #### Remarks
 
 This count includes both removed lines (prefixed with `"-"`) and unchanged
-            context lines (prefixed with `" "`) from the original file.
+context lines (prefixed with `" "`) from the original file.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OldStart
 
@@ -201,7 +184,7 @@ Type: `int`
 #### Remarks
 
 Line numbers are 1-based. This indicates where in the original file the changes
-            represented by this hunk were located.
+represented by this hunk were located.
 
 ## Methods
 

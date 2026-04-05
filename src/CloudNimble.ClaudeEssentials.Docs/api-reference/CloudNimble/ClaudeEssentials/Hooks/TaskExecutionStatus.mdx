@@ -1,0 +1,36 @@
+---
+title: TaskExecutionStatus
+description: "Represents the execution status of a Claude Code task. Named `TaskExecutionStatus` to avoid collision with [TaskStatus](https://learn.microsoft.com/dotnet/ap..."
+icon: list-ol
+tag: "ENUM"
+keywords: ['TaskExecutionStatus', 'CloudNimble.ClaudeEssentials.Hooks.TaskExecutionStatus', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks
+
+**Inheritance:** System.Enum
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.TaskExecutionStatus
+```
+
+## Summary
+
+Represents the execution status of a Claude Code task. Named `TaskExecutionStatus` to avoid
+collision with [TaskStatus](https://learn.microsoft.com/dotnet/api/system.threading.tasks.taskstatus).
+
+## Values
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `Completed` | 0 | The task finished successfully. |
+| `Running` | 1 | The task is currently executing. |
+| `Error` | 2 | The task encountered an error during execution. |
+| `Interrupted` | 3 | The task was stopped before it could finish. |
+

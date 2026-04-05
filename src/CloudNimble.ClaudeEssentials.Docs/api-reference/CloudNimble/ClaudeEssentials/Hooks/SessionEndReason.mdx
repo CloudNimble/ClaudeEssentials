@@ -29,7 +29,9 @@ Represents the reason why a session ended.
 | Name | Value | Description |
 |------|-------|-------------|
 | `Clear` | 0 | Session ended due to a clear command. |
-| `Logout` | 1 | Session ended due to user logout. |
-| `PromptInputExit` | 2 | Session ended due to user exiting from prompt input. |
-| `Other` | 3 | Session ended for another unspecified reason. |
+| `Resume` | 1 | Session resumed, ending the previous session. |
+| `Logout` | 2 | Session ended due to user logout. |
+| `PromptInputExit` | 3 | Session ended due to user exiting from prompt input. |
+| `BypassPermissionsDisabled` | 4 | Session ended because bypass permissions mode was disabled. |
+| `Other` | 5 | Session ended for another unspecified reason. |
 

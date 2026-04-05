@@ -24,18 +24,38 @@ CloudNimble.ClaudeEssentials.Hooks.HookEventName
 
 Represents the different types of hook events that can be triggered in Claude Code.
 
+## Remarks
+
+Hook event names use PascalCase on the wire (e.g., `"PreToolUse"`, `"SessionStart"`).
+
 ## Values
 
 | Name | Value | Description |
 |------|-------|-------------|
-| `PreToolUse` | 0 | Runs before tool calls are executed. Can be used to block or modify tool inputs. |
-| `PermissionRequest` | 1 | Runs when a permission dialog is shown. Can be used to automatically allow or deny permissions. |
-| `PostToolUse` | 2 | Runs after tool calls complete. Can be used to inspect results or provide additional context. |
-| `UserPromptSubmit` | 3 | Runs when the user submits a prompt, before Claude processes it. |
-| `Notification` | 4 | Runs when Claude Code sends notifications. |
-| `Stop` | 5 | Runs when Claude Code finishes responding. |
-| `SubagentStop` | 6 | Runs when subagent tasks complete. |
-| `PreCompact` | 7 | Runs before a compact operation. |
-| `SessionStart` | 8 | Runs when Claude Code starts a new session or resumes one. |
-| `SessionEnd` | 9 | Runs when a Claude Code session ends. |
+| `SessionStart` | 0 | Runs when Claude Code starts a new session or resumes one. |
+| `InstructionsLoaded` | 1 | Runs when instructions (CLAUDE.md files, etc.) are loaded. |
+| `UserPromptSubmit` | 2 | Runs when the user submits a prompt, before Claude processes it. |
+| `PreToolUse` | 3 | Runs before tool calls are executed. Can be used to block or modify tool inputs. |
+| `PermissionRequest` | 4 | Runs when a permission dialog is shown. Can be used to automatically allow or deny permissions. |
+| `PermissionDenied` | 5 | Runs when a permission request is denied. |
+| `PostToolUse` | 6 | Runs after tool calls complete. Can be used to inspect results or provide additional context. |
+| `PostToolUseFailure` | 7 | Runs after a tool call fails. |
+| `Notification` | 8 | Runs when Claude Code sends notifications. |
+| `SubagentStart` | 9 | Runs when a subagent task starts. |
+| `SubagentStop` | 10 | Runs when subagent tasks complete. |
+| `TaskCreated` | 11 | Runs when a task is created. |
+| `TaskCompleted` | 12 | Runs when a task completes. |
+| `Stop` | 13 | Runs when Claude Code finishes responding. |
+| `StopFailure` | 14 | Runs when a stop hook itself fails. |
+| `TeammateIdle` | 15 | Runs when a teammate agent becomes idle. |
+| `CwdChanged` | 16 | Runs when the current working directory changes. |
+| `FileChanged` | 17 | Runs when a file is changed externally. |
+| `WorktreeCreate` | 18 | Runs when a git worktree is created. |
+| `WorktreeRemove` | 19 | Runs when a git worktree is removed. |
+| `PreCompact` | 20 | Runs before a compact operation. |
+| `PostCompact` | 21 | Runs after a compact operation completes. |
+| `Elicitation` | 22 | Runs when an elicitation dialog is presented to the user. |
+| `ElicitationResult` | 23 | Runs when the user responds to an elicitation dialog. |
+| `SessionEnd` | 24 | Runs when a Claude Code session ends. |
+| `ConfigChange` | 25 | Runs when a configuration setting changes. |
 

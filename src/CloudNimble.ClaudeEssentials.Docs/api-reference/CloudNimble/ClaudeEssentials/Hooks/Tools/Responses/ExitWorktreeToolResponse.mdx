@@ -1,0 +1,295 @@
+---
+title: ExitWorktreeToolResponse
+description: "Represents the response payload returned by the Claude Code ExitWorktree tool after exiting and optionally removing a git worktree."
+icon: file-brackets-curly
+keywords: ['ExitWorktreeToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.ExitWorktreeToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
+
+**Inheritance:** System.Object
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.ExitWorktreeToolResponse
+```
+
+## Summary
+
+Represents the response payload returned by the Claude Code ExitWorktree tool
+after exiting and optionally removing a git worktree.
+
+## Remarks
+
+Example JSON payload:
+```csharp
+{
+  "action": "remove",
+  "originalCwd": "/home/user/project",
+  "worktreePath": "/tmp/worktrees/feature-abc",
+  "worktreeBranch": "worktree/feature-abc",
+  "discardedFiles": 3,
+  "discardedCommits": 1,
+  "message": "Removed worktree and returned to /home/user/project"
+}
+```
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public ExitWorktreeToolResponse()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public Object()
+```
+
+## Properties
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Action
+
+Gets or sets the action that was performed.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.WorktreeAction Action { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.WorktreeAction`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DiscardedCommits
+
+Gets or sets the number of unmerged commits that were discarded when removing the worktree.
+
+#### Syntax
+
+```csharp
+public System.Nullable<int> DiscardedCommits { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<int>`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DiscardedFiles
+
+Gets or sets the number of uncommitted files that were discarded when removing the worktree.
+
+#### Syntax
+
+```csharp
+public System.Nullable<int> DiscardedFiles { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<int>`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Message
+
+Gets or sets a human-readable message about the operation.
+
+#### Syntax
+
+```csharp
+public string Message { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OriginalCwd
+
+Gets or sets the original working directory before the worktree was entered.
+
+#### Syntax
+
+```csharp
+public string OriginalCwd { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TmuxSessionName
+
+Gets or sets the tmux session name, if applicable.
+
+#### Syntax
+
+```csharp
+public string TmuxSessionName { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> WorktreeBranch
+
+Gets or sets the git branch name associated with the worktree.
+
+#### Syntax
+
+```csharp
+public string WorktreeBranch { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> WorktreePath
+
+Gets or sets the file system path of the worktree that was exited.
+
+#### Syntax
+
+```csharp
+public string WorktreePath { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+## Methods
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual bool Equals(object obj)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `obj` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool Equals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetHashCode <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual int GetHashCode()
+```
+
+#### Returns
+
+Type: `int`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public System.Type GetType()
+```
+
+#### Returns
+
+Type: `System.Type`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MemberwiseClone <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+protected internal object MemberwiseClone()
+```
+
+#### Returns
+
+Type: `object`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReferenceEquals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool ReferenceEquals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToString <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual string ToString()
+```
+
+#### Returns
+
+Type: `string?`
+

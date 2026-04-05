@@ -1,3 +1,4 @@
+using CloudNimble.ClaudeEssentials.Hooks;
 using System.Text.Json.Serialization;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
@@ -39,11 +40,11 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         /// Gets or sets the output mode.
         /// </summary>
         /// <remarks>
-        /// Options: "content" (shows matching lines), "files_with_matches" (shows only file paths, default), "count" (shows match counts).
+        /// See <see cref="GrepOutputMode"/> for possible values. Defaults to <see cref="GrepOutputMode.FilesWithMatches"/>.
         /// </remarks>
         [JsonPropertyName("output_mode")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? OutputMode { get; set; }
+        public GrepOutputMode? OutputMode { get; set; }
 
         /// <summary>
         /// Gets or sets the glob pattern to filter files.
@@ -87,6 +88,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
 
         /// <summary>
         /// Gets or sets the number of lines to show before and after each match.
+        /// Alias for <see cref="Context"/>.
         /// </summary>
         /// <remarks>
         /// Requires output_mode: "content", ignored otherwise.
@@ -94,6 +96,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         [JsonPropertyName("-C")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? LinesContext { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of lines to show before and after each match (rg -C).
+        /// </summary>
+        /// <remarks>
+        /// Requires output_mode: "content", ignored otherwise.
+        /// </remarks>
+        [JsonPropertyName("context")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? Context { get; set; }
 
         /// <summary>
         /// Gets or sets whether to perform case insensitive search.
@@ -126,7 +138,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         /// Gets or sets the limit on output to first N lines/entries.
         /// </summary>
         /// <remarks>
-        /// Equivalent to "| head -N". Defaults to 0 (unlimited).
+        /// Equivalent to "| head -N". Defaults to 250 when unspecified. Pass 0 for unlimited.
         /// </remarks>
         [JsonPropertyName("head_limit")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

@@ -1,3 +1,4 @@
+using CloudNimble.ClaudeEssentials.Hooks;
 using System.Text.Json.Serialization;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
@@ -40,22 +41,22 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         /// Gets or sets the type of the cell.
         /// </summary>
         /// <remarks>
-        /// Options: "code" or "markdown". If not specified, defaults to the current cell type.
+        /// See <see cref="NotebookCellType"/> for possible values. If not specified, defaults to the current cell type.
         /// Required when using edit_mode=insert.
         /// </remarks>
         [JsonPropertyName("cell_type")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? CellType { get; set; }
+        public NotebookCellType? CellType { get; set; }
 
         /// <summary>
         /// Gets or sets the type of edit to make.
         /// </summary>
         /// <remarks>
-        /// Options: "replace" (default), "insert", or "delete".
+        /// See <see cref="NotebookEditMode"/> for possible values. Defaults to <see cref="NotebookEditMode.Replace"/>.
         /// </remarks>
         [JsonPropertyName("edit_mode")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? EditMode { get; set; }
+        public NotebookEditMode? EditMode { get; set; }
 
     }
 

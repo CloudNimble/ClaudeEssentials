@@ -1,0 +1,209 @@
+---
+title: ExitPlanModeAllowedPrompt
+description: "Represents a prompt-based permission needed to implement a plan. These describe categories of actions rather than specific commands."
+icon: file-brackets-curly
+keywords: ['ExitPlanModeAllowedPrompt', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ExitPlanModeAllowedPrompt', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'class', 'System.Object']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
+
+**Inheritance:** System.Object
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ExitPlanModeAllowedPrompt
+```
+
+## Summary
+
+Represents a prompt-based permission needed to implement a plan.
+These describe categories of actions rather than specific commands.
+
+## Remarks
+
+Allowed prompts are used in the ExitPlanMode tool to specify which categories of
+tool use should be permitted when executing the plan.
+
+Example JSON:
+```csharp
+{
+  "tool": "Bash",
+  "prompt": "run tests"
+}
+```
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public ExitPlanModeAllowedPrompt()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public Object()
+```
+
+## Properties
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Prompt
+
+Gets or sets the semantic description of the action, e.g. "run tests", "install dependencies".
+
+#### Syntax
+
+```csharp
+public string Prompt { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Tool
+
+Gets or sets the tool this prompt applies to.
+
+#### Syntax
+
+```csharp
+public string Tool { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+## Methods
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual bool Equals(object obj)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `obj` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool Equals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetHashCode <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual int GetHashCode()
+```
+
+#### Returns
+
+Type: `int`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public System.Type GetType()
+```
+
+#### Returns
+
+Type: `System.Type`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MemberwiseClone <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+protected internal object MemberwiseClone()
+```
+
+#### Returns
+
+Type: `object`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReferenceEquals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool ReferenceEquals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToString <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual string ToString()
+```
+
+#### Returns
+
+Type: `string?`
+

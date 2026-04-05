@@ -1,6 +1,6 @@
 ---
 title: KillShellToolResponse
-description: "Represents the response payload returned by the Claude Code KillShell tool after             attempting to terminate a background shell process."
+description: "Represents the response payload returned by the Claude Code KillShell tool after attempting to terminate a background shell process."
 icon: file-brackets-curly
 keywords: ['KillShellToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.KillShellToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
 ---
@@ -22,58 +22,38 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.KillShellToolResponse
 ## Summary
 
 Represents the response payload returned by the Claude Code KillShell tool after
-            attempting to terminate a background shell process.
+attempting to terminate a background shell process.
 
 ## Remarks
 
+The KillShell tool terminates running background bash shells by their ID. Background
+shells are created when using the [BashToolInput.RunInBackground](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/BashToolInput#runinbackground) parameter.
+This response is received in the [KillShellPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/KillShellPostToolUsePayload)
+when the `tool_name` is "KillShell".
 
+Background shells are useful for long-running processes like development servers,
+file watchers, or build processes that need to run while other work continues.
+The KillShell tool provides a way to gracefully terminate these processes when
+they are no longer needed.
 
+Shell IDs can be found using the `/tasks` command in Claude Code.
 
-            The KillShell tool terminates running background bash shells by their ID. Background
-            shells are created when using the [BashToolInput.RunInBackground](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/BashToolInput#runinbackground) parameter.
-            This response is received in the [KillShellPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/KillShellPostToolUsePayload)
-            when the `tool_name` is "KillShell".
-            
-
-
-
-
-            Background shells are useful for long-running processes like development servers,
-            file watchers, or build processes that need to run while other work continues.
-            The KillShell tool provides a way to gracefully terminate these processes when
-            they are no longer needed.
-            
-
-
-
-
-            Shell IDs can be found using the `/tasks` command in Claude Code.
-            
-
-
-
-
-            Example JSON payload (successful):
-            ```csharp
+Example JSON payload (successful):
+```csharp
 {
   "shellId": "shell_abc123",
   "success": true
 }
 ```
 
-
-
-
-            Example JSON payload (failed):
-            ```csharp
+Example JSON payload (failed):
+```csharp
 {
   "shellId": "shell_invalid",
   "success": false,
   "error": "Shell not found or already terminated"
 }
 ```
-
-
 
 ## Constructors
 
@@ -119,25 +99,16 @@ Type: `string?`
 
 #### Remarks
 
+This property is populated when [KillShellToolResponse.Success](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/KillShellToolResponse#success) is `false`.
+Common error scenarios include:
 
-
-
-            This property is populated when [KillShellToolResponse.Success](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/KillShellToolResponse#success) is `false`.
-            Common error scenarios include:
-            
 - The shell ID does not exist
 - The shell has already been terminated
 - The shell process could not be killed due to system restrictions
 - The shell ID format is invalid
 
 
-
-
-
-            When [KillShellToolResponse.Success](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/KillShellToolResponse#success) is `true`, this property will be `null`.
-            
-
-
+When [KillShellToolResponse.Success](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/KillShellToolResponse#success) is `true`, this property will be `null`.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ShellId
 
@@ -161,21 +132,11 @@ Type: `string`
 
 #### Remarks
 
+This is the shell ID that was provided in [KillShellToolInput.ShellId](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/KillShellToolInput#shellid).
+Shell IDs are assigned when background shells are created and follow the format
+`"shell_"` followed by a unique identifier.
 
-
-
-            This is the shell ID that was provided in [KillShellToolInput.ShellId](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/KillShellToolInput#shellid).
-            Shell IDs are assigned when background shells are created and follow the format
-            `"shell_"` followed by a unique identifier.
-            
-
-
-
-
-            Available shell IDs can be discovered using the `/tasks` command in Claude Code.
-            
-
-
+Available shell IDs can be discovered using the `/tasks` command in Claude Code.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Success
 
@@ -193,21 +154,11 @@ Type: `bool`
 
 #### Remarks
 
+When `true`, the shell process was found and terminated successfully.
+The shell is no longer running and its resources have been released.
 
-
-
-            When `true`, the shell process was found and terminated successfully.
-            The shell is no longer running and its resources have been released.
-            
-
-
-
-
-            When `false`, the termination failed. Check the [KillShellToolResponse.Error](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/KillShellToolResponse#error) property
-            for details about why the operation failed.
-            
-
-
+When `false`, the termination failed. Check the [KillShellToolResponse.Error](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/KillShellToolResponse#error) property
+for details about why the operation failed.
 
 ## Methods
 

@@ -1,6 +1,6 @@
 ---
 title: GlobToolResponse
-description: "Represents the response payload returned by the Claude Code Glob tool after searching             for files matching a pattern."
+description: "Represents the response payload returned by the Claude Code Glob tool after searching for files matching a pattern."
 icon: file-brackets-curly
 keywords: ['GlobToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.GlobToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
 ---
@@ -22,31 +22,20 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.GlobToolResponse
 ## Summary
 
 Represents the response payload returned by the Claude Code Glob tool after searching
-            for files matching a pattern.
+for files matching a pattern.
 
 ## Remarks
 
+The Glob tool performs fast file pattern matching across codebases of any size.
+It supports standard glob patterns like `"**/*.js"` or `"src/**/*.ts"`.
+This response is received in the [GlobPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GlobPostToolUsePayload)
+when the `tool_name` is "Glob".
 
+Results are sorted by modification time (most recently modified first), making it
+easy to find recently changed files matching a pattern.
 
-
-            The Glob tool performs fast file pattern matching across codebases of any size.
-            It supports standard glob patterns like `"**/*.js"` or `"src/**/*.ts"`.
-            This response is received in the [GlobPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GlobPostToolUsePayload)
-            when the `tool_name` is "Glob".
-            
-
-
-
-
-            Results are sorted by modification time (most recently modified first), making it
-            easy to find recently changed files matching a pattern.
-            
-
-
-
-
-            Example JSON payload:
-            ```csharp
+Example JSON payload:
+```csharp
 {
   "filenames": [
     "C:\\Projects\\MyApp\\src\\Program.cs",
@@ -58,8 +47,6 @@ Represents the response payload returned by the Claude Code Glob tool after sear
   "truncated": false
 }
 ```
-
-
 
 ## Constructors
 
@@ -100,8 +87,8 @@ Type: `int`
 #### Remarks
 
 This indicates how long the file system search took to complete. Large codebases
-            or complex patterns may take longer. The Glob tool is optimized for performance
-            and typically completes quickly even on large codebases.
+or complex patterns may take longer. The Glob tool is optimized for performance
+and typically completes quickly even on large codebases.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Filenames
 
@@ -119,28 +106,14 @@ Type: `System.Collections.Generic.List<string>`
 
 #### Remarks
 
+All paths are absolute and sorted by modification time, with the most recently
+modified files appearing first in the list.
 
+On Windows, paths will use backslash separators. The paths can be used directly
+with other tools like [ReadToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadToolInput) to read the matched files.
 
-
-            All paths are absolute and sorted by modification time, with the most recently
-            modified files appearing first in the list.
-            
-
-
-
-
-            On Windows, paths will use backslash separators. The paths can be used directly
-            with other tools like [ReadToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadToolInput) to read the matched files.
-            
-
-
-
-
-            If [GlobToolResponse.Truncated](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GlobToolResponse#truncated) is `true`, not all matching files are included
-            in this list due to result limits.
-            
-
-
+If [GlobToolResponse.Truncated](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GlobToolResponse#truncated) is `true`, not all matching files are included
+in this list due to result limits.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NumFiles
 
@@ -158,26 +131,16 @@ Type: `int`
 
 #### Remarks
 
+This is the count of files in [GlobToolResponse.Filenames](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GlobToolResponse#filenames). If [GlobToolResponse.Truncated](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GlobToolResponse#truncated)
+is `true`, this represents only the number of files returned, not the total
+number of matches.
 
-
-
-            This is the count of files in [GlobToolResponse.Filenames](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GlobToolResponse#filenames). If [GlobToolResponse.Truncated](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GlobToolResponse#truncated)
-            is `true`, this represents only the number of files returned, not the total
-            number of matches.
-            
-
-
-
-
-            A value of 0 indicates no files matched the specified pattern in the search directory.
-            
-
-
+A value of 0 indicates no files matched the specified pattern in the search directory.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Truncated
 
 Gets or sets a value indicating whether the results were truncated due to
-            exceeding the maximum result limit.
+exceeding the maximum result limit.
 
 #### Syntax
 
@@ -191,22 +154,12 @@ Type: `bool`
 
 #### Remarks
 
+When `true`, more files matched the pattern than could be returned.
+Consider using a more specific pattern to narrow down the results, or use
+the [GlobToolInput.Path](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GlobToolInput#path) parameter to search a more specific directory.
 
-
-
-            When `true`, more files matched the pattern than could be returned.
-            Consider using a more specific pattern to narrow down the results, or use
-            the [GlobToolInput.Path](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GlobToolInput#path) parameter to search a more specific directory.
-            
-
-
-
-
-            When results are truncated, the returned files are still sorted by modification
-            time, so the most recently modified matches are included.
-            
-
-
+When results are truncated, the returned files are still sorted by modification
+time, so the most recently modified matches are included.
 
 ## Methods
 

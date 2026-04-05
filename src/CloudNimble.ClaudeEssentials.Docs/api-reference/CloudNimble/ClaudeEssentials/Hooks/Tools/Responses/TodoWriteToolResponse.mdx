@@ -1,6 +1,6 @@
 ---
 title: TodoWriteToolResponse
-description: "Represents the response payload returned by the Claude Code TodoWrite tool after             updating the task list."
+description: "Represents the response payload returned by the Claude Code TodoWrite tool after updating the task list."
 icon: file-brackets-curly
 keywords: ['TodoWriteToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.TodoWriteToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
 ---
@@ -22,43 +22,29 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.TodoWriteToolResponse
 ## Summary
 
 Represents the response payload returned by the Claude Code TodoWrite tool after
-            updating the task list.
+updating the task list.
 
 ## Remarks
 
+The TodoWrite tool creates and manages a structured task list for the current coding
+session. It helps Claude track progress, organize complex tasks, and demonstrate
+thoroughness to the user. This response is received in the
+[TodoWritePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoWritePostToolUsePayload) when the
+`tool_name` is "TodoWrite".
 
+The response includes both the previous state ([TodoWriteToolResponse.OldTodos](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TodoWriteToolResponse#oldtodos)) and the new
+state ([TodoWriteToolResponse.NewTodos](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TodoWriteToolResponse#newtodos)) of the todo list, enabling hooks to track what changed.
 
+Use cases for the TodoWrite tool include:
 
-            The TodoWrite tool creates and manages a structured task list for the current coding
-            session. It helps Claude track progress, organize complex tasks, and demonstrate
-            thoroughness to the user. This response is received in the
-            [TodoWritePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoWritePostToolUsePayload) when the
-            `tool_name` is "TodoWrite".
-            
-
-
-
-
-            The response includes both the previous state ([TodoWriteToolResponse.OldTodos](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TodoWriteToolResponse#oldtodos)) and the new
-            state ([TodoWriteToolResponse.NewTodos](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TodoWriteToolResponse#newtodos)) of the todo list, enabling hooks to track what changed.
-            
-
-
-
-
-            Use cases for the TodoWrite tool include:
-            
 - Complex multi-step tasks requiring 3 or more distinct steps
 - Tasks that require careful planning
 - When the user provides multiple tasks to complete
 - Tracking progress through large implementations
 
 
-
-
-
-            Example JSON payload:
-            ```csharp
+Example JSON payload:
+```csharp
 {
   "oldTodos": [
     { "content": "Run the build", "status": "completed", "activeForm": "Running the build" },
@@ -71,8 +57,6 @@ Represents the response payload returned by the Claude Code TodoWrite tool after
   ]
 }
 ```
-
-
 
 ## Constructors
 
@@ -112,23 +96,14 @@ Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.
 
 #### Remarks
 
+This contains the complete todo list after the TodoWrite operation.
+It reflects all additions, removals, and status changes that were made.
 
+Each [TodoItem](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TodoItem) includes:
 
-
-            This contains the complete todo list after the TodoWrite operation.
-            It reflects all additions, removals, and status changes that were made.
-            
-
-
-
-
-            Each [TodoItem](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TodoItem) includes:
-            
 - `Content` - The task description (imperative form)
 - `Status` - Current state: pending, in_progress, or completed
 - `ActiveForm` - Present continuous form for display during execution
-
-
 
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OldTodos
@@ -147,22 +122,12 @@ Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.
 
 #### Remarks
 
+This contains the complete todo list as it existed before the TodoWrite
+operation was performed. Comparing this with [TodoWriteToolResponse.NewTodos](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TodoWriteToolResponse#newtodos) allows
+hooks to determine exactly what changed.
 
-
-
-            This contains the complete todo list as it existed before the TodoWrite
-            operation was performed. Comparing this with [TodoWriteToolResponse.NewTodos](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TodoWriteToolResponse#newtodos) allows
-            hooks to determine exactly what changed.
-            
-
-
-
-
-            This will be an empty list if no todos existed before this operation
-            (i.e., this is the first TodoWrite in the session).
-            
-
-
+This will be an empty list if no todos existed before this operation
+(i.e., this is the first TodoWrite in the session).
 
 ## Methods
 

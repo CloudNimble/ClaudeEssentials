@@ -1,6 +1,6 @@
 ---
 title: PermissionRequestHookInput
-description: "Represents the input received by a PermissionRequest hook.             This hook runs when a permission dialog is shown and can automatically allow or deny p..."
+description: "Represents the input received by a PermissionRequest hook. This hook runs when a permission dialog is shown and can automatically allow or deny permissions."
 icon: code-branch
 keywords: ['PermissionRequestHookInput', 'CloudNimble.ClaudeEssentials.Hooks.Inputs.PermissionRequestHookInput<TToolInput>', 'CloudNimble.ClaudeEssentials.Hooks.Inputs', 'class', 'CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<TToolInput>']
 ---
@@ -22,12 +22,12 @@ CloudNimble.ClaudeEssentials.Hooks.Inputs.PermissionRequestHookInput<TToolInput>
 ## Summary
 
 Represents the input received by a PermissionRequest hook.
-            This hook runs when a permission dialog is shown and can automatically allow or deny permissions.
+This hook runs when a permission dialog is shown and can automatically allow or deny permissions.
 
 ## Type Parameters
 
 - `TToolInput` - The type representing the tool's input parameters.
-            Use a specific tool input class or [Object](https://learn.microsoft.com/dotnet/api/system.object) for dynamic inputs.
+Use a specific tool input class or [Object](https://learn.microsoft.com/dotnet/api/system.object) for dynamic inputs.
 
 ## Constructors
 
@@ -154,7 +154,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<TToolInput>`</Note>
 
 Gets or sets the input parameters for the tool.
-            The schema depends on the specific tool being invoked.
+The schema depends on the specific tool being invoked.
 
 #### Syntax
 
@@ -171,8 +171,8 @@ Type: `TToolInput?`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<TToolInput>`</Note>
 
 Gets or sets the name of the tool being invoked.
-            Common tool names include: Write, Edit, Bash, Read, Grep, Glob, Task, WebFetch, WebSearch.
-            MCP tools follow the pattern: mcp__&lt;server&gt;__&lt;tool&gt;.
+Common tool names include: Write, Edit, Bash, Read, Grep, Glob, Task, WebFetch, WebSearch.
+MCP tools follow the pattern: mcp__&lt;server&gt;__&lt;tool&gt;.
 
 #### Syntax
 
@@ -189,7 +189,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<TToolInput>`</Note>
 
 Gets or sets the unique identifier for this specific tool use instance.
-            Typically follows the pattern: toolu_01ABC123...
+Typically follows the pattern: toolu_01ABC123...
 
 #### Syntax
 
@@ -206,7 +206,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
 
 Gets or sets the file path to the transcript JSONL file for the current session.
-            This file contains the full conversation history.
+This file contains the full conversation history.
 
 #### Syntax
 

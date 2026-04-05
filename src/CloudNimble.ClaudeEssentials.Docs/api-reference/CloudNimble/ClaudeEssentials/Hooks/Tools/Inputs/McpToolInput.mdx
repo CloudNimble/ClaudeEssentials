@@ -1,0 +1,197 @@
+---
+title: McpToolInput
+description: "Represents the input parameters for an MCP (Model Context Protocol) tool execution. MCP tool inputs are dynamic and vary based on the specific MCP server and..."
+icon: file-brackets-curly
+keywords: ['McpToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'class', 'System.Object']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
+
+**Inheritance:** System.Object
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput
+```
+
+## Summary
+
+Represents the input parameters for an MCP (Model Context Protocol) tool execution.
+MCP tool inputs are dynamic and vary based on the specific MCP server and tool being invoked.
+
+## Remarks
+
+Because MCP tools are defined by external servers, the input schema is not known at compile time.
+This class uses a dictionary of [JsonElement](https://learn.microsoft.com/dotnet/api/system.text.json.jsonelement) values to represent the arbitrary
+key-value pairs that make up the tool input.
+
+Example JSON:
+```csharp
+{
+  "server": "my-mcp-server",
+  "tool": "search_docs",
+  "query": "authentication"
+}
+```
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public McpToolInput()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public Object()
+```
+
+## Properties
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ExtensionData
+
+Gets or sets the dynamic key-value pairs that make up the MCP tool input.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.Dictionary<string, System.Text.Json.JsonElement> ExtensionData { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.Dictionary<string, System.Text.Json.JsonElement>`
+
+## Methods
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual bool Equals(object obj)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `obj` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool Equals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetHashCode <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual int GetHashCode()
+```
+
+#### Returns
+
+Type: `int`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public System.Type GetType()
+```
+
+#### Returns
+
+Type: `System.Type`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MemberwiseClone <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+protected internal object MemberwiseClone()
+```
+
+#### Returns
+
+Type: `object`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReferenceEquals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool ReferenceEquals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToString <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual string ToString()
+```
+
+#### Returns
+
+Type: `string?`
+

@@ -1,6 +1,6 @@
 ---
 title: NotebookEditToolResponse
-description: "Represents the response payload returned by the Claude Code NotebookEdit tool after             modifying a Jupyter notebook cell."
+description: "Represents the response payload returned by the Claude Code NotebookEdit tool after modifying a Jupyter notebook cell."
 icon: file-brackets-curly
 keywords: ['NotebookEditToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.NotebookEditToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
 ---
@@ -22,44 +22,34 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.NotebookEditToolResponse
 ## Summary
 
 Represents the response payload returned by the Claude Code NotebookEdit tool after
-            modifying a Jupyter notebook cell.
+modifying a Jupyter notebook cell.
 
 ## Remarks
 
+The NotebookEdit tool modifies Jupyter notebook (.ipynb) files by replacing, inserting,
+or deleting cells. Jupyter notebooks are interactive documents that combine code, text,
+and visualizations, commonly used for data analysis and scientific computing.
+This response is received in the [NotebookEditPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/NotebookEditPostToolUsePayload)
+when the `tool_name` is "NotebookEdit".
 
+Supported edit operations:
 
-
-            The NotebookEdit tool modifies Jupyter notebook (.ipynb) files by replacing, inserting,
-            or deleting cells. Jupyter notebooks are interactive documents that combine code, text,
-            and visualizations, commonly used for data analysis and scientific computing.
-            This response is received in the [NotebookEditPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/NotebookEditPostToolUsePayload)
-            when the `tool_name` is "NotebookEdit".
-            
-
-
-
-
-            Supported edit operations:
-            
 - `replace` - Replaces the content of an existing cell
 - `insert` - Adds a new cell at a specified position
 - `delete` - Removes a cell from the notebook
 
 
-
-
-
-            Example JSON payload:
-            ```csharp
+Example JSON payload:
+```csharp
 {
-  "notebookPath": "C:\\Projects\\Analysis\\data_exploration.ipynb",
-  "cellId": "cell_abc123",
-  "editMode": "replace",
-  "success": true
+  "notebook_path": "C:\\Projects\\Analysis\\data_exploration.ipynb",
+  "cell_id": "cell_abc123",
+  "edit_mode": "replace"
 }
 ```
 
-
+Unlike most other tool responses which use camelCase property names, NotebookEdit uses
+snake_case for all properties in both its input and output payloads.
 
 ## Constructors
 
@@ -99,22 +89,30 @@ Type: `string?`
 
 #### Remarks
 
+Cell IDs are unique identifiers within a notebook that persist across edits.
+For insert operations, this is the ID of the newly created cell.
+For delete operations, this is the ID of the cell that was removed.
 
+May be `null` if the operation did not involve a specific cell or if
+the cell was identified by index rather than ID.
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> CellType
 
-            Cell IDs are unique identifiers within a notebook that persist across edits.
-            For insert operations, this is the ID of the newly created cell.
-            For delete operations, this is the ID of the cell that was removed.
-            
+Gets or sets the type of the cell.
 
+#### Syntax
 
+```csharp
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookCellType> CellType { get; set; }
+```
 
+#### Property Value
 
-            May be `null` if the operation did not involve a specific cell or if
-            the cell was identified by index rather than ID.
-            
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookCellType?>?`
 
+#### Remarks
 
+See [NotebookCellType](/api-reference/CloudNimble/ClaudeEssentials/Hooks/NotebookCellType) for possible values.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> EditMode
 
@@ -123,33 +121,61 @@ Gets or sets the type of edit operation that was performed.
 #### Syntax
 
 ```csharp
-public string EditMode { get; set; }
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookEditMode> EditMode { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookEditMode?>?`
+
+#### Remarks
+
+See [NotebookEditMode](/api-reference/CloudNimble/ClaudeEssentials/Hooks/NotebookEditMode) for possible values.
+
+This should match the [NotebookEditToolInput.EditMode](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/NotebookEditToolInput#editmode) that was
+specified in the input, defaulting to [NotebookEditMode.Replace](/api-reference/CloudNimble/ClaudeEssentials/Hooks/NotebookEditMode#replace) if not specified.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Error
+
+Gets or sets the error message if the operation failed.
+
+#### Syntax
+
+```csharp
+public string Error { get; set; }
 ```
 
 #### Property Value
 
 Type: `string?`
 
-#### Remarks
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Language
 
+Gets or sets the programming language of the notebook.
 
+#### Syntax
 
+```csharp
+public string Language { get; set; }
+```
 
-            Indicates which operation was executed:
-            
-- `"replace"` - The cell's source content was replaced
-- `"insert"` - A new cell was added to the notebook
-- `"delete"` - A cell was removed from the notebook
+#### Property Value
 
+Type: `string?`
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NewSource
 
+Gets or sets the new source code that was written to the cell.
 
+#### Syntax
 
-            This should match the [NotebookEditToolInput.EditMode](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/NotebookEditToolInput#editmode) that was
-            specified in the input, defaulting to `"replace"` if not specified.
-            
+```csharp
+public string NewSource { get; set; }
+```
 
+#### Property Value
 
+Type: `string?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NotebookPath
 
@@ -174,7 +200,21 @@ Type: `string`
 #### Remarks
 
 This is always an absolute path, regardless of whether the original request
-            used a relative or absolute path. The file extension will be `.ipynb`.
+used a relative or absolute path. The file extension will be `.ipynb`.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OriginalFile
+
+Gets or sets the original notebook content before modification.
+
+#### Syntax
+
+```csharp
+public string OriginalFile { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Success
 
@@ -192,24 +232,29 @@ Type: `bool`
 
 #### Remarks
 
+When `true`, the notebook was successfully modified and saved.
 
+When `false`, the edit operation failed. Common failure reasons include:
 
-
-            When `true`, the notebook was successfully modified and saved.
-            
-
-
-
-
-            When `false`, the edit operation failed. Common failure reasons include:
-            
 - The specified cell ID or index does not exist
 - The notebook file could not be written (permissions, disk space)
 - The notebook format is invalid or corrupted
 - Required parameters were missing or invalid
 
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> UpdatedFile
 
+Gets or sets the updated notebook content after modification.
+
+#### Syntax
+
+```csharp
+public string UpdatedFile { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
 
 ## Methods
 

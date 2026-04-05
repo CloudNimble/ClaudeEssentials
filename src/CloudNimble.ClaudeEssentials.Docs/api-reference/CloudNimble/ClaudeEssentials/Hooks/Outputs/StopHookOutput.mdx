@@ -1,6 +1,6 @@
 ---
 title: StopHookOutput
-description: "Represents the output for a Stop hook.             Used to optionally block Claude from stopping and continue processing."
+description: "Represents the output for a Stop hook. Used to optionally block Claude from stopping and continue processing."
 icon: file-brackets-curly
 keywords: ['StopHookOutput', 'CloudNimble.ClaudeEssentials.Hooks.Outputs.StopHookOutput', 'CloudNimble.ClaudeEssentials.Hooks.Outputs', 'class', 'CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase']
 ---
@@ -22,7 +22,7 @@ CloudNimble.ClaudeEssentials.Hooks.Outputs.StopHookOutput
 ## Summary
 
 Represents the output for a Stop hook.
-            Used to optionally block Claude from stopping and continue processing.
+Used to optionally block Claude from stopping and continue processing.
 
 ## Constructors
 
@@ -61,8 +61,8 @@ public Object()
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase`</Note>
 
 Gets or sets a value indicating whether to continue with the operation.
-            When set to false, the operation will be stopped.
-            Defaults to true.
+When set to false, the operation will be stopped.
+Defaults to true.
 
 #### Syntax
 
@@ -81,7 +81,7 @@ This property is always serialized to ensure explicit intent is communicated.
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Decision
 
 Gets or sets the decision for the stop operation.
-            Set to [HookDecision.Block](/api-reference/CloudNimble/ClaudeEssentials/Hooks/HookDecision#block) to prevent Claude from stopping.
+Set to [HookDecision.Block](/api-reference/CloudNimble/ClaudeEssentials/Hooks/HookDecision#block) to prevent Claude from stopping.
 
 #### Syntax
 
@@ -96,7 +96,7 @@ Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.HookDecision?>?`
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Reason
 
 Gets or sets the reason for blocking the stop operation.
-            Required when blocking to explain why Claude should continue.
+Required when blocking to explain why Claude should continue.
 
 #### Syntax
 
@@ -113,7 +113,7 @@ Type: `string?`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase`</Note>
 
 Gets or sets the reason message shown when [HookOutputBase.Continue](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/HookOutputBase#continue) is false.
-            This message is displayed to the user when the operation is stopped.
+This message is displayed to the user when the operation is stopped.
 
 #### Syntax
 
@@ -130,8 +130,8 @@ Type: `string?`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase`</Note>
 
 Gets or sets a value indicating whether to suppress output from the transcript.
-            When true, the hook's output will not appear in the conversation transcript.
-            Defaults to false.
+When true, the hook's output will not appear in the conversation transcript.
+Defaults to false.
 
 #### Syntax
 
@@ -148,7 +148,7 @@ Type: `bool`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase`</Note>
 
 Gets or sets an optional warning message to include in the system context.
-            This message is shown to Claude as additional context.
+This message is shown to Claude as additional context.
 
 #### Syntax
 

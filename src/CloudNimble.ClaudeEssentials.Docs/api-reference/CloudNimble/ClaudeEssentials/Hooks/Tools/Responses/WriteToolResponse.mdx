@@ -25,27 +25,16 @@ Represents the response payload returned by the Claude Code Write tool after cre
 
 ## Remarks
 
+The Write tool creates new files or overwrites existing files on the local filesystem.
+This response is received in the [WritePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WritePostToolUsePayload)
+when the `tool_name` is "Write".
 
+Unlike the Edit tool which performs targeted string replacements, the Write tool completely
+replaces the file content. Claude Code requires that an existing file be read first before
+it can be overwritten, to prevent accidental data loss.
 
-
-            The Write tool creates new files or overwrites existing files on the local filesystem.
-            This response is received in the [WritePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WritePostToolUsePayload)
-            when the `tool_name` is "Write".
-            
-
-
-
-
-            Unlike the Edit tool which performs targeted string replacements, the Write tool completely
-            replaces the file content. Claude Code requires that an existing file be read first before
-            it can be overwritten, to prevent accidental data loss.
-            
-
-
-
-
-            Example JSON payload for a new file:
-            ```csharp
+Example JSON payload for a new file:
+```csharp
 {
   "type": "create",
   "filePath": "C:\\Projects\\MyApp\\NewFile.cs",
@@ -54,8 +43,6 @@ Represents the response payload returned by the Claude Code Write tool after cre
   "originalFile": null
 }
 ```
-
-
 
 ## Constructors
 
@@ -96,8 +83,8 @@ Type: `string`
 #### Remarks
 
 This contains the complete content of the file after the write operation.
-            For new files, this is the entire file content. For overwrites, this is
-            the new content that replaced the original.
+For new files, this is the entire file content. For overwrites, this is
+the new content that replaced the original.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> FilePath
 
@@ -122,7 +109,26 @@ Type: `string`
 #### Remarks
 
 This is always an absolute path, regardless of whether the original request
-            used a relative or absolute path. On Windows, this will use backslash separators.
+used a relative or absolute path. On Windows, this will use backslash separators.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GitDiff
+
+Gets or sets git diff information for this file change, when available.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.GitDiffInfo GitDiff { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.GitDiffInfo?`
+
+#### Remarks
+
+This is populated when the written file is in a git repository and git tracking
+is available. It provides a summary of the changes as they would appear in `git diff`.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OriginalFile
 
@@ -140,22 +146,12 @@ Type: `string?`
 
 #### Remarks
 
+This is `null` when creating a new file ([WriteToolResponse.Type](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WriteToolResponse#type) = "create")
+since there was no previous content.
 
-
-
-            This is `null` when creating a new file ([WriteToolResponse.Type](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WriteToolResponse#type) = "create")
-            since there was no previous content.
-            
-
-
-
-
-            For overwrites, this contains the complete original content of the file
-            before it was replaced, which can be useful for implementing undo functionality
-            or auditing changes.
-            
-
-
+For overwrites, this contains the complete original content of the file
+before it was replaced, which can be useful for implementing undo functionality
+or auditing changes.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> StructuredPatch
 
@@ -173,22 +169,12 @@ Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.
 
 #### Remarks
 
+For new files ([WriteToolResponse.Type](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WriteToolResponse#type) = "create"), this will be an empty list since
+there is no previous content to diff against.
 
-
-
-            For new files ([WriteToolResponse.Type](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WriteToolResponse#type) = "create"), this will be an empty list since
-            there is no previous content to diff against.
-            
-
-
-
-
-            For overwrites, this contains a unified diff representation showing what changed
-            between the original and new content. Each [StructuredPatchHunk](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/StructuredPatchHunk)
-            represents a contiguous block of changes.
-            
-
-
+For overwrites, this contains a unified diff representation showing what changed
+between the original and new content. Each [StructuredPatchHunk](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/StructuredPatchHunk)
+represents a contiguous block of changes.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Type
 
@@ -197,18 +183,16 @@ Gets or sets the type of write operation that was performed.
 #### Syntax
 
 ```csharp
-public string Type { get; set; }
+public CloudNimble.ClaudeEssentials.Hooks.WriteOperationType Type { get; set; }
 ```
 
 #### Property Value
 
-Type: `string`
+Type: `CloudNimble.ClaudeEssentials.Hooks.WriteOperationType`
 
 #### Remarks
 
-Known values include:
-            
-
+See [WriteOperationType](/api-reference/CloudNimble/ClaudeEssentials/Hooks/WriteOperationType) for possible values.
 
 ## Methods
 

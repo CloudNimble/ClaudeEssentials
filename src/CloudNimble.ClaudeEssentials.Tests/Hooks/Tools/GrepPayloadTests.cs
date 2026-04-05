@@ -74,7 +74,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Assert
             result.Should().NotBeNull();
             result!.ToolInput.Should().NotBeNull();
-            result.ToolInput!.OutputMode.Should().Be("content");
+            result.ToolInput!.OutputMode.Should().Be(GrepOutputMode.Content);
         }
 
         [TestMethod]
@@ -196,7 +196,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result!.ToolName.Should().Be("Grep");
             result.HookEventName.Should().Be(HookEventName.PostToolUse);
             result.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Mode.Should().Be("files_with_matches");
+            result.ToolResponse!.Mode.Should().Be(GrepOutputMode.FilesWithMatches);
             result.ToolResponse.Filenames.Should().NotBeNull();
             result.ToolResponse.Filenames.Should().HaveCount(2);
             result.ToolResponse.NumFiles.Should().Be(2);
@@ -228,7 +228,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Assert
             result.Should().NotBeNull();
             result!.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Mode.Should().Be("content");
+            result.ToolResponse!.Mode.Should().Be(GrepOutputMode.Content);
             result.ToolResponse.Content.Should().NotBeNull();
             result.ToolResponse.Content.Should().Contain("class Program");
         }
@@ -262,7 +262,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Assert
             result.Should().NotBeNull();
             result!.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Mode.Should().Be("count");
+            result.ToolResponse!.Mode.Should().Be(GrepOutputMode.Count);
             result.ToolResponse.Counts.Should().NotBeNull();
             result.ToolResponse.Counts.Should().ContainKey("src\\Program.cs");
             result.ToolResponse.Counts!["src\\Program.cs"].Should().Be(5);
@@ -309,7 +309,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             {
                 Pattern = "class\\s+\\w+",
                 Path = "D:\\Projects\\TestProject",
-                OutputMode = "content",
+                OutputMode = GrepOutputMode.Content,
                 Glob = "*.cs",
                 CaseInsensitive = true,
                 LinesAfter = 2,
@@ -337,7 +337,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Arrange
             var response = new GrepToolResponse
             {
-                Mode = "files_with_matches",
+                Mode = GrepOutputMode.FilesWithMatches,
                 Filenames = ["file1.cs", "file2.cs"],
                 NumFiles = 2
             };
@@ -359,7 +359,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Arrange
             var response = new GrepToolResponse
             {
-                Mode = "count",
+                Mode = GrepOutputMode.Count,
                 Counts = new Dictionary<string, int>
                 {
                     ["file1.cs"] = 10,
@@ -374,10 +374,12 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
 
             // Assert
             result.Should().NotBeNull();
-            result!.Mode.Should().Be("count");
+            result!.Mode.Should().Be(GrepOutputMode.Count);
             result.Counts.Should().NotBeNull();
             result.Counts.Should().ContainKey("file1.cs");
             result.Counts!["file1.cs"].Should().Be(10);
+            result.Counts["file2.cs"].Should().Be(5);
+            result.NumFiles.Should().Be(2);
         }
 
         #endregion

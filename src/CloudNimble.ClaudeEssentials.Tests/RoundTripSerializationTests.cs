@@ -42,6 +42,10 @@ namespace CloudNimble.ClaudeEssentials.Tests
             reparsed.ToolName.Should().Be(input.ToolName);
             reparsed.ToolUseId.Should().Be(input.ToolUseId);
             reparsed.CurrentWorkingDirectory.Should().Be(input.CurrentWorkingDirectory);
+
+            input.SessionId.Should().Be("test-session");
+            input.HookEventName.Should().Be(default(HookEventName));
+            input.ToolName.Should().Be("Write");
         }
 
         [TestMethod]
@@ -64,6 +68,8 @@ namespace CloudNimble.ClaudeEssentials.Tests
             reparsed.Should().NotBeNull();
             reparsed!.SessionId.Should().Be(input!.SessionId);
             reparsed.StopHookActive.Should().Be(input.StopHookActive);
+
+            input.SessionId.Should().Be("session-456");
         }
 
         #endregion
@@ -71,7 +77,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
         #region Output Round-Trip Tests
 
         [TestMethod]
-        public void PreToolUseOutput_RoundTrip_ShouldPreserveData()
+        public void PreToolUseOutput_Serialization_ShouldPreserveData()
         {
             // Arrange
             var original = new PreToolUseHookOutput<object>
@@ -100,7 +106,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
         }
 
         [TestMethod]
-        public void StopOutput_RoundTrip_ShouldPreserveData()
+        public void StopOutput_Serialization_ShouldPreserveData()
         {
             // Arrange
             var original = new StopHookOutput
@@ -118,12 +124,12 @@ namespace CloudNimble.ClaudeEssentials.Tests
             // Assert
             doc.RootElement.GetProperty("continue").GetBoolean().Should().Be(original.Continue);
             doc.RootElement.GetProperty("stopReason").GetString().Should().Be(original.StopReason);
-            doc.RootElement.GetProperty("decision").GetString().Should().Be("Block");
+            doc.RootElement.GetProperty("decision").GetString().Should().Be("block");
             doc.RootElement.GetProperty("reason").GetString().Should().Be(original.Reason);
         }
 
         [TestMethod]
-        public void PostToolUseOutput_RoundTrip_ShouldPreserveData()
+        public void PostToolUseOutput_Serialization_ShouldPreserveData()
         {
             // Arrange
             var original = new PostToolUseHookOutput
@@ -142,7 +148,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
 
             // Assert
             doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
-            doc.RootElement.GetProperty("decision").GetString().Should().Be("Allow");
+            doc.RootElement.GetProperty("decision").GetString().Should().Be("allow");
             doc.RootElement.GetProperty("hookSpecificOutput")
                 .GetProperty("additionalContext").GetString()
                 .Should().Be("File was modified successfully");
@@ -195,7 +201,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
                     "cwd": "/home/user/project",
                     "permission_mode": "acceptEdits",
                     "hook_event_name": "SessionStart",
-                    "source": "Startup",
+                    "source": "startup",
                     "env_file": "/tmp/env_vars.txt"
                 }
                 """;
@@ -215,7 +221,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
         #region JSON Property Name Tests
 
         [TestMethod]
-        public void Output_ShouldUseSnakeCasePropertyNames()
+        public void Output_ShouldUseCamelCasePropertyNames()
         {
             // Arrange
             var output = new PreToolUseHookOutput<object>

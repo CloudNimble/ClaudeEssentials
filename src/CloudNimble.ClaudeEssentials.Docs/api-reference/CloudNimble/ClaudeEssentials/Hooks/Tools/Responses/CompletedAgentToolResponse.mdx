@@ -1,0 +1,306 @@
+---
+title: CompletedAgentToolResponse
+description: "Represents the Agent tool response when the agent completed its work synchronously and returned its results inline."
+icon: file-brackets-curly
+keywords: ['CompletedAgentToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.CompletedAgentToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentToolResponse']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
+
+**Inheritance:** CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentToolResponse
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.CompletedAgentToolResponse
+```
+
+## Summary
+
+Represents the Agent tool response when the agent completed its work synchronously
+and returned its results inline.
+
+## Remarks
+
+Example JSON payload:
+```csharp
+{
+  "status": "completed",
+  "agentId": "agent_01ABC123",
+  "content": [{ "type": "text", "text": "I found 5 matching files..." }],
+  "totalToolUseCount": 12,
+  "totalDurationMs": 8500,
+  "totalTokens": 15000,
+  "usage": { "input_tokens": 10000, "output_tokens": 5000 },
+  "prompt": "Find all TypeScript files that import React"
+}
+```
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public CompletedAgentToolResponse()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentToolResponse`</Note>
+
+#### Syntax
+
+```csharp
+protected AgentToolResponse()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public Object()
+```
+
+## Properties
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AgentId
+
+Gets or sets the unique identifier for this agent instance.
+
+#### Syntax
+
+```csharp
+public string AgentId { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AgentType
+
+Gets or sets the type of agent that was used.
+
+#### Syntax
+
+```csharp
+public string AgentType { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Content
+
+Gets or sets the content blocks returned by the agent.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentContentBlock> Content { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentContentBlock>`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Prompt
+
+Gets or sets the original prompt that was given to the agent.
+
+#### Syntax
+
+```csharp
+public string Prompt { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TotalDurationMs
+
+Gets or sets the total duration of the agent execution in milliseconds.
+
+#### Syntax
+
+```csharp
+public int TotalDurationMs { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TotalTokens
+
+Gets or sets the total number of tokens consumed by the agent.
+
+#### Syntax
+
+```csharp
+public int TotalTokens { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TotalToolUseCount
+
+Gets or sets the total number of tool uses made by the agent during execution.
+
+#### Syntax
+
+```csharp
+public int TotalToolUseCount { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Usage
+
+Gets or sets the detailed token usage breakdown for this agent execution.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentUsageInfo Usage { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentUsageInfo`
+
+## Methods
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual bool Equals(object obj)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `obj` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool Equals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetHashCode <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual int GetHashCode()
+```
+
+#### Returns
+
+Type: `int`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public System.Type GetType()
+```
+
+#### Returns
+
+Type: `System.Type`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MemberwiseClone <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+protected internal object MemberwiseClone()
+```
+
+#### Returns
+
+Type: `object`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReferenceEquals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool ReferenceEquals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToString <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual string ToString()
+```
+
+#### Returns
+
+Type: `string?`
+

@@ -114,7 +114,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result!.ToolName.Should().Be("Write");
             result.HookEventName.Should().Be(HookEventName.PostToolUse);
             result.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Type.Should().Be("create");
+            result.ToolResponse!.Type.Should().Be(WriteOperationType.Create);
             result.ToolResponse.FilePath.Should().Contain("test-write.txt");
             result.ToolResponse.Content.Should().Contain("Test file");
             result.ToolResponse.StructuredPatch.Should().BeEmpty();
@@ -162,7 +162,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Assert
             result.Should().NotBeNull();
             result!.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Type.Should().Be("overwrite");
+            result.ToolResponse!.Type.Should().Be(WriteOperationType.Overwrite);
             result.ToolResponse.OriginalFile.Should().NotBeNull();
             result.ToolResponse.OriginalFile.Should().Contain("old value");
             result.ToolResponse.StructuredPatch.Should().NotBeEmpty();
@@ -196,7 +196,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Assert
             result.Should().NotBeNull();
             result!.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Type.Should().Be("create");
+            result.ToolResponse!.Type.Should().Be(WriteOperationType.Create);
             result.ToolResponse.Content.Should().Contain("public class User");
             result.ToolResponse.Content.Should().Contain("public int Id { get; set; }");
         }
@@ -231,7 +231,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Arrange
             var response = new WriteToolResponse
             {
-                Type = "create",
+                Type = WriteOperationType.Create,
                 FilePath = "D:\\test.txt",
                 Content = "New file content",
                 StructuredPatch = [],
@@ -257,7 +257,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Arrange
             var response = new WriteToolResponse
             {
-                Type = "overwrite",
+                Type = WriteOperationType.Overwrite,
                 FilePath = "D:\\test.txt",
                 Content = "Updated content",
                 StructuredPatch =
@@ -280,7 +280,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
 
             // Assert
             result.Should().NotBeNull();
-            result!.Type.Should().Be("overwrite");
+            result!.Type.Should().Be(WriteOperationType.Overwrite);
             result.OriginalFile.Should().Be("Old content");
             result.StructuredPatch.Should().HaveCount(1);
         }

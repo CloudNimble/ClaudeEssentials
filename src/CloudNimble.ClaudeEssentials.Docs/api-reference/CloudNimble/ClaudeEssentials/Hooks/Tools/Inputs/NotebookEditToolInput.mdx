@@ -1,6 +1,6 @@
 ---
 title: NotebookEditToolInput
-description: "Represents the input parameters for the NotebookEdit tool.             The NotebookEdit tool replaces the contents of a specific cell in a Jupyter notebook."
+description: "Represents the input parameters for the NotebookEdit tool. The NotebookEdit tool replaces the contents of a specific cell in a Jupyter notebook."
 icon: file-brackets-curly
 keywords: ['NotebookEditToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.NotebookEditToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'class', 'System.Object']
 ---
@@ -22,7 +22,7 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.NotebookEditToolInput
 ## Summary
 
 Represents the input parameters for the NotebookEdit tool.
-            The NotebookEdit tool replaces the contents of a specific cell in a Jupyter notebook.
+The NotebookEdit tool replaces the contents of a specific cell in a Jupyter notebook.
 
 ## Constructors
 
@@ -63,7 +63,7 @@ Type: `string?`
 #### Remarks
 
 When inserting a new cell, the new cell will be inserted after the cell with this ID,
-            or at the beginning if not specified.
+or at the beginning if not specified.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> CellType
 
@@ -72,17 +72,17 @@ Gets or sets the type of the cell.
 #### Syntax
 
 ```csharp
-public string CellType { get; set; }
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookCellType> CellType { get; set; }
 ```
 
 #### Property Value
 
-Type: `string?`
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookCellType>`
 
 #### Remarks
 
-Options: "code" or "markdown". If not specified, defaults to the current cell type.
-            Required when using edit_mode=insert.
+See [NotebookCellType](/api-reference/CloudNimble/ClaudeEssentials/Hooks/NotebookCellType) for possible values. If not specified, defaults to the current cell type.
+Required when using edit_mode=insert.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> EditMode
 
@@ -91,16 +91,16 @@ Gets or sets the type of edit to make.
 #### Syntax
 
 ```csharp
-public string EditMode { get; set; }
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookEditMode> EditMode { get; set; }
 ```
 
 #### Property Value
 
-Type: `string?`
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookEditMode>`
 
 #### Remarks
 
-Options: "replace" (default), "insert", or "delete".
+See [NotebookEditMode](/api-reference/CloudNimble/ClaudeEssentials/Hooks/NotebookEditMode) for possible values. Defaults to [NotebookEditMode.Replace](/api-reference/CloudNimble/ClaudeEssentials/Hooks/NotebookEditMode#replace).
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NewSource
 

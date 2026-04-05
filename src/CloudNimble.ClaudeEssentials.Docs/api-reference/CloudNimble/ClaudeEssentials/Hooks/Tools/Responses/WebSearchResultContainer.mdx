@@ -25,15 +25,9 @@ Represents a container grouping web search results from a single search operatio
 
 ## Remarks
 
-
-
-
-            Search results are organized into containers that can be traced back to specific
-            tool invocations using the [WebSearchResultContainer.ToolUseId](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebSearchResultContainer#tooluseid). Each container holds multiple
-            individual search result items.
-            
-
-
+Search results are organized into containers that can be traced back to specific
+tool invocations using the [WebSearchResultContainer.ToolUseId](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebSearchResultContainer#tooluseid). Each container holds multiple
+individual search result items.
 
 ## Constructors
 
@@ -74,7 +68,7 @@ Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.
 #### Remarks
 
 Each item represents a single search result with a title and URL.
-            Results are ordered by relevance as determined by the search engine.
+Results are ordered by relevance as determined by the search engine.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToolUseId
 
@@ -99,8 +93,8 @@ Type: `string`
 #### Remarks
 
 This ID can be used to correlate search results with specific tool invocations
-            in the conversation history. It follows the format `"srvtoolu_"` followed
-            by a unique identifier string.
+in the conversation history. It follows the format `"srvtoolu_"` followed
+by a unique identifier string.
 
 ## Methods
 

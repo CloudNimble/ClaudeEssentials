@@ -1,0 +1,294 @@
+---
+title: GitDiffInfo
+description: "Represents git diff information for a file change, including additions, deletions, and the unified diff patch."
+icon: file-brackets-curly
+keywords: ['GitDiffInfo', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.GitDiffInfo', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
+
+**Inheritance:** System.Object
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.GitDiffInfo
+```
+
+## Summary
+
+Represents git diff information for a file change, including additions, deletions,
+and the unified diff patch.
+
+## Remarks
+
+This type is included in tool responses for the Edit and Write tools when git tracking
+is available for the modified file. It provides a summary of the changes as they would
+appear in a `git diff` output.
+
+Example JSON:
+```csharp
+{
+  "filename": "src/Program.cs",
+  "status": "modified",
+  "additions": 5,
+  "deletions": 2,
+  "changes": 7,
+  "patch": "@@ -10,7 +10,10 @@ ...",
+  "repository": "CloudNimble/ClaudeEssentials"
+}
+```
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public GitDiffInfo()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public Object()
+```
+
+## Properties
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Additions
+
+Gets or sets the number of lines added in this change.
+
+#### Syntax
+
+```csharp
+public int Additions { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Changes
+
+Gets or sets the total number of lines changed (additions + deletions).
+
+#### Syntax
+
+```csharp
+public int Changes { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Deletions
+
+Gets or sets the number of lines deleted in this change.
+
+#### Syntax
+
+```csharp
+public int Deletions { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Filename
+
+Gets or sets the filename of the changed file.
+
+#### Syntax
+
+```csharp
+public string Filename { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Patch
+
+Gets or sets the unified diff patch string showing the actual changes.
+
+#### Syntax
+
+```csharp
+public string Patch { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Repository
+
+Gets or sets the GitHub owner/repo identifier when available.
+
+#### Syntax
+
+```csharp
+public string Repository { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+#### Remarks
+
+This is populated when the repository is associated with a GitHub remote.
+Format: `"owner/repo"`, for example `"CloudNimble/ClaudeEssentials"`.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Status
+
+Gets or sets the git status of the file change.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.GitDiffStatus Status { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.GitDiffStatus`
+
+#### Remarks
+
+See [GitDiffStatus](/api-reference/CloudNimble/ClaudeEssentials/Hooks/GitDiffStatus) for possible values.
+
+## Methods
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual bool Equals(object obj)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `obj` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool Equals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetHashCode <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual int GetHashCode()
+```
+
+#### Returns
+
+Type: `int`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public System.Type GetType()
+```
+
+#### Returns
+
+Type: `System.Type`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MemberwiseClone <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+protected internal object MemberwiseClone()
+```
+
+#### Returns
+
+Type: `object`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReferenceEquals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool ReferenceEquals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToString <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual string ToString()
+```
+
+#### Returns
+
+Type: `string?`
+

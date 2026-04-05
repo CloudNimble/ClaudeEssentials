@@ -55,6 +55,56 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         public string Url { get; set; } = string.Empty;
 
         /// <summary>
+        /// Gets or sets the number of bytes in the raw response body before processing.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This indicates the size of the original content fetched from the URL before
+        /// any markdown conversion or summarization was applied.
+        /// </para>
+        /// <para>
+        /// This property may be <c>null</c> for older-style responses that do not include
+        /// byte-level metrics.
+        /// </para>
+        /// </remarks>
+        [JsonPropertyName("bytes")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public long? Bytes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the HTTP status code returned by the server.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Common values include <c>200</c> (OK), <c>301</c> (Moved Permanently),
+        /// <c>404</c> (Not Found), etc.
+        /// </para>
+        /// <para>
+        /// This property may be <c>null</c> for older-style responses that do not include
+        /// the HTTP status code.
+        /// </para>
+        /// </remarks>
+        [JsonPropertyName("code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? Code { get; set; }
+
+        /// <summary>
+        /// Gets or sets the HTTP status text corresponding to <see cref="Code"/>.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// For example, <c>"OK"</c> for a 200 response or <c>"Moved Permanently"</c> for a 301 redirect.
+        /// </para>
+        /// <para>
+        /// This property may be <c>null</c> for older-style responses that do not include
+        /// the HTTP status text.
+        /// </para>
+        /// </remarks>
+        [JsonPropertyName("codeText")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? CodeText { get; set; }
+
+        /// <summary>
         /// Gets or sets the processed content from the fetched URL.
         /// </summary>
         /// <remarks>
@@ -72,6 +122,22 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         public string Content { get; set; } = string.Empty;
 
         /// <summary>
+        /// Gets or sets the duration of the fetch and processing operation in milliseconds.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This includes the time taken to fetch the URL content, convert HTML to markdown,
+        /// and process the content with the specified prompt.
+        /// </para>
+        /// <para>
+        /// This property may be <c>null</c> when duration information is not available.
+        /// </para>
+        /// </remarks>
+        [JsonPropertyName("durationMs")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? DurationMs { get; set; }
+
+        /// <summary>
         /// Gets or sets the duration of the fetch and processing operation in seconds.
         /// </summary>
         /// <remarks>
@@ -86,6 +152,19 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonPropertyName("durationSeconds")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public double? DurationSeconds { get; set; }
+
+        /// <summary>
+        /// Gets or sets the processed result text from the fetched URL.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This is the result of processing the URL content with the prompt. In newer response
+        /// schemas, this field is used instead of <see cref="Content"/>.
+        /// </para>
+        /// </remarks>
+        [JsonPropertyName("result")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Result { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the content was truncated due to size limits.

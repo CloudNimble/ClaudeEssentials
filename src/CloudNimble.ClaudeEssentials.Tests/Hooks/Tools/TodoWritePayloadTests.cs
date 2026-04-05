@@ -107,11 +107,11 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             todos.Should().HaveCount(3);
 
             todos[0].Content.Should().Be("Fix the bug in login");
-            todos[0].Status.Should().Be("in_progress");
+            todos[0].Status.Should().Be(TodoItemStatus.InProgress);
             todos[0].ActiveForm.Should().Be("Fixing the bug in login");
 
-            todos[1].Status.Should().Be("pending");
-            todos[2].Status.Should().Be("completed");
+            todos[1].Status.Should().Be(TodoItemStatus.Pending);
+            todos[2].Status.Should().Be(TodoItemStatus.Completed);
         }
 
         [TestMethod]
@@ -258,8 +258,8 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.ToolResponse.NewTodos.Should().HaveCount(2);
 
             // Verify status changed
-            result.ToolResponse.OldTodos[0].Status.Should().Be("in_progress");
-            result.ToolResponse.NewTodos[0].Status.Should().Be("completed");
+            result.ToolResponse.OldTodos[0].Status.Should().Be(TodoItemStatus.InProgress);
+            result.ToolResponse.NewTodos[0].Status.Should().Be(TodoItemStatus.Completed);
         }
 
         #endregion
@@ -273,7 +273,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             var item = new TodoItem
             {
                 Content = "Test task",
-                Status = "in_progress",
+                Status = TodoItemStatus.InProgress,
                 ActiveForm = "Testing task"
             };
 
@@ -296,8 +296,8 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             {
                 Todos =
                 [
-                    new TodoItem { Content = "Task 1", Status = "pending", ActiveForm = "Starting Task 1" },
-                    new TodoItem { Content = "Task 2", Status = "in_progress", ActiveForm = "Working on Task 2" }
+                    new TodoItem { Content = "Task 1", Status = TodoItemStatus.Pending, ActiveForm = "Starting Task 1" },
+                    new TodoItem { Content = "Task 2", Status = TodoItemStatus.InProgress, ActiveForm = "Working on Task 2" }
                 ]
             };
 
@@ -309,7 +309,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.Should().NotBeNull();
             result!.Todos.Should().HaveCount(2);
             result.Todos[0].Content.Should().Be("Task 1");
-            result.Todos[1].Status.Should().Be("in_progress");
+            result.Todos[1].Status.Should().Be(TodoItemStatus.InProgress);
         }
 
         [TestMethod]
@@ -320,12 +320,12 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             {
                 OldTodos =
                 [
-                    new TodoItem { Content = "Old Task", Status = "pending", ActiveForm = "Starting Old Task" }
+                    new TodoItem { Content = "Old Task", Status = TodoItemStatus.Pending, ActiveForm = "Starting Old Task" }
                 ],
                 NewTodos =
                 [
-                    new TodoItem { Content = "Old Task", Status = "completed", ActiveForm = "Completing Old Task" },
-                    new TodoItem { Content = "New Task", Status = "pending", ActiveForm = "Starting New Task" }
+                    new TodoItem { Content = "Old Task", Status = TodoItemStatus.Completed, ActiveForm = "Completing Old Task" },
+                    new TodoItem { Content = "New Task", Status = TodoItemStatus.Pending, ActiveForm = "Starting New Task" }
                 ]
             };
 
@@ -337,6 +337,12 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.Should().NotBeNull();
             result!.OldTodos.Should().HaveCount(1);
             result.NewTodos.Should().HaveCount(2);
+            result.OldTodos[0].Content.Should().Be("Old Task");
+            result.OldTodos[0].Status.Should().Be(TodoItemStatus.Pending);
+            result.NewTodos[0].Content.Should().Be("Old Task");
+            result.NewTodos[0].Status.Should().Be(TodoItemStatus.Completed);
+            result.NewTodos[1].Content.Should().Be("New Task");
+            result.NewTodos[1].Status.Should().Be(TodoItemStatus.Pending);
         }
 
         #endregion

@@ -3,7 +3,7 @@ title: Overview
 description: "Summary of the CloudNimble.ClaudeEssentials.Hooks.Tools Namespace"
 icon: folder-tree
 mode: wide
-keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools', 'namespace', 'BashPostToolUsePayload', 'BashPreToolUsePayload', 'EditPostToolUsePayload', 'EditPreToolUsePayload', 'GlobPostToolUsePayload', 'GlobPreToolUsePayload', 'GrepPostToolUsePayload', 'GrepPreToolUsePayload', 'KillShellPostToolUsePayload', 'KillShellPreToolUsePayload']
+keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools', 'namespace', 'AgentPostToolUsePayload', 'AgentPreToolUsePayload', 'AskUserQuestionPostToolUsePayload', 'AskUserQuestionPreToolUsePayload', 'BashPostToolUsePayload', 'BashPreToolUsePayload', 'ConfigPostToolUsePayload', 'ConfigPreToolUsePayload', 'EditPostToolUsePayload', 'EditPreToolUsePayload']
 ---
 
 ## Types
@@ -12,22 +12,44 @@ keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools', 'namespace', 'BashPostToo
 
 | Name | Summary |
 | ---- | ------- |
+| [AgentPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/AgentPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Agent tool has executed. |
+| [AgentPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/AgentPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Agent tool is about to be invoked. |
+| [AskUserQuestionPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/AskUserQuestionPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the AskUserQuestion tool has executed. |
+| [AskUserQuestionPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/AskUserQuestionPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the AskUserQuestion tool is about to be invoked. |
 | [BashPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Bash tool has executed. |
 | [BashPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Bash tool is about to be invoked. |
+| [ConfigPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ConfigPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Config tool has executed. |
+| [ConfigPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ConfigPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Config tool is about to be invoked. |
 | [EditPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EditPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Edit tool has executed. |
 | [EditPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EditPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Edit tool is about to be invoked. |
+| [EnterWorktreePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EnterWorktreePostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the EnterWorktree tool has executed. |
+| [EnterWorktreePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EnterWorktreePreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the EnterWorktree tool is about to be invoked. |
+| [ExitPlanModePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ExitPlanModePostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the ExitPlanMode tool has executed. |
+| [ExitPlanModePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ExitPlanModePreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the ExitPlanMode tool is about to be invoked. |
+| [ExitWorktreePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ExitWorktreePostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the ExitWorktree tool has executed. |
+| [ExitWorktreePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ExitWorktreePreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the ExitWorktree tool is about to be invoked. |
 | [GlobPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GlobPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Glob tool has executed. |
 | [GlobPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GlobPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Glob tool is about to be invoked. |
 | [GrepPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GrepPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Grep tool has executed. |
 | [GrepPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GrepPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Grep tool is about to be invoked. |
 | [KillShellPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/KillShellPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the KillShell tool has executed. |
 | [KillShellPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/KillShellPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the KillShell tool is about to be invoked. |
+| [ListMcpResourcesPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ListMcpResourcesPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the ListMcpResources tool has executed. |
+| [ListMcpResourcesPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ListMcpResourcesPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the ListMcpResources tool is about to be invoked. |
+| [McpPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/McpPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after an MCP tool has executed. |
+| [McpPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/McpPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when an MCP tool is about to be invoked. |
 | [NotebookEditPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/NotebookEditPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the NotebookEdit tool has executed. |
 | [NotebookEditPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/NotebookEditPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the NotebookEdit tool is about to be invoked. |
+| [ReadMcpResourcePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadMcpResourcePostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the ReadMcpResource tool has executed. |
+| [ReadMcpResourcePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadMcpResourcePreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the ReadMcpResource tool is about to be invoked. |
 | [ReadPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Read tool has executed. |
 | [ReadPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Read tool is about to be invoked. |
+| [TaskOutputPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskOutputPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the TaskOutput tool has executed. |
+| [TaskOutputPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskOutputPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the TaskOutput tool is about to be invoked. |
 | [TaskPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the Task tool has executed. |
 | [TaskPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the Task tool is about to be invoked. |
+| [TaskStopPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskStopPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the TaskStop tool has executed. |
+| [TaskStopPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskStopPreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the TaskStop tool is about to be invoked. |
 | [TodoWritePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoWritePostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the TodoWrite tool has executed. |
 | [TodoWritePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoWritePreToolUsePayload) | Represents the complete payload delivered to a PreToolUse hook when the TodoWrite tool is about to be invoked. |
 | [WebFetchPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebFetchPostToolUsePayload) | Represents the complete payload delivered to a PostToolUse hook after the WebFetch tool has executed. |

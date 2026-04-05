@@ -23,8 +23,8 @@ namespace CloudNimble.ClaudeEssentials.Samples.HookProcessor.Handlers
         /// </remarks>
         public static StopHookOutput Handle(StopHookInput input)
         {
-            // Only enforce checks if stop hook is active
-            if (!input.StopHookActive)
+            // Skip checks on re-entry — only enforce on first stop
+            if (input.StopHookActive)
             {
                 return new StopHookOutput
                 {

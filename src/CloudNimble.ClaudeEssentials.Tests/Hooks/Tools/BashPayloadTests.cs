@@ -290,6 +290,127 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         }
 
         #endregion
+
+        #region Malformed Payload Tests
+
+        [TestMethod]
+        public void DeserializeBashPreToolUse_WithGarbageInput_ShouldThrowJsonException()
+        {
+            var json = "this is not valid json at all!!!";
+
+            var action = () => ClaudeHooksSerializer.DeserializeBashPreToolUse(json);
+
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeBashPreToolUse_WithToolInputAsNumber_ShouldThrowJsonException()
+        {
+            var json = """
+                {
+                    "tool_name": "Bash",
+                    "tool_input": 42,
+                    "tool_use_id": "toolu_01TestMalformed001"
+                }
+                """;
+
+            var action = () => JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.BashPreToolUsePayload);
+
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeBashPostToolUse_WithStdoutAsNumber_ShouldThrowJsonException()
+        {
+            var json = """
+                {
+                    "tool_name": "Bash",
+                    "tool_input": {
+                        "command": "echo test",
+                        "description": "test"
+                    },
+                    "tool_response": {
+                        "stdout": 12345,
+                        "stderr": "",
+                        "interrupted": false,
+                        "isImage": false
+                    },
+                    "tool_use_id": "toolu_01TestMalformed002"
+                }
+                """;
+
+            var action = () => JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.BashPostToolUsePayload);
+
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeBashPreToolUse_WithMissingToolInput_ShouldHaveNullToolInput()
+        {
+            var json = """
+                {
+                    "tool_name": "Bash",
+                    "tool_use_id": "toolu_01TestMalformed003"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.BashPreToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolInput.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeBashPostToolUse_WithMissingToolResponse_ShouldHaveNullToolResponse()
+        {
+            var json = """
+                {
+                    "tool_name": "Bash",
+                    "tool_input": {
+                        "command": "echo test",
+                        "description": "test"
+                    },
+                    "tool_use_id": "toolu_01TestMalformed004"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.BashPostToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolResponse.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeBashPostToolUse_WithExtraUnknownFields_ShouldDeserializeCorrectly()
+        {
+            var json = """
+                {
+                    "tool_name": "Bash",
+                    "tool_input": {
+                        "command": "echo hello",
+                        "description": "test"
+                    },
+                    "tool_response": {
+                        "stdout": "hello\r\n",
+                        "stderr": "",
+                        "interrupted": false,
+                        "isImage": false,
+                        "unexpected_field": "should be ignored",
+                        "another_unknown": 999
+                    },
+                    "tool_use_id": "toolu_01TestMalformed005"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.BashPostToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolResponse.Should().NotBeNull();
+            result.ToolResponse!.Stdout.Should().Be("hello\r\n");
+            result.ToolResponse.Interrupted.Should().BeFalse();
+        }
+
+        #endregion
     }
 
 }

@@ -25,22 +25,12 @@ Represents an individual web search result with a title and URL.
 
 ## Remarks
 
+Each search result item provides the essential information needed to understand
+what the result is about ([WebSearchResultItem.Title](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebSearchResultItem#title)) and where to find more information
+([WebSearchResultItem.Url](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebSearchResultItem#url)).
 
-
-
-            Each search result item provides the essential information needed to understand
-            what the result is about ([WebSearchResultItem.Title](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebSearchResultItem#title)) and where to find more information
-            ([WebSearchResultItem.Url](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebSearchResultItem#url)).
-            
-
-
-
-
-            The URL can be used with the [WebFetchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput) to retrieve the
-            full content of the page for more detailed information.
-            
-
-
+The URL can be used with the [WebFetchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput) to retrieve the
+full content of the page for more detailed information.
 
 ## Constructors
 
@@ -87,7 +77,7 @@ Type: `string`
 #### Remarks
 
 This is typically the page title or heading from the search result.
-            It provides a brief description of what the linked page contains.
+It provides a brief description of what the linked page contains.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Url
 
@@ -112,7 +102,7 @@ Type: `string`
 #### Remarks
 
 This is the direct link to the search result page. The URL can be used
-            with [WebFetchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput) to retrieve and process the page content.
+with [WebFetchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput) to retrieve and process the page content.
 
 ## Methods
 

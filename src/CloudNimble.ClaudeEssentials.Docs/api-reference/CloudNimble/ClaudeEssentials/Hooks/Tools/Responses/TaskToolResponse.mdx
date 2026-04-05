@@ -1,6 +1,6 @@
 ---
 title: TaskToolResponse
-description: "Represents the response payload returned by the Claude Code Task tool after executing             a subagent to handle a complex task."
+description: "Represents the response payload returned by the Claude Code Task tool after executing a subagent to handle a complex task."
 icon: file-brackets-curly
 keywords: ['TaskToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.TaskToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
 ---
@@ -22,50 +22,34 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.TaskToolResponse
 ## Summary
 
 Represents the response payload returned by the Claude Code Task tool after executing
-            a subagent to handle a complex task.
+a subagent to handle a complex task.
 
 ## Remarks
 
+The Task tool launches specialized agents (subprocesses) that autonomously handle
+complex, multi-step tasks. Each agent type has specific capabilities and tools available
+to it. This response is received in the [TaskPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskPostToolUsePayload)
+when the `tool_name` is "Task".
 
+Available agent types include:
 
-
-            The Task tool launches specialized agents (subprocesses) that autonomously handle
-            complex, multi-step tasks. Each agent type has specific capabilities and tools available
-            to it. This response is received in the [TaskPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskPostToolUsePayload)
-            when the `tool_name` is "Task".
-            
-
-
-
-
-            Available agent types include:
-            
 - `general-purpose` - For research, code search, and multi-step tasks
 - `Explore` - Fast codebase exploration and pattern searches
 - `Plan` - Software architecture and implementation planning
 - `claude-code-guide` - Documentation and guidance queries
 
 
+Agents can be resumed using the [TaskToolResponse.AgentId](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskToolResponse#agentid) returned in the response,
+allowing continuation of previous work with full context preserved.
 
-
-
-            Agents can be resumed using the [TaskToolResponse.AgentId](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskToolResponse#agentid) returned in the response,
-            allowing continuation of previous work with full context preserved.
-            
-
-
-
-
-            Example JSON payload:
-            ```csharp
+Example JSON payload:
+```csharp
 {
   "result": "I found 5 files that match your search criteria...",
   "agentId": "agent_01ABC123XYZ",
   "status": "completed"
 }
 ```
-
-
 
 ## Constructors
 
@@ -111,22 +95,12 @@ Type: `string?`
 
 #### Remarks
 
+This ID can be used to resume the agent later via the [TaskToolInput.Resume](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskToolInput#resume)
+parameter. When resumed, the agent continues with its full previous context preserved,
+allowing for follow-up work or continuation of interrupted tasks.
 
-
-
-            This ID can be used to resume the agent later via the [TaskToolInput.Resume](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskToolInput#resume)
-            parameter. When resumed, the agent continues with its full previous context preserved,
-            allowing for follow-up work or continuation of interrupted tasks.
-            
-
-
-
-
-            Agent IDs are unique within a session and follow the format `"agent_"` followed
-            by an identifier string.
-            
-
-
+Agent IDs are unique within a session and follow the format `"agent_"` followed
+by an identifier string.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Result
 
@@ -144,22 +118,12 @@ Type: `string`
 
 #### Remarks
 
+This contains the agent's response after completing (or attempting to complete)
+the assigned task. The content varies based on what was requested and what
+the agent discovered or accomplished.
 
-
-
-            This contains the agent's response after completing (or attempting to complete)
-            the assigned task. The content varies based on what was requested and what
-            the agent discovered or accomplished.
-            
-
-
-
-
-            Note that agent results are not automatically visible to the user. Claude must
-            summarize or relay the information in its response to share it with the user.
-            
-
-
+Note that agent results are not automatically visible to the user. Claude must
+summarize or relay the information in its response to share it with the user.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Status
 
@@ -168,34 +132,19 @@ Gets or sets the completion status of the task execution.
 #### Syntax
 
 ```csharp
-public string Status { get; set; }
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.TaskExecutionStatus> Status { get; set; }
 ```
 
 #### Property Value
 
-Type: `string?`
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.TaskExecutionStatus>`
 
 #### Remarks
 
+See [TaskExecutionStatus](/api-reference/CloudNimble/ClaudeEssentials/Hooks/TaskExecutionStatus) for possible values.
 
-
-
-            Indicates the final state of the agent's work. Common values include:
-            
-- `"completed"` - The agent finished its task successfully
-- `"running"` - The agent is still working (for background tasks)
-- `"error"` - The agent encountered an error
-- `"interrupted"` - The agent was stopped before completion
-
-
-
-
-
-            For agents run in the background (using [TaskToolInput.RunInBackground](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskToolInput#runinbackground)),
-            use the TaskOutput tool to check the status and retrieve results once the agent completes.
-            
-
-
+For agents run in the background (using [TaskToolInput.RunInBackground](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskToolInput#runinbackground)),
+use the TaskOutput tool to check the status and retrieve results once the agent completes.
 
 ## Methods
 

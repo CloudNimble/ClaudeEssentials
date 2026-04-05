@@ -26,28 +26,14 @@ Represents the complete payload delivered to a PostToolUse hook after the WebSea
 
 ## Remarks
 
+This payload contains all context provided to your hook after Claude executes the WebSearch tool,
+including session information, the original tool input, and the tool's response. Use this
+type for strongly-typed deserialization of PostToolUse hook payloads when `tool_name` is "WebSearch".
 
+The WebSearch tool searches the web for current information. Your hook receives both the search
+query and the results returned, enabling search logging or result filtering.
 
-
-            This payload contains all context provided to your hook after Claude executes the WebSearch tool,
-            including session information, the original tool input, and the tool's response. Use this
-            type for strongly-typed deserialization of PostToolUse hook payloads when `tool_name` is "WebSearch".
-            
-
-
-
-
-            The WebSearch tool searches the web for current information. Your hook receives both the search
-            query and the results returned, enabling search logging or result filtering.
-            
-
-
-
-
-  &lt;strong&gt;Terminology:&lt;/strong&gt;
-  
-
-
+&lt;strong&gt;Terminology:&lt;/strong&gt;
 
 
 
@@ -180,7 +166,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WebSearchToolInput>`</Note>
 
 Gets or sets the input parameters for the tool.
-            The schema depends on the specific tool being invoked.
+The schema depends on the specific tool being invoked.
 
 #### Syntax
 
@@ -197,8 +183,8 @@ Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WebSearchToolInput?`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WebSearchToolInput>`</Note>
 
 Gets or sets the name of the tool being invoked.
-            Common tool names include: Write, Edit, Bash, Read, Grep, Glob, Task, WebFetch, WebSearch.
-            MCP tools follow the pattern: mcp__&lt;server&gt;__&lt;tool&gt;.
+Common tool names include: Write, Edit, Bash, Read, Grep, Glob, Task, WebFetch, WebSearch.
+MCP tools follow the pattern: mcp__&lt;server&gt;__&lt;tool&gt;.
 
 #### Syntax
 
@@ -215,7 +201,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WebSearchToolInput, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.WebSearchToolResponse>`</Note>
 
 Gets or sets the response data returned by the tool.
-            The schema depends on the specific tool that was invoked.
+The schema depends on the specific tool that was invoked.
 
 #### Syntax
 
@@ -232,7 +218,7 @@ Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.WebSearchToolResponse?
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WebSearchToolInput>`</Note>
 
 Gets or sets the unique identifier for this specific tool use instance.
-            Typically follows the pattern: toolu_01ABC123...
+Typically follows the pattern: toolu_01ABC123...
 
 #### Syntax
 
@@ -249,7 +235,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
 
 Gets or sets the file path to the transcript JSONL file for the current session.
-            This file contains the full conversation history.
+This file contains the full conversation history.
 
 #### Syntax
 

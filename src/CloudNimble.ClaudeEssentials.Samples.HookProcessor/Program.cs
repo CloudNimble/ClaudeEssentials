@@ -135,12 +135,26 @@ namespace CloudNimble.ClaudeEssentials.Samples.HookProcessor
 
         /// <summary>
         /// Processes PreToolUse hooks.
+        /// Uses the dynamic path to inspect tool_name, then delegates to strongly-typed
+        /// handlers for tool-specific logic when available.
         /// </summary>
         private static string ProcessPreToolUse(string inputJson)
         {
             var input = ClaudeHooksSerializer.DeserializePreToolUseInput(inputJson)
                 ?? throw new InvalidOperationException("Failed to deserialize PreToolUse input");
 
+            // For Bash, use the strongly-typed path for direct property access
+            if (input.ToolName == "Bash")
+            {
+                var bashResult = PreToolUseHandler.HandleBash(inputJson);
+
+                if (bashResult is not null)
+                {
+                    return ClaudeHooksSerializer.SerializeBashPreToolUseOutput(bashResult);
+                }
+            }
+
+            // Fall back to the dynamic handler for everything else
             var output = PreToolUseHandler.Handle(input);
 
             return ClaudeHooksSerializer.SerializePreToolUseOutput(output);

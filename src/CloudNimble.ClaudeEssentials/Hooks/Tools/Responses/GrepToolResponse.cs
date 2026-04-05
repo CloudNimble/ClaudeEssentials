@@ -1,3 +1,4 @@
+using CloudNimble.ClaudeEssentials.Hooks;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
@@ -54,7 +55,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </para>
         /// </remarks>
         [JsonPropertyName("mode")]
-        public string Mode { get; set; } = string.Empty;
+        public GrepOutputMode Mode { get; set; }
 
         /// <summary>
         /// Gets or sets the list of file paths containing matches.
@@ -132,5 +133,36 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonPropertyName("counts")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<string, int>? Counts { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of lines in the content output.
+        /// </summary>
+        /// <remarks>
+        /// This property is populated when <see cref="Mode"/> is <c>"content"</c>.
+        /// </remarks>
+        [JsonPropertyName("numLines")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? NumLines { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total number of pattern matches found.
+        /// </summary>
+        [JsonPropertyName("numMatches")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? NumMatches { get; set; }
+
+        /// <summary>
+        /// Gets or sets the head_limit that was applied to the results.
+        /// </summary>
+        [JsonPropertyName("appliedLimit")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? AppliedLimit { get; set; }
+
+        /// <summary>
+        /// Gets or sets the offset that was applied to the results.
+        /// </summary>
+        [JsonPropertyName("appliedOffset")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? AppliedOffset { get; set; }
     }
 }

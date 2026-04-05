@@ -1,6 +1,6 @@
 ---
 title: BashToolResponse
-description: "Represents the response payload returned by the Claude Code Bash tool after executing             a shell command."
+description: "Represents the response payload returned by the Claude Code Bash tool after executing a shell command."
 icon: file-brackets-curly
 keywords: ['BashToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.BashToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
 ---
@@ -22,38 +22,23 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.BashToolResponse
 ## Summary
 
 Represents the response payload returned by the Claude Code Bash tool after executing
-            a shell command.
+a shell command.
 
 ## Remarks
 
+The Bash tool executes shell commands in a persistent shell session. This response is
+received in the [BashPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashPostToolUsePayload)
+when the `tool_name` is "Bash".
 
+Commands have a default timeout of 120 seconds (2 minutes), which can be extended
+up to 600 seconds (10 minutes) using the [BashToolInput.Timeout](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/BashToolInput#timeout) parameter.
+If a command exceeds its timeout, it will be interrupted and [BashToolResponse.Interrupted](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#interrupted)
+will be `true`.
 
+Output exceeding 30,000 characters is automatically truncated by Claude Code.
 
-            The Bash tool executes shell commands in a persistent shell session. This response is
-            received in the [BashPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashPostToolUsePayload)
-            when the `tool_name` is "Bash".
-            
-
-
-
-
-            Commands have a default timeout of 120 seconds (2 minutes), which can be extended
-            up to 600 seconds (10 minutes) using the [BashToolInput.Timeout](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/BashToolInput#timeout) parameter.
-            If a command exceeds its timeout, it will be interrupted and [BashToolResponse.Interrupted](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#interrupted)
-            will be `true`.
-            
-
-
-
-
-            Output exceeding 30,000 characters is automatically truncated by Claude Code.
-            
-
-
-
-
-            Example JSON payload:
-            ```csharp
+Example JSON payload:
+```csharp
 {
   "stdout": "Hello, World!\r\n",
   "stderr": "",
@@ -61,8 +46,6 @@ Represents the response payload returned by the Claude Code Bash tool after exec
   "isImage": false
 }
 ```
-
-
 
 ## Constructors
 
@@ -102,24 +85,15 @@ Type: `bool`
 
 #### Remarks
 
+When `true`, the command did not complete normally. This typically occurs when:
 
-
-
-            When `true`, the command did not complete normally. This typically occurs when:
-            
 - The command exceeded its timeout (default 120 seconds, max 600 seconds)
 - The user manually cancelled the operation
 - The command was killed by the system
 
 
-
-
-
-            When a command is interrupted, [BashToolResponse.Stdout](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stdout) and [BashToolResponse.Stderr](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stderr) will
-            contain whatever output was captured before the interruption occurred.
-            
-
-
+When a command is interrupted, [BashToolResponse.Stdout](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stdout) and [BashToolResponse.Stderr](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stderr) will
+contain whatever output was captured before the interruption occurred.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> IsImage
 
@@ -137,22 +111,12 @@ Type: `bool`
 
 #### Remarks
 
+When `true`, the command produced image output that Claude can interpret
+visually. This is used for commands that generate images or graphical output.
 
-
-
-            When `true`, the command produced image output that Claude can interpret
-            visually. This is used for commands that generate images or graphical output.
-            
-
-
-
-
-            Claude is a multimodal LLM and can process image data directly. When this is
-            `true`, the [BashToolResponse.Stdout](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stdout) may contain base64-encoded image data
-            or be empty while the image is presented to Claude separately.
-            
-
-
+Claude is a multimodal LLM and can process image data directly. When this is
+`true`, the [BashToolResponse.Stdout](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stdout) may contain base64-encoded image data
+or be empty while the image is presented to Claude separately.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Stderr
 
@@ -170,23 +134,13 @@ Type: `string`
 
 #### Remarks
 
+This contains all text written to stderr by the command. Many commands write
+warnings, progress information, or diagnostic messages to stderr even when
+successful.
 
-
-
-            This contains all text written to stderr by the command. Many commands write
-            warnings, progress information, or diagnostic messages to stderr even when
-            successful.
-            
-
-
-
-
-            An empty [BashToolResponse.Stderr](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stderr) does not necessarily indicate success, and a
-            non-empty [BashToolResponse.Stderr](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stderr) does not necessarily indicate failure. Check
-            the actual content and context to determine the command's success.
-            
-
-
+An empty [BashToolResponse.Stderr](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stderr) does not necessarily indicate success, and a
+non-empty [BashToolResponse.Stderr](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stderr) does not necessarily indicate failure. Check
+the actual content and context to determine the command's success.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Stdout
 
@@ -204,27 +158,13 @@ Type: `string`
 
 #### Remarks
 
+This contains all text written to stdout by the command. On Windows, line endings
+will typically be CRLF (`\r\n`), while on Unix-like systems they will be LF (`\n`).
 
+If the output exceeds 30,000 characters, it will be truncated by Claude Code.
 
-
-            This contains all text written to stdout by the command. On Windows, line endings
-            will typically be CRLF (`\r\n`), while on Unix-like systems they will be LF (`\n`).
-            
-
-
-
-
-            If the output exceeds 30,000 characters, it will be truncated by Claude Code.
-            
-
-
-
-
-            For commands that produce binary output (like image generation), this may be empty
-            and [BashToolResponse.IsImage](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#isimage) will be `true`.
-            
-
-
+For commands that produce binary output (like image generation), this may be empty
+and [BashToolResponse.IsImage](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#isimage) will be `true`.
 
 ## Methods
 

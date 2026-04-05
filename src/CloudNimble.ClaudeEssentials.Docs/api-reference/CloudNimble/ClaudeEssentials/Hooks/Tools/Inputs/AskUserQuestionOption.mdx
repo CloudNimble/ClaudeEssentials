@@ -1,0 +1,227 @@
+---
+title: AskUserQuestionOption
+description: "Represents a single option choice within an [AskUserQuestion](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestion)."
+icon: file-brackets-curly
+keywords: ['AskUserQuestionOption', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestionOption', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'class', 'System.Object']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
+
+**Inheritance:** System.Object
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestionOption
+```
+
+## Summary
+
+Represents a single option choice within an [AskUserQuestion](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestion).
+
+## Remarks
+
+Each option is a distinct choice presented to the user. Options should be concise
+(1-5 words for the label) with a description explaining what the option means or
+what will happen if chosen.
+
+Example JSON:
+```csharp
+{
+  "label": "Use Tailwind",
+  "description": "Style with utility classes using Tailwind CSS framework",
+  "preview": "/* Tailwind example */\n.btn { @apply px-4 py-2 bg-blue-500; }"
+}
+```
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public AskUserQuestionOption()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public Object()
+```
+
+## Properties
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Description
+
+Gets or sets the explanation of what this option means or what will happen if chosen.
+Useful for providing context about trade-offs or implications.
+
+#### Syntax
+
+```csharp
+public string Description { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Label
+
+Gets or sets the display text for this option that the user will see and select.
+Should be concise (1-5 words) and clearly describe the choice.
+
+#### Syntax
+
+```csharp
+public string Label { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Preview
+
+Gets or sets optional preview content rendered when this option is focused.
+Use for mockups, code snippets, or visual comparisons that help users compare options.
+
+#### Syntax
+
+```csharp
+public string Preview { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+## Methods
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual bool Equals(object obj)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `obj` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool Equals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetHashCode <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual int GetHashCode()
+```
+
+#### Returns
+
+Type: `int`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public System.Type GetType()
+```
+
+#### Returns
+
+Type: `System.Type`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MemberwiseClone <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+protected internal object MemberwiseClone()
+```
+
+#### Returns
+
+Type: `object`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReferenceEquals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool ReferenceEquals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToString <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual string ToString()
+```
+
+#### Returns
+
+Type: `string?`
+

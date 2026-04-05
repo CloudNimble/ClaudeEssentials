@@ -1,6 +1,6 @@
 ---
 title: ReadToolInput
-description: "Represents the input parameters for the Read tool.             The Read tool reads files from the local filesystem."
+description: "Represents the input parameters for the Read tool. The Read tool reads files from the local filesystem."
 icon: file-brackets-curly
 keywords: ['ReadToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'class', 'System.Object']
 ---
@@ -22,24 +22,14 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadToolInput
 ## Summary
 
 Represents the input parameters for the Read tool.
-            The Read tool reads files from the local filesystem.
+The Read tool reads files from the local filesystem.
 
 ## Remarks
 
+By default, reads up to 2000 lines starting from the beginning of the file.
+You can optionally specify a line offset and limit for reading specific portions.
 
-
-
-            By default, reads up to 2000 lines starting from the beginning of the file.
-            You can optionally specify a line offset and limit for reading specific portions.
-            
-
-
-
-
-            The Read tool can also read images (PNG, JPG, etc.), PDF files, and Jupyter notebooks (.ipynb).
-            
-
-
+The Read tool can also read images (PNG, JPG, etc.), PDF files, and Jupyter notebooks (.ipynb).
 
 ## Constructors
 
@@ -116,6 +106,34 @@ Type: `System.Nullable<int>`
 #### Remarks
 
 Optional. Only provide if the file is too large to read at once.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Pages
+
+Gets or sets the page range for PDF files.
+
+#### Syntax
+
+```csharp
+public string Pages { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+#### Examples
+
+```csharp
+"1-5"
+```
+
+#### Remarks
+
+Optional. Only applicable to PDF files. Specifies which pages to read,
+using formats like `"1-5"`, `"3"`, or `"10-20"`.
+
+For large PDFs (more than 10 pages), a page range must be provided.
+Maximum 20 pages per request.
 
 ## Methods
 

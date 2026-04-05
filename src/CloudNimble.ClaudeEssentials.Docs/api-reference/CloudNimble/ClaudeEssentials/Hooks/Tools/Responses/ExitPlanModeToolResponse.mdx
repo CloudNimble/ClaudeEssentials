@@ -1,0 +1,284 @@
+---
+title: ExitPlanModeToolResponse
+description: "Represents the response payload returned by the Claude Code ExitPlanMode tool after transitioning from plan mode to execution mode."
+icon: file-brackets-curly
+keywords: ['ExitPlanModeToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.ExitPlanModeToolResponse', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
+
+**Inheritance:** System.Object
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.ExitPlanModeToolResponse
+```
+
+## Summary
+
+Represents the response payload returned by the Claude Code ExitPlanMode tool after
+transitioning from plan mode to execution mode.
+
+## Remarks
+
+The ExitPlanMode tool is used when Claude has finished creating a plan and is ready to
+begin executing it. The response includes the plan text and metadata about how it was
+presented to the user.
+
+Example JSON payload:
+```csharp
+{
+  "plan": "## Implementation Plan\n\n1. Create new models...",
+  "isAgent": false,
+  "filePath": "/tmp/plan-abc123.md",
+  "hasTaskTool": true,
+  "planWasEdited": false
+}
+```
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public ExitPlanModeToolResponse()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public Object()
+```
+
+## Properties
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AwaitingLeaderApproval
+
+Gets or sets whether the teammate has sent a plan approval request to the team leader.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> AwaitingLeaderApproval { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> FilePath
+
+Gets or sets the file path where the plan was saved.
+
+#### Syntax
+
+```csharp
+public string FilePath { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> HasTaskTool
+
+Gets or sets whether the Agent tool is available in the current context.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> HasTaskTool { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> IsAgent
+
+Gets or sets a value indicating whether this is an agent context.
+
+#### Syntax
+
+```csharp
+public bool IsAgent { get; set; }
+```
+
+#### Property Value
+
+Type: `bool`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Plan
+
+Gets or sets the plan that was presented to the user.
+
+#### Syntax
+
+```csharp
+public string Plan { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PlanWasEdited
+
+Gets or sets whether the user edited the plan (CCR web UI or Ctrl+G).
+Determines whether the plan is echoed back in tool_result.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> PlanWasEdited { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> RequestId
+
+Gets or sets the unique identifier for the plan approval request.
+
+#### Syntax
+
+```csharp
+public string RequestId { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+## Methods
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual bool Equals(object obj)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `obj` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool Equals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetHashCode <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual int GetHashCode()
+```
+
+#### Returns
+
+Type: `int`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public System.Type GetType()
+```
+
+#### Returns
+
+Type: `System.Type`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MemberwiseClone <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+protected internal object MemberwiseClone()
+```
+
+#### Returns
+
+Type: `object`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReferenceEquals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool ReferenceEquals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToString <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual string ToString()
+```
+
+#### Returns
+
+Type: `string?`
+

@@ -26,28 +26,14 @@ Represents the complete payload delivered to a PostToolUse hook after the KillSh
 
 ## Remarks
 
+This payload contains all context provided to your hook after Claude executes the KillShell tool,
+including session information, the original tool input, and the tool's response. Use this
+type for strongly-typed deserialization of PostToolUse hook payloads when `tool_name` is "KillShell".
 
+The KillShell tool terminates background shell processes. Your hook receives both the shell ID
+that was targeted and whether the termination succeeded.
 
-
-            This payload contains all context provided to your hook after Claude executes the KillShell tool,
-            including session information, the original tool input, and the tool's response. Use this
-            type for strongly-typed deserialization of PostToolUse hook payloads when `tool_name` is "KillShell".
-            
-
-
-
-
-            The KillShell tool terminates background shell processes. Your hook receives both the shell ID
-            that was targeted and whether the termination succeeded.
-            
-
-
-
-
-  &lt;strong&gt;Terminology:&lt;/strong&gt;
-  
-
-
+&lt;strong&gt;Terminology:&lt;/strong&gt;
 
 
 
@@ -180,7 +166,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.KillShellToolInput>`</Note>
 
 Gets or sets the input parameters for the tool.
-            The schema depends on the specific tool being invoked.
+The schema depends on the specific tool being invoked.
 
 #### Syntax
 
@@ -197,8 +183,8 @@ Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.KillShellToolInput?`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.KillShellToolInput>`</Note>
 
 Gets or sets the name of the tool being invoked.
-            Common tool names include: Write, Edit, Bash, Read, Grep, Glob, Task, WebFetch, WebSearch.
-            MCP tools follow the pattern: mcp__&lt;server&gt;__&lt;tool&gt;.
+Common tool names include: Write, Edit, Bash, Read, Grep, Glob, Task, WebFetch, WebSearch.
+MCP tools follow the pattern: mcp__&lt;server&gt;__&lt;tool&gt;.
 
 #### Syntax
 
@@ -215,7 +201,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.KillShellToolInput, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.KillShellToolResponse>`</Note>
 
 Gets or sets the response data returned by the tool.
-            The schema depends on the specific tool that was invoked.
+The schema depends on the specific tool that was invoked.
 
 #### Syntax
 
@@ -232,7 +218,7 @@ Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.KillShellToolResponse?
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ToolHookInputBase<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.KillShellToolInput>`</Note>
 
 Gets or sets the unique identifier for this specific tool use instance.
-            Typically follows the pattern: toolu_01ABC123...
+Typically follows the pattern: toolu_01ABC123...
 
 #### Syntax
 
@@ -249,7 +235,7 @@ Type: `string`
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
 
 Gets or sets the file path to the transcript JSONL file for the current session.
-            This file contains the full conversation history.
+This file contains the full conversation history.
 
 #### Syntax
 

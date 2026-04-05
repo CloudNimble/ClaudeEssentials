@@ -1,3 +1,4 @@
+using System.Text.Json;
 using CloudNimble.ClaudeEssentials.Hooks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -103,7 +104,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
                 {
                     "session_id": "sess789",
                     "message": "Claude needs your permission to use Bash",
-                    "notification_type": "PermissionPrompt"
+                    "notification_type": "permission_prompt"
                 }
                 """;
 
@@ -191,7 +192,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             var json = """
                 {
                     "session_id": "new-session",
-                    "source": "Startup"
+                    "source": "startup"
                 }
                 """;
 
@@ -209,7 +210,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             // Arrange
             var json = """
                 {
-                    "source": "Resume"
+                    "source": "resume"
                 }
                 """;
 
@@ -232,7 +233,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             var json = """
                 {
                     "session_id": "ending-session",
-                    "reason": "Logout"
+                    "reason": "logout"
                 }
                 """;
 
@@ -254,7 +255,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             // Arrange
             var json = """
                 {
-                    "trigger": "Manual",
+                    "trigger": "manual",
                     "custom_instructions": "Keep function signatures"
                 }
                 """;
@@ -274,7 +275,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             // Arrange
             var json = """
                 {
-                    "trigger": "Auto"
+                    "trigger": "auto"
                 }
                 """;
 
@@ -317,6 +318,242 @@ namespace CloudNimble.ClaudeEssentials.Tests
 
             // Assert
             result.Should().BeNull();
+        }
+
+        #endregion
+
+        #region Malformed Payload Tests
+
+        [TestMethod]
+        public void DeserializePostToolUseInput_WithGarbageJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializePostToolUseInput("not json");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializePostToolUseInput_WithNullLiteral_ShouldReturnNull()
+        {
+            var result = ClaudeHooksSerializer.DeserializePostToolUseInput("null");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializePostToolUseInput_WithEmptyObject_ShouldReturnObjectWithDefaults()
+        {
+            var result = ClaudeHooksSerializer.DeserializePostToolUseInput("{}");
+            result.Should().NotBeNull();
+            result!.SessionId.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void DeserializePostToolUseInput_WithArrayInput_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializePostToolUseInput("[1, 2, 3]");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeNotificationInput_WithGarbageJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializeNotificationInput("{{invalid}}");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeNotificationInput_WithNullLiteral_ShouldReturnNull()
+        {
+            var result = ClaudeHooksSerializer.DeserializeNotificationInput("null");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeNotificationInput_WithEmptyObject_ShouldReturnObjectWithDefaults()
+        {
+            var result = ClaudeHooksSerializer.DeserializeNotificationInput("{}");
+            result.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeNotificationInput_WithNumberLiteral_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializeNotificationInput("42");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeUserPromptSubmitInput_WithGarbageJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializeUserPromptSubmitInput("not json");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeUserPromptSubmitInput_WithNullLiteral_ShouldReturnNull()
+        {
+            var result = ClaudeHooksSerializer.DeserializeUserPromptSubmitInput("null");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeUserPromptSubmitInput_WithEmptyObject_ShouldReturnObjectWithDefaults()
+        {
+            var result = ClaudeHooksSerializer.DeserializeUserPromptSubmitInput("{}");
+            result.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeUserPromptSubmitInput_WithTruncatedJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializeUserPromptSubmitInput("{\"prompt\": \"hello");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeStopInput_WithGarbageJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializeStopInput("not json");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeStopInput_WithNullLiteral_ShouldReturnNull()
+        {
+            var result = ClaudeHooksSerializer.DeserializeStopInput("null");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeStopInput_WithEmptyObject_ShouldReturnObjectWithDefaults()
+        {
+            var result = ClaudeHooksSerializer.DeserializeStopInput("{}");
+            result.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeSubagentStopInput_WithGarbageJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializeSubagentStopInput("{{invalid}}");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeSubagentStopInput_WithNullLiteral_ShouldReturnNull()
+        {
+            var result = ClaudeHooksSerializer.DeserializeSubagentStopInput("null");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeSubagentStopInput_WithEmptyObject_ShouldReturnObjectWithDefaults()
+        {
+            var result = ClaudeHooksSerializer.DeserializeSubagentStopInput("{}");
+            result.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void DeserializePreCompactInput_WithGarbageJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializePreCompactInput("not json");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializePreCompactInput_WithNullLiteral_ShouldReturnNull()
+        {
+            var result = ClaudeHooksSerializer.DeserializePreCompactInput("null");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializePreCompactInput_WithEmptyObject_ShouldReturnObjectWithDefaults()
+        {
+            var result = ClaudeHooksSerializer.DeserializePreCompactInput("{}");
+            result.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void DeserializePreCompactInput_WithNumberLiteral_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializePreCompactInput("99");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeSessionStartInput_WithGarbageJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializeSessionStartInput("not json");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeSessionStartInput_WithNullLiteral_ShouldReturnNull()
+        {
+            var result = ClaudeHooksSerializer.DeserializeSessionStartInput("null");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeSessionStartInput_WithEmptyObject_ShouldReturnObjectWithDefaults()
+        {
+            var result = ClaudeHooksSerializer.DeserializeSessionStartInput("{}");
+            result.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeSessionStartInput_WithArrayInput_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializeSessionStartInput("[\"a\", \"b\"]");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeSessionEndInput_WithGarbageJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializeSessionEndInput("{{invalid}}");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeSessionEndInput_WithNullLiteral_ShouldReturnNull()
+        {
+            var result = ClaudeHooksSerializer.DeserializeSessionEndInput("null");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeSessionEndInput_WithEmptyObject_ShouldReturnObjectWithDefaults()
+        {
+            var result = ClaudeHooksSerializer.DeserializeSessionEndInput("{}");
+            result.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void DeserializePermissionRequestInput_WithGarbageJson_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializePermissionRequestInput("not json");
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializePermissionRequestInput_WithNullLiteral_ShouldReturnNull()
+        {
+            var result = ClaudeHooksSerializer.DeserializePermissionRequestInput("null");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializePermissionRequestInput_WithEmptyObject_ShouldReturnObjectWithDefaults()
+        {
+            var result = ClaudeHooksSerializer.DeserializePermissionRequestInput("{}");
+            result.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void DeserializePermissionRequestInput_WithStringLiteral_ShouldThrowJsonException()
+        {
+            var action = () => ClaudeHooksSerializer.DeserializePermissionRequestInput("\"just a string\"");
+            action.Should().Throw<JsonException>();
         }
 
         #endregion

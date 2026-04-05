@@ -297,6 +297,9 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.OldString.Should().Be(response.OldString);
             result.NewString.Should().Be(response.NewString);
             result.StructuredPatch.Should().HaveCount(1);
+            result.OriginalFile.Should().Be("original content");
+            result.UserModified.Should().BeFalse();
+            result.ReplaceAll.Should().BeFalse();
         }
 
         [TestMethod]
@@ -323,6 +326,102 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.NewStart.Should().Be(hunk.NewStart);
             result.NewLines.Should().Be(hunk.NewLines);
             result.Lines.Should().BeEquivalentTo(hunk.Lines);
+        }
+
+        #endregion
+
+        #region Malformed Payload Tests
+
+        [TestMethod]
+        public void DeserializeEditPreToolUse_WithToolInputAsString_ShouldThrowJsonException()
+        {
+            var json = """
+                {
+                    "tool_name": "Edit",
+                    "tool_input": "this should be an object not a string",
+                    "tool_use_id": "toolu_01TestMalformed001"
+                }
+                """;
+
+            var action = () => JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.EditPreToolUsePayload);
+
+            action.Should().Throw<JsonException>();
+        }
+
+        [TestMethod]
+        public void DeserializeEditPostToolUse_WithEmptyStructuredPatch_ShouldDeserializeCorrectly()
+        {
+            var json = """
+                {
+                    "tool_name": "Edit",
+                    "tool_input": {
+                        "file_path": "D:\\Projects\\TestProject\\test.cs",
+                        "old_string": "old",
+                        "new_string": "new"
+                    },
+                    "tool_response": {
+                        "filePath": "D:\\Projects\\TestProject\\test.cs",
+                        "oldString": "old",
+                        "newString": "new",
+                        "originalFile": "old content",
+                        "structuredPatch": [],
+                        "userModified": false,
+                        "replaceAll": false
+                    },
+                    "tool_use_id": "toolu_01TestMalformed002"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.EditPostToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolResponse.Should().NotBeNull();
+            result.ToolResponse!.StructuredPatch.Should().NotBeNull();
+            result.ToolResponse.StructuredPatch.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void DeserializeEditPostToolUse_WithMissingToolResponse_ShouldHaveNullToolResponse()
+        {
+            var json = """
+                {
+                    "tool_name": "Edit",
+                    "tool_input": {
+                        "file_path": "D:\\Projects\\TestProject\\test.cs",
+                        "old_string": "old",
+                        "new_string": "new"
+                    },
+                    "tool_use_id": "toolu_01TestMalformed003"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.EditPostToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolResponse.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void DeserializeEditPreToolUse_WithNullReplaceAll_ShouldDeserializeWithNull()
+        {
+            var json = """
+                {
+                    "tool_name": "Edit",
+                    "tool_input": {
+                        "file_path": "D:\\Projects\\TestProject\\test.cs",
+                        "old_string": "old",
+                        "new_string": "new",
+                        "replace_all": null
+                    },
+                    "tool_use_id": "toolu_01TestMalformed004"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.EditPreToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolInput.Should().NotBeNull();
+            result.ToolInput!.ReplaceAll.Should().BeNull();
         }
 
         #endregion

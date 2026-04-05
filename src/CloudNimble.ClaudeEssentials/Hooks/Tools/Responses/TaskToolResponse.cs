@@ -1,3 +1,4 @@
+using CloudNimble.ClaudeEssentials.Hooks;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 using System.Text.Json.Serialization;
 
@@ -85,13 +86,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </summary>
         /// <remarks>
         /// <para>
-        /// Indicates the final state of the agent's work. Common values include:
-        /// <list type="bullet">
-        /// <item><description><c>"completed"</c> - The agent finished its task successfully</description></item>
-        /// <item><description><c>"running"</c> - The agent is still working (for background tasks)</description></item>
-        /// <item><description><c>"error"</c> - The agent encountered an error</description></item>
-        /// <item><description><c>"interrupted"</c> - The agent was stopped before completion</description></item>
-        /// </list>
+        /// See <see cref="TaskExecutionStatus"/> for possible values.
         /// </para>
         /// <para>
         /// For agents run in the background (using <see cref="TaskToolInput.RunInBackground"/>),
@@ -100,6 +95,6 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </remarks>
         [JsonPropertyName("status")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? Status { get; set; }
+        public TaskExecutionStatus? Status { get; set; }
     }
 }

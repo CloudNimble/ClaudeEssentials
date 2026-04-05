@@ -1,0 +1,247 @@
+---
+title: AskUserQuestion
+description: "Represents a single question within the AskUserQuestion tool input."
+icon: file-brackets-curly
+keywords: ['AskUserQuestion', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestion', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'class', 'System.Object']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
+
+**Inheritance:** System.Object
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestion
+```
+
+## Summary
+
+Represents a single question within the AskUserQuestion tool input.
+
+## Remarks
+
+Each question includes a prompt, a short header label, a set of options to choose from,
+and whether multiple selections are allowed. Questions should be clear, specific, and
+end with a question mark.
+
+Example JSON:
+```csharp
+{
+  "question": "Which library should we use for date formatting?",
+  "header": "Library",
+  "options": [
+    { "label": "date-fns", "description": "Lightweight, tree-shakeable date utility library" },
+    { "label": "Day.js", "description": "2KB immutable date library, Moment.js alternative" }
+  ],
+  "multiSelect": false
+}
+```
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public AskUserQuestion()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public Object()
+```
+
+## Properties
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Header
+
+Gets or sets a very short label displayed as a chip/tag (max 12 chars).
+Examples: "Auth method", "Library", "Approach".
+
+#### Syntax
+
+```csharp
+public string Header { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MultiSelect
+
+Gets or sets whether to allow the user to select multiple options instead of just one.
+Use when choices are not mutually exclusive.
+
+#### Syntax
+
+```csharp
+public bool MultiSelect { get; set; }
+```
+
+#### Property Value
+
+Type: `bool`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Options
+
+Gets or sets the available choices for this question. Must have 2-4 options.
+Each option should be a distinct, mutually exclusive choice (unless [AskUserQuestion.MultiSelect](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestion#multiselect) is enabled).
+There should be no 'Other' option, that will be provided automatically.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestionOption> Options { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestionOption>`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Question
+
+Gets or sets the complete question to ask the user. Should be clear, specific, and end with a question mark.
+If [AskUserQuestion.MultiSelect](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestion#multiselect) is `true`, phrase it accordingly, e.g. "Which features do you want to enable?"
+
+#### Syntax
+
+```csharp
+public string Question { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+## Methods
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual bool Equals(object obj)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `obj` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool Equals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetHashCode <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual int GetHashCode()
+```
+
+#### Returns
+
+Type: `int`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public System.Type GetType()
+```
+
+#### Returns
+
+Type: `System.Type`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MemberwiseClone <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+protected internal object MemberwiseClone()
+```
+
+#### Returns
+
+Type: `object`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReferenceEquals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool ReferenceEquals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToString <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual string ToString()
+```
+
+#### Returns
+
+Type: `string?`
+

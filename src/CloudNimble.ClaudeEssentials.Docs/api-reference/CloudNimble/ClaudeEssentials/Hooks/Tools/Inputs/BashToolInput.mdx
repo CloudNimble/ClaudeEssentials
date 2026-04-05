@@ -1,6 +1,6 @@
 ---
 title: BashToolInput
-description: "Represents the input parameters for the Bash tool.             The Bash tool executes shell commands in a persistent bash session."
+description: "Represents the input parameters for the Bash tool. The Bash tool executes shell commands in a persistent bash session."
 icon: file-brackets-curly
 keywords: ['BashToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.BashToolInput', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'class', 'System.Object']
 ---
@@ -22,23 +22,13 @@ CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.BashToolInput
 ## Summary
 
 Represents the input parameters for the Bash tool.
-            The Bash tool executes shell commands in a persistent bash session.
+The Bash tool executes shell commands in a persistent bash session.
 
 ## Remarks
 
+This tool is for terminal operations like git, npm, docker, etc.
 
-
-
-            This tool is for terminal operations like git, npm, docker, etc.
-            
-
-
-
-
-            If the output exceeds 30000 characters, it will be truncated.
-            
-
-
+If the output exceeds 30000 characters, it will be truncated.
 
 ## Constructors
 
@@ -125,7 +115,7 @@ Type: `System.Nullable<bool>`
 #### Remarks
 
 When `true`, you can monitor the output using subsequent Bash tool calls.
-            You do not need to use '&amp;' at the end of the command when using this parameter.
+You do not need to use '&amp;' at the end of the command when using this parameter.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Timeout
 

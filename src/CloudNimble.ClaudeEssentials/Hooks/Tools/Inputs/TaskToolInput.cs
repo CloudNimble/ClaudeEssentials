@@ -1,3 +1,4 @@
+using CloudNimble.ClaudeEssentials.Hooks;
 using System.Text.Json.Serialization;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
@@ -35,18 +36,20 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         /// Examples: "general-purpose", "Explore", "Plan", "statusline-setup"
         /// </remarks>
         [JsonPropertyName("subagent_type")]
-        public string SubagentType { get; set; } = string.Empty;
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? SubagentType { get; set; }
 
         /// <summary>
         /// Gets or sets the optional model to use for this agent.
         /// </summary>
         /// <remarks>
-        /// If not specified, inherits from parent. Options: "sonnet", "opus", "haiku".
-        /// Prefer haiku for quick, straightforward tasks to minimize cost and latency.
+        /// See <see cref="ClaudeModel"/> for possible values.
+        /// If not specified, inherits from parent.
+        /// Prefer <see cref="ClaudeModel.Haiku"/> for quick, straightforward tasks to minimize cost and latency.
         /// </remarks>
         [JsonPropertyName("model")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? Model { get; set; }
+        public ClaudeModel? Model { get; set; }
 
         /// <summary>
         /// Gets or sets an optional agent ID to resume from.
@@ -67,6 +70,38 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         [JsonPropertyName("run_in_background")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? RunInBackground { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name for the spawned agent. Makes it addressable via SendMessage({to: name}) while running.
+        /// </summary>
+        [JsonPropertyName("name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the team name for spawning. Uses current team context if omitted.
+        /// </summary>
+        [JsonPropertyName("team_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? TeamName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the permission mode for the spawned teammate (e.g., "plan" to require plan approval).
+        /// </summary>
+        /// <remarks>
+        /// See <see cref="PermissionMode"/> for possible values.
+        /// </remarks>
+        [JsonPropertyName("mode")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public PermissionMode? Mode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the isolation mode. Set to <c>"worktree"</c> to create a temporary git worktree
+        /// so the agent works on an isolated copy of the repo.
+        /// </summary>
+        [JsonPropertyName("isolation")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Isolation { get; set; }
 
     }
 

@@ -313,6 +313,9 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Assert
             result.Should().NotBeNull();
             result!.Truncated.Should().BeTrue();
+            result.DurationMs.Should().Be(5000);
+            result.NumFiles.Should().Be(1);
+            result.Filenames.Should().Contain("file1.cs");
         }
 
         #endregion

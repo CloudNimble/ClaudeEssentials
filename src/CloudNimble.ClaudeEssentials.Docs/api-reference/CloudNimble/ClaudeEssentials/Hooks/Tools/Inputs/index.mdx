@@ -3,7 +3,7 @@ title: Overview
 description: "Summary of the CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs Namespace"
 icon: folder-tree
 mode: wide
-keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'namespace', 'BashToolInput', 'EditToolInput', 'GlobToolInput', 'GrepToolInput', 'KillShellToolInput', 'NotebookEditToolInput', 'ReadToolInput', 'TaskToolInput', 'TodoWriteToolInput', 'TodoItem']
+keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'namespace', 'AgentToolInput', 'AskUserQuestion', 'AskUserQuestionOption', 'AskUserQuestionToolInput', 'BashToolInput', 'ConfigToolInput', 'EditToolInput', 'EnterWorktreeToolInput', 'ExitPlanModeAllowedPrompt', 'ExitPlanModeToolInput']
 ---
 
 ## Types
@@ -12,17 +12,31 @@ keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'namespace', 'Bash
 
 | Name | Summary |
 | ---- | ------- |
-| [BashToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/BashToolInput) | Represents the input parameters for the Bash tool.              The Bash tool executes shell commands in a persistent bash session. |
-| [EditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EditToolInput) | Represents the input parameters for the Edit tool.              The Edit tool performs exact string replacements in files. |
-| [GlobToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GlobToolInput) | Represents the input parameters for the Glob tool.              The Glob tool provides fast file pattern matching that works with any codebase size. |
-| [GrepToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GrepToolInput) | Represents the input parameters for the Grep tool.              The Grep tool is a powerful content search built on ripgrep. |
-| [KillShellToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/KillShellToolInput) | Represents the input parameters for the KillShell tool.              The KillShell tool terminates a running background bash shell by its ID. |
-| [NotebookEditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/NotebookEditToolInput) | Represents the input parameters for the NotebookEdit tool.              The NotebookEdit tool replaces the contents of a specific cell in a Jupyter notebook. |
-| [ReadToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadToolInput) | Represents the input parameters for the Read tool.              The Read tool reads files from the local filesystem. |
-| [TaskToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskToolInput) | Represents the input parameters for the Task tool.              The Task tool launches specialized agents (subprocesses) that autonomously handle complex tasks. |
-| [TodoWriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TodoWriteToolInput) | Represents the input parameters for the TodoWrite tool.              The TodoWrite tool creates and manages a structured task list for the current coding session. |
+| [AgentToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AgentToolInput) | Represents the input parameters for the Agent tool.  The Agent tool launches specialized agents (subprocesses) that autonomously handle complex tasks. |
+| [AskUserQuestion](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestion) | Represents a single question within the AskUserQuestion tool input. |
+| [AskUserQuestionOption](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestionOption) | Represents a single option choice within an [AskUserQuestion](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestion). |
+| [AskUserQuestionToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestionToolInput) | Represents the input parameters for the AskUserQuestion tool.  The AskUserQuestion tool presents structured multiple-choice questions to the user. |
+| [BashToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/BashToolInput) | Represents the input parameters for the Bash tool.  The Bash tool executes shell commands in a persistent bash session. |
+| [ConfigToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ConfigToolInput) | Represents the input parameters for the Config tool.  The Config tool gets or sets Claude Code configuration settings. |
+| [EditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EditToolInput) | Represents the input parameters for the Edit tool.  The Edit tool performs exact string replacements in files. |
+| [EnterWorktreeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EnterWorktreeToolInput) | Represents the input parameters for the EnterWorktree tool.  The EnterWorktree tool creates a temporary git worktree for isolated work. |
+| [ExitPlanModeAllowedPrompt](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ExitPlanModeAllowedPrompt) | Represents a prompt-based permission needed to implement a plan.  These describe categories of actions rather than specific commands. |
+| [ExitPlanModeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ExitPlanModeToolInput) | Represents the input parameters for the ExitPlanMode tool.  The ExitPlanMode tool transitions from plan mode to execution mode. |
+| [ExitWorktreeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ExitWorktreeToolInput) | Represents the input parameters for the ExitWorktree tool.  The ExitWorktree tool exits and optionally removes a git worktree. |
+| [GlobToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GlobToolInput) | Represents the input parameters for the Glob tool.  The Glob tool provides fast file pattern matching that works with any codebase size. |
+| [GrepToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GrepToolInput) | Represents the input parameters for the Grep tool.  The Grep tool is a powerful content search built on ripgrep. |
+| [KillShellToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/KillShellToolInput) | Represents the input parameters for the KillShell tool.  The KillShell tool terminates a running background bash shell by its ID. |
+| [ListMcpResourcesToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ListMcpResourcesToolInput) | Represents the input parameters for the ListMcpResources tool.  The ListMcpResources tool lists available MCP (Model Context Protocol) resources. |
+| [McpToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/McpToolInput) | Represents the input parameters for an MCP (Model Context Protocol) tool execution.  MCP tool inputs are dynamic and vary based on the specific MCP server and tool being invoked. |
+| [NotebookEditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/NotebookEditToolInput) | Represents the input parameters for the NotebookEdit tool.  The NotebookEdit tool replaces the contents of a specific cell in a Jupyter notebook. |
+| [ReadMcpResourceToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadMcpResourceToolInput) | Represents the input parameters for the ReadMcpResource tool.  The ReadMcpResource tool reads the content of a specific MCP (Model Context Protocol) resource. |
+| [ReadToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadToolInput) | Represents the input parameters for the Read tool.  The Read tool reads files from the local filesystem. |
+| [TaskOutputToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskOutputToolInput) | Represents the input parameters for the TaskOutput tool.  The TaskOutput tool retrieves output from a background task by its ID. |
+| [TaskStopToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskStopToolInput) | Represents the input parameters for the TaskStop tool.  The TaskStop tool stops a running background task by its ID. |
+| [TaskToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskToolInput) | Represents the input parameters for the Task tool.  The Task tool launches specialized agents (subprocesses) that autonomously handle complex tasks. |
 | [TodoItem](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TodoItem) | Represents a single todo item in the task list. |
-| [WebFetchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput) | Represents the input parameters for the WebFetch tool.              The WebFetch tool fetches content from a URL and processes it using an AI model. |
-| [WebSearchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebSearchToolInput) | Represents the input parameters for the WebSearch tool.              The WebSearch tool allows Claude to search the web and use the results to inform responses. |
-| [WriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WriteToolInput) | Represents the input parameters for the Write tool.              The Write tool writes a file to the local filesystem. |
+| [TodoWriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TodoWriteToolInput) | Represents the input parameters for the TodoWrite tool.  The TodoWrite tool creates and manages a structured task list for the current coding session. |
+| [WebFetchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput) | Represents the input parameters for the WebFetch tool.  The WebFetch tool fetches content from a URL and processes it using an AI model. |
+| [WebSearchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebSearchToolInput) | Represents the input parameters for the WebSearch tool.  The WebSearch tool allows Claude to search the web and use the results to inform responses. |
+| [WriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WriteToolInput) | Represents the input parameters for the Write tool.  The Write tool writes a file to the local filesystem. |
 

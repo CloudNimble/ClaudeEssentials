@@ -103,7 +103,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             var doc = JsonDocument.Parse(json);
 
             // Assert
-            doc.RootElement.GetProperty("decision").GetString().Should().Be("Block");
+            doc.RootElement.GetProperty("decision").GetString().Should().Be("block");
             doc.RootElement.GetProperty("reason").GetString().Should().Be("Tool output indicates error");
         }
 
@@ -147,7 +147,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             var doc = JsonDocument.Parse(json);
 
             // Assert
-            doc.RootElement.GetProperty("decision").GetString().Should().Be("Block");
+            doc.RootElement.GetProperty("decision").GetString().Should().Be("block");
             doc.RootElement.GetProperty("reason").GetString().Should().Be("Tests must pass before stopping");
         }
 
@@ -184,7 +184,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             var doc = JsonDocument.Parse(json);
 
             // Assert
-            doc.RootElement.GetProperty("decision").GetString().Should().Be("Block");
+            doc.RootElement.GetProperty("decision").GetString().Should().Be("block");
             doc.RootElement.GetProperty("reason").GetString().Should().Be("Prompt contains restricted keywords");
         }
 

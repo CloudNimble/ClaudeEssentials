@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace CloudNimble.ClaudeEssentials.Hooks
 {
 
@@ -10,11 +12,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         /// <summary>
         /// Allow the permission request and proceed with the operation.
         /// </summary>
+        [JsonStringEnumMemberName("allow")]
         Allow,
 
         /// <summary>
         /// Deny the permission request and block the operation.
         /// </summary>
+        [JsonStringEnumMemberName("deny")]
         Deny
 
     }

@@ -39,6 +39,28 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         public int? Offset { get; set; }
 
         /// <summary>
+        /// Gets or sets the page range for PDF files.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Optional. Only applicable to PDF files. Specifies which pages to read,
+        /// using formats like <c>"1-5"</c>, <c>"3"</c>, or <c>"10-20"</c>.
+        /// </para>
+        /// <para>
+        /// For large PDFs (more than 10 pages), a page range must be provided.
+        /// Maximum 20 pages per request.
+        /// </para>
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// "1-5"
+        /// </code>
+        /// </example>
+        [JsonPropertyName("pages")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Pages { get; set; }
+
+        /// <summary>
         /// Gets or sets the number of lines to read.
         /// </summary>
         /// <remarks>

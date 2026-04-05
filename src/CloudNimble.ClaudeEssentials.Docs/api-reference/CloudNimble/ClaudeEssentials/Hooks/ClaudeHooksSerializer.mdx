@@ -1,6 +1,6 @@
 ---
 title: ClaudeHooksSerializer
-description: "Provides static helper methods for serializing and deserializing Claude Code hook types.             All methods use the AOT-compatible [ClaudeHooksJsonConte..."
+description: "Provides static helper methods for serializing and deserializing Claude Code hook types. All methods use the AOT-compatible [ClaudeHooksJsonContext](/api-ref..."
 icon: bolt
 tag: "STATIC"
 keywords: ['ClaudeHooksSerializer', 'CloudNimble.ClaudeEssentials.Hooks.ClaudeHooksSerializer', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Object']
@@ -23,7 +23,7 @@ CloudNimble.ClaudeEssentials.Hooks.ClaudeHooksSerializer
 ## Summary
 
 Provides static helper methods for serializing and deserializing Claude Code hook types.
-            All methods use the AOT-compatible [ClaudeHooksJsonContext](/api-reference/CloudNimble/ClaudeEssentials/Hooks/ClaudeHooksJsonContext) for serialization.
+All methods use the AOT-compatible [ClaudeHooksJsonContext](/api-reference/CloudNimble/ClaudeEssentials/Hooks/ClaudeHooksJsonContext) for serialization.
 
 ## Usage
 
@@ -59,15 +59,22 @@ For strongly-typed tool inputs, create your own `JsonSerializerContext`:
 public partial class MyJsonContext : JsonSerializerContext { }
 
 var input = ClaudeHooksSerializer.DeserializePreToolUseInput<MyToolInput>(
-    json, MyJsonContext.Default.PreToolUseHookInputMyToolInput);
+json, MyJsonContext.Default.PreToolUseHookInputMyToolInput);
 ```
+
+## Remarks
+
+This class offers three levels of API for deserialization:
+
+
+
 
 ## Properties
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DefaultOptions
 
 Gets the default [JsonSerializerOptions](https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions) configured for Claude Code hooks.
-            This instance is configured with the [ClaudeHooksJsonContext](/api-reference/CloudNimble/ClaudeEssentials/Hooks/ClaudeHooksJsonContext) for AOT compatibility.
+This instance is configured with the [ClaudeHooksJsonContext](/api-reference/CloudNimble/ClaudeEssentials/Hooks/ClaudeHooksJsonContext) for AOT compatibility.
 
 #### Syntax
 
@@ -80,6 +87,608 @@ public static System.Text.Json.JsonSerializerOptions DefaultOptions { get; }
 Type: `System.Text.Json.JsonSerializerOptions`
 
 ## Methods
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeAgentPostToolUse
+
+Deserializes a JSON string to an [AgentPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/AgentPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.AgentPostToolUsePayload DeserializeAgentPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.AgentPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeAgentPreToolUse
+
+Deserializes a JSON string to an [AgentPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/AgentPreToolUsePayload) with strongly-typed [AgentToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AgentToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.AgentPreToolUsePayload DeserializeAgentPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.AgentPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeAskUserQuestionPostToolUse
+
+Deserializes a JSON string to an [AskUserQuestionPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/AskUserQuestionPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.AskUserQuestionPostToolUsePayload DeserializeAskUserQuestionPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.AskUserQuestionPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeAskUserQuestionPreToolUse
+
+Deserializes a JSON string to an [AskUserQuestionPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/AskUserQuestionPreToolUsePayload) with strongly-typed [AskUserQuestionToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestionToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.AskUserQuestionPreToolUsePayload DeserializeAskUserQuestionPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.AskUserQuestionPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeBashPostToolUse
+
+Deserializes a JSON string to a [BashPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.BashPostToolUsePayload DeserializeBashPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.BashPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+#### Examples
+
+```csharp
+var payload = ClaudeHooksSerializer.DeserializeBashPostToolUse(json);
+Console.WriteLine(payload?.ToolResponse?.Stdout);
+```
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeBashPreToolUse
+
+Deserializes a JSON string to a [BashPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashPreToolUsePayload) with strongly-typed [BashToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/BashToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.BashPreToolUsePayload DeserializeBashPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.BashPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+#### Examples
+
+```csharp
+var payload = ClaudeHooksSerializer.DeserializeBashPreToolUse(json);
+Console.WriteLine(payload?.ToolInput?.Command);
+```
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeConfigPostToolUse
+
+Deserializes a JSON string to a [ConfigPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ConfigPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ConfigPostToolUsePayload DeserializeConfigPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ConfigPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeConfigPreToolUse
+
+Deserializes a JSON string to a [ConfigPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ConfigPreToolUsePayload) with strongly-typed [ConfigToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ConfigToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ConfigPreToolUsePayload DeserializeConfigPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ConfigPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeEditPostToolUse
+
+Deserializes a JSON string to an [EditPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EditPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.EditPostToolUsePayload DeserializeEditPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.EditPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeEditPreToolUse
+
+Deserializes a JSON string to an [EditPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EditPreToolUsePayload) with strongly-typed [EditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EditToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.EditPreToolUsePayload DeserializeEditPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.EditPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeEnterWorktreePostToolUse
+
+Deserializes a JSON string to an [EnterWorktreePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EnterWorktreePostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.EnterWorktreePostToolUsePayload DeserializeEnterWorktreePostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.EnterWorktreePostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeEnterWorktreePreToolUse
+
+Deserializes a JSON string to an [EnterWorktreePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/EnterWorktreePreToolUsePayload) with strongly-typed [EnterWorktreeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EnterWorktreeToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.EnterWorktreePreToolUsePayload DeserializeEnterWorktreePreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.EnterWorktreePreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeExitPlanModePostToolUse
+
+Deserializes a JSON string to an [ExitPlanModePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ExitPlanModePostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ExitPlanModePostToolUsePayload DeserializeExitPlanModePostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ExitPlanModePostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeExitPlanModePreToolUse
+
+Deserializes a JSON string to an [ExitPlanModePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ExitPlanModePreToolUsePayload) with strongly-typed [ExitPlanModeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ExitPlanModeToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ExitPlanModePreToolUsePayload DeserializeExitPlanModePreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ExitPlanModePreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeExitWorktreePostToolUse
+
+Deserializes a JSON string to an [ExitWorktreePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ExitWorktreePostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ExitWorktreePostToolUsePayload DeserializeExitWorktreePostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ExitWorktreePostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeExitWorktreePreToolUse
+
+Deserializes a JSON string to an [ExitWorktreePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ExitWorktreePreToolUsePayload) with strongly-typed [ExitWorktreeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ExitWorktreeToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ExitWorktreePreToolUsePayload DeserializeExitWorktreePreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ExitWorktreePreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeGlobPostToolUse
+
+Deserializes a JSON string to a [GlobPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GlobPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.GlobPostToolUsePayload DeserializeGlobPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.GlobPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeGlobPreToolUse
+
+Deserializes a JSON string to a [GlobPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GlobPreToolUsePayload) with strongly-typed [GlobToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GlobToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.GlobPreToolUsePayload DeserializeGlobPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.GlobPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeGrepPostToolUse
+
+Deserializes a JSON string to a [GrepPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GrepPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.GrepPostToolUsePayload DeserializeGrepPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.GrepPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeGrepPreToolUse
+
+Deserializes a JSON string to a [GrepPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/GrepPreToolUsePayload) with strongly-typed [GrepToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GrepToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.GrepPreToolUsePayload DeserializeGrepPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.GrepPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeKillShellPostToolUse
+
+Deserializes a JSON string to a [KillShellPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/KillShellPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.KillShellPostToolUsePayload DeserializeKillShellPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.KillShellPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeKillShellPreToolUse
+
+Deserializes a JSON string to a [KillShellPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/KillShellPreToolUsePayload) with strongly-typed [KillShellToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/KillShellToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.KillShellPreToolUsePayload DeserializeKillShellPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.KillShellPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeListMcpResourcesPostToolUse
+
+Deserializes a JSON string to a [ListMcpResourcesPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ListMcpResourcesPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ListMcpResourcesPostToolUsePayload DeserializeListMcpResourcesPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ListMcpResourcesPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeListMcpResourcesPreToolUse
+
+Deserializes a JSON string to a [ListMcpResourcesPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ListMcpResourcesPreToolUsePayload) with strongly-typed [ListMcpResourcesToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ListMcpResourcesToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ListMcpResourcesPreToolUsePayload DeserializeListMcpResourcesPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ListMcpResourcesPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeMcpPostToolUse
+
+Deserializes a JSON string to a [McpPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/McpPostToolUsePayload) with strongly-typed input and dynamic response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.McpPostToolUsePayload DeserializeMcpPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.McpPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeMcpPreToolUse
+
+Deserializes a JSON string to a [McpPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/McpPreToolUsePayload) with strongly-typed [McpToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/McpToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.McpPreToolUsePayload DeserializeMcpPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.McpPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeNotebookEditPostToolUse
+
+Deserializes a JSON string to a [NotebookEditPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/NotebookEditPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.NotebookEditPostToolUsePayload DeserializeNotebookEditPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.NotebookEditPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeNotebookEditPreToolUse
+
+Deserializes a JSON string to a [NotebookEditPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/NotebookEditPreToolUsePayload) with strongly-typed [NotebookEditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/NotebookEditToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.NotebookEditPreToolUsePayload DeserializeNotebookEditPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.NotebookEditPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
 
 ### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeNotificationInput
 
@@ -146,12 +755,12 @@ The deserialized hook input, or null if deserialization fails.
 
 ### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializePostToolUseInput
 
-Deserializes a JSON string to a `PostToolUseHookInput`2` with specific types.
+Deserializes a JSON string to a strongly-typed PostToolUse payload using the specified type info.
 
 #### Syntax
 
 ```csharp
-public static CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<TToolInput, TToolResponse> DeserializePostToolUseInput<TToolInput, TToolResponse>(string json, System.Text.Json.Serialization.Metadata.JsonTypeInfo<CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<TToolInput, TToolResponse>> typeInfo) where TToolInput : class where TToolResponse : class
+public static T DeserializePostToolUseInput<T>(string json, System.Text.Json.Serialization.Metadata.JsonTypeInfo<T> typeInfo) where T : class
 ```
 
 #### Parameters
@@ -159,17 +768,24 @@ public static CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<TTo
 | Name | Type | Description |
 |------|------|-------------|
 | `json` | `string` | The JSON string to deserialize. |
-| `typeInfo` | `System.Text.Json.Serialization.Metadata.JsonTypeInfo<CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<TToolInput, TToolResponse>>` | The JSON type info for the specific input type. |
+| `typeInfo` | `System.Text.Json.Serialization.Metadata.JsonTypeInfo<T>` | The JSON type info for the payload type. |
 
 #### Returns
 
-Type: `CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<TToolInput, TToolResponse>?`
-The deserialized hook input, or null if deserialization fails.
+Type: `T?`
+The deserialized payload, or null if deserialization fails.
 
 #### Type Parameters
 
-- `TToolInput` - The type of the tool input.
-- `TToolResponse` - The type of the tool response.
+- `T` - The payload type (e.g., [BashPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashPostToolUsePayload)).
+
+#### Examples
+
+```csharp
+var payload = ClaudeHooksSerializer.DeserializePostToolUseInput(
+    json, ClaudeHooksJsonContext.Default.BashPostToolUsePayload);
+Console.WriteLine(payload?.ToolResponse?.Stdout);
+```
 
 ### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializePreCompactInput
 
@@ -215,12 +831,12 @@ The deserialized hook input, or null if deserialization fails.
 
 ### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializePreToolUseInput
 
-Deserializes a JSON string to a `PreToolUseHookInput`1` with a specific tool input type.
+Deserializes a JSON string to a strongly-typed PreToolUse payload using the specified type info.
 
 #### Syntax
 
 ```csharp
-public static CloudNimble.ClaudeEssentials.Hooks.Inputs.PreToolUseHookInput<TToolInput> DeserializePreToolUseInput<TToolInput>(string json, System.Text.Json.Serialization.Metadata.JsonTypeInfo<CloudNimble.ClaudeEssentials.Hooks.Inputs.PreToolUseHookInput<TToolInput>> typeInfo) where TToolInput : class
+public static T DeserializePreToolUseInput<T>(string json, System.Text.Json.Serialization.Metadata.JsonTypeInfo<T> typeInfo) where T : class
 ```
 
 #### Parameters
@@ -228,16 +844,108 @@ public static CloudNimble.ClaudeEssentials.Hooks.Inputs.PreToolUseHookInput<TToo
 | Name | Type | Description |
 |------|------|-------------|
 | `json` | `string` | The JSON string to deserialize. |
-| `typeInfo` | `System.Text.Json.Serialization.Metadata.JsonTypeInfo<CloudNimble.ClaudeEssentials.Hooks.Inputs.PreToolUseHookInput<TToolInput>>` | The JSON type info for the specific input type. |
+| `typeInfo` | `System.Text.Json.Serialization.Metadata.JsonTypeInfo<T>` | The JSON type info for the payload type. |
 
 #### Returns
 
-Type: `CloudNimble.ClaudeEssentials.Hooks.Inputs.PreToolUseHookInput<TToolInput>?`
-The deserialized hook input, or null if deserialization fails.
+Type: `T?`
+The deserialized payload, or null if deserialization fails.
 
 #### Type Parameters
 
-- `TToolInput` - The type of the tool input.
+- `T` - The payload type (e.g., [BashPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/BashPreToolUsePayload)).
+
+#### Examples
+
+```csharp
+var payload = ClaudeHooksSerializer.DeserializePreToolUseInput(
+    json, ClaudeHooksJsonContext.Default.BashPreToolUsePayload);
+Console.WriteLine(payload?.ToolInput?.Command);
+```
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeReadMcpResourcePostToolUse
+
+Deserializes a JSON string to a [ReadMcpResourcePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadMcpResourcePostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ReadMcpResourcePostToolUsePayload DeserializeReadMcpResourcePostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ReadMcpResourcePostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeReadMcpResourcePreToolUse
+
+Deserializes a JSON string to a [ReadMcpResourcePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadMcpResourcePreToolUsePayload) with strongly-typed [ReadMcpResourceToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadMcpResourceToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ReadMcpResourcePreToolUsePayload DeserializeReadMcpResourcePreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ReadMcpResourcePreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeReadPostToolUse
+
+Deserializes a JSON string to a [ReadPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ReadPostToolUsePayload DeserializeReadPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ReadPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeReadPreToolUse
+
+Deserializes a JSON string to a [ReadPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/ReadPreToolUsePayload) with strongly-typed [ReadToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.ReadPreToolUsePayload DeserializeReadPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.ReadPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
 
 ### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeSessionEndInput
 
@@ -323,6 +1031,174 @@ public static CloudNimble.ClaudeEssentials.Hooks.Inputs.SubagentStopHookInput De
 Type: `CloudNimble.ClaudeEssentials.Hooks.Inputs.SubagentStopHookInput?`
 The deserialized hook input, or null if deserialization fails.
 
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeTaskOutputPostToolUse
+
+Deserializes a JSON string to a [TaskOutputPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskOutputPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.TaskOutputPostToolUsePayload DeserializeTaskOutputPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.TaskOutputPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeTaskOutputPreToolUse
+
+Deserializes a JSON string to a [TaskOutputPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskOutputPreToolUsePayload) with strongly-typed [TaskOutputToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskOutputToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.TaskOutputPreToolUsePayload DeserializeTaskOutputPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.TaskOutputPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeTaskPostToolUse
+
+Deserializes a JSON string to a [TaskPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.TaskPostToolUsePayload DeserializeTaskPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.TaskPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeTaskPreToolUse
+
+Deserializes a JSON string to a [TaskPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskPreToolUsePayload) with strongly-typed [TaskToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.TaskPreToolUsePayload DeserializeTaskPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.TaskPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeTaskStopPostToolUse
+
+Deserializes a JSON string to a [TaskStopPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskStopPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.TaskStopPostToolUsePayload DeserializeTaskStopPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.TaskStopPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeTaskStopPreToolUse
+
+Deserializes a JSON string to a [TaskStopPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TaskStopPreToolUsePayload) with strongly-typed [TaskStopToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskStopToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.TaskStopPreToolUsePayload DeserializeTaskStopPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.TaskStopPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeTodoWritePostToolUse
+
+Deserializes a JSON string to a [TodoWritePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoWritePostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.TodoWritePostToolUsePayload DeserializeTodoWritePostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.TodoWritePostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeTodoWritePreToolUse
+
+Deserializes a JSON string to a [TodoWritePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/TodoWritePreToolUsePayload) with strongly-typed [TodoWriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TodoWriteToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.TodoWritePreToolUsePayload DeserializeTodoWritePreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.TodoWritePreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
 ### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeUserPromptSubmitInput
 
 Deserializes a JSON string to a [UserPromptSubmitHookInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Inputs/UserPromptSubmitHookInput).
@@ -343,6 +1219,441 @@ public static CloudNimble.ClaudeEssentials.Hooks.Inputs.UserPromptSubmitHookInpu
 
 Type: `CloudNimble.ClaudeEssentials.Hooks.Inputs.UserPromptSubmitHookInput?`
 The deserialized hook input, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeWebFetchPostToolUse
+
+Deserializes a JSON string to a [WebFetchPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebFetchPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.WebFetchPostToolUsePayload DeserializeWebFetchPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.WebFetchPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeWebFetchPreToolUse
+
+Deserializes a JSON string to a [WebFetchPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebFetchPreToolUsePayload) with strongly-typed [WebFetchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.WebFetchPreToolUsePayload DeserializeWebFetchPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.WebFetchPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeWebSearchPostToolUse
+
+Deserializes a JSON string to a [WebSearchPostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebSearchPostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.WebSearchPostToolUsePayload DeserializeWebSearchPostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.WebSearchPostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeWebSearchPreToolUse
+
+Deserializes a JSON string to a [WebSearchPreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WebSearchPreToolUsePayload) with strongly-typed [WebSearchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebSearchToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.WebSearchPreToolUsePayload DeserializeWebSearchPreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.WebSearchPreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeWritePostToolUse
+
+Deserializes a JSON string to a [WritePostToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WritePostToolUsePayload) with strongly-typed input and response.
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.WritePostToolUsePayload DeserializeWritePostToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.WritePostToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DeserializeWritePreToolUse
+
+Deserializes a JSON string to a [WritePreToolUsePayload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/WritePreToolUsePayload) with strongly-typed [WriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WriteToolInput).
+
+#### Syntax
+
+```csharp
+public static CloudNimble.ClaudeEssentials.Hooks.Tools.WritePreToolUsePayload DeserializeWritePreToolUse(string json)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `json` | `string` | The JSON string to deserialize. |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.WritePreToolUsePayload?`
+The deserialized payload, or null if deserialization fails.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeAgentPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [AgentToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AgentToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeAgentPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AgentToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AgentToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeAskUserQuestionPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [AskUserQuestionToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestionToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeAskUserQuestionPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestionToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestionToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeBashPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [BashToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/BashToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeBashPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.BashToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.BashToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+#### Examples
+
+```csharp
+var output = new PreToolUseHookOutput&lt;BashToolInput&gt;
+{
+    Continue = true,
+    HookSpecificOutput = new PreToolUseSpecificOutput&lt;BashToolInput&gt;
+    {
+        PermissionDecision = PermissionDecision.Allow,
+        UpdatedInput = new BashToolInput { Command = "echo safe" }
+    }
+};
+var json = ClaudeHooksSerializer.SerializeBashPreToolUseOutput(output);
+```
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeConfigPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [ConfigToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ConfigToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeConfigPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ConfigToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ConfigToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeEditPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [EditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EditToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeEditPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.EditToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.EditToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeEnterWorktreePreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [EnterWorktreeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EnterWorktreeToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeEnterWorktreePreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.EnterWorktreeToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.EnterWorktreeToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeExitPlanModePreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [ExitPlanModeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ExitPlanModeToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeExitPlanModePreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ExitPlanModeToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ExitPlanModeToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeExitWorktreePreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [ExitWorktreeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ExitWorktreeToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeExitWorktreePreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ExitWorktreeToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ExitWorktreeToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeGlobPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [GlobToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GlobToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeGlobPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.GlobToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.GlobToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeGrepPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [GrepToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GrepToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeGrepPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.GrepToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.GrepToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeKillShellPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [KillShellToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/KillShellToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeKillShellPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.KillShellToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.KillShellToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeListMcpResourcesPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [ListMcpResourcesToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ListMcpResourcesToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeListMcpResourcesPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ListMcpResourcesToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ListMcpResourcesToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeMcpPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [McpToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/McpToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeMcpPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeNotebookEditPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [NotebookEditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/NotebookEditToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeNotebookEditPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.NotebookEditToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.NotebookEditToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
 
 ### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeNotificationOutput
 
@@ -451,20 +1762,20 @@ The JSON string representation.
 
 ### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializePreToolUseOutput
 
-Serializes a `PreToolUseHookOutput`1` with a specific tool input type to JSON.
+Serializes a strongly-typed PreToolUse hook output to JSON using the specified type info.
 
 #### Syntax
 
 ```csharp
-public static string SerializePreToolUseOutput<TToolInput>(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<TToolInput> output, System.Text.Json.Serialization.Metadata.JsonTypeInfo<CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<TToolInput>> typeInfo) where TToolInput : class
+public static string SerializePreToolUseOutput<T>(T output, System.Text.Json.Serialization.Metadata.JsonTypeInfo<T> typeInfo) where T : class
 ```
 
 #### Parameters
 
 | Name | Type | Description |
 |------|------|-------------|
-| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<TToolInput>` | The hook output to serialize. |
-| `typeInfo` | `System.Text.Json.Serialization.Metadata.JsonTypeInfo<CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<TToolInput>>` | The JSON type info for the specific output type. |
+| `output` | `T` | The hook output to serialize. |
+| `typeInfo` | `System.Text.Json.Serialization.Metadata.JsonTypeInfo<T>` | The JSON type info for the output type. |
 
 #### Returns
 
@@ -473,7 +1784,49 @@ The JSON string representation.
 
 #### Type Parameters
 
-- `TToolInput` - The type of the tool input.
+- `T` - The output type.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeReadMcpResourcePreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [ReadMcpResourceToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadMcpResourceToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeReadMcpResourcePreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadMcpResourceToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadMcpResourceToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeReadPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [ReadToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeReadPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ReadToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
 
 ### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeSessionEndOutput
 
@@ -559,6 +1912,90 @@ public static string SerializeSubagentStopOutput(CloudNimble.ClaudeEssentials.Ho
 Type: `string`
 The JSON string representation.
 
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeTaskOutputPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [TaskOutputToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskOutputToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeTaskOutputPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.TaskOutputToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.TaskOutputToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeTaskPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [TaskToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeTaskPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.TaskToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.TaskToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeTaskStopPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [TaskStopToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskStopToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeTaskStopPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.TaskStopToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.TaskStopToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeTodoWritePreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [TodoWriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TodoWriteToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeTodoWritePreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.TodoWriteToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.TodoWriteToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
 ### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeUserPromptSubmitOutput
 
 Serializes a [UserPromptSubmitHookOutput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/UserPromptSubmitHookOutput) to JSON.
@@ -574,6 +2011,69 @@ public static string SerializeUserPromptSubmitOutput(CloudNimble.ClaudeEssential
 | Name | Type | Description |
 |------|------|-------------|
 | `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.UserPromptSubmitHookOutput` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeWebFetchPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [WebFetchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeWebFetchPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WebFetchToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WebFetchToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeWebSearchPreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [WebSearchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebSearchToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeWebSearchPreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WebSearchToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WebSearchToolInput>` | The hook output to serialize. |
+
+#### Returns
+
+Type: `string`
+The JSON string representation.
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SerializeWritePreToolUseOutput
+
+Serializes a `PreToolUseHookOutput`1` with strongly-typed [WriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WriteToolInput) to JSON.
+
+#### Syntax
+
+```csharp
+public static string SerializeWritePreToolUseOutput(CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WriteToolInput> output)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `output` | `CloudNimble.ClaudeEssentials.Hooks.Outputs.PreToolUseHookOutput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.WriteToolInput>` | The hook output to serialize. |
 
 #### Returns
 

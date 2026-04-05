@@ -1,0 +1,6 @@
+# Promote obsolete-as-warning (CS0612) to error for hand-written source code.
+# The [Obsolete] attributes on deprecated properties use warning-only mode so
+# the JSON source generator can compile, but this section ensures any direct
+# usage of those properties in the Hooks folder is still treated as an error.
+[Hooks/**.cs]
+dotnet_diagnostic.CS0612.severity = error
