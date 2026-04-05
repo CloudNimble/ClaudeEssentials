@@ -6,7 +6,9 @@ using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Responses;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
 namespace CloudNimble.ClaudeEssentials.Tests
@@ -131,6 +133,8 @@ namespace CloudNimble.ClaudeEssentials.Tests
             var doc = JsonDocument.Parse(json);
 
             doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.EnumerateObject().Should().ContainSingle()
+                .Which.Name.Should().Be("continue");
         }
 
         [TestMethod]
@@ -161,6 +165,8 @@ namespace CloudNimble.ClaudeEssentials.Tests
             var doc = JsonDocument.Parse(json);
 
             doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.EnumerateObject().Should().ContainSingle()
+                .Which.Name.Should().Be("continue");
         }
 
         #endregion
@@ -173,7 +179,11 @@ namespace CloudNimble.ClaudeEssentials.Tests
             var options = ClaudeHooksSerializer.DefaultOptions;
 
             options.Should().NotBeNull();
-        }
+            options.DefaultIgnoreCondition.Should().Be(JsonIgnoreCondition.WhenWritingNull);
+            options.WriteIndented.Should().BeFalse();
+            options.PropertyNamingPolicy.Should().BeNull();
+            options.TypeInfoResolver.Should().NotBeNull();
+}
 
         #endregion
 

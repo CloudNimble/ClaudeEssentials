@@ -176,6 +176,166 @@ namespace CloudNimble.ClaudeEssentials.Hooks
             return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.UserPromptSubmitHookInput);
         }
 
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ConfigChangeHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static ConfigChangeHookInput? DeserializeConfigChangeInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ConfigChangeHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="CwdChangedHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static CwdChangedHookInput? DeserializeCwdChangedInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.CwdChangedHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to an <see cref="ElicitationHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static ElicitationHookInput? DeserializeElicitationInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ElicitationHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to an <see cref="ElicitationResultHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static ElicitationResultHookInput? DeserializeElicitationResultInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ElicitationResultHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="FileChangedHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static FileChangedHookInput? DeserializeFileChangedInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.FileChangedHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to an <see cref="InstructionsLoadedHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static InstructionsLoadedHookInput? DeserializeInstructionsLoadedInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.InstructionsLoadedHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="PermissionDeniedHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static PermissionDeniedHookInput? DeserializePermissionDeniedInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.PermissionDeniedHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="PostCompactHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static PostCompactHookInput? DeserializePostCompactInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.PostCompactHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="PostToolUseFailureHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static PostToolUseFailureHookInput? DeserializePostToolUseFailureInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.PostToolUseFailureHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="StopFailureHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static StopFailureHookInput? DeserializeStopFailureInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.StopFailureHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="SubagentStartHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static SubagentStartHookInput? DeserializeSubagentStartInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.SubagentStartHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TaskCompletedHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static TaskCompletedHookInput? DeserializeTaskCompletedInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskCompletedHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TaskCreatedHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static TaskCreatedHookInput? DeserializeTaskCreatedInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskCreatedHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TeammateIdleHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static TeammateIdleHookInput? DeserializeTeammateIdleInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TeammateIdleHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="WorktreeCreateHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static WorktreeCreateHookInput? DeserializeWorktreeCreateInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.WorktreeCreateHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="WorktreeRemoveHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static WorktreeRemoveHookInput? DeserializeWorktreeRemoveInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.WorktreeRemoveHookInput);
+        }
+
         #endregion
 
         #region PreToolUse Deserialization
@@ -771,6 +931,166 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static string SerializeUserPromptSubmitOutput(UserPromptSubmitHookOutput output)
         {
             return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.UserPromptSubmitHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="ConfigChangeHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeConfigChangeOutput(ConfigChangeHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ConfigChangeHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="CwdChangedHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeCwdChangedOutput(CwdChangedHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.CwdChangedHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes an <see cref="ElicitationHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeElicitationOutput(ElicitationHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ElicitationHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes an <see cref="ElicitationResultHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeElicitationResultOutput(ElicitationResultHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ElicitationResultHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="FileChangedHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeFileChangedOutput(FileChangedHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.FileChangedHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes an <see cref="InstructionsLoadedHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeInstructionsLoadedOutput(InstructionsLoadedHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.InstructionsLoadedHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PermissionDeniedHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializePermissionDeniedOutput(PermissionDeniedHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.PermissionDeniedHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PostCompactHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializePostCompactOutput(PostCompactHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.PostCompactHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PostToolUseFailureHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializePostToolUseFailureOutput(PostToolUseFailureHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.PostToolUseFailureHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="StopFailureHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeStopFailureOutput(StopFailureHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.StopFailureHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="SubagentStartHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeSubagentStartOutput(SubagentStartHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.SubagentStartHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="TaskCompletedHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeTaskCompletedOutput(TaskCompletedHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.TaskCompletedHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="TaskCreatedHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeTaskCreatedOutput(TaskCreatedHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.TaskCreatedHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="TeammateIdleHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeTeammateIdleOutput(TeammateIdleHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.TeammateIdleHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="WorktreeCreateHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeWorktreeCreateOutput(WorktreeCreateHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.WorktreeCreateHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="WorktreeRemoveHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeWorktreeRemoveOutput(WorktreeRemoveHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.WorktreeRemoveHookOutput);
         }
 
         #endregion

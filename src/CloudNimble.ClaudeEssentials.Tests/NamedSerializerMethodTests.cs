@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CloudNimble.ClaudeEssentials.Hooks;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
@@ -722,17 +723,46 @@ namespace CloudNimble.ClaudeEssentials.Tests
         [TestMethod]
         public void SerializeAgentPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<AgentToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<AgentToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<AgentToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new AgentToolInput { Description = "Search codebase" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeAgentPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("description").GetString().Should().Be("Search codebase");
         }
 
         [TestMethod]
         public void SerializeAskUserQuestionPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<AskUserQuestionToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<AskUserQuestionToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<AskUserQuestionToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new AskUserQuestionToolInput
+                    {
+                        Questions = [new AskUserQuestion { Question = "Which approach?" }]
+                    }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeAskUserQuestionPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("questions")[0].GetProperty("question").GetString().Should().Be("Which approach?");
         }
 
         [TestMethod]
@@ -758,9 +788,22 @@ namespace CloudNimble.ClaudeEssentials.Tests
         [TestMethod]
         public void SerializeConfigPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<ConfigToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<ConfigToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<ConfigToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new ConfigToolInput { Setting = "theme" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeConfigPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("setting").GetString().Should().Be("theme");
         }
 
         [TestMethod]
@@ -786,145 +829,391 @@ namespace CloudNimble.ClaudeEssentials.Tests
         [TestMethod]
         public void SerializeEnterWorktreePreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<EnterWorktreeToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<EnterWorktreeToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<EnterWorktreeToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new EnterWorktreeToolInput { Name = "feature-branch" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeEnterWorktreePreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("name").GetString().Should().Be("feature-branch");
         }
 
         [TestMethod]
         public void SerializeExitPlanModePreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<ExitPlanModeToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<ExitPlanModeToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<ExitPlanModeToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new ExitPlanModeToolInput
+                    {
+                        AllowedPrompts = [new ExitPlanModeAllowedPrompt { Tool = "Bash", Prompt = "run tests" }]
+                    }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeExitPlanModePreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("allowedPrompts")[0].GetProperty("tool").GetString().Should().Be("Bash");
         }
 
         [TestMethod]
         public void SerializeExitWorktreePreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<ExitWorktreeToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<ExitWorktreeToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<ExitWorktreeToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new ExitWorktreeToolInput { Action = WorktreeAction.Remove }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeExitWorktreePreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("action").GetString().Should().Be("remove");
         }
 
         [TestMethod]
         public void SerializeGlobPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<GlobToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<GlobToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<GlobToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new GlobToolInput { Pattern = "**/*.cs" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeGlobPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("pattern").GetString().Should().Be("**/*.cs");
         }
 
         [TestMethod]
         public void SerializeGrepPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<GrepToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<GrepToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<GrepToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new GrepToolInput { Pattern = "TODO" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeGrepPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("pattern").GetString().Should().Be("TODO");
         }
 
         [TestMethod]
         public void SerializeKillShellPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<KillShellToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<KillShellToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<KillShellToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new KillShellToolInput { ShellId = "shell-abc-123" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeKillShellPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("shell_id").GetString().Should().Be("shell-abc-123");
         }
 
         [TestMethod]
         public void SerializeListMcpResourcesPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<ListMcpResourcesToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<ListMcpResourcesToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<ListMcpResourcesToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new ListMcpResourcesToolInput { Server = "my-mcp-server" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeListMcpResourcesPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("server").GetString().Should().Be("my-mcp-server");
         }
 
         [TestMethod]
         public void SerializeMcpPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<McpToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<McpToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<McpToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new McpToolInput
+                    {
+                        ExtensionData = new System.Collections.Generic.Dictionary<string, JsonElement>
+                        {
+                            ["query"] = JsonDocument.Parse("\"search term\"").RootElement.Clone()
+                        }
+                    }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeMcpPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("query").GetString().Should().Be("search term");
         }
 
         [TestMethod]
         public void SerializeNotebookEditPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<NotebookEditToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<NotebookEditToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<NotebookEditToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new NotebookEditToolInput { NotebookPath = "/tmp/analysis.ipynb" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeNotebookEditPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("notebook_path").GetString().Should().Be("/tmp/analysis.ipynb");
         }
 
         [TestMethod]
         public void SerializeReadPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<ReadToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<ReadToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<ReadToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new ReadToolInput { FilePath = "/tmp/README.md" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeReadPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("file_path").GetString().Should().Be("/tmp/README.md");
         }
 
         [TestMethod]
         public void SerializeReadMcpResourcePreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<ReadMcpResourceToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<ReadMcpResourceToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<ReadMcpResourceToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new ReadMcpResourceToolInput { Server = "my-server", Uri = "resource://config" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeReadMcpResourcePreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("server").GetString().Should().Be("my-server");
         }
 
         [TestMethod]
         public void SerializeTaskPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<TaskToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<TaskToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<TaskToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new TaskToolInput { Description = "Run tests" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeTaskPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("description").GetString().Should().Be("Run tests");
         }
 
         [TestMethod]
         public void SerializeTaskOutputPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<TaskOutputToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<TaskOutputToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<TaskOutputToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new TaskOutputToolInput { TaskId = "task-001" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeTaskOutputPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("task_id").GetString().Should().Be("task-001");
         }
 
         [TestMethod]
         public void SerializeTaskStopPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<TaskStopToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<TaskStopToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<TaskStopToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new TaskStopToolInput { TaskId = "task-002" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeTaskStopPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("task_id").GetString().Should().Be("task-002");
         }
 
         [TestMethod]
         public void SerializeTodoWritePreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<TodoWriteToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<TodoWriteToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<TodoWriteToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new TodoWriteToolInput
+                    {
+                        Todos = [new TodoItem { Content = "Fix bug", ActiveForm = "Fixing bug", Status = TodoItemStatus.InProgress }]
+                    }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeTodoWritePreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("todos")[0].GetProperty("content").GetString().Should().Be("Fix bug");
         }
 
         [TestMethod]
         public void SerializeWebFetchPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<WebFetchToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<WebFetchToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<WebFetchToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new WebFetchToolInput { Url = "https://example.com/api/docs" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeWebFetchPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("url").GetString().Should().Be("https://example.com/api/docs");
         }
 
         [TestMethod]
         public void SerializeWebSearchPreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<WebSearchToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<WebSearchToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<WebSearchToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new WebSearchToolInput { Query = "dotnet AOT" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeWebSearchPreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("query").GetString().Should().Be("dotnet AOT");
         }
 
         [TestMethod]
         public void SerializeWritePreToolUseOutput_ShouldSerializeCorrectly()
         {
-            var output = new PreToolUseHookOutput<WriteToolInput> { Continue = true };
+            var output = new PreToolUseHookOutput<WriteToolInput>
+            {
+                Continue = true,
+                HookSpecificOutput = new PreToolUseSpecificOutput<WriteToolInput>
+                {
+                    PermissionDecision = PermissionDecision.Allow,
+                    UpdatedInput = new WriteToolInput { FilePath = "/tmp/NewFile.cs" }
+                }
+            };
+
             var json = ClaudeHooksSerializer.SerializeWritePreToolUseOutput(output);
-            JsonDocument.Parse(json).RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            var doc = JsonDocument.Parse(json);
+
+            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("file_path").GetString().Should().Be("/tmp/NewFile.cs");
         }
 
         #endregion

@@ -344,6 +344,9 @@ namespace CloudNimble.ClaudeEssentials.Tests
             var result = ClaudeHooksSerializer.DeserializePostToolUseInput("{}");
             result.Should().NotBeNull();
             result!.SessionId.Should().BeEmpty();
+            result.ToolName.Should().BeEmpty();
+            result.ToolInput.Should().BeNull();
+            result.ToolResponse.Should().BeNull();
         }
 
         [TestMethod]
@@ -372,6 +375,8 @@ namespace CloudNimble.ClaudeEssentials.Tests
         {
             var result = ClaudeHooksSerializer.DeserializeNotificationInput("{}");
             result.Should().NotBeNull();
+            result!.SessionId.Should().BeEmpty();
+            result.Message.Should().BeEmpty();
         }
 
         [TestMethod]
@@ -400,6 +405,8 @@ namespace CloudNimble.ClaudeEssentials.Tests
         {
             var result = ClaudeHooksSerializer.DeserializeUserPromptSubmitInput("{}");
             result.Should().NotBeNull();
+            result!.SessionId.Should().BeEmpty();
+            result.Prompt.Should().BeEmpty();
         }
 
         [TestMethod]
@@ -428,6 +435,8 @@ namespace CloudNimble.ClaudeEssentials.Tests
         {
             var result = ClaudeHooksSerializer.DeserializeStopInput("{}");
             result.Should().NotBeNull();
+            result!.SessionId.Should().BeEmpty();
+            result.StopHookActive.Should().BeFalse();
         }
 
         [TestMethod]
@@ -449,6 +458,8 @@ namespace CloudNimble.ClaudeEssentials.Tests
         {
             var result = ClaudeHooksSerializer.DeserializeSubagentStopInput("{}");
             result.Should().NotBeNull();
+            result!.SessionId.Should().BeEmpty();
+            result.StopHookActive.Should().BeFalse();
         }
 
         [TestMethod]
@@ -470,6 +481,8 @@ namespace CloudNimble.ClaudeEssentials.Tests
         {
             var result = ClaudeHooksSerializer.DeserializePreCompactInput("{}");
             result.Should().NotBeNull();
+            result!.SessionId.Should().BeEmpty();
+            result.CustomInstructions.Should().BeNull();
         }
 
         [TestMethod]
@@ -498,6 +511,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
         {
             var result = ClaudeHooksSerializer.DeserializeSessionStartInput("{}");
             result.Should().NotBeNull();
+            result!.SessionId.Should().BeEmpty();
         }
 
         [TestMethod]
@@ -526,6 +540,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
         {
             var result = ClaudeHooksSerializer.DeserializeSessionEndInput("{}");
             result.Should().NotBeNull();
+            result!.SessionId.Should().BeEmpty();
         }
 
         [TestMethod]
@@ -547,6 +562,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
         {
             var result = ClaudeHooksSerializer.DeserializePermissionRequestInput("{}");
             result.Should().NotBeNull();
+            result!.SessionId.Should().BeEmpty();
         }
 
         [TestMethod]
