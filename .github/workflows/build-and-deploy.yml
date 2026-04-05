@@ -28,6 +28,8 @@ env:
 jobs:
   build:
     runs-on: windows-latest
+    outputs:
+      version: ${{ steps.version.outputs.VERSION }}
 
     steps:
     - name: Checkout code
@@ -200,21 +202,11 @@ jobs:
         name: nuget-packages
         path: ./artifacts
 
-    - name: Get version from build
-      id: version
-      shell: pwsh
-      run: |
-        # Extract version from package name
-        $packageFile = Get-ChildItem ./artifacts/*.nupkg | Select-Object -First 1
-        $version = $packageFile.Name -replace '.*\.(.+?)\.nupkg', '$1'
-        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
-        Write-Host "📦 Creating release for version: $version"
-
     - name: Prepare Release Content
       id: create_release
       shell: bash
       run: |
-        version="${{ steps.version.outputs.VERSION }}"
+        version="${{ needs.build.outputs.version }}"
         {
           echo "RELEASE_BODY<<BODY"
           echo "## ClaudeEssentials v${version}"
@@ -232,8 +224,8 @@ jobs:
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: v${{ steps.version.outputs.VERSION }}
-        name: Release v${{ steps.version.outputs.VERSION }}
+        tag_name: v${{ needs.build.outputs.version }}
+        name: Release v${{ needs.build.outputs.version }}
         body: ${{ steps.create_release.outputs.RELEASE_BODY }}
         files: ./artifacts/*.nupkg
         draft: false
