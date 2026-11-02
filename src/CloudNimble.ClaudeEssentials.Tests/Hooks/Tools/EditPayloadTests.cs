@@ -200,6 +200,37 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         }
 
         [TestMethod]
+        public void DeserializeEditPostToolUse_WithNullOriginalFile_ShouldDeserializeWithNull()
+        {
+            var json = """
+                {
+                    "tool_name": "Edit",
+                    "tool_input": {
+                        "file_path": "D:\\Projects\\TestProject\\new-file.cs",
+                        "old_string": "",
+                        "new_string": "content"
+                    },
+                    "tool_response": {
+                        "filePath": "D:\\Projects\\TestProject\\new-file.cs",
+                        "oldString": "",
+                        "newString": "content",
+                        "originalFile": null,
+                        "structuredPatch": [],
+                        "userModified": false,
+                        "replaceAll": false
+                    },
+                    "tool_use_id": "toolu_01TestEditNullOriginal001"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.EditPostToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolResponse.Should().NotBeNull();
+            result.ToolResponse!.OriginalFile.Should().BeNull();
+        }
+
+        [TestMethod]
         public void DeserializeEditPostToolUse_WithUserModified_ShouldDeserializeCorrectly()
         {
             // Arrange
@@ -299,6 +330,27 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.OriginalFile.Should().Be("original content");
             result.UserModified.Should().BeFalse();
             result.ReplaceAll.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void EditToolResponse_RoundTrip_WithNullOriginalFile_ShouldMaintainData()
+        {
+            var response = new EditToolResponse
+            {
+                FilePath = "D:\\test.cs",
+                OldString = "",
+                NewString = "new",
+                OriginalFile = null,
+                StructuredPatch = [],
+                UserModified = false,
+                ReplaceAll = false
+            };
+
+            var json = JsonSerializer.Serialize(response, ClaudeHooksJsonContext.Default.EditToolResponse);
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.EditToolResponse);
+
+            result.Should().NotBeNull();
+            result!.OriginalFile.Should().BeNull();
         }
 
         [TestMethod]

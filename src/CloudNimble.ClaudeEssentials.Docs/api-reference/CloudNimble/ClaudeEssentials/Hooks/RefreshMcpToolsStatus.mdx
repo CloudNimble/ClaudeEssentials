@@ -1,0 +1,34 @@
+---
+title: RefreshMcpToolsStatus
+description: "Represents the outcome of refreshing the tool list of an MCP server."
+icon: list-ol
+tag: "ENUM"
+keywords: ['RefreshMcpToolsStatus', 'CloudNimble.ClaudeEssentials.Hooks.RefreshMcpToolsStatus', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks
+
+**Inheritance:** System.Enum
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.RefreshMcpToolsStatus
+```
+
+## Summary
+
+Represents the outcome of refreshing the tool list of an MCP server.
+
+## Values
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `Refreshed` | 0 | The tool list was re-queried and applied. |
+| `Error` | 1 | The re-query failed and the previous tool set was kept. |
+| `NotConnected` | 2 | The server has no live connection to query. This tool never dials. |
+

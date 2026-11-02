@@ -1,6 +1,6 @@
+using System.Text.Json.Serialization;
 using System;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
-using System.Text.Json.Serialization;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
 {
@@ -87,36 +87,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </para>
         /// </remarks>
         [JsonPropertyName("edit_mode")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public NotebookEditMode? EditMode { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the notebook edit was successful.
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// When <c>true</c>, the notebook was successfully modified and saved.
-        /// </para>
-        /// <para>
-        /// When <c>false</c>, the edit operation failed. Common failure reasons include:
-        /// <list type="bullet">
-        /// <item><description>The specified cell ID or index does not exist</description></item>
-        /// <item><description>The notebook file could not be written (permissions, disk space)</description></item>
-        /// <item><description>The notebook format is invalid or corrupted</description></item>
-        /// <item><description>Required parameters were missing or invalid</description></item>
-        /// </list>
-        /// </para>
-        /// </remarks>
-        [Obsolete("Success is no longer present in Claude Code NotebookEdit responses.")]
-        [JsonPropertyName("success")]
-        public bool Success { get; set; }
+        public NotebookEditMode EditMode { get; set; }
 
         /// <summary>
         /// Gets or sets the new source code that was written to the cell.
         /// </summary>
         [JsonPropertyName("new_source")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? NewSource { get; set; }
+        public string NewSource { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the type of the cell.
@@ -125,15 +102,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// See <see cref="NotebookCellType"/> for possible values.
         /// </remarks>
         [JsonPropertyName("cell_type")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public NotebookCellType? CellType { get; set; }
+        public NotebookCellType CellType { get; set; }
 
         /// <summary>
         /// Gets or sets the programming language of the notebook.
         /// </summary>
         [JsonPropertyName("language")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? Language { get; set; }
+        public string Language { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the error message if the operation failed.
@@ -146,14 +121,19 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// Gets or sets the original notebook content before modification.
         /// </summary>
         [JsonPropertyName("original_file")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? OriginalFile { get; set; }
+        public string OriginalFile { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the updated notebook content after modification.
         /// </summary>
         [JsonPropertyName("updated_file")]
+        public string UpdatedFile { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the previous cell source. Applies to replace and delete operations only.
+        /// </summary>
+        [JsonPropertyName("old_source")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? UpdatedFile { get; set; }
+        public string? OldSource { get; set; }
     }
 }

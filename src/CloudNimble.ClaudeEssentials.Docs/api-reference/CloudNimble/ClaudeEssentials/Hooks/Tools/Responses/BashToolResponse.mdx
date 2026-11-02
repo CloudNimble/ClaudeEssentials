@@ -69,6 +69,118 @@ public Object()
 
 ## Properties
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> BackgroundCwdHint
+
+Gets or sets the model-facing note that the session working directory was not changed by a backgrounded command.
+
+#### Syntax
+
+```csharp
+public string BackgroundCwdHint { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> BackgroundedByUser
+
+Gets or sets a value indicating whether the user manually backgrounded the command.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> BackgroundedByUser { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> BackgroundEndsWithFinalResponse
+
+Gets or sets a value indicating whether this backgrounded command is terminated at its caller's final response.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> BackgroundEndsWithFinalResponse { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> BackgroundTaskId
+
+Gets or sets the ID of the background task if the command is running in the background.
+
+#### Syntax
+
+```csharp
+public string BackgroundTaskId { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> BackgroundWakesOwner
+
+Gets or sets a value indicating whether the subagent that owns this backgrounded command parks for its end and is woken by it.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> BackgroundWakesOwner { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DangerouslyDisableSandbox
+
+Gets or sets a value indicating whether sandbox mode was overridden.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> DangerouslyDisableSandbox { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GhRateLimitHint
+
+Gets or sets the model-facing reminder appended when a gh command reports a GitHub API rate-limit error.
+
+#### Syntax
+
+```csharp
+public string GhRateLimitHint { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GitOperation
+
+Gets or sets the structured classification of git and GitHub operations detected in this command.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.GitOperationInfo GitOperation { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.GitOperationInfo?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Interrupted
 
 Gets or sets a value indicating whether the command was interrupted before completion.
@@ -102,12 +214,12 @@ Gets or sets a value indicating whether the output contains image data.
 #### Syntax
 
 ```csharp
-public bool IsImage { get; set; }
+public System.Nullable<bool> IsImage { get; set; }
 ```
 
 #### Property Value
 
-Type: `bool`
+Type: `System.Nullable<bool>?`
 
 #### Remarks
 
@@ -117,6 +229,102 @@ visually. This is used for commands that generate images or graphical output.
 Claude is a multimodal LLM and can process image data directly. When this is
 `true`, the [BashToolResponse.Stdout](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#stdout) may contain base64-encoded image data
 or be empty while the image is presented to Claude separately.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NoOutputExpected
+
+Gets or sets a value indicating whether the command is expected to produce no output on success.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> NoOutputExpected { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PersistedOutputPath
+
+Gets or sets the path to the persisted full output, set when the output is too large for inline.
+
+#### Syntax
+
+```csharp
+public string PersistedOutputPath { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PersistedOutputSize
+
+Gets or sets the total size of the output in bytes, set when the output is too large for inline.
+
+#### Syntax
+
+```csharp
+public System.Nullable<long> PersistedOutputSize { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<long>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> RawOutputPath
+
+Gets or sets the path to the raw output file for large MCP tool outputs.
+
+#### Syntax
+
+```csharp
+public string RawOutputPath { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReturnCodeInterpretation
+
+Gets or sets the semantic interpretation for non-error exit codes with special meaning.
+
+#### Syntax
+
+```csharp
+public string ReturnCodeInterpretation { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> StaleReadFileStateHint
+
+Gets or sets a model-facing note listing `readFileState` entries whose modification
+time changed during the execution of this command.
+
+#### Syntax
+
+```csharp
+public string StaleReadFileStateHint { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+#### Remarks
+
+Claude Code tracks the modification time of files it has previously read. When a Bash
+command matches the harness's `WRITE_COMMAND_MARKERS` heuristic (for example,
+commands that write, move, or generate files), the harness checks whether any tracked
+files had their mtime bumped while the command was running and surfaces that information
+here.
+
+This hint exists so the model can re-read stale files before acting on cached content;
+it is `null` when the heuristic did not fire or no tracked files were touched.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Stderr
 
@@ -165,6 +373,34 @@ If the output exceeds 30,000 characters, it will be truncated by Claude Code.
 
 For commands that produce binary output (like image generation), this may be empty
 and [BashToolResponse.IsImage](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse#isimage) will be `true`.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> StructuredContent
+
+Gets or sets the structured content blocks.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.List<System.Text.Json.JsonElement> StructuredContent { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.List<System.Text.Json.JsonElement?>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TimedOutAfterMs
+
+Gets or sets the timeout value in milliseconds, set when the command hit its timeout and was auto-backgrounded.
+
+#### Syntax
+
+```csharp
+public System.Nullable<long> TimedOutAfterMs { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<long>?`
 
 ## Methods
 

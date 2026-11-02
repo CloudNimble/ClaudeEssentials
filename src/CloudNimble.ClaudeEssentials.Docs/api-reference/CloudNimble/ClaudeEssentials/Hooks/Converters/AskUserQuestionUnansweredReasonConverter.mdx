@@ -1,0 +1,80 @@
+---
+title: AskUserQuestionUnansweredReasonConverter
+description: "Converts the `unanswered` field of an AskUserQuestion annotation to and from a nullable [AskUserQuestionUnansweredReason](/api-reference/CloudNimble/ClaudeEs..."
+icon: lock
+sidebarTitle: AskUserQuestionUnansweredReasonConverter
+tag: "SEALED"
+keywords: ['AskUserQuestionUnansweredReasonConverter', 'CloudNimble.ClaudeEssentials.Hooks.Converters.AskUserQuestionUnansweredReasonConverter', 'CloudNimble.ClaudeEssentials.Hooks.Converters', 'class', 'System.Text.Json.Serialization.JsonConverter<System.Nullable<CloudNimble.ClaudeEssentials.Hooks.AskUserQuestionUnansweredReason>>']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Converters
+
+**Inheritance:** System.Text.Json.Serialization.JsonConverter&lt;System.Nullable&lt;CloudNimble.ClaudeEssentials.Hooks.AskUserQuestionUnansweredReason&gt;&gt;
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Converters.AskUserQuestionUnansweredReasonConverter
+```
+
+## Summary
+
+Converts the `unanswered` field of an AskUserQuestion annotation to and from a nullable [AskUserQuestionUnansweredReason](/api-reference/CloudNimble/ClaudeEssentials/Hooks/AskUserQuestionUnansweredReason).
+
+## Remarks
+
+The schema instructs consumers to treat any unrecognized value as absent, so this converter reads unknown
+values as [`null`](https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null) rather than throwing as the default enum handling would.
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public AskUserQuestionUnansweredReasonConverter()
+```
+
+## Methods
+
+### <Icon icon="code-merge" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Read <Badge color="blue">Override</Badge>
+
+#### Syntax
+
+```csharp
+public override System.Nullable<CloudNimble.ClaudeEssentials.Hooks.AskUserQuestionUnansweredReason> Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `reader` | `System.Text.Json.Utf8JsonReader` | - |
+| `typeToConvert` | `System.Type` | - |
+| `options` | `System.Text.Json.JsonSerializerOptions` | - |
+
+#### Returns
+
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.AskUserQuestionUnansweredReason>`
+
+### <Icon icon="code-merge" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Write <Badge color="blue">Override</Badge>
+
+#### Syntax
+
+```csharp
+public override void Write(System.Text.Json.Utf8JsonWriter writer, System.Nullable<CloudNimble.ClaudeEssentials.Hooks.AskUserQuestionUnansweredReason> value, System.Text.Json.JsonSerializerOptions options)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `writer` | `System.Text.Json.Utf8JsonWriter` | - |
+| `value` | `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.AskUserQuestionUnansweredReason>` | - |
+| `options` | `System.Text.Json.JsonSerializerOptions` | - |
+

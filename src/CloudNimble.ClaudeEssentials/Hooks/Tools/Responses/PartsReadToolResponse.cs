@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
@@ -20,6 +21,20 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </summary>
         [JsonPropertyName("file")]
         public PartsReadToolFileInfo File { get; set; } = new();
+
+        /// <summary>
+        /// Gets or sets the document page number of the first extracted page. This is 1 when no range was requested.
+        /// </summary>
+        [JsonPropertyName("firstPage")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? FirstPage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the extracted page images, in page order. Present only transiently in-process.
+        /// </summary>
+        [JsonPropertyName("pages")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<PartsReadPage>? Pages { get; set; }
 
     }
 

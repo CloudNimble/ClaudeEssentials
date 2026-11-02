@@ -21,6 +21,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "status")]
     [JsonDerivedType(typeof(CompletedAgentToolResponse), "completed")]
     [JsonDerivedType(typeof(AsyncLaunchedAgentToolResponse), "async_launched")]
+    [JsonDerivedType(typeof(RemoteLaunchedAgentToolResponse), "remote_launched")]
     public abstract class AgentToolResponse
     {
     }

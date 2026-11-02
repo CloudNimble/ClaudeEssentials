@@ -148,6 +148,95 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         }
 
         [TestMethod]
+        public void DeserializeCompletedAgent_WithToolStats_ShouldDeserializeCorrectly()
+        {
+            var json = """
+                {
+                    "tool_name": "Agent",
+                    "tool_input": {
+                        "description": "Analyze and refactor module",
+                        "prompt": "Refactor the auth module"
+                    },
+                    "tool_response": {
+                        "status": "completed",
+                        "prompt": "Refactor the auth module",
+                        "agentId": "c9998887776665554",
+                        "agentType": "general-purpose",
+                        "content": [
+                            { "type": "text", "text": "Refactor complete." }
+                        ],
+                        "totalDurationMs": 42000,
+                        "totalTokens": 50000,
+                        "totalToolUseCount": 24,
+                        "usage": {
+                            "input_tokens": 40000,
+                            "output_tokens": 10000
+                        },
+                        "toolStats": {
+                            "readCount": 12,
+                            "searchCount": 5,
+                            "bashCount": 3,
+                            "editFileCount": 4,
+                            "linesAdded": 87,
+                            "linesRemoved": 23,
+                            "otherToolCount": 2
+                        }
+                    },
+                    "tool_use_id": "toolu_01EEEEEEEEEEEEEEEEEEEEEE"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.AgentPostToolUsePayload);
+
+            result.Should().NotBeNull();
+            var completed = (CompletedAgentToolResponse)result!.ToolResponse!;
+            completed.ToolStats.Should().NotBeNull();
+            completed.ToolStats!.ReadCount.Should().Be(12);
+            completed.ToolStats.SearchCount.Should().Be(5);
+            completed.ToolStats.BashCount.Should().Be(3);
+            completed.ToolStats.EditFileCount.Should().Be(4);
+            completed.ToolStats.LinesAdded.Should().Be(87);
+            completed.ToolStats.LinesRemoved.Should().Be(23);
+            completed.ToolStats.OtherToolCount.Should().Be(2);
+        }
+
+        [TestMethod]
+        public void DeserializeCompletedAgent_WithoutToolStats_ShouldHaveNullToolStats()
+        {
+            var json = """
+                {
+                    "tool_name": "Agent",
+                    "tool_input": {
+                        "description": "Quick lookup",
+                        "prompt": "Find something"
+                    },
+                    "tool_response": {
+                        "status": "completed",
+                        "prompt": "Find something",
+                        "agentId": "d1234567890abcdef",
+                        "content": [
+                            { "type": "text", "text": "Found it." }
+                        ],
+                        "totalDurationMs": 1000,
+                        "totalTokens": 500,
+                        "totalToolUseCount": 1,
+                        "usage": {
+                            "input_tokens": 300,
+                            "output_tokens": 200
+                        }
+                    },
+                    "tool_use_id": "toolu_01FFFFFFFFFFFFFFFFFFFFFF"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.AgentPostToolUsePayload);
+
+            result.Should().NotBeNull();
+            var completed = (CompletedAgentToolResponse)result!.ToolResponse!;
+            completed.ToolStats.Should().BeNull();
+        }
+
+        [TestMethod]
         public void DeserializeCompletedAgent_WithMultipleContentBlocks_ShouldDeserializeCorrectly()
         {
             var json = """
@@ -226,6 +315,101 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             completed.TotalDurationMs.Should().Be(5000);
             completed.TotalTokens.Should().Be(8000);
             completed.Prompt.Should().Be("Original prompt");
+        }
+
+        [TestMethod]
+        public void CompletedAgentToolResponse_RoundTrip_WithToolStats_ShouldMaintainData()
+        {
+            var response = new CompletedAgentToolResponse
+            {
+                AgentId = "agent-with-stats",
+                Content = [new AgentContentBlock { Type = ContentBlockType.Text, Text = "Done" }],
+                TotalToolUseCount = 7,
+                TotalDurationMs = 9000,
+                TotalTokens = 12000,
+                Prompt = "Refactor",
+                Usage = new AgentUsageInfo { InputTokens = 10000, OutputTokens = 2000 },
+                ToolStats = new AgentToolStats
+                {
+                    ReadCount = 6,
+                    SearchCount = 2,
+                    BashCount = 1,
+                    EditFileCount = 3,
+                    LinesAdded = 42,
+                    LinesRemoved = 11,
+                    OtherToolCount = 0
+                }
+            };
+
+            var json = JsonSerializer.Serialize<AgentToolResponse>(response, ClaudeHooksJsonContext.Default.AgentToolResponse);
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.AgentToolResponse);
+
+            result.Should().BeOfType<CompletedAgentToolResponse>();
+            var completed = (CompletedAgentToolResponse)result!;
+            completed.ToolStats.Should().NotBeNull();
+            completed.ToolStats!.ReadCount.Should().Be(6);
+            completed.ToolStats.SearchCount.Should().Be(2);
+            completed.ToolStats.BashCount.Should().Be(1);
+            completed.ToolStats.EditFileCount.Should().Be(3);
+            completed.ToolStats.LinesAdded.Should().Be(42);
+            completed.ToolStats.LinesRemoved.Should().Be(11);
+            completed.ToolStats.OtherToolCount.Should().Be(0);
+        }
+
+        [TestMethod]
+        public void CompletedAgentToolResponse_RoundTrip_WithoutToolStats_ShouldOmitField()
+        {
+            var response = new CompletedAgentToolResponse
+            {
+                AgentId = "agent-no-stats",
+                Content = [new AgentContentBlock { Type = ContentBlockType.Text, Text = "Done" }],
+                TotalToolUseCount = 1,
+                TotalDurationMs = 500,
+                TotalTokens = 200,
+                Prompt = "Hi",
+                Usage = new AgentUsageInfo { InputTokens = 150, OutputTokens = 50 }
+            };
+
+            var json = JsonSerializer.Serialize<AgentToolResponse>(response, ClaudeHooksJsonContext.Default.AgentToolResponse);
+
+            json.Should().NotContain("toolStats");
+        }
+
+        #endregion
+
+        #region Malformed Payload Tests
+
+        [TestMethod]
+        public void DeserializeCompletedAgent_WithToolStatsAsString_ShouldThrowJsonException()
+        {
+            var json = """
+                {
+                    "tool_name": "Agent",
+                    "tool_input": {
+                        "description": "Test",
+                        "prompt": "Test"
+                    },
+                    "tool_response": {
+                        "status": "completed",
+                        "prompt": "Test",
+                        "agentId": "bad-stats-agent",
+                        "content": [],
+                        "totalDurationMs": 0,
+                        "totalTokens": 0,
+                        "totalToolUseCount": 0,
+                        "usage": {
+                            "input_tokens": 0,
+                            "output_tokens": 0
+                        },
+                        "toolStats": "not an object"
+                    },
+                    "tool_use_id": "toolu_01GGGGGGGGGGGGGGGGGGGGGG"
+                }
+                """;
+
+            var action = () => JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.AgentPostToolUsePayload);
+
+            action.Should().Throw<JsonException>();
         }
 
         #endregion

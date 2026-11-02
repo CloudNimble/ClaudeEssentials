@@ -102,6 +102,20 @@ Type: `string`
 This is always an absolute path, regardless of whether the original request
 used a relative or absolute path. On Windows, this will use backslash separators.
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GitDiff
+
+Gets or sets the git diff of the change.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.GitDiffInfo GitDiff { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.GitDiffInfo?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NewString
 
 Gets or sets the new string that replaced the old string.
@@ -152,13 +166,16 @@ public string OriginalFile { get; set; }
 
 #### Property Value
 
-Type: `string`
+Type: `string?`
 
 #### Remarks
 
 This contains the full file content prior to the replacement, which can be useful
 for implementing undo functionality, auditing changes, or verifying the context
 of the edit.
+
+May be `null` when the harness does not capture the pre-edit contents (for example,
+when the file was too large to inline or when the edit targeted a newly created file).
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReplaceAll
 
@@ -183,6 +200,20 @@ appears exactly once in the file, and only that single occurrence is replaced.
 When `true`, all occurrences of [EditToolResponse.OldString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#oldstring) in the file are
 replaced with [EditToolResponse.NewString](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse#newstring). This is useful for renaming variables
 or updating repeated patterns throughout a file.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Staged
+
+Gets or sets a value indicating whether the edit was held for the machine owner to review instead of written. The file is unchanged.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> Staged { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> StructuredPatch
 

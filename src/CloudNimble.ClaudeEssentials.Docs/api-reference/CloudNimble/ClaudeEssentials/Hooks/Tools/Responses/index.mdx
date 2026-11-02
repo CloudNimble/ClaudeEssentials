@@ -3,7 +3,7 @@ title: Overview
 description: "Summary of the CloudNimble.ClaudeEssentials.Hooks.Tools.Responses Namespace"
 icon: folder-tree
 mode: wide
-keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'namespace', 'AgentCacheCreationInfo', 'AgentContentBlock', 'AgentServerToolUseInfo', 'AgentToolResponse', 'AgentUsageInfo', 'AskUserQuestionAnnotation', 'AskUserQuestionToolResponse', 'AsyncLaunchedAgentToolResponse', 'BashToolResponse', 'CompletedAgentToolResponse']
+keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'namespace', 'AgentCacheCreationInfo', 'AgentContentBlock', 'AgentOutputTokensDetails', 'AgentServerToolUseInfo', 'AgentToolResponse', 'AgentToolStats', 'AgentUsageInfo', 'ArtifactAssetDelete', 'ArtifactAssetInfo', 'ArtifactAssetList']
 ---
 
 ## Types
@@ -14,49 +14,119 @@ keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'namespace', 'A
 | ---- | ------- |
 | [AgentCacheCreationInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AgentCacheCreationInfo) | Contains cache creation token counts for an agent execution, broken down by  ephemeral cache duration. |
 | [AgentContentBlock](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AgentContentBlock) | Represents a content block in an agent's response, containing text output. |
+| [AgentOutputTokensDetails](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AgentOutputTokensDetails) | Represents a breakdown of the output tokens used by an agent. |
 | [AgentServerToolUseInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AgentServerToolUseInfo) | Contains server-side tool use counts for an agent execution, tracking how many  web search and web fetch requests were made. |
 | [AgentToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AgentToolResponse) | Represents the response payload returned by the Claude Code Agent tool.  This is a polymorphic base type — the actual response will be either  [CompletedAgentToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/CompletedAgentToolResponse) or [AsyncLaunchedAgentToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AsyncLaunchedAgentToolResponse)  depending on whether the agent ran synchronously or was launched in the background. |
+| [AgentToolStats](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AgentToolStats) | Represents an aggregate breakdown of the tools used by an Agent during its execution. |
 | [AgentUsageInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AgentUsageInfo) | Contains token usage information for a completed agent execution, including input/output  token counts, cache statistics, and server-side tool use. |
+| [ArtifactAssetDelete](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactAssetDelete) | Represents the result of the Artifact tool's delete_asset action. |
+| [ArtifactAssetInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactAssetInfo) | Represents an asset in an artifact's asset store. |
+| [ArtifactAssetList](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactAssetList) | Represents the result of the Artifact tool's list_assets action. |
+| [ArtifactAssetRead](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactAssetRead) | Represents the result of the Artifact tool's read_asset action. |
+| [ArtifactAssetUpload](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactAssetUpload) | Represents an asset uploaded to an artifact. |
+| [ArtifactAssetUploadBatch](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactAssetUploadBatch) | Represents the result of uploading several assets to an artifact. |
+| [ArtifactAssetUploadResult](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactAssetUploadResult) | Represents the result of uploading one file in a batch. |
+| [ArtifactAssetUsage](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactAssetUsage) | Represents the usage and limits of an artifact's asset store. |
+| [ArtifactListItem](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactListItem) | Represents an artifact returned by the Artifact tool's list action. |
+| [ArtifactPinResult](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactPinResult) | Represents the result of the Artifact tool's pin and unpin actions. |
+| [ArtifactReadInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactReadInfo) | Represents an artifact source and the version of it that now counts as viewed. |
+| [ArtifactReadResult](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactReadResult) | Represents the content returned by the Artifact tool's read action. |
+| [ArtifactStoredDeclaration](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactStoredDeclaration) | Represents the capability declaration stored on an artifact. |
+| [ArtifactToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactToolResponse) | Represents the response payload returned by the Artifact tool. |
+| [ArtifactUnwatchResult](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactUnwatchResult) | Represents the result of the Artifact tool's unwatch action. |
+| [ArtifactWatchArm](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactWatchArm) | Represents the connection state of an artifact watch. |
+| [ArtifactWatchEntry](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactWatchEntry) | Represents one watch returned by the Artifact tool's status action. |
+| [ArtifactWatchResult](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactWatchResult) | Represents the result of the Artifact tool's watch action. |
+| [ArtifactWrittenInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ArtifactWrittenInfo) | Represents the artifact written by an asset action. |
 | [AskUserQuestionAnnotation](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AskUserQuestionAnnotation) | Represents per-question annotations from the user in an AskUserQuestion response,  such as notes on preview selections. |
 | [AskUserQuestionToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AskUserQuestionToolResponse) | Represents the response payload returned by the Claude Code AskUserQuestion tool  after the user has answered the presented questions. |
 | [AsyncLaunchedAgentToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AsyncLaunchedAgentToolResponse) | Represents the Agent tool response when the agent was launched in the background  and has not yet completed. |
 | [BashToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/BashToolResponse) | Represents the response payload returned by the Claude Code Bash tool after executing  a shell command. |
+| [ClaudeDesignToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ClaudeDesignToolResponse) | Represents the response payload returned by the ClaudeDesign tool. |
 | [CompletedAgentToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/CompletedAgentToolResponse) | Represents the Agent tool response when the agent completed its work synchronously  and returned its results inline. |
-| [ConfigToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ConfigToolResponse) | Represents the response payload returned by the Claude Code Config tool after  getting or setting a configuration value. |
+| [CreatedTaskInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/CreatedTaskInfo) | Represents a task created by the TaskCreate tool. |
+| [CronCreateToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/CronCreateToolResponse) | Represents the response payload returned by the CronCreate tool. |
+| [CronDeleteToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/CronDeleteToolResponse) | Represents the response payload returned by the CronDelete tool. |
+| [CronJobInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/CronJobInfo) | Represents a scheduled job returned by the CronList tool. |
+| [CronListToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/CronListToolResponse) | Represents the response payload returned by the CronList tool. |
+| [DeleteProjectsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/DeleteProjectsToolResponse) | Represents the Projects tool response for the `project_delete` method. |
 | [EditToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EditToolResponse) | Represents the response payload returned by the Claude Code Edit tool after performing  a string replacement in a file. |
 | [StructuredPatchHunk](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/StructuredPatchHunk) | Represents a single hunk (contiguous block of changes) in a unified diff patch. |
+| [EnterPlanModeToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EnterPlanModeToolResponse) | Represents the response payload returned by the EnterPlanMode tool. |
 | [EnterWorktreeToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/EnterWorktreeToolResponse) | Represents the response payload returned by the Claude Code EnterWorktree tool  after creating a temporary git worktree. |
 | [ExitPlanModeToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ExitPlanModeToolResponse) | Represents the response payload returned by the Claude Code ExitPlanMode tool after  transitioning from plan mode to execution mode. |
 | [ExitWorktreeToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ExitWorktreeToolResponse) | Represents the response payload returned by the Claude Code ExitWorktree tool  after exiting and optionally removing a git worktree. |
 | [FileUnchangedReadToolFileInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/FileUnchangedReadToolFileInfo) | Contains information about a file that was unchanged since it was last read. |
 | [FileUnchangedReadToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/FileUnchangedReadToolResponse) | Represents the Read tool response when a file has not changed since it was last read. |
+| [GitBranchOperationInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GitBranchOperationInfo) | Represents a branch integration detected in a Bash command. |
+| [GitCommitInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GitCommitInfo) | Represents a commit detected in a Bash command. |
 | [GitDiffInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GitDiffInfo) | Represents git diff information for a file change, including additions, deletions,  and the unified diff patch. |
+| [GitOperationInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GitOperationInfo) | Represents the git and GitHub operations detected in a Bash command. |
+| [GitPullRequestInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GitPullRequestInfo) | Represents a pull request operation detected in a Bash command. |
+| [GitPushInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GitPushInfo) | Represents a push detected in a Bash command. |
 | [GlobToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GlobToolResponse) | Represents the response payload returned by the Claude Code Glob tool after searching  for files matching a pattern. |
 | [GrepToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GrepToolResponse) | Represents the response payload returned by the Claude Code Grep tool after searching  for content within files. |
 | [ImageDimensionInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ImageDimensionInfo) | Contains image dimension information for coordinate mapping, including both original  and displayed sizes after any resizing. |
 | [ImageReadToolFileInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ImageReadToolFileInfo) | Contains information about an image file read by the Claude Code Read tool,  including base64-encoded data, MIME type, and dimension metadata. |
 | [ImageReadToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ImageReadToolResponse) | Represents the Read tool response for an image file (PNG, JPG, GIF, WebP). |
-| [KillShellToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/KillShellToolResponse) | Represents the response payload returned by the Claude Code KillShell tool after  attempting to terminate a background shell process. |
-| [ListMcpResourcesToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ListMcpResourcesToolResponse) | Represents the response payload returned by the Claude Code ListMcpResources tool  after listing available MCP (Model Context Protocol) resources. |
+| [InfoProjectsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/InfoProjectsToolResponse) | Represents the Projects tool response for the `project_info` method. |
+| [McpContentBlock](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/McpContentBlock) | Represents a content block returned by an MCP tool. |
+| [McpDirectoryResourceInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/McpDirectoryResourceInfo) | Represents a child of an MCP directory resource. |
 | [McpResourceContent](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/McpResourceContent) | Represents the content of a single MCP (Model Context Protocol) resource as returned by the ReadMcpResource tool. |
 | [McpResourceInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/McpResourceInfo) | Represents a single MCP (Model Context Protocol) resource entry returned by the ListMcpResources tool. |
+| [McpToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/McpToolResponse) | Represents the result of an MCP tool execution. |
+| [MemoryListProjectsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/MemoryListProjectsToolResponse) | Represents the Projects tool response for the `project_memory_list` method. |
+| [MemoryReadProjectsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/MemoryReadProjectsToolResponse) | Represents the Projects tool response for the `project_memory_read` method. |
+| [MonitorToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/MonitorToolResponse) | Represents the response payload returned by the Monitor tool. |
 | [NotebookEditToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/NotebookEditToolResponse) | Represents the response payload returned by the Claude Code NotebookEdit tool after  modifying a Jupyter notebook cell. |
 | [NotebookReadToolFileInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/NotebookReadToolFileInfo) | Contains information about a Jupyter notebook file read by the Claude Code Read tool. |
 | [NotebookReadToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/NotebookReadToolResponse) | Represents the Read tool response for a Jupyter notebook (.ipynb) file. |
+| [OfferChromeSetupToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/OfferChromeSetupToolResponse) | Represents the response payload returned by the OfferChromeSetup tool. |
+| [PartsReadPage](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/PartsReadPage) | Represents a page image extracted from a PDF by the Read tool. |
 | [PartsReadToolFileInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/PartsReadToolFileInfo) | Contains information about a PDF file read in parts by the Claude Code Read tool,  where individual pages are extracted as images. |
 | [PartsReadToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/PartsReadToolResponse) | Represents the Read tool response for a PDF file that was split into individual page images. |
 | [PdfReadToolFileInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/PdfReadToolFileInfo) | Contains information about a PDF file read by the Claude Code Read tool,  including base64-encoded data and file size. |
 | [PdfReadToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/PdfReadToolResponse) | Represents the Read tool response for a PDF file. |
+| [ProjectDocumentInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ProjectDocumentInfo) | Represents a document in a project. |
+| [ProjectFileInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ProjectFileInfo) | Represents a file in a project. |
+| [ProjectKnowledgeInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ProjectKnowledgeInfo) | Represents the knowledge-base capacity of a project. |
+| [ProjectMemoryFileInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ProjectMemoryFileInfo) | Represents a project memory file. |
+| [ProjectSearchHit](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ProjectSearchHit) | Represents a project knowledge-base search hit. |
+| [ProjectsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ProjectsToolResponse) | Represents the response payload returned by the Projects tool. |
+| [ProjectSyncSource](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ProjectSyncSource) | Represents a source synchronized into a project. |
+| [ProposeGoalToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ProposeGoalToolResponse) | Represents the response payload returned by the ProposeGoal tool. |
+| [ProposeSkillsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ProposeSkillsToolResponse) | Represents the response payload returned by the ProposeSkills tool. |
+| [PushNotificationToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/PushNotificationToolResponse) | Represents the response payload returned by the PushNotification tool. |
+| [ReadMcpResourceDirToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ReadMcpResourceDirToolResponse) | Represents the response payload returned by the ReadMcpResourceDir tool. |
 | [ReadMcpResourceToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ReadMcpResourceToolResponse) | Represents the response payload returned by the Claude Code ReadMcpResource tool  after reading the content of an MCP (Model Context Protocol) resource. |
+| [ReadNotificationsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ReadNotificationsToolResponse) | Represents the response payload returned by the ReadNotifications tool. |
+| [ReadProjectsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ReadProjectsToolResponse) | Represents the Projects tool response for the `project_read` method. |
 | [ReadToolFileInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ReadToolFileInfo) | Contains detailed information about a text file read by the Claude Code Read tool,  including its path, content, and line-related metadata. |
 | [ReadToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ReadToolResponse) | Represents the base response payload returned by the Claude Code Read tool after reading a file. |
+| [RefreshMcpToolsServerResult](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/RefreshMcpToolsServerResult) | Represents the result of refreshing the tool list of a single MCP server. |
+| [RemoteLaunchedAgentToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/RemoteLaunchedAgentToolResponse) | Represents the Agent tool response when the agent was launched in a remote cloud environment. |
+| [RemoteTriggerToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/RemoteTriggerToolResponse) | Represents the response payload returned by the RemoteTrigger tool. |
+| [ReportFindingsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ReportFindingsToolResponse) | Represents the response payload returned by the ReportFindings tool. |
+| [ScheduleWakeupToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ScheduleWakeupToolResponse) | Represents the response payload returned by the ScheduleWakeup tool. |
+| [SearchProjectsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/SearchProjectsToolResponse) | Represents the Projects tool response for the `project_search` method. |
+| [SendFeedbackToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/SendFeedbackToolResponse) | Represents the response payload returned by the SendFeedback tool. |
+| [SessionNotification](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/SessionNotification) | Represents a notification delivered to a session. |
+| [ShowOnboardingRolePickerToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ShowOnboardingRolePickerToolResponse) | Represents the response payload returned by the ShowOnboardingRolePicker tool. |
+| [TaskCreateToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskCreateToolResponse) | Represents the response payload returned by the TaskCreate tool. |
+| [TaskDetailInfo](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskDetailInfo) | Represents the details of a task returned by the TaskGet tool. |
+| [TaskGetToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskGetToolResponse) | Represents the response payload returned by the TaskGet tool. |
+| [TaskListItem](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskListItem) | Represents a task returned by the TaskList tool. |
+| [TaskListToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskListToolResponse) | Represents the response payload returned by the TaskList tool. |
+| [TaskStatusChange](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskStatusChange) | Represents a task's status transition. |
 | [TaskStopToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskStopToolResponse) | Represents the response payload returned by the Claude Code TaskStop tool after  stopping a running background task. |
-| [TaskToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskToolResponse) | Represents the response payload returned by the Claude Code Task tool after executing  a subagent to handle a complex task. |
+| [TaskUpdateToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TaskUpdateToolResponse) | Represents the response payload returned by the TaskUpdate tool. |
 | [TextReadToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TextReadToolResponse) | Represents the Read tool response for a standard text file. |
 | [TodoWriteToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/TodoWriteToolResponse) | Represents the response payload returned by the Claude Code TodoWrite tool after  updating the task list. |
 | [WebFetchToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebFetchToolResponse) | Represents the response payload returned by the Claude Code WebFetch tool after  fetching and processing content from a URL. |
 | [WebSearchToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebSearchToolResponse) | Represents the response payload returned by the Claude Code WebSearch tool after  performing a web search. |
 | [WebSearchResultContainer](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebSearchResultContainer) | Represents a container grouping web search results from a single search operation. |
 | [WebSearchResultItem](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebSearchResultItem) | Represents an individual web search result with a title and URL. |
+| [WorkflowToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WorkflowToolResponse) | Represents the response payload returned by the Workflow tool. |
+| [WriteProjectsToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WriteProjectsToolResponse) | Represents the Projects tool response for the `project_write` method. |
 | [WriteToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WriteToolResponse) | Represents the response payload returned by the Claude Code Write tool after creating or overwriting a file. |
 

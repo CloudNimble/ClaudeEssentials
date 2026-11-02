@@ -99,7 +99,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </para>
         /// </remarks>
         [JsonPropertyName("originalFile")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
         public string? OriginalFile { get; set; }
 
         /// <summary>
@@ -112,5 +112,25 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonPropertyName("gitDiff")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public GitDiffInfo? GitDiff { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the user edited the proposed content in the
+        /// permission dialog before accepting the write.
+        /// </summary>
+        /// <remarks>
+        /// When <c>true</c>, the final content persisted to disk differs from what Claude originally
+        /// proposed because the user made changes during the approval step. This is optional and
+        /// typically omitted when the user accepted the proposed content as-is.
+        /// </remarks>
+        [JsonPropertyName("userModified")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? UserModified { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the write was held for the machine owner to review instead of written. The file is unchanged.
+        /// </summary>
+        [JsonPropertyName("staged")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? Staged { get; set; }
     }
 }

@@ -13,6 +13,7 @@
     <File Path="../.gitignore" />
     <File Path="../LICENSE" />
     <File Path="../README.md" />
+    <File Path="../schema.json" />
     <File Path="Directory.Build.props" />
     <File Path="global.json" />
   </Folder>

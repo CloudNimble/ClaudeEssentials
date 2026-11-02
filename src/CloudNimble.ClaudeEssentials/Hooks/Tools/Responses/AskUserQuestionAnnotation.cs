@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using CloudNimble.ClaudeEssentials.Hooks.Converters;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
 {
@@ -23,6 +24,14 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Notes { get; set; }
+
+        /// <summary>
+        /// Gets or sets how the question went unanswered. Absent when the question was answered, and unknown values are treated as absent.
+        /// </summary>
+        [JsonPropertyName("unanswered")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonConverter(typeof(AskUserQuestionUnansweredReasonConverter))]
+        public AskUserQuestionUnansweredReason? Unanswered { get; set; }
 
     }
 

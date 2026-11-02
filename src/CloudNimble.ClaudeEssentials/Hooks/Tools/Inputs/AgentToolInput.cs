@@ -13,7 +13,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
     /// Available agent types include: general-purpose, Explore, Plan, claude-code-guide, and others.
     /// </para>
     /// <para>
-    /// Unlike <see cref="TaskToolInput"/>, this type reflects the latest Agent tool schema including
+    /// This type reflects the latest Agent tool schema including
     /// team collaboration fields such as <see cref="Name"/>, <see cref="TeamName"/>, and <see cref="Mode"/>.
     /// </para>
     /// </remarks>
@@ -51,8 +51,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         public ClaudeModel? Model { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to run this agent in the background.
-        /// You will be notified when it completes.
+        /// Gets or sets a value indicating whether to run this agent in the background. Agents run in the background by default.
         /// </summary>
         [JsonPropertyName("run_in_background")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -66,29 +65,32 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         public string? Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the team name for spawning. Uses current team context if omitted.
+        /// Gets or sets the team name. This value is deprecated and ignored: the session has a single implicit team.
         /// </summary>
         [JsonPropertyName("team_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? TeamName { get; set; }
 
         /// <summary>
-        /// Gets or sets the permission mode for the spawned teammate (e.g., "plan" to require plan approval).
+        /// Gets or sets the permission mode. This value is deprecated and ignored: subagents inherit the parent session's permission mode.
         /// </summary>
-        /// <remarks>
-        /// See <see cref="PermissionMode"/> for possible values.
-        /// </remarks>
         [JsonPropertyName("mode")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public PermissionMode? Mode { get; set; }
 
         /// <summary>
-        /// Gets or sets the isolation mode. Set to <c>"worktree"</c> to create a temporary git worktree
-        /// so the agent works on an isolated copy of the repo.
+        /// Gets or sets the isolation mode for the spawned agent.
         /// </summary>
         [JsonPropertyName("isolation")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? Isolation { get; set; }
+        public AgentIsolationMode? Isolation { get; set; }
+
+        /// <summary>
+        /// Gets or sets the reasoning effort for this agent. Ignored when <c>subagent_type</c> is <c>fork</c>.
+        /// </summary>
+        [JsonPropertyName("effort")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public ReasoningEffort? Effort { get; set; }
 
     }
 

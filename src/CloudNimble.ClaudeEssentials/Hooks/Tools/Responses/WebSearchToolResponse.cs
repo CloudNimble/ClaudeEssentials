@@ -1,6 +1,7 @@
-using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using CloudNimble.ClaudeEssentials.Hooks.Converters;
+using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
 {
@@ -81,6 +82,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </remarks>
         [JsonPropertyName("durationSeconds")]
         public double DurationSeconds { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of web searches performed.
+        /// </summary>
+        [JsonPropertyName("searchCount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? SearchCount { get; set; }
     }
 
     /// <summary>
@@ -93,8 +101,15 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
     /// individual search result items.
     /// </para>
     /// </remarks>
+    [JsonConverter(typeof(WebSearchResultContainerConverter))]
     public class WebSearchResultContainer
     {
+        /// <summary>
+        /// Gets or sets the text commentary from the model, when this entry is a string rather than a block of search hits.
+        /// </summary>
+        [JsonIgnore]
+        public string? Commentary { get; set; }
+
         /// <summary>
         /// Gets or sets the unique identifier for the tool use that produced these results.
         /// </summary>
@@ -167,5 +182,12 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </example>
         [JsonPropertyName("url")]
         public string Url { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the page text. PostToolUse hooks receive it, and the tool use result does not.
+        /// </summary>
+        [JsonPropertyName("snippet")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Snippet { get; set; }
     }
 }

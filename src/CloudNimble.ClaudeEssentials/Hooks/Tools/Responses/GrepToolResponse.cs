@@ -1,6 +1,6 @@
-using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
 {
@@ -20,7 +20,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
     /// <list type="bullet">
     /// <item><description><c>"files_with_matches"</c> (default) - Returns only file paths containing matches</description></item>
     /// <item><description><c>"content"</c> - Returns matching lines with context</description></item>
-    /// <item><description><c>"count"</c> - Returns match counts per file</description></item>
+    /// <item><description><c>"count"</c> - Returns the number of matches found</description></item>
     /// </list>
     /// </para>
     /// <para>
@@ -49,12 +49,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// <list type="bullet">
         /// <item><description><c>"files_with_matches"</c> - Results are in <see cref="Filenames"/></description></item>
         /// <item><description><c>"content"</c> - Results are in <see cref="Content"/></description></item>
-        /// <item><description><c>"count"</c> - Results are in <see cref="Counts"/></description></item>
+        /// <item><description><c>"count"</c> - Results are in <see cref="NumMatches"/></description></item>
         /// </list>
         /// </para>
         /// </remarks>
         [JsonPropertyName("mode")]
-        public GrepOutputMode Mode { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public GrepOutputMode? Mode { get; set; }
 
         /// <summary>
         /// Gets or sets the list of file paths containing matches.
@@ -70,8 +71,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </para>
         /// </remarks>
         [JsonPropertyName("filenames")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public List<string>? Filenames { get; set; }
+        public List<string> Filenames { get; set; } = [];
 
         /// <summary>
         /// Gets or sets the number of files that contained matches.
@@ -108,32 +108,6 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         public string? Content { get; set; }
 
         /// <summary>
-        /// Gets or sets the match counts per file.
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// This property is populated when <see cref="Mode"/> is <c>"count"</c>.
-        /// The dictionary keys are absolute file paths, and the values are the number
-        /// of matches found in each file.
-        /// </para>
-        /// <para>
-        /// This is useful for understanding the distribution of matches across files
-        /// before deciding which files to read or edit.
-        /// </para>
-        /// </remarks>
-        /// <example>
-        /// <code>
-        /// {
-        ///   "C:\\Projects\\MyApp\\src\\Program.cs": 5,
-        ///   "C:\\Projects\\MyApp\\src\\Utilities.cs": 2
-        /// }
-        /// </code>
-        /// </example>
-        [JsonPropertyName("counts")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Dictionary<string, int>? Counts { get; set; }
-
-        /// <summary>
         /// Gets or sets the number of lines in the content output.
         /// </summary>
         /// <remarks>
@@ -163,5 +137,19 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonPropertyName("appliedOffset")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? AppliedOffset { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total number of matching files.
+        /// </summary>
+        [JsonPropertyName("totalFiles")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? TotalFiles { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total number of matching lines.
+        /// </summary>
+        [JsonPropertyName("totalLines")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? TotalLines { get; set; }
     }
 }

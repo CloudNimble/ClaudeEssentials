@@ -1,0 +1,74 @@
+---
+title: McpToolResponseConverter
+description: "Converts the untagged MCP tool result union (a string, an array of content blocks, or an object) to and from an [McpToolResponse](/api-reference/CloudNimble/..."
+icon: lock
+tag: "SEALED"
+keywords: ['McpToolResponseConverter', 'CloudNimble.ClaudeEssentials.Hooks.Converters.McpToolResponseConverter', 'CloudNimble.ClaudeEssentials.Hooks.Converters', 'class', 'System.Text.Json.Serialization.JsonConverter<CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse>']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Converters
+
+**Inheritance:** System.Text.Json.Serialization.JsonConverter&lt;CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse&gt;
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Converters.McpToolResponseConverter
+```
+
+## Summary
+
+Converts the untagged MCP tool result union (a string, an array of content blocks, or an object) to and from an [McpToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/McpToolResponse).
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public McpToolResponseConverter()
+```
+
+## Methods
+
+### <Icon icon="code-merge" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Read <Badge color="blue">Override</Badge>
+
+#### Syntax
+
+```csharp
+public override CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `reader` | `System.Text.Json.Utf8JsonReader` | - |
+| `typeToConvert` | `System.Type` | - |
+| `options` | `System.Text.Json.JsonSerializerOptions` | - |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse?`
+
+### <Icon icon="code-merge" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Write <Badge color="blue">Override</Badge>
+
+#### Syntax
+
+```csharp
+public override void Write(System.Text.Json.Utf8JsonWriter writer, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse value, System.Text.Json.JsonSerializerOptions options)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `writer` | `System.Text.Json.Utf8JsonWriter` | - |
+| `value` | `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse` | - |
+| `options` | `System.Text.Json.JsonSerializerOptions` | - |
+

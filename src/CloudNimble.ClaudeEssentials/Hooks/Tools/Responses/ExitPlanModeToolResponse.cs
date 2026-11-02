@@ -33,6 +33,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// Gets or sets the plan that was presented to the user.
         /// </summary>
         [JsonPropertyName("plan")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
         public string? Plan { get; set; }
 
         /// <summary>

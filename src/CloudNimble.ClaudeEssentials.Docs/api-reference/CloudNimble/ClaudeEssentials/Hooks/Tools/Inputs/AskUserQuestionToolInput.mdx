@@ -68,6 +68,48 @@ public Object()
 
 ## Properties
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Annotations
+
+Gets or sets optional per-question annotations from the user, keyed by question text.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.Dictionary<string, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AskUserQuestionAnnotation> Annotations { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.Dictionary<string, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AskUserQuestionAnnotation>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Answers
+
+Gets or sets the user answers collected by the permission component, keyed by question text.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.Dictionary<string, string> Answers { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.Dictionary<string, string>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Metadata
+
+Gets or sets optional metadata for tracking and analytics purposes.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestionMetadata Metadata { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestionMetadata?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Questions
 
 Gets or sets the questions to ask the user (1-4 questions).

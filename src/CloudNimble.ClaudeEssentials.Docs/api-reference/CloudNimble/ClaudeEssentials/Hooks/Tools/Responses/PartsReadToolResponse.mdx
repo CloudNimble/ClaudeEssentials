@@ -74,6 +74,34 @@ public CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.PartsReadToolFileInfo 
 
 Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.PartsReadToolFileInfo`
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> FirstPage
+
+Gets or sets the document page number of the first extracted page. This is 1 when no range was requested.
+
+#### Syntax
+
+```csharp
+public System.Nullable<int> FirstPage { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<int>`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Pages
+
+Gets or sets the extracted page images, in page order. Present only transiently in-process.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.PartsReadPage> Pages { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.PartsReadPage>?`
+
 ## Methods
 
 ### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>

@@ -72,10 +72,55 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         public AgentUsageInfo Usage { get; set; } = new();
 
         /// <summary>
+        /// Gets or sets an aggregate breakdown of the tools used by the agent during execution.
+        /// </summary>
+        /// <remarks>
+        /// This is optional and may be omitted when the harness does not collect per-tool statistics.
+        /// </remarks>
+        [JsonPropertyName("toolStats")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public AgentToolStats? ToolStats { get; set; }
+
+        /// <summary>
         /// Gets or sets the original prompt that was given to the agent.
         /// </summary>
         [JsonPropertyName("prompt")]
         public string Prompt { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the model that ran the agent.
+        /// </summary>
+        [JsonPropertyName("resolvedModel")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? ResolvedModel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ordered distinct models used by the agent.
+        /// </summary>
+        [JsonPropertyName("modelsUsed")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<string>? ModelsUsed { get; set; }
+
+        /// <summary>
+        /// Gets or sets the names of the tools used by the agent.
+        /// </summary>
+        [JsonPropertyName("toolsUsed")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<string>? ToolsUsed { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path of the worktree the agent ran in.
+        /// </summary>
+        [JsonPropertyName("worktreePath")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? WorktreePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the branch of the worktree the agent ran in.
+        /// </summary>
+        [JsonPropertyName("worktreeBranch")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? WorktreeBranch { get; set; }
 
     }
 

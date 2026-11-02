@@ -88,6 +88,34 @@ public System.Nullable<int> CacheReadInputTokens { get; set; }
 
 Type: `System.Nullable<int>?`
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> FallbackCredit
+
+Gets or sets the fallback credit details.
+
+#### Syntax
+
+```csharp
+public System.Nullable<System.Text.Json.JsonElement> FallbackCredit { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<System.Text.Json.JsonElement?>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> InferenceGeo
+
+Gets or sets the geography where inference ran.
+
+#### Syntax
+
+```csharp
+public string InferenceGeo { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> InputTokens
 
 Gets or sets the number of input tokens consumed.
@@ -102,6 +130,20 @@ public int InputTokens { get; set; }
 
 Type: `int`
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Iterations
+
+Gets or sets the per-iteration usage details.
+
+#### Syntax
+
+```csharp
+public System.Nullable<System.Text.Json.JsonElement> Iterations { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<System.Text.Json.JsonElement?>?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OutputTokens
 
 Gets or sets the number of output tokens generated.
@@ -115,6 +157,20 @@ public int OutputTokens { get; set; }
 #### Property Value
 
 Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OutputTokensDetails
+
+Gets or sets a breakdown of the output tokens.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentOutputTokensDetails OutputTokensDetails { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentOutputTokensDetails?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ServerToolUse
 
@@ -147,6 +203,20 @@ Type: `string?`
 #### Remarks
 
 Known values: `"standard"`, `"priority"`, `"batch"`.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Speed
+
+Gets or sets the inference speed tier.
+
+#### Syntax
+
+```csharp
+public string Speed { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
 
 ## Methods
 

@@ -15,7 +15,7 @@
       "WebFetch(domain:docs.anthropic.com)"
     ]
   },
-  "hooks": {
+  "hooks_disabled": {
     "PreToolUse": [
       {
         "hooks": [

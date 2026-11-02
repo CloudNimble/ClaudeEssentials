@@ -19,7 +19,6 @@ dotnet add package ClaudeEssentials
 
 ```csharp
 using CloudNimble.ClaudeEssentials.Hooks;
-using CloudNimble.ClaudeEssentials.Hooks.Enums;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
 
 // Read JSON from stdin
@@ -62,7 +61,7 @@ Console.WriteLine(ClaudeHooksSerializer.SerializePreToolUseOutput(output));
 
 ## Documentation
 
-Full documentation available at **[easyaf.dev/claudeessentials](https://easyaf.dev/claudeessentials)**
+Full documentation available at **[ai.easyaf.dev/claudeessentials](https://ai.easyaf.dev/claudeessentials)**
 
 ## License
 

@@ -148,6 +148,11 @@ namespace CloudNimble.ClaudeEssentials.Samples.HookProcessor.Handlers
             {
                 var content = File.ReadAllText(csprojPath);
 
+                if (content.Contains("net11.0"))
+                {
+                    return ".NET 11";
+                }
+
                 if (content.Contains("net10.0"))
                 {
                     return ".NET 10";

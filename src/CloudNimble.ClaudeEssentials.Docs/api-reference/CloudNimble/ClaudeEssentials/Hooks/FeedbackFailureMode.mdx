@@ -1,0 +1,47 @@
+---
+title: FeedbackFailureMode
+description: "Represents the closest failure mode for feedback about model behavior."
+icon: list-ol
+tag: "ENUM"
+keywords: ['FeedbackFailureMode', 'CloudNimble.ClaudeEssentials.Hooks.FeedbackFailureMode', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks
+
+**Inheritance:** System.Enum
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.FeedbackFailureMode
+```
+
+## Summary
+
+Represents the closest failure mode for feedback about model behavior.
+
+## Values
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `InstructionFollowing` | 0 | The model did not follow instructions. |
+| `DestructiveActions` | 1 | The model took destructive actions. |
+| `CodeQuality` | 2 | The model produced poor quality code. |
+| `RepetitionAndLooping` | 3 | The model repeated itself or looped. |
+| `ModelRegression` | 4 | The model regressed compared to earlier behavior. |
+| `OverconfidenceAndHallucination` | 5 | The model was overconfident or hallucinated. |
+| `ContextAndMemory` | 6 | The model mishandled context or memory. |
+| `Overeager` | 7 | The model was overeager. |
+| `OverCorrection` | 8 | The model over-corrected. |
+| `StoppingShort` | 9 | The model stopped short of finishing. |
+| `DisputeOrDecline` | 10 | The model disputed or declined a reasonable request. |
+| `SubagentOverspawn` | 11 | The model spawned more subagents than warranted. |
+| `ToneOrPreachiness` | 12 | The model's tone was off or preachy. |
+| `ExcessiveQuestions` | 13 | The model asked too many questions. |
+| `UnwantedScope` | 14 | The model expanded scope unprompted. |
+| `Other` | 15 | A model-behavior issue that fits no listed value. |
+

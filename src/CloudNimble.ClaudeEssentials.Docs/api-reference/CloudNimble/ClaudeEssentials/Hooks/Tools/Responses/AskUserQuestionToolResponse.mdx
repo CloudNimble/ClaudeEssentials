@@ -69,6 +69,20 @@ public Object()
 
 ## Properties
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AfkTimeoutMs
+
+Gets or sets the idle milliseconds after which the dialog auto-resolved. Absent on every human-resolved path.
+
+#### Syntax
+
+```csharp
+public System.Nullable<long> AfkTimeoutMs { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<long>`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Annotations
 
 Gets or sets optional per-question annotations from the user (e.g., notes on preview selections).
@@ -112,6 +126,20 @@ public System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.
 #### Property Value
 
 Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.AskUserQuestion>`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Response
+
+Gets or sets the freeform text the user typed instead of selecting a structured option.
+
+#### Syntax
+
+```csharp
+public string Response { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
 
 ## Methods
 

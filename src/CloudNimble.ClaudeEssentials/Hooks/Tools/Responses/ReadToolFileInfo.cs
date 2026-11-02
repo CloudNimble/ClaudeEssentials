@@ -1,5 +1,5 @@
-using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 using System.Text.Json.Serialization;
+using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
 {
@@ -88,6 +88,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </remarks>
         [JsonPropertyName("totalLines")]
         public int TotalLines { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether a whole-file read was auto-paginated because it exceeded the token cap.
+        /// </summary>
+        [JsonPropertyName("truncatedByTokenCap")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? TruncatedByTokenCap { get; set; }
 
     }
 

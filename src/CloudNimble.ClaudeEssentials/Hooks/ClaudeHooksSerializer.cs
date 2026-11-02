@@ -351,6 +351,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
+        /// Deserializes a JSON string to an <see cref="ArtifactPreToolUsePayload"/> with strongly-typed <see cref="ArtifactToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ArtifactPreToolUsePayload? DeserializeArtifactPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ArtifactPreToolUsePayload);
+        }
+
+        /// <summary>
         /// Deserializes a JSON string to an <see cref="AskUserQuestionPreToolUsePayload"/> with strongly-typed <see cref="AskUserQuestionToolInput"/>.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
@@ -377,13 +387,43 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Deserializes a JSON string to a <see cref="ConfigPreToolUsePayload"/> with strongly-typed <see cref="ConfigToolInput"/>.
+        /// Deserializes a JSON string to a <see cref="ClaudeDesignPreToolUsePayload"/> with strongly-typed <see cref="ClaudeDesignToolInput"/>.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
         /// <returns>The deserialized payload, or null if deserialization fails.</returns>
-        public static ConfigPreToolUsePayload? DeserializeConfigPreToolUse(string json)
+        public static ClaudeDesignPreToolUsePayload? DeserializeClaudeDesignPreToolUse(string json)
         {
-            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ConfigPreToolUsePayload);
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ClaudeDesignPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="CronCreatePreToolUsePayload"/> with strongly-typed <see cref="CronCreateToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static CronCreatePreToolUsePayload? DeserializeCronCreatePreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.CronCreatePreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="CronDeletePreToolUsePayload"/> with strongly-typed <see cref="CronDeleteToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static CronDeletePreToolUsePayload? DeserializeCronDeletePreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.CronDeletePreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="CronListPreToolUsePayload"/> with strongly-typed <see cref="CronListToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static CronListPreToolUsePayload? DeserializeCronListPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.CronListPreToolUsePayload);
         }
 
         /// <summary>
@@ -394,6 +434,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static EditPreToolUsePayload? DeserializeEditPreToolUse(string json)
         {
             return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.EditPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to an <see cref="EnterPlanModePreToolUsePayload"/> with strongly-typed <see cref="EnterPlanModeToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static EnterPlanModePreToolUsePayload? DeserializeEnterPlanModePreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.EnterPlanModePreToolUsePayload);
         }
 
         /// <summary>
@@ -447,16 +497,6 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Deserializes a JSON string to a <see cref="KillShellPreToolUsePayload"/> with strongly-typed <see cref="KillShellToolInput"/>.
-        /// </summary>
-        /// <param name="json">The JSON string to deserialize.</param>
-        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
-        public static KillShellPreToolUsePayload? DeserializeKillShellPreToolUse(string json)
-        {
-            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.KillShellPreToolUsePayload);
-        }
-
-        /// <summary>
         /// Deserializes a JSON string to a <see cref="ListMcpResourcesPreToolUsePayload"/> with strongly-typed <see cref="ListMcpResourcesToolInput"/>.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
@@ -477,6 +517,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
+        /// Deserializes a JSON string to a <see cref="MonitorPreToolUsePayload"/> with strongly-typed <see cref="MonitorToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static MonitorPreToolUsePayload? DeserializeMonitorPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.MonitorPreToolUsePayload);
+        }
+
+        /// <summary>
         /// Deserializes a JSON string to a <see cref="NotebookEditPreToolUsePayload"/> with strongly-typed <see cref="NotebookEditToolInput"/>.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
@@ -487,13 +537,63 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Deserializes a JSON string to a <see cref="ReadPreToolUsePayload"/> with strongly-typed <see cref="ReadToolInput"/>.
+        /// Deserializes a JSON string to an <see cref="OfferChromeSetupPreToolUsePayload"/> with strongly-typed <see cref="OfferChromeSetupToolInput"/>.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
         /// <returns>The deserialized payload, or null if deserialization fails.</returns>
-        public static ReadPreToolUsePayload? DeserializeReadPreToolUse(string json)
+        public static OfferChromeSetupPreToolUsePayload? DeserializeOfferChromeSetupPreToolUse(string json)
         {
-            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPreToolUsePayload);
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.OfferChromeSetupPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ProjectsPreToolUsePayload"/> with strongly-typed <see cref="ProjectsToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ProjectsPreToolUsePayload? DeserializeProjectsPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ProjectsPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ProposeGoalPreToolUsePayload"/> with strongly-typed <see cref="ProposeGoalToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ProposeGoalPreToolUsePayload? DeserializeProposeGoalPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ProposeGoalPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ProposeSkillsPreToolUsePayload"/> with strongly-typed <see cref="ProposeSkillsToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ProposeSkillsPreToolUsePayload? DeserializeProposeSkillsPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ProposeSkillsPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="PushNotificationPreToolUsePayload"/> with strongly-typed <see cref="PushNotificationToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static PushNotificationPreToolUsePayload? DeserializePushNotificationPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.PushNotificationPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ReadMcpResourceDirPreToolUsePayload"/> with strongly-typed <see cref="ReadMcpResourceDirToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ReadMcpResourceDirPreToolUsePayload? DeserializeReadMcpResourceDirPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadMcpResourceDirPreToolUsePayload);
         }
 
         /// <summary>
@@ -507,23 +607,113 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Deserializes a JSON string to a <see cref="TaskPreToolUsePayload"/> with strongly-typed <see cref="TaskToolInput"/>.
+        /// Deserializes a JSON string to a <see cref="ReadNotificationsPreToolUsePayload"/> with strongly-typed <see cref="ReadNotificationsToolInput"/>.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
         /// <returns>The deserialized payload, or null if deserialization fails.</returns>
-        public static TaskPreToolUsePayload? DeserializeTaskPreToolUse(string json)
+        public static ReadNotificationsPreToolUsePayload? DeserializeReadNotificationsPreToolUse(string json)
         {
-            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskPreToolUsePayload);
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadNotificationsPreToolUsePayload);
         }
 
         /// <summary>
-        /// Deserializes a JSON string to a <see cref="TaskOutputPreToolUsePayload"/> with strongly-typed <see cref="TaskOutputToolInput"/>.
+        /// Deserializes a JSON string to a <see cref="ReadPreToolUsePayload"/> with strongly-typed <see cref="ReadToolInput"/>.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
         /// <returns>The deserialized payload, or null if deserialization fails.</returns>
-        public static TaskOutputPreToolUsePayload? DeserializeTaskOutputPreToolUse(string json)
+        public static ReadPreToolUsePayload? DeserializeReadPreToolUse(string json)
         {
-            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskOutputPreToolUsePayload);
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="RefreshMcpToolsPreToolUsePayload"/> with strongly-typed <see cref="RefreshMcpToolsToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static RefreshMcpToolsPreToolUsePayload? DeserializeRefreshMcpToolsPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.RefreshMcpToolsPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="RemoteTriggerPreToolUsePayload"/> with strongly-typed <see cref="RemoteTriggerToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static RemoteTriggerPreToolUsePayload? DeserializeRemoteTriggerPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.RemoteTriggerPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ReportFindingsPreToolUsePayload"/> with strongly-typed <see cref="ReportFindingsToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ReportFindingsPreToolUsePayload? DeserializeReportFindingsPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReportFindingsPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ScheduleWakeupPreToolUsePayload"/> with strongly-typed <see cref="ScheduleWakeupToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ScheduleWakeupPreToolUsePayload? DeserializeScheduleWakeupPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ScheduleWakeupPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="SendFeedbackPreToolUsePayload"/> with strongly-typed <see cref="SendFeedbackToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static SendFeedbackPreToolUsePayload? DeserializeSendFeedbackPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.SendFeedbackPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ShowOnboardingRolePickerPreToolUsePayload"/> with strongly-typed <see cref="ShowOnboardingRolePickerToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ShowOnboardingRolePickerPreToolUsePayload? DeserializeShowOnboardingRolePickerPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ShowOnboardingRolePickerPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TaskCreatePreToolUsePayload"/> with strongly-typed <see cref="TaskCreateToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static TaskCreatePreToolUsePayload? DeserializeTaskCreatePreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskCreatePreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TaskGetPreToolUsePayload"/> with strongly-typed <see cref="TaskGetToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static TaskGetPreToolUsePayload? DeserializeTaskGetPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskGetPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TaskListPreToolUsePayload"/> with strongly-typed <see cref="TaskListToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static TaskListPreToolUsePayload? DeserializeTaskListPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskListPreToolUsePayload);
         }
 
         /// <summary>
@@ -534,6 +724,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static TaskStopPreToolUsePayload? DeserializeTaskStopPreToolUse(string json)
         {
             return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskStopPreToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TaskUpdatePreToolUsePayload"/> with strongly-typed <see cref="TaskUpdateToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static TaskUpdatePreToolUsePayload? DeserializeTaskUpdatePreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskUpdatePreToolUsePayload);
         }
 
         /// <summary>
@@ -567,6 +767,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
+        /// Deserializes a JSON string to a <see cref="WorkflowPreToolUsePayload"/> with strongly-typed <see cref="WorkflowToolInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static WorkflowPreToolUsePayload? DeserializeWorkflowPreToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.WorkflowPreToolUsePayload);
+        }
+
+        /// <summary>
         /// Deserializes a JSON string to a <see cref="WritePreToolUsePayload"/> with strongly-typed <see cref="WriteToolInput"/>.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
@@ -588,6 +798,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static AgentPostToolUsePayload? DeserializeAgentPostToolUse(string json)
         {
             return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.AgentPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to an <see cref="ArtifactPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ArtifactPostToolUsePayload? DeserializeArtifactPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ArtifactPostToolUsePayload);
         }
 
         /// <summary>
@@ -617,13 +837,43 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Deserializes a JSON string to a <see cref="ConfigPostToolUsePayload"/> with strongly-typed input and response.
+        /// Deserializes a JSON string to a <see cref="ClaudeDesignPostToolUsePayload"/> with a strongly-typed tool input and response.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
         /// <returns>The deserialized payload, or null if deserialization fails.</returns>
-        public static ConfigPostToolUsePayload? DeserializeConfigPostToolUse(string json)
+        public static ClaudeDesignPostToolUsePayload? DeserializeClaudeDesignPostToolUse(string json)
         {
-            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ConfigPostToolUsePayload);
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ClaudeDesignPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="CronCreatePostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static CronCreatePostToolUsePayload? DeserializeCronCreatePostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.CronCreatePostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="CronDeletePostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static CronDeletePostToolUsePayload? DeserializeCronDeletePostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.CronDeletePostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="CronListPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static CronListPostToolUsePayload? DeserializeCronListPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.CronListPostToolUsePayload);
         }
 
         /// <summary>
@@ -634,6 +884,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static EditPostToolUsePayload? DeserializeEditPostToolUse(string json)
         {
             return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.EditPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to an <see cref="EnterPlanModePostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static EnterPlanModePostToolUsePayload? DeserializeEnterPlanModePostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.EnterPlanModePostToolUsePayload);
         }
 
         /// <summary>
@@ -687,16 +947,6 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Deserializes a JSON string to a <see cref="KillShellPostToolUsePayload"/> with strongly-typed input and response.
-        /// </summary>
-        /// <param name="json">The JSON string to deserialize.</param>
-        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
-        public static KillShellPostToolUsePayload? DeserializeKillShellPostToolUse(string json)
-        {
-            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.KillShellPostToolUsePayload);
-        }
-
-        /// <summary>
         /// Deserializes a JSON string to a <see cref="ListMcpResourcesPostToolUsePayload"/> with strongly-typed input and response.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
@@ -717,6 +967,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
+        /// Deserializes a JSON string to a <see cref="MonitorPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static MonitorPostToolUsePayload? DeserializeMonitorPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.MonitorPostToolUsePayload);
+        }
+
+        /// <summary>
         /// Deserializes a JSON string to a <see cref="NotebookEditPostToolUsePayload"/> with strongly-typed input and response.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
@@ -727,13 +987,63 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Deserializes a JSON string to a <see cref="ReadPostToolUsePayload"/> with strongly-typed input and response.
+        /// Deserializes a JSON string to an <see cref="OfferChromeSetupPostToolUsePayload"/> with a strongly-typed tool input and response.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
         /// <returns>The deserialized payload, or null if deserialization fails.</returns>
-        public static ReadPostToolUsePayload? DeserializeReadPostToolUse(string json)
+        public static OfferChromeSetupPostToolUsePayload? DeserializeOfferChromeSetupPostToolUse(string json)
         {
-            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPostToolUsePayload);
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.OfferChromeSetupPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ProjectsPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ProjectsPostToolUsePayload? DeserializeProjectsPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ProjectsPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ProposeGoalPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ProposeGoalPostToolUsePayload? DeserializeProposeGoalPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ProposeGoalPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ProposeSkillsPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ProposeSkillsPostToolUsePayload? DeserializeProposeSkillsPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ProposeSkillsPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="PushNotificationPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static PushNotificationPostToolUsePayload? DeserializePushNotificationPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.PushNotificationPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ReadMcpResourceDirPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ReadMcpResourceDirPostToolUsePayload? DeserializeReadMcpResourceDirPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadMcpResourceDirPostToolUsePayload);
         }
 
         /// <summary>
@@ -747,23 +1057,113 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Deserializes a JSON string to a <see cref="TaskPostToolUsePayload"/> with strongly-typed input and response.
+        /// Deserializes a JSON string to a <see cref="ReadNotificationsPostToolUsePayload"/> with a strongly-typed tool input and response.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
         /// <returns>The deserialized payload, or null if deserialization fails.</returns>
-        public static TaskPostToolUsePayload? DeserializeTaskPostToolUse(string json)
+        public static ReadNotificationsPostToolUsePayload? DeserializeReadNotificationsPostToolUse(string json)
         {
-            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskPostToolUsePayload);
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadNotificationsPostToolUsePayload);
         }
 
         /// <summary>
-        /// Deserializes a JSON string to a <see cref="TaskOutputPostToolUsePayload"/> with strongly-typed input and response.
+        /// Deserializes a JSON string to a <see cref="ReadPostToolUsePayload"/> with strongly-typed input and response.
         /// </summary>
         /// <param name="json">The JSON string to deserialize.</param>
         /// <returns>The deserialized payload, or null if deserialization fails.</returns>
-        public static TaskOutputPostToolUsePayload? DeserializeTaskOutputPostToolUse(string json)
+        public static ReadPostToolUsePayload? DeserializeReadPostToolUse(string json)
         {
-            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskOutputPostToolUsePayload);
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="RefreshMcpToolsPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static RefreshMcpToolsPostToolUsePayload? DeserializeRefreshMcpToolsPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.RefreshMcpToolsPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="RemoteTriggerPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static RemoteTriggerPostToolUsePayload? DeserializeRemoteTriggerPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.RemoteTriggerPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ReportFindingsPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ReportFindingsPostToolUsePayload? DeserializeReportFindingsPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReportFindingsPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ScheduleWakeupPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ScheduleWakeupPostToolUsePayload? DeserializeScheduleWakeupPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ScheduleWakeupPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="SendFeedbackPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static SendFeedbackPostToolUsePayload? DeserializeSendFeedbackPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.SendFeedbackPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="ShowOnboardingRolePickerPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static ShowOnboardingRolePickerPostToolUsePayload? DeserializeShowOnboardingRolePickerPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ShowOnboardingRolePickerPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TaskCreatePostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static TaskCreatePostToolUsePayload? DeserializeTaskCreatePostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskCreatePostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TaskGetPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static TaskGetPostToolUsePayload? DeserializeTaskGetPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskGetPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TaskListPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static TaskListPostToolUsePayload? DeserializeTaskListPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskListPostToolUsePayload);
         }
 
         /// <summary>
@@ -774,6 +1174,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static TaskStopPostToolUsePayload? DeserializeTaskStopPostToolUse(string json)
         {
             return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskStopPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="TaskUpdatePostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static TaskUpdatePostToolUsePayload? DeserializeTaskUpdatePostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.TaskUpdatePostToolUsePayload);
         }
 
         /// <summary>
@@ -804,6 +1214,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static WebSearchPostToolUsePayload? DeserializeWebSearchPostToolUse(string json)
         {
             return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.WebSearchPostToolUsePayload);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="WorkflowPostToolUsePayload"/> with a strongly-typed tool input and response.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized payload, or null if deserialization fails.</returns>
+        public static WorkflowPostToolUsePayload? DeserializeWorkflowPostToolUse(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.WorkflowPostToolUsePayload);
         }
 
         /// <summary>
@@ -1108,6 +1528,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ArtifactToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeArtifactPreToolUseOutput(PreToolUseHookOutput<ArtifactToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ArtifactPreToolUseHookOutput);
+        }
+
+        /// <summary>
         /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="AskUserQuestionToolInput"/> to JSON.
         /// </summary>
         /// <param name="output">The hook output to serialize.</param>
@@ -1142,13 +1572,43 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ConfigToolInput"/> to JSON.
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ClaudeDesignToolInput"/> to JSON.
         /// </summary>
         /// <param name="output">The hook output to serialize.</param>
         /// <returns>The JSON string representation.</returns>
-        public static string SerializeConfigPreToolUseOutput(PreToolUseHookOutput<ConfigToolInput> output)
+        public static string SerializeClaudeDesignPreToolUseOutput(PreToolUseHookOutput<ClaudeDesignToolInput> output)
         {
-            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ConfigPreToolUseHookOutput);
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ClaudeDesignPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="CronCreateToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeCronCreatePreToolUseOutput(PreToolUseHookOutput<CronCreateToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.CronCreatePreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="CronDeleteToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeCronDeletePreToolUseOutput(PreToolUseHookOutput<CronDeleteToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.CronDeletePreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="CronListToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeCronListPreToolUseOutput(PreToolUseHookOutput<CronListToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.CronListPreToolUseHookOutput);
         }
 
         /// <summary>
@@ -1159,6 +1619,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static string SerializeEditPreToolUseOutput(PreToolUseHookOutput<EditToolInput> output)
         {
             return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.EditPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="EnterPlanModeToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeEnterPlanModePreToolUseOutput(PreToolUseHookOutput<EnterPlanModeToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.EnterPlanModePreToolUseHookOutput);
         }
 
         /// <summary>
@@ -1212,16 +1682,6 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="KillShellToolInput"/> to JSON.
-        /// </summary>
-        /// <param name="output">The hook output to serialize.</param>
-        /// <returns>The JSON string representation.</returns>
-        public static string SerializeKillShellPreToolUseOutput(PreToolUseHookOutput<KillShellToolInput> output)
-        {
-            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.KillShellPreToolUseHookOutput);
-        }
-
-        /// <summary>
         /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ListMcpResourcesToolInput"/> to JSON.
         /// </summary>
         /// <param name="output">The hook output to serialize.</param>
@@ -1242,6 +1702,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="MonitorToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeMonitorPreToolUseOutput(PreToolUseHookOutput<MonitorToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.MonitorPreToolUseHookOutput);
+        }
+
+        /// <summary>
         /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="NotebookEditToolInput"/> to JSON.
         /// </summary>
         /// <param name="output">The hook output to serialize.</param>
@@ -1252,13 +1722,63 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ReadToolInput"/> to JSON.
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="OfferChromeSetupToolInput"/> to JSON.
         /// </summary>
         /// <param name="output">The hook output to serialize.</param>
         /// <returns>The JSON string representation.</returns>
-        public static string SerializeReadPreToolUseOutput(PreToolUseHookOutput<ReadToolInput> output)
+        public static string SerializeOfferChromeSetupPreToolUseOutput(PreToolUseHookOutput<OfferChromeSetupToolInput> output)
         {
-            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ReadPreToolUseHookOutput);
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.OfferChromeSetupPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ProjectsToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeProjectsPreToolUseOutput(PreToolUseHookOutput<ProjectsToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ProjectsPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ProposeGoalToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeProposeGoalPreToolUseOutput(PreToolUseHookOutput<ProposeGoalToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ProposeGoalPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ProposeSkillsToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeProposeSkillsPreToolUseOutput(PreToolUseHookOutput<ProposeSkillsToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ProposeSkillsPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="PushNotificationToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializePushNotificationPreToolUseOutput(PreToolUseHookOutput<PushNotificationToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.PushNotificationPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ReadMcpResourceDirToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeReadMcpResourceDirPreToolUseOutput(PreToolUseHookOutput<ReadMcpResourceDirToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ReadMcpResourceDirPreToolUseHookOutput);
         }
 
         /// <summary>
@@ -1272,23 +1792,113 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         }
 
         /// <summary>
-        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="TaskToolInput"/> to JSON.
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ReadNotificationsToolInput"/> to JSON.
         /// </summary>
         /// <param name="output">The hook output to serialize.</param>
         /// <returns>The JSON string representation.</returns>
-        public static string SerializeTaskPreToolUseOutput(PreToolUseHookOutput<TaskToolInput> output)
+        public static string SerializeReadNotificationsPreToolUseOutput(PreToolUseHookOutput<ReadNotificationsToolInput> output)
         {
-            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.TaskPreToolUseHookOutput);
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ReadNotificationsPreToolUseHookOutput);
         }
 
         /// <summary>
-        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="TaskOutputToolInput"/> to JSON.
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ReadToolInput"/> to JSON.
         /// </summary>
         /// <param name="output">The hook output to serialize.</param>
         /// <returns>The JSON string representation.</returns>
-        public static string SerializeTaskOutputPreToolUseOutput(PreToolUseHookOutput<TaskOutputToolInput> output)
+        public static string SerializeReadPreToolUseOutput(PreToolUseHookOutput<ReadToolInput> output)
         {
-            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.TaskOutputPreToolUseHookOutput);
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ReadPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="RefreshMcpToolsToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeRefreshMcpToolsPreToolUseOutput(PreToolUseHookOutput<RefreshMcpToolsToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.RefreshMcpToolsPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="RemoteTriggerToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeRemoteTriggerPreToolUseOutput(PreToolUseHookOutput<RemoteTriggerToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.RemoteTriggerPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ReportFindingsToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeReportFindingsPreToolUseOutput(PreToolUseHookOutput<ReportFindingsToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ReportFindingsPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ScheduleWakeupToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeScheduleWakeupPreToolUseOutput(PreToolUseHookOutput<ScheduleWakeupToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ScheduleWakeupPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="SendFeedbackToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeSendFeedbackPreToolUseOutput(PreToolUseHookOutput<SendFeedbackToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.SendFeedbackPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="ShowOnboardingRolePickerToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeShowOnboardingRolePickerPreToolUseOutput(PreToolUseHookOutput<ShowOnboardingRolePickerToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.ShowOnboardingRolePickerPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="TaskCreateToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeTaskCreatePreToolUseOutput(PreToolUseHookOutput<TaskCreateToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.TaskCreatePreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="TaskGetToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeTaskGetPreToolUseOutput(PreToolUseHookOutput<TaskGetToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.TaskGetPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="TaskListToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeTaskListPreToolUseOutput(PreToolUseHookOutput<TaskListToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.TaskListPreToolUseHookOutput);
         }
 
         /// <summary>
@@ -1299,6 +1909,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static string SerializeTaskStopPreToolUseOutput(PreToolUseHookOutput<TaskStopToolInput> output)
         {
             return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.TaskStopPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="TaskUpdateToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeTaskUpdatePreToolUseOutput(PreToolUseHookOutput<TaskUpdateToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.TaskUpdatePreToolUseHookOutput);
         }
 
         /// <summary>
@@ -1329,6 +1949,16 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static string SerializeWebSearchPreToolUseOutput(PreToolUseHookOutput<WebSearchToolInput> output)
         {
             return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.WebSearchPreToolUseHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreToolUseHookOutput{TToolInput}"/> with strongly-typed <see cref="WorkflowToolInput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeWorkflowPreToolUseOutput(PreToolUseHookOutput<WorkflowToolInput> output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.WorkflowPreToolUseHookOutput);
         }
 
         /// <summary>

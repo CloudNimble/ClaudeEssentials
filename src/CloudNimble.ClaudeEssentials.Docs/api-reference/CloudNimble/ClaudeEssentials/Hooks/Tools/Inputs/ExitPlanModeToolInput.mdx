@@ -48,8 +48,7 @@ public Object()
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AllowedPrompts
 
-Gets or sets the prompt-based permissions needed to implement the plan.
-These describe categories of actions rather than specific commands.
+Gets or sets the allowed prompts. This value is deprecated and no longer used.
 
 #### Syntax
 
@@ -60,6 +59,20 @@ public System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.
 #### Property Value
 
 Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.ExitPlanModeAllowedPrompt>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ExtensionData
+
+Gets or sets any additional properties present in the payload that are not modeled explicitly.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.Dictionary<string, System.Text.Json.JsonElement> ExtensionData { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.Dictionary<string, System.Text.Json.JsonElement>`
 
 ## Methods
 

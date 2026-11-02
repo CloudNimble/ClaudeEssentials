@@ -59,6 +59,20 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<string, AskUserQuestionAnnotation>? Annotations { get; set; }
 
+        /// <summary>
+        /// Gets or sets the freeform text the user typed instead of selecting a structured option.
+        /// </summary>
+        [JsonPropertyName("response")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Response { get; set; }
+
+        /// <summary>
+        /// Gets or sets the idle milliseconds after which the dialog auto-resolved. Absent on every human-resolved path.
+        /// </summary>
+        [JsonPropertyName("afkTimeoutMs")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public long? AfkTimeoutMs { get; set; }
+
     }
 
 }

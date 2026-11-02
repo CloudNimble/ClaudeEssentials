@@ -114,6 +114,20 @@ public System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.
 
 Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentContentBlock>`
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ModelsUsed
+
+Gets or sets the ordered distinct models used by the agent.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.List<string> ModelsUsed { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.List<string>?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Prompt
 
 Gets or sets the original prompt that was given to the agent.
@@ -127,6 +141,52 @@ public string Prompt { get; set; }
 #### Property Value
 
 Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ResolvedModel
+
+Gets or sets the model that ran the agent.
+
+#### Syntax
+
+```csharp
+public string ResolvedModel { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToolStats
+
+Gets or sets an aggregate breakdown of the tools used by the agent during execution.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentToolStats ToolStats { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentToolStats?`
+
+#### Remarks
+
+This is optional and may be omitted when the harness does not collect per-tool statistics.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToolsUsed
+
+Gets or sets the names of the tools used by the agent.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.List<string> ToolsUsed { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.List<string>?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TotalDurationMs
 
@@ -183,6 +243,34 @@ public CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentUsageInfo Usage {
 #### Property Value
 
 Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentUsageInfo`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> WorktreeBranch
+
+Gets or sets the branch of the worktree the agent ran in.
+
+#### Syntax
+
+```csharp
+public string WorktreeBranch { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> WorktreePath
+
+Gets or sets the path of the worktree the agent ran in.
+
+#### Syntax
+
+```csharp
+public string WorktreePath { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
 
 ## Methods
 

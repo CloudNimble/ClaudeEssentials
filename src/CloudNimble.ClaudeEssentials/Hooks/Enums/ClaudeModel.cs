@@ -25,7 +25,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         /// The Claude Haiku model, optimized for speed and efficiency.
         /// </summary>
         [JsonStringEnumMemberName("haiku")]
-        Haiku
+        Haiku,
+
+        /// <summary>
+        /// The Claude Fable model.
+        /// </summary>
+        [JsonStringEnumMemberName("fable")]
+        Fable
 
     }
 

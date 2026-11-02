@@ -1,6 +1,6 @@
-using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
 {
@@ -101,5 +101,19 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </remarks>
         [JsonPropertyName("truncated")]
         public bool Truncated { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total number of matching files before truncation. A lower bound when <c>countIsComplete</c> is false.
+        /// </summary>
+        [JsonPropertyName("totalMatches")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? TotalMatches { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether <c>totalMatches</c> is the exact total rather than a lower bound.
+        /// </summary>
+        [JsonPropertyName("countIsComplete")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? CountIsComplete { get; set; }
     }
 }

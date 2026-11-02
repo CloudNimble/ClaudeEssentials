@@ -1,0 +1,36 @@
+---
+title: ConfigSource
+description: "Represents the source of a Claude Code configuration change."
+icon: list-ol
+tag: "ENUM"
+keywords: ['ConfigSource', 'CloudNimble.ClaudeEssentials.Hooks.ConfigSource', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks
+
+**Inheritance:** System.Enum
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.ConfigSource
+```
+
+## Summary
+
+Represents the source of a Claude Code configuration change.
+
+## Values
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `UserSettings` | 0 | User-level settings that apply globally. |
+| `ProjectSettings` | 1 | Project-level settings checked into the repository. |
+| `LocalSettings` | 2 | Local settings that are not checked into version control. |
+| `PolicySettings` | 3 | Organization policy settings that override other settings. |
+| `Skills` | 4 | Settings provided by skills or plugins. |
+

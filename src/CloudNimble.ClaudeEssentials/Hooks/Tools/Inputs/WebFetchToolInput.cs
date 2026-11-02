@@ -34,6 +34,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         [JsonPropertyName("prompt")]
         public string Prompt { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the character position in the page text to start reading from.
+        /// </summary>
+        [JsonPropertyName("offset")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? Offset { get; set; }
+
     }
 
 }

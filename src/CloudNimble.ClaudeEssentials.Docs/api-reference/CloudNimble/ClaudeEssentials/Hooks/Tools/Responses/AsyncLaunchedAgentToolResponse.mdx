@@ -115,6 +115,34 @@ public string Description { get; set; }
 
 Type: `string`
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> IsAsync
+
+Gets or sets a value indicating whether the agent is running asynchronously.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> IsAsync { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ModelsUsed
+
+Gets or sets the ordered distinct models used before backgrounding.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.List<string> ModelsUsed { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.List<string>?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OutputFile
 
 Gets or sets the path to the output file for checking agent progress.
@@ -142,6 +170,20 @@ public string Prompt { get; set; }
 #### Property Value
 
 Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ResolvedModel
+
+Gets or sets the model in use at the backgrounding transition.
+
+#### Syntax
+
+```csharp
+public string ResolvedModel { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
 
 ## Methods
 

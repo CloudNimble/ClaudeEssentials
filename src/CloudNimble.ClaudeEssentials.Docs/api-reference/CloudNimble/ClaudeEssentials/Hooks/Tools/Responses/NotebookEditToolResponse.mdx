@@ -103,12 +103,12 @@ Gets or sets the type of the cell.
 #### Syntax
 
 ```csharp
-public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookCellType> CellType { get; set; }
+public CloudNimble.ClaudeEssentials.Hooks.NotebookCellType CellType { get; set; }
 ```
 
 #### Property Value
 
-Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookCellType?>?`
+Type: `CloudNimble.ClaudeEssentials.Hooks.NotebookCellType`
 
 #### Remarks
 
@@ -121,12 +121,12 @@ Gets or sets the type of edit operation that was performed.
 #### Syntax
 
 ```csharp
-public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookEditMode> EditMode { get; set; }
+public CloudNimble.ClaudeEssentials.Hooks.NotebookEditMode EditMode { get; set; }
 ```
 
 #### Property Value
 
-Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.NotebookEditMode?>?`
+Type: `CloudNimble.ClaudeEssentials.Hooks.NotebookEditMode`
 
 #### Remarks
 
@@ -161,7 +161,7 @@ public string Language { get; set; }
 
 #### Property Value
 
-Type: `string?`
+Type: `string`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NewSource
 
@@ -175,7 +175,7 @@ public string NewSource { get; set; }
 
 #### Property Value
 
-Type: `string?`
+Type: `string`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NotebookPath
 
@@ -202,6 +202,20 @@ Type: `string`
 This is always an absolute path, regardless of whether the original request
 used a relative or absolute path. The file extension will be `.ipynb`.
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OldSource
+
+Gets or sets the previous cell source. Applies to replace and delete operations only.
+
+#### Syntax
+
+```csharp
+public string OldSource { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OriginalFile
 
 Gets or sets the original notebook content before modification.
@@ -214,33 +228,7 @@ public string OriginalFile { get; set; }
 
 #### Property Value
 
-Type: `string?`
-
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Success
-
-Gets or sets a value indicating whether the notebook edit was successful.
-
-#### Syntax
-
-```csharp
-public bool Success { get; set; }
-```
-
-#### Property Value
-
-Type: `bool`
-
-#### Remarks
-
-When `true`, the notebook was successfully modified and saved.
-
-When `false`, the edit operation failed. Common failure reasons include:
-
-- The specified cell ID or index does not exist
-- The notebook file could not be written (permissions, disk space)
-- The notebook format is invalid or corrupted
-- Required parameters were missing or invalid
-
+Type: `string`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> UpdatedFile
 
@@ -254,7 +242,7 @@ public string UpdatedFile { get; set; }
 
 #### Property Value
 
-Type: `string?`
+Type: `string`
 
 ## Methods
 

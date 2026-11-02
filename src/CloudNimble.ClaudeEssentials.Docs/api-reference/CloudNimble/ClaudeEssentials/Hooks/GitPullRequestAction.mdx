@@ -1,0 +1,41 @@
+---
+title: GitPullRequestAction
+description: "Represents a pull request operation detected by the Bash tool."
+icon: list-ol
+tag: "ENUM"
+keywords: ['GitPullRequestAction', 'CloudNimble.ClaudeEssentials.Hooks.GitPullRequestAction', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks
+
+**Inheritance:** System.Enum
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.GitPullRequestAction
+```
+
+## Summary
+
+Represents a pull request operation detected by the Bash tool.
+
+## Values
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `Created` | 0 | The pull request was created. |
+| `Edited` | 1 | The pull request was edited. |
+| `Merged` | 2 | The pull request was merged. |
+| `Commented` | 3 | A comment was added to the pull request. |
+| `Closed` | 4 | The pull request was closed. |
+| `Reopened` | 5 | The pull request was reopened. |
+| `Ready` | 6 | The pull request was marked ready for review. |
+| `Draft` | 7 | The pull request was converted to a draft. |
+| `AutoMergeEnabled` | 8 | Auto-merge was enabled on the pull request. |
+| `AutoMergeDisabled` | 9 | Auto-merge was disabled on the pull request. |
+

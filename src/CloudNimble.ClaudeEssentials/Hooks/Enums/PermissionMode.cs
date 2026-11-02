@@ -31,7 +31,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         /// Mode that bypasses all permission prompts. Use with caution.
         /// </summary>
         [JsonStringEnumMemberName("bypassPermissions")]
-        BypassPermissions
+        BypassPermissions,
+
+        /// <summary>
+        /// Automatic permission mode where Claude Code makes permission decisions without prompting the user.
+        /// </summary>
+        [JsonStringEnumMemberName("auto")]
+        Auto
 
     }
 

@@ -153,6 +153,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? Offset { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to print only the matched parts of each matching line. Requires <c>content</c> output mode.
+        /// </summary>
+        [JsonPropertyName("-o")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? OnlyMatching { get; set; }
+
     }
 
 }

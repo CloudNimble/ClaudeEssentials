@@ -51,6 +51,28 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         }
 
         [TestMethod]
+        public void DeserializeAgentPreToolUse_WithAutoMode_ShouldDeserializeCorrectly()
+        {
+            var json = """
+                {
+                    "tool_name": "Agent",
+                    "tool_input": {
+                        "description": "Automated review",
+                        "prompt": "Review this file",
+                        "mode": "auto"
+                    },
+                    "tool_use_id": "toolu_01AutoModeTest0000000000"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.AgentPreToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolInput.Should().NotBeNull();
+            result.ToolInput!.Mode.Should().Be(PermissionMode.Auto);
+        }
+
+        [TestMethod]
         public void DeserializeAgentPreToolUse_WithAllFields_ShouldDeserializeCorrectly()
         {
             var json = """
@@ -86,7 +108,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.ToolInput.Name.Should().Be("reviewer-agent");
             result.ToolInput.TeamName.Should().Be("code-review");
             result.ToolInput.Mode.Should().Be(PermissionMode.Plan);
-            result.ToolInput.Isolation.Should().Be("worktree");
+            result.ToolInput.Isolation.Should().Be(AgentIsolationMode.Worktree);
         }
 
         #endregion
@@ -106,7 +128,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
                 Name = "my-agent",
                 TeamName = "my-team",
                 Mode = PermissionMode.Default,
-                Isolation = "worktree"
+                Isolation = AgentIsolationMode.Worktree
             };
 
             var json = JsonSerializer.Serialize(input, ClaudeHooksJsonContext.Default.AgentToolInput);
@@ -122,6 +144,24 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.TeamName.Should().Be(input.TeamName);
             result.Mode.Should().Be(input.Mode);
             result.Isolation.Should().Be(input.Isolation);
+        }
+
+        [TestMethod]
+        public void AgentToolInput_RoundTrip_WithAutoMode_ShouldSerializeAsAutoString()
+        {
+            var input = new AgentToolInput
+            {
+                Description = "Test agent",
+                Prompt = "Do something",
+                Mode = PermissionMode.Auto
+            };
+
+            var json = JsonSerializer.Serialize(input, ClaudeHooksJsonContext.Default.AgentToolInput);
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.AgentToolInput);
+
+            json.Should().Contain("\"mode\":\"auto\"");
+            result.Should().NotBeNull();
+            result!.Mode.Should().Be(PermissionMode.Auto);
         }
 
         [TestMethod]

@@ -32,6 +32,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonPropertyName("file")]
         public ReadToolFileInfo File { get; set; } = new();
 
+        /// <summary>
+        /// Gets or sets the artifact and version that now count as viewed, set when this Read completed a saved Artifact source file.
+        /// </summary>
+        [JsonPropertyName("artifactRead")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public ArtifactReadInfo? ArtifactRead { get; set; }
+
     }
 
 }

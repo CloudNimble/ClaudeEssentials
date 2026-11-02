@@ -3,7 +3,7 @@ title: McpPostToolUsePayload
 description: "Represents the complete payload delivered to a PostToolUse hook after an MCP tool has executed."
 icon: lock
 tag: "SEALED"
-keywords: ['McpPostToolUsePayload', 'CloudNimble.ClaudeEssentials.Hooks.Tools.McpPostToolUsePayload', 'CloudNimble.ClaudeEssentials.Hooks.Tools', 'class', 'CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput, object>']
+keywords: ['McpPostToolUsePayload', 'CloudNimble.ClaudeEssentials.Hooks.Tools.McpPostToolUsePayload', 'CloudNimble.ClaudeEssentials.Hooks.Tools', 'class', 'CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse>']
 ---
 
 ## Definition
@@ -12,7 +12,7 @@ keywords: ['McpPostToolUsePayload', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Mc
 
 **Namespace:** CloudNimble.ClaudeEssentials.Hooks.Tools
 
-**Inheritance:** CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput&lt;CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput, object&gt;
+**Inheritance:** CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput&lt;CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse&gt;
 
 ## Syntax
 
@@ -26,8 +26,8 @@ Represents the complete payload delivered to a PostToolUse hook after an MCP too
 
 ## Remarks
 
-MCP (Model Context Protocol) tool execution results are returned as a string.
-Your hook receives both the dynamic input parameters and the string result.
+MCP (Model Context Protocol) tool execution results are text, content blocks, or a structured object, as modeled by [McpToolResponse](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/McpToolResponse).
+Your hook receives both the dynamic input parameters and the result.
 
 ## Constructors
 
@@ -41,7 +41,7 @@ public McpPostToolUsePayload()
 
 ### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
 
-<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput, object>`</Note>
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse>`</Note>
 
 #### Syntax
 
@@ -182,7 +182,7 @@ Type: `string`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToolResponse <Badge color="gray">Inherited</Badge>
 
-<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput, object>`</Note>
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.PostToolUseHookInput<CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs.McpToolInput, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse>`</Note>
 
 Gets or sets the response data returned by the tool.
 The schema depends on the specific tool that was invoked.
@@ -190,12 +190,12 @@ The schema depends on the specific tool that was invoked.
 #### Syntax
 
 ```csharp
-public object ToolResponse { get; set; }
+public CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse ToolResponse { get; set; }
 ```
 
 #### Property Value
 
-Type: `object?`
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.McpToolResponse?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToolUseId <Badge color="gray">Inherited</Badge>
 

@@ -1,0 +1,34 @@
+---
+title: GitCommitKind
+description: "Represents how a commit detected by the Bash tool was produced."
+icon: list-ol
+tag: "ENUM"
+keywords: ['GitCommitKind', 'CloudNimble.ClaudeEssentials.Hooks.GitCommitKind', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks
+
+**Inheritance:** System.Enum
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.GitCommitKind
+```
+
+## Summary
+
+Represents how a commit detected by the Bash tool was produced.
+
+## Values
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `Committed` | 0 | A new commit was created. |
+| `Amended` | 1 | An existing commit was amended. |
+| `CherryPicked` | 2 | A commit was cherry-picked. |
+

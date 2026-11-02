@@ -1,6 +1,6 @@
-using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
 {
@@ -83,12 +83,19 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// Gets or sets the complete original content of the file before the edit was applied.
         /// </summary>
         /// <remarks>
+        /// <para>
         /// This contains the full file content prior to the replacement, which can be useful
         /// for implementing undo functionality, auditing changes, or verifying the context
         /// of the edit.
+        /// </para>
+        /// <para>
+        /// May be <c>null</c> when the harness does not capture the pre-edit contents (for example,
+        /// when the file was too large to inline or when the edit targeted a newly created file).
+        /// </para>
         /// </remarks>
         [JsonPropertyName("originalFile")]
-        public string OriginalFile { get; set; } = string.Empty;
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+        public string? OriginalFile { get; set; }
 
         /// <summary>
         /// Gets or sets the structured patch representing the changes made to the file.
@@ -142,6 +149,20 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// </remarks>
         [JsonPropertyName("replaceAll")]
         public bool ReplaceAll { get; set; }
+
+        /// <summary>
+        /// Gets or sets the git diff of the change.
+        /// </summary>
+        [JsonPropertyName("gitDiff")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public GitDiffInfo? GitDiff { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the edit was held for the machine owner to review instead of written. The file is unchanged.
+        /// </summary>
+        [JsonPropertyName("staged")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? Staged { get; set; }
     }
 
     /// <summary>

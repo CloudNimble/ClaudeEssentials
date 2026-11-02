@@ -3,7 +3,7 @@ title: Overview
 description: "Summary of the CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs Namespace"
 icon: folder-tree
 mode: wide
-keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'namespace', 'AgentToolInput', 'AskUserQuestion', 'AskUserQuestionOption', 'AskUserQuestionToolInput', 'BashToolInput', 'ConfigToolInput', 'EditToolInput', 'EnterWorktreeToolInput', 'ExitPlanModeAllowedPrompt', 'ExitPlanModeToolInput']
+keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'namespace', 'AgentToolInput', 'ArtifactToolInput', 'AskUserQuestion', 'AskUserQuestionMetadata', 'AskUserQuestionOption', 'AskUserQuestionToolInput', 'BashToolInput', 'ClaudeDesignToolInput', 'CronCreateToolInput', 'CronDeleteToolInput']
 ---
 
 ## Types
@@ -13,30 +13,55 @@ keywords: ['CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs', 'namespace', 'Agen
 | Name | Summary |
 | ---- | ------- |
 | [AgentToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AgentToolInput) | Represents the input parameters for the Agent tool.  The Agent tool launches specialized agents (subprocesses) that autonomously handle complex tasks. |
+| [ArtifactToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ArtifactToolInput) | Represents the input parameters for the Artifact tool, which publishes and manages artifacts hosted on claude.ai. |
 | [AskUserQuestion](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestion) | Represents a single question within the AskUserQuestion tool input. |
+| [AskUserQuestionMetadata](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestionMetadata) | Represents optional tracking metadata for an AskUserQuestion invocation, which is not displayed to the user. |
 | [AskUserQuestionOption](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestionOption) | Represents a single option choice within an [AskUserQuestion](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestion). |
 | [AskUserQuestionToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AskUserQuestionToolInput) | Represents the input parameters for the AskUserQuestion tool.  The AskUserQuestion tool presents structured multiple-choice questions to the user. |
 | [BashToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/BashToolInput) | Represents the input parameters for the Bash tool.  The Bash tool executes shell commands in a persistent bash session. |
-| [ConfigToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ConfigToolInput) | Represents the input parameters for the Config tool.  The Config tool gets or sets Claude Code configuration settings. |
+| [ClaudeDesignToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ClaudeDesignToolInput) | Represents the input parameters for the ClaudeDesign tool. |
+| [CronCreateToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/CronCreateToolInput) | Represents the input parameters for the CronCreate tool, which schedules a prompt on a cron expression. |
+| [CronDeleteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/CronDeleteToolInput) | Represents the input parameters for the CronDelete tool, which removes a scheduled job. |
+| [CronListToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/CronListToolInput) | Represents the input parameters for the CronList tool, which takes no parameters. |
 | [EditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EditToolInput) | Represents the input parameters for the Edit tool.  The Edit tool performs exact string replacements in files. |
+| [EnterPlanModeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EnterPlanModeToolInput) | Represents the input parameters for the EnterPlanMode tool, which takes no parameters. |
 | [EnterWorktreeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EnterWorktreeToolInput) | Represents the input parameters for the EnterWorktree tool.  The EnterWorktree tool creates a temporary git worktree for isolated work. |
 | [ExitPlanModeAllowedPrompt](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ExitPlanModeAllowedPrompt) | Represents a prompt-based permission needed to implement a plan.  These describe categories of actions rather than specific commands. |
 | [ExitPlanModeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ExitPlanModeToolInput) | Represents the input parameters for the ExitPlanMode tool.  The ExitPlanMode tool transitions from plan mode to execution mode. |
 | [ExitWorktreeToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ExitWorktreeToolInput) | Represents the input parameters for the ExitWorktree tool.  The ExitWorktree tool exits and optionally removes a git worktree. |
 | [GlobToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GlobToolInput) | Represents the input parameters for the Glob tool.  The Glob tool provides fast file pattern matching that works with any codebase size. |
 | [GrepToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GrepToolInput) | Represents the input parameters for the Grep tool.  The Grep tool is a powerful content search built on ripgrep. |
-| [KillShellToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/KillShellToolInput) | Represents the input parameters for the KillShell tool.  The KillShell tool terminates a running background bash shell by its ID. |
 | [ListMcpResourcesToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ListMcpResourcesToolInput) | Represents the input parameters for the ListMcpResources tool.  The ListMcpResources tool lists available MCP (Model Context Protocol) resources. |
 | [McpToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/McpToolInput) | Represents the input parameters for an MCP (Model Context Protocol) tool execution.  MCP tool inputs are dynamic and vary based on the specific MCP server and tool being invoked. |
+| [MonitorToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/MonitorToolInput) | Represents the input parameters for the Monitor tool, which streams events from a background command or WebSocket. |
+| [MonitorWebSocketOptions](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/MonitorWebSocketOptions) | Represents the WebSocket to open for the Monitor tool. |
 | [NotebookEditToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/NotebookEditToolInput) | Represents the input parameters for the NotebookEdit tool.  The NotebookEdit tool replaces the contents of a specific cell in a Jupyter notebook. |
+| [OfferChromeSetupToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/OfferChromeSetupToolInput) | Represents the input parameters for the OfferChromeSetup tool. |
+| [ProjectsToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ProjectsToolInput) | Represents the input parameters for the Projects tool, which reads and writes documents in a claude.ai project. |
+| [ProposeGoalToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ProposeGoalToolInput) | Represents the input parameters for the ProposeGoal tool, which proposes a completion condition for the session. |
+| [ProposeSkillsToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ProposeSkillsToolInput) | Represents the input parameters for the ProposeSkills tool, which shows skill proposals on a review card. |
+| [PushNotificationToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/PushNotificationToolInput) | Represents the input parameters for the PushNotification tool. |
+| [ReadMcpResourceDirToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadMcpResourceDirToolInput) | Represents the input parameters for the ReadMcpResourceDir tool, which lists the children of a directory resource on an MCP server. |
 | [ReadMcpResourceToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadMcpResourceToolInput) | Represents the input parameters for the ReadMcpResource tool.  The ReadMcpResource tool reads the content of a specific MCP (Model Context Protocol) resource. |
+| [ReadNotificationsToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadNotificationsToolInput) | Represents the input parameters for the ReadNotifications tool, which takes no parameters. |
 | [ReadToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReadToolInput) | Represents the input parameters for the Read tool.  The Read tool reads files from the local filesystem. |
-| [TaskOutputToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskOutputToolInput) | Represents the input parameters for the TaskOutput tool.  The TaskOutput tool retrieves output from a background task by its ID. |
+| [RefreshMcpToolsToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/RefreshMcpToolsToolInput) | Represents the input parameters for the RefreshMcpTools tool, which re-queries the tool lists of connected MCP servers. |
+| [RemoteTriggerToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/RemoteTriggerToolInput) | Represents the input parameters for the RemoteTrigger tool, which manages scheduled cloud agents. |
+| [ReportFindingsToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReportFindingsToolInput) | Represents the input parameters for the ReportFindings tool, which reports code review findings as a typed list. |
+| [ReviewFinding](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ReviewFinding) | Represents a single code review finding. |
+| [ScheduleWakeupToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ScheduleWakeupToolInput) | Represents the input parameters for the ScheduleWakeup tool, which schedules when a dynamic loop resumes. |
+| [SendFeedbackToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/SendFeedbackToolInput) | Represents the input parameters for the SendFeedback tool, which drafts feedback about Claude Code. |
+| [ShowOnboardingRolePickerToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/ShowOnboardingRolePickerToolInput) | Represents the input parameters for the ShowOnboardingRolePicker tool, which takes no parameters. |
+| [SkillProposal](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/SkillProposal) | Represents a proposal to create or improve a skill. |
+| [TaskCreateToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskCreateToolInput) | Represents the input parameters for the TaskCreate tool, which adds a task to the session's task list. |
+| [TaskGetToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskGetToolInput) | Represents the input parameters for the TaskGet tool, which retrieves a task by its identifier. |
+| [TaskListToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskListToolInput) | Represents the input parameters for the TaskList tool, which takes no parameters. |
 | [TaskStopToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskStopToolInput) | Represents the input parameters for the TaskStop tool.  The TaskStop tool stops a running background task by its ID. |
-| [TaskToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskToolInput) | Represents the input parameters for the Task tool.  The Task tool launches specialized agents (subprocesses) that autonomously handle complex tasks. |
+| [TaskUpdateToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskUpdateToolInput) | Represents the input parameters for the TaskUpdate tool, which changes an existing task. |
 | [TodoItem](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TodoItem) | Represents a single todo item in the task list. |
 | [TodoWriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TodoWriteToolInput) | Represents the input parameters for the TodoWrite tool.  The TodoWrite tool creates and manages a structured task list for the current coding session. |
 | [WebFetchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput) | Represents the input parameters for the WebFetch tool.  The WebFetch tool fetches content from a URL and processes it using an AI model. |
 | [WebSearchToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebSearchToolInput) | Represents the input parameters for the WebSearch tool.  The WebSearch tool allows Claude to search the web and use the results to inform responses. |
+| [WorkflowToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WorkflowToolInput) | Represents the input parameters for the Workflow tool, which runs a script that orchestrates multiple subagents. |
 | [WriteToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WriteToolInput) | Represents the input parameters for the Write tool.  The Write tool writes a file to the local filesystem. |
 

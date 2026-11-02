@@ -1,0 +1,38 @@
+---
+title: StopFailureErrorType
+description: "Represents the type of error that caused a stop failure in Claude Code."
+icon: list-ol
+tag: "ENUM"
+keywords: ['StopFailureErrorType', 'CloudNimble.ClaudeEssentials.Hooks.StopFailureErrorType', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks
+
+**Inheritance:** System.Enum
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.StopFailureErrorType
+```
+
+## Summary
+
+Represents the type of error that caused a stop failure in Claude Code.
+
+## Values
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `RateLimit` | 0 | The request was rate limited by the API. |
+| `AuthenticationFailed` | 1 | Authentication with the API failed. |
+| `BillingError` | 2 | A billing error occurred with the API account. |
+| `InvalidRequest` | 3 | The API request was invalid. |
+| `ServerError` | 4 | An internal server error occurred on the API side. |
+| `MaxOutputTokens` | 5 | The maximum output token limit was reached. |
+| `Unknown` | 6 | An unknown error type occurred. |
+

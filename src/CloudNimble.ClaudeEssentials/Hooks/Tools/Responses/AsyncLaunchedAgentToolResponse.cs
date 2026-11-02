@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
@@ -59,6 +60,27 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonPropertyName("canReadOutputFile")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? CanReadOutputFile { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the agent is running asynchronously.
+        /// </summary>
+        [JsonPropertyName("isAsync")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? IsAsync { get; set; }
+
+        /// <summary>
+        /// Gets or sets the model in use at the backgrounding transition.
+        /// </summary>
+        [JsonPropertyName("resolvedModel")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? ResolvedModel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ordered distinct models used before backgrounding.
+        /// </summary>
+        [JsonPropertyName("modelsUsed")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<string>? ModelsUsed { get; set; }
 
     }
 

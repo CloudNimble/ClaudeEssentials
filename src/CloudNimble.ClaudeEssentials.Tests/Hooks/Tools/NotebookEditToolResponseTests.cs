@@ -119,7 +119,6 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result!.ToolResponse.Should().NotBeNull();
             result.ToolResponse!.Error.Should().Contain("Cell not found");
             result.ToolResponse.CellId.Should().BeNull();
-            result.ToolResponse.EditMode.Should().BeNull();
         }
 
         #endregion
@@ -171,7 +170,6 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result!.NotebookPath.Should().Be(response.NotebookPath);
             result.Error.Should().Be(response.Error);
             result.CellId.Should().BeNull();
-            result.EditMode.Should().BeNull();
         }
 
         #endregion

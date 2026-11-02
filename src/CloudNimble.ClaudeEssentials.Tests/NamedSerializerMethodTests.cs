@@ -99,21 +99,6 @@ namespace CloudNimble.ClaudeEssentials.Tests
         }
 
         [TestMethod]
-        public void DeserializeConfigPreToolUse_ShouldReturnStronglyTypedPayload()
-        {
-            var toolInput = """{ "setting": "theme", "value": "dark" }""";
-            var json = string.Format(PreToolUseWrapper, "Config", toolInput);
-
-            var result = ClaudeHooksSerializer.DeserializeConfigPreToolUse(json);
-
-            result.Should().NotBeNull();
-            result!.ToolInput.Should().NotBeNull();
-            result.ToolInput!.Setting.Should().Be("theme");
-            result.ToolInput!.Value.Should().NotBeNull();
-            result.ToolInput!.Value!.Value.GetString().Should().Be("dark");
-        }
-
-        [TestMethod]
         public void DeserializeEditPreToolUse_ShouldReturnStronglyTypedPayload()
         {
             var toolInput = """{ "file_path": "D:\\Projects\\TestProject\\src\\Program.cs", "old_string": "Console.WriteLine", "new_string": "Debug.WriteLine" }""";
@@ -199,19 +184,6 @@ namespace CloudNimble.ClaudeEssentials.Tests
         }
 
         [TestMethod]
-        public void DeserializeKillShellPreToolUse_ShouldReturnStronglyTypedPayload()
-        {
-            var toolInput = """{ "shell_id": "shell-abc-123" }""";
-            var json = string.Format(PreToolUseWrapper, "KillShell", toolInput);
-
-            var result = ClaudeHooksSerializer.DeserializeKillShellPreToolUse(json);
-
-            result.Should().NotBeNull();
-            result!.ToolInput.Should().NotBeNull();
-            result.ToolInput!.ShellId.Should().Be("shell-abc-123");
-        }
-
-        [TestMethod]
         public void DeserializeListMcpResourcesPreToolUse_ShouldReturnStronglyTypedPayload()
         {
             var toolInput = """{ "server": "my-mcp-server" }""";
@@ -279,36 +251,6 @@ namespace CloudNimble.ClaudeEssentials.Tests
             result!.ToolInput.Should().NotBeNull();
             result.ToolInput!.Server.Should().Be("my-mcp-server");
             result.ToolInput.Uri.Should().Be("resource://config/settings");
-        }
-
-        [TestMethod]
-        public void DeserializeTaskPreToolUse_ShouldReturnStronglyTypedPayload()
-        {
-            var toolInput = """{ "description": "Run tests", "prompt": "Execute the test suite", "subagent_type": "general-purpose" }""";
-            var json = string.Format(PreToolUseWrapper, "Task", toolInput);
-
-            var result = ClaudeHooksSerializer.DeserializeTaskPreToolUse(json);
-
-            result.Should().NotBeNull();
-            result!.ToolInput.Should().NotBeNull();
-            result.ToolInput!.Description.Should().Be("Run tests");
-            result.ToolInput.Prompt.Should().Be("Execute the test suite");
-            result.ToolInput.SubagentType.Should().Be("general-purpose");
-        }
-
-        [TestMethod]
-        public void DeserializeTaskOutputPreToolUse_ShouldReturnStronglyTypedPayload()
-        {
-            var toolInput = """{ "task_id": "task-001", "block": true, "timeout": 30000 }""";
-            var json = string.Format(PreToolUseWrapper, "TaskOutput", toolInput);
-
-            var result = ClaudeHooksSerializer.DeserializeTaskOutputPreToolUse(json);
-
-            result.Should().NotBeNull();
-            result!.ToolInput.Should().NotBeNull();
-            result.ToolInput!.TaskId.Should().Be("task-001");
-            result.ToolInput.Block.Should().BeTrue();
-            result.ToolInput.Timeout.Should().Be(30000);
         }
 
         [TestMethod]
@@ -433,20 +375,6 @@ namespace CloudNimble.ClaudeEssentials.Tests
         }
 
         [TestMethod]
-        public void DeserializeConfigPostToolUse_ShouldReturnStronglyTypedPayload()
-        {
-            var toolInput = """{ "setting": "theme" }""";
-            var toolResponse = """{ "success": true, "operation": "get", "setting": "theme" }""";
-            var json = string.Format(PostToolUseWrapper, "Config", toolInput, toolResponse);
-
-            var result = ClaudeHooksSerializer.DeserializeConfigPostToolUse(json);
-
-            result.Should().NotBeNull();
-            result!.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Success.Should().BeTrue();
-        }
-
-        [TestMethod]
         public void DeserializeEditPostToolUse_ShouldReturnStronglyTypedPayload()
         {
             var toolInput = """{ "file_path": "D:\\Projects\\test.cs", "old_string": "old", "new_string": "new" }""";
@@ -534,20 +462,6 @@ namespace CloudNimble.ClaudeEssentials.Tests
         }
 
         [TestMethod]
-        public void DeserializeKillShellPostToolUse_ShouldReturnStronglyTypedPayload()
-        {
-            var toolInput = """{ "shell_id": "shell-abc" }""";
-            var toolResponse = """{ "shellId": "shell-abc", "success": true }""";
-            var json = string.Format(PostToolUseWrapper, "KillShell", toolInput, toolResponse);
-
-            var result = ClaudeHooksSerializer.DeserializeKillShellPostToolUse(json);
-
-            result.Should().NotBeNull();
-            result!.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Success.Should().BeTrue();
-        }
-
-        [TestMethod]
         public void DeserializeListMcpResourcesPostToolUse_ShouldReturnStronglyTypedPayload()
         {
             var toolInput = """{ "server": "my-server" }""";
@@ -615,34 +529,6 @@ namespace CloudNimble.ClaudeEssentials.Tests
             result.Should().NotBeNull();
             result!.ToolResponse.Should().NotBeNull();
             result.ToolResponse!.Contents.Should().HaveCount(1);
-        }
-
-        [TestMethod]
-        public void DeserializeTaskPostToolUse_ShouldReturnStronglyTypedPayload()
-        {
-            var toolInput = """{ "description": "Run tests", "prompt": "Execute tests", "subagent_type": "general-purpose" }""";
-            var toolResponse = """{ "result": "All tests passed", "status": "completed" }""";
-            var json = string.Format(PostToolUseWrapper, "Task", toolInput, toolResponse);
-
-            var result = ClaudeHooksSerializer.DeserializeTaskPostToolUse(json);
-
-            result.Should().NotBeNull();
-            result!.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Result.Should().Be("All tests passed");
-        }
-
-        [TestMethod]
-        public void DeserializeTaskOutputPostToolUse_ShouldReturnStronglyTypedPayload()
-        {
-            var toolInput = """{ "task_id": "task-001", "block": true, "timeout": 30000 }""";
-            var toolResponse = """{ "result": "Task output data", "status": "completed" }""";
-            var json = string.Format(PostToolUseWrapper, "TaskOutput", toolInput, toolResponse);
-
-            var result = ClaudeHooksSerializer.DeserializeTaskOutputPostToolUse(json);
-
-            result.Should().NotBeNull();
-            result!.ToolResponse.Should().NotBeNull();
-            result.ToolResponse!.Result.Should().Be("Task output data");
         }
 
         [TestMethod]
@@ -785,27 +671,6 @@ namespace CloudNimble.ClaudeEssentials.Tests
         }
 
         [TestMethod]
-        public void SerializeConfigPreToolUseOutput_ShouldSerializeCorrectly()
-        {
-            var output = new PreToolUseHookOutput<ConfigToolInput>
-            {
-                Continue = true,
-                HookSpecificOutput = new PreToolUseSpecificOutput<ConfigToolInput>
-                {
-                    PermissionDecision = PermissionDecision.Allow,
-                    UpdatedInput = new ConfigToolInput { Setting = "theme" }
-                }
-            };
-
-            var json = ClaudeHooksSerializer.SerializeConfigPreToolUseOutput(output);
-            var doc = JsonDocument.Parse(json);
-
-            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
-            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
-            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("setting").GetString().Should().Be("theme");
-        }
-
-        [TestMethod]
         public void SerializeEditPreToolUseOutput_ShouldSerializeCorrectly()
         {
             var output = new PreToolUseHookOutput<EditToolInput>
@@ -934,27 +799,6 @@ namespace CloudNimble.ClaudeEssentials.Tests
         }
 
         [TestMethod]
-        public void SerializeKillShellPreToolUseOutput_ShouldSerializeCorrectly()
-        {
-            var output = new PreToolUseHookOutput<KillShellToolInput>
-            {
-                Continue = true,
-                HookSpecificOutput = new PreToolUseSpecificOutput<KillShellToolInput>
-                {
-                    PermissionDecision = PermissionDecision.Allow,
-                    UpdatedInput = new KillShellToolInput { ShellId = "shell-abc-123" }
-                }
-            };
-
-            var json = ClaudeHooksSerializer.SerializeKillShellPreToolUseOutput(output);
-            var doc = JsonDocument.Parse(json);
-
-            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
-            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
-            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("shell_id").GetString().Should().Be("shell-abc-123");
-        }
-
-        [TestMethod]
         public void SerializeListMcpResourcesPreToolUseOutput_ShouldSerializeCorrectly()
         {
             var output = new PreToolUseHookOutput<ListMcpResourcesToolInput>
@@ -1063,48 +907,6 @@ namespace CloudNimble.ClaudeEssentials.Tests
             doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
             doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
             doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("server").GetString().Should().Be("my-server");
-        }
-
-        [TestMethod]
-        public void SerializeTaskPreToolUseOutput_ShouldSerializeCorrectly()
-        {
-            var output = new PreToolUseHookOutput<TaskToolInput>
-            {
-                Continue = true,
-                HookSpecificOutput = new PreToolUseSpecificOutput<TaskToolInput>
-                {
-                    PermissionDecision = PermissionDecision.Allow,
-                    UpdatedInput = new TaskToolInput { Description = "Run tests" }
-                }
-            };
-
-            var json = ClaudeHooksSerializer.SerializeTaskPreToolUseOutput(output);
-            var doc = JsonDocument.Parse(json);
-
-            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
-            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
-            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("description").GetString().Should().Be("Run tests");
-        }
-
-        [TestMethod]
-        public void SerializeTaskOutputPreToolUseOutput_ShouldSerializeCorrectly()
-        {
-            var output = new PreToolUseHookOutput<TaskOutputToolInput>
-            {
-                Continue = true,
-                HookSpecificOutput = new PreToolUseSpecificOutput<TaskOutputToolInput>
-                {
-                    PermissionDecision = PermissionDecision.Allow,
-                    UpdatedInput = new TaskOutputToolInput { TaskId = "task-001" }
-                }
-            };
-
-            var json = ClaudeHooksSerializer.SerializeTaskOutputPreToolUseOutput(output);
-            var doc = JsonDocument.Parse(json);
-
-            doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
-            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("permissionDecision").GetString().Should().Be("allow");
-            doc.RootElement.GetProperty("hookSpecificOutput").GetProperty("updatedInput").GetProperty("task_id").GetString().Should().Be("task-001");
         }
 
         [TestMethod]

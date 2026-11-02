@@ -5,15 +5,16 @@
 		<IsTestProject Condition="$(MSBuildProjectName.ToLower().Contains('.tests'))">true</IsTestProject>
 		<IsTestAssetProject Condition="$(RepoRelativeProjectDir.Contains('testassets'))">true</IsTestAssetProject>
 		<IsSampleProject Condition="$(MSBuildProjectName.ToLower().Contains('samples'))">true</IsSampleProject>
-		<IsNetCore Condition=" '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0' OR '$(TargetFramework)' == 'net10.0' ">true</IsNetCore>
+		<IsNetCore Condition=" '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0' OR '$(TargetFramework)' == 'net10.0' OR '$(TargetFramework)' == 'net11.0' ">true</IsNetCore>
 		<IsPrimaryProject Condition=" ('$(IsDocumentationProject)' != 'true' And '$(IsBenchmarkProject)' != 'true' And '$(IsTestProject)' != 'true' And '$(IsTestAssetProject)' != 'true' And '$(IsSampleProject)' != 'true' And '$(IsSampleProject)' != 'true') or '$(IsTemplatePackageProject)' == 'true' ">true</IsPrimaryProject>
-		<IncludeReadmeFile Condition="Exists('$(MSBuildProjectDirectory)\readme.md')">true</IncludeReadmeFile>
+		<IncludeReadmeFile Condition="$(IsPrimaryProject) == 'true' And Exists('$(MSBuildThisFileDirectory)..\README.md')">true</IncludeReadmeFile>
         <IncludePackageIcon Condition="Exists('$(MSBuildThisFileDirectory)\ClaudeEssentials-logo.png')">true</IncludePackageIcon>
 
         <IncludeSource>false</IncludeSource>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 
 		<!--<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)ClaudeEssentials.snk</AssemblyOriginatorKeyFile>
@@ -43,7 +44,7 @@
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<!-- The SPDX name for the source license. See https://spdx.org/licenses/. -->
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReadmeFile Condition="$(IncludeReadmeFile) == 'true'">readme.md</PackageReadmeFile>
+		<PackageReadmeFile Condition="$(IncludeReadmeFile) == 'true'">README.md</PackageReadmeFile>
         <!--<PackageIcon Condition="$(IncludePackageIcon) == 'true'">ClaudeEssentials-logo.png</PackageIcon>-->
 
         <!-- Suppress warnings about using SemVer 2.0. -->
@@ -56,9 +57,9 @@
 		<!-- Contact email address for NuGet packages and Linux installers. -->
 		<MaintainerEmail>opensource@nimbleapps.cloud</MaintainerEmail>
 
-		<PackageProjectUrl>https://easyaf.dev/ClaudeEssentials</PackageProjectUrl>
+		<PackageProjectUrl>https://ai.easyaf.dev/claudeessentials</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<PackageTags>blazor</PackageTags>
+		<PackageTags>claude;claude-code;anthropic;hooks;ai;native-aot;cloudnimble;claudeessentials</PackageTags>
 		<Serviceable>true</Serviceable>
 
 		<RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
@@ -84,7 +85,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<StandardTestTfms>net10.0;net9.0;net8.0</StandardTestTfms>
+		<StandardTestTfms>net11.0;net10.0;net9.0;net8.0</StandardTestTfms>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" $(IsSampleProject) == 'true' ">
@@ -102,7 +103,6 @@
     </PropertyGroup>
 
 	<ItemGroup Condition=" $(IsDocumentationProject) != 'true' and $(IsTestProject) != 'true' and $(IsSampleProject) != 'true' ">
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.*" PrivateAssets="All" />
         <!--<InternalsVisibleTo Include="$(AssemblyName.Replace('CloudNimble.ClaudeEssentials', 'CloudNimble.ClaudeEssentials.Tests')), $(StrongNamePublicKey)" />-->
         <InternalsVisibleTo Include="$(AssemblyName.Replace('CloudNimble.ClaudeEssentials', 'CloudNimble.ClaudeEssentials.Tests'))" />
     </ItemGroup>
@@ -124,7 +124,7 @@
 
 	<ItemGroup>
 		<!--<None Include="$(MSBuildThisFileDirectory)claudeessentials-logo.png" Pack="true" PackagePath="\" Condition="'$(IsTestProject)' != 'true'" />-->
-		<None Include="readme.md" Pack="true" PackagePath="\" Condition="$(IncludeReadmeFile) == 'true'" />
+		<None Include="$(MSBuildThisFileDirectory)..\README.md" Link="README.md" Pack="true" PackagePath="\" Condition="$(IncludeReadmeFile) == 'true'" />
 	</ItemGroup>
 
 </Project>

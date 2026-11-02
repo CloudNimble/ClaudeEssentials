@@ -50,7 +50,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result!.ToolResponse.Should().BeOfType<ImageReadToolResponse>();
             var image = (ImageReadToolResponse)result.ToolResponse!;
             image.File.Base64.Should().StartWith("iVBORw0KGgo");
-            image.File.MimeType.Should().Be("image/png");
+            image.File.MimeType.Should().Be(ImageMediaType.Png);
             image.File.OriginalSize.Should().Be(119);
             image.File.Dimensions.Should().NotBeNull();
             image.File.Dimensions!.OriginalWidth.Should().Be(1920);
@@ -81,7 +81,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPostToolUsePayload);
 
             var image = (ImageReadToolResponse)result!.ToolResponse!;
-            image.File.MimeType.Should().Be("image/jpeg");
+            image.File.MimeType.Should().Be(ImageMediaType.Jpeg);
             image.File.OriginalSize.Should().Be(8192);
             image.File.Dimensions.Should().BeNull();
         }
@@ -112,7 +112,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.ReadPostToolUsePayload);
 
             var image = (ImageReadToolResponse)result!.ToolResponse!;
-            image.File.MimeType.Should().Be("image/webp");
+            image.File.MimeType.Should().Be(ImageMediaType.Webp);
             image.File.Dimensions.Should().NotBeNull();
             image.File.Dimensions!.OriginalWidth.Should().Be(800);
             image.File.Dimensions.DisplayWidth.Should().BeNull();
@@ -131,7 +131,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
                 File = new ImageReadToolFileInfo
                 {
                     Base64 = "dGVzdA==",
-                    MimeType = "image/gif",
+                    MimeType = ImageMediaType.Gif,
                     OriginalSize = 42,
                     Dimensions = new ImageDimensionInfo
                     {
@@ -147,7 +147,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.Should().BeOfType<ImageReadToolResponse>();
             var image = (ImageReadToolResponse)result!;
             image.File.Base64.Should().Be("dGVzdA==");
-            image.File.MimeType.Should().Be("image/gif");
+            image.File.MimeType.Should().Be(ImageMediaType.Gif);
             image.File.OriginalSize.Should().Be(42);
             image.File.Dimensions!.OriginalWidth.Should().Be(100);
         }

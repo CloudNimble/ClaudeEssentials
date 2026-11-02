@@ -168,6 +168,64 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         }
 
         [TestMethod]
+        public void DeserializeWritePostToolUse_WithUserModified_ShouldDeserializeCorrectly()
+        {
+            var json = """
+                {
+                    "tool_name": "Write",
+                    "tool_input": {
+                        "file_path": "D:\\Projects\\TestProject\\settings.json",
+                        "content": "{\n  \"level\": \"info\"\n}"
+                    },
+                    "tool_response": {
+                        "type": "create",
+                        "filePath": "D:\\Projects\\TestProject\\settings.json",
+                        "content": "{\n  \"level\": \"debug\"\n}",
+                        "structuredPatch": [],
+                        "originalFile": null,
+                        "userModified": true
+                    },
+                    "tool_use_id": "toolu_01TestWriteUserModified001"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.WritePostToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolResponse.Should().NotBeNull();
+            result.ToolResponse!.UserModified.Should().BeTrue();
+            result.ToolResponse.Content.Should().Contain("debug");
+        }
+
+        [TestMethod]
+        public void DeserializeWritePostToolUse_WithoutUserModified_ShouldHaveNullUserModified()
+        {
+            var json = """
+                {
+                    "tool_name": "Write",
+                    "tool_input": {
+                        "file_path": "D:\\Projects\\TestProject\\readme.md",
+                        "content": "hello"
+                    },
+                    "tool_response": {
+                        "type": "create",
+                        "filePath": "D:\\Projects\\TestProject\\readme.md",
+                        "content": "hello",
+                        "structuredPatch": [],
+                        "originalFile": null
+                    },
+                    "tool_use_id": "toolu_01TestWriteNoUserModified001"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.WritePostToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolResponse.Should().NotBeNull();
+            result.ToolResponse!.UserModified.Should().BeNull();
+        }
+
+        [TestMethod]
         public void DeserializeWritePostToolUse_WithCSharpContent_ShouldDeserializeCorrectly()
         {
             // Arrange - Simulating writing a C# file
@@ -248,6 +306,41 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.Content.Should().Be(response.Content);
             result.StructuredPatch.Should().BeEmpty();
             result.OriginalFile.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void WriteToolResponse_RoundTrip_WithUserModified_ShouldMaintainData()
+        {
+            var response = new WriteToolResponse
+            {
+                Type = WriteOperationType.Create,
+                FilePath = "D:\\mod.txt",
+                Content = "user-edited content",
+                StructuredPatch = [],
+                UserModified = true
+            };
+
+            var json = JsonSerializer.Serialize(response, ClaudeHooksJsonContext.Default.WriteToolResponse);
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.WriteToolResponse);
+
+            result.Should().NotBeNull();
+            result!.UserModified.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void WriteToolResponse_RoundTrip_WithoutUserModified_ShouldOmitField()
+        {
+            var response = new WriteToolResponse
+            {
+                Type = WriteOperationType.Create,
+                FilePath = "D:\\clean.txt",
+                Content = "as-proposed content",
+                StructuredPatch = []
+            };
+
+            var json = JsonSerializer.Serialize(response, ClaudeHooksJsonContext.Default.WriteToolResponse);
+
+            json.Should().NotContain("userModified");
         }
 
         [TestMethod]

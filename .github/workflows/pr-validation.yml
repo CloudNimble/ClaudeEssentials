@@ -5,6 +5,7 @@ on:
     branches: [ main, dev ]
     types: [opened, synchronize, reopened]
     paths-ignore:
+      - '.github/**'
       - 'src/CloudNimble.ClaudeEssentials.Docs/**'
       - '*.md'
   workflow_dispatch:
@@ -13,7 +14,7 @@ permissions:
   contents: read
 
 env:
-  DOTNET_VERSION: '10.0.x'
+  DOTNET_VERSION: '11.0.x'
 
 jobs:
   validate:
@@ -28,9 +29,10 @@ jobs:
     - name: Install .NET
       shell: pwsh
       run: |
-        Write-Host "📥 Installing .NET 10..."
+        Write-Host "📥 Installing the .NET 11 SDK from global.json and the .NET 10 runtime..."
         Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile "dotnet-install.ps1"
-        ./dotnet-install.ps1 -Channel 10.0 -InstallDir "$env:ProgramFiles\dotnet"
+        ./dotnet-install.ps1 -JSonFile src/global.json -InstallDir "$env:ProgramFiles\dotnet"
+        ./dotnet-install.ps1 -Channel 10.0 -Runtime dotnet -InstallDir "$env:ProgramFiles\dotnet"
         echo "$env:ProgramFiles\dotnet" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         dotnet --list-sdks
 
@@ -66,11 +68,24 @@ jobs:
       working-directory: src
       run: dotnet pack CloudNimble.ClaudeEssentials/CloudNimble.ClaudeEssentials.csproj --configuration Release --no-build --output ../artifacts /p:PackageVersion=${{ steps.version.outputs.VERSION }}
 
+    - name: Verify symbol packages
+      shell: pwsh
+      run: |
+        $packages = @(Get-ChildItem ./artifacts -Filter *.nupkg)
+        if ($packages.Count -eq 0) { throw "No .nupkg files were created." }
+        foreach ($package in $packages) {
+          $symbols = [IO.Path]::ChangeExtension($package.FullName, ".snupkg")
+          if (-not (Test-Path $symbols)) { throw "$($package.Name) has no matching .snupkg." }
+          Write-Host "Found symbols for $($package.Name)"
+        }
+
     - name: Upload artifacts
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: nuget-packages-pr
-        path: ./artifacts/*.nupkg
+        path: |
+          ./artifacts/*.nupkg
+          ./artifacts/*.snupkg
         retention-days: 7
 
     - name: Validate packages

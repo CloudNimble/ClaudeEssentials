@@ -1,0 +1,300 @@
+---
+title: AgentToolStats
+description: "Represents an aggregate breakdown of the tools used by an Agent during its execution."
+icon: file-brackets-curly
+keywords: ['AgentToolStats', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentToolStats', 'CloudNimble.ClaudeEssentials.Hooks.Tools.Responses', 'class', 'System.Object']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
+
+**Inheritance:** System.Object
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.AgentToolStats
+```
+
+## Summary
+
+Represents an aggregate breakdown of the tools used by an Agent during its execution.
+
+## Remarks
+
+These counts give a high-level view of the agent's workload, useful for understanding
+whether the agent spent its time searching, reading, editing, or running shell commands.
+
+The [AgentToolStats.LinesAdded](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AgentToolStats#linesadded) and [AgentToolStats.LinesRemoved](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/AgentToolStats#linesremoved) counts aggregate line-level
+changes across all Edit/Write operations performed by the agent.
+
+Example JSON payload:
+```csharp
+{
+  "readCount": 12,
+  "searchCount": 5,
+  "bashCount": 3,
+  "editFileCount": 4,
+  "linesAdded": 87,
+  "linesRemoved": 23,
+  "otherToolCount": 2
+}
+```
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public AgentToolStats()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public Object()
+```
+
+## Properties
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> BashCount
+
+Gets or sets the number of Bash shell commands executed by the agent.
+
+#### Syntax
+
+```csharp
+public int BashCount { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> EditFileCount
+
+Gets or sets the number of file edit or write operations performed by the agent.
+
+#### Syntax
+
+```csharp
+public int EditFileCount { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> FrameCount
+
+Gets or sets the number of frames captured by the agent.
+
+#### Syntax
+
+```csharp
+public System.Nullable<int> FrameCount { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<int>`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> LinesAdded
+
+Gets or sets the total number of lines added across all edit and write operations.
+
+#### Syntax
+
+```csharp
+public int LinesAdded { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> LinesRemoved
+
+Gets or sets the total number of lines removed across all edit and write operations.
+
+#### Syntax
+
+```csharp
+public int LinesRemoved { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> OtherToolCount
+
+Gets or sets the number of other tool invocations not covered by the specific counters.
+
+#### Syntax
+
+```csharp
+public int OtherToolCount { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReadCount
+
+Gets or sets the number of file read operations performed by the agent.
+
+#### Syntax
+
+```csharp
+public int ReadCount { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SearchCount
+
+Gets or sets the number of search operations (Grep, Glob, etc.) performed by the agent.
+
+#### Syntax
+
+```csharp
+public int SearchCount { get; set; }
+```
+
+#### Property Value
+
+Type: `int`
+
+## Methods
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual bool Equals(object obj)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `obj` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool Equals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetHashCode <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual int GetHashCode()
+```
+
+#### Returns
+
+Type: `int`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public System.Type GetType()
+```
+
+#### Returns
+
+Type: `System.Type`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MemberwiseClone <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+protected internal object MemberwiseClone()
+```
+
+#### Returns
+
+Type: `object`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReferenceEquals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool ReferenceEquals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToString <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual string ToString()
+```
+
+#### Returns
+
+Type: `string?`
+

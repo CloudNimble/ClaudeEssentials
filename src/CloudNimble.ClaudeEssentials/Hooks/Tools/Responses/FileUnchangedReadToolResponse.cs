@@ -15,6 +15,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonPropertyName("file")]
         public FileUnchangedReadToolFileInfo File { get; set; } = new();
 
+        /// <summary>
+        /// Gets or sets why the file was reported as unchanged, when not because of a prior Read result.
+        /// </summary>
+        [JsonPropertyName("source")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public FileUnchangedSource? Source { get; set; }
+
     }
 
 }

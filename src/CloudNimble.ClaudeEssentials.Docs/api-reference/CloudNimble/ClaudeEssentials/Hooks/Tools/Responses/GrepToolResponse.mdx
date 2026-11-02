@@ -35,7 +35,7 @@ The response structure varies based on the [GrepToolInput.OutputMode](/api-refer
 
 - `"files_with_matches"` (default) - Returns only file paths containing matches
 - `"content"` - Returns matching lines with context
-- `"count"` - Returns match counts per file
+- `"count"` - Returns the number of matches found
 
 
 Example JSON payload (files_with_matches mode):
@@ -84,7 +84,7 @@ public System.Nullable<int> AppliedLimit { get; set; }
 
 #### Property Value
 
-Type: `System.Nullable<int>?`
+Type: `System.Nullable<int>`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AppliedOffset
 
@@ -98,7 +98,7 @@ public System.Nullable<int> AppliedOffset { get; set; }
 
 #### Property Value
 
-Type: `System.Nullable<int>?`
+Type: `System.Nullable<int>`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Content
 
@@ -129,38 +129,6 @@ The format includes the file path, line number, and matching content.
 Additional context lines can be included using the `-A`, `-B`, or `-C`
 parameters in [GrepToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/GrepToolInput).
 
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Counts
-
-Gets or sets the match counts per file.
-
-#### Syntax
-
-```csharp
-public System.Collections.Generic.Dictionary<string, int> Counts { get; set; }
-```
-
-#### Property Value
-
-Type: `System.Collections.Generic.Dictionary<string, int>?`
-
-#### Examples
-
-```csharp
-{
-  "C:\\Projects\\MyApp\\src\\Program.cs": 5,
-  "C:\\Projects\\MyApp\\src\\Utilities.cs": 2
-}
-```
-
-#### Remarks
-
-This property is populated when [GrepToolResponse.Mode](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GrepToolResponse#mode) is `"count"`.
-The dictionary keys are absolute file paths, and the values are the number
-of matches found in each file.
-
-This is useful for understanding the distribution of matches across files
-before deciding which files to read or edit.
-
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Filenames
 
 Gets or sets the list of file paths containing matches.
@@ -173,7 +141,7 @@ public System.Collections.Generic.List<string> Filenames { get; set; }
 
 #### Property Value
 
-Type: `System.Collections.Generic.List<string>?`
+Type: `System.Collections.Generic.List<string>`
 
 #### Remarks
 
@@ -190,12 +158,12 @@ Gets or sets the output mode that was used for the search.
 #### Syntax
 
 ```csharp
-public CloudNimble.ClaudeEssentials.Hooks.GrepOutputMode Mode { get; set; }
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.GrepOutputMode> Mode { get; set; }
 ```
 
 #### Property Value
 
-Type: `CloudNimble.ClaudeEssentials.Hooks.GrepOutputMode?`
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.GrepOutputMode>`
 
 #### Remarks
 
@@ -204,7 +172,7 @@ contain the results:
 
 - `"files_with_matches"` - Results are in [GrepToolResponse.Filenames](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GrepToolResponse#filenames)
 - `"content"` - Results are in [GrepToolResponse.Content](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GrepToolResponse#content)
-- `"count"` - Results are in [GrepToolResponse.Counts](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GrepToolResponse#counts)
+- `"count"` - Results are in [GrepToolResponse.NumMatches](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/GrepToolResponse#nummatches)
 
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> NumFiles
@@ -239,7 +207,7 @@ public System.Nullable<int> NumLines { get; set; }
 
 #### Property Value
 
-Type: `System.Nullable<int>?`
+Type: `System.Nullable<int>`
 
 #### Remarks
 
@@ -257,7 +225,35 @@ public System.Nullable<int> NumMatches { get; set; }
 
 #### Property Value
 
-Type: `System.Nullable<int>?`
+Type: `System.Nullable<int>`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TotalFiles
+
+Gets or sets the total number of matching files.
+
+#### Syntax
+
+```csharp
+public System.Nullable<int> TotalFiles { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<int>`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TotalLines
+
+Gets or sets the total number of matching lines.
+
+#### Syntax
+
+```csharp
+public System.Nullable<int> TotalLines { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<int>`
 
 ## Methods
 

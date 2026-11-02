@@ -29,7 +29,7 @@ The Agent tool launches specialized agents (subprocesses) that autonomously hand
 Each agent type has specific capabilities and tools available to it.
 Available agent types include: general-purpose, Explore, Plan, claude-code-guide, and others.
 
-Unlike [TaskToolInput](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/TaskToolInput), this type reflects the latest Agent tool schema including
+This type reflects the latest Agent tool schema including
 team collaboration fields such as [AgentToolInput.Name](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AgentToolInput#name), [AgentToolInput.TeamName](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AgentToolInput#teamname), and [AgentToolInput.Mode](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/AgentToolInput#mode).
 
 ## Constructors
@@ -68,24 +68,37 @@ public string Description { get; set; }
 
 Type: `string`
 
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Isolation
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Effort
 
-Gets or sets the isolation mode. Set to `"worktree"` to create a temporary git worktree
-so the agent works on an isolated copy of the repo.
+Gets or sets the reasoning effort for this agent. Ignored when `subagent_type` is `fork`.
 
 #### Syntax
 
 ```csharp
-public string Isolation { get; set; }
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.ReasoningEffort> Effort { get; set; }
 ```
 
 #### Property Value
 
-Type: `string?`
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.ReasoningEffort?>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Isolation
+
+Gets or sets the isolation mode for the spawned agent.
+
+#### Syntax
+
+```csharp
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.AgentIsolationMode> Isolation { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.AgentIsolationMode?>?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Mode
 
-Gets or sets the permission mode for the spawned teammate (e.g., "plan" to require plan approval).
+Gets or sets the permission mode. This value is deprecated and ignored: subagents inherit the parent session's permission mode.
 
 #### Syntax
 
@@ -96,10 +109,6 @@ public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.PermissionMode> Mode {
 #### Property Value
 
 Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.PermissionMode?>?`
-
-#### Remarks
-
-See [PermissionMode](/api-reference/CloudNimble/ClaudeEssentials/Hooks/PermissionMode) for possible values.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Model
 
@@ -150,8 +159,7 @@ Type: `string`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> RunInBackground
 
-Gets or sets whether to run this agent in the background.
-You will be notified when it completes.
+Gets or sets a value indicating whether to run this agent in the background. Agents run in the background by default.
 
 #### Syntax
 
@@ -179,7 +187,7 @@ Type: `string?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TeamName
 
-Gets or sets the team name for spawning. Uses current team context if omitted.
+Gets or sets the team name. This value is deprecated and ignored: the session has a single implicit team.
 
 #### Syntax
 

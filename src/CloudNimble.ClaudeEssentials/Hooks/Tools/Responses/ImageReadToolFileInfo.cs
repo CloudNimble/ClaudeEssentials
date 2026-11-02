@@ -23,7 +23,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         /// Known values: <c>"image/jpeg"</c>, <c>"image/png"</c>, <c>"image/gif"</c>, <c>"image/webp"</c>.
         /// </remarks>
         [JsonPropertyName("type")]
-        public string MimeType { get; set; } = string.Empty;
+        public ImageMediaType MimeType { get; set; }
 
         /// <summary>
         /// Gets or sets the original file size in bytes.

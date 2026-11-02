@@ -18,7 +18,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         #region Deserialization Tests
 
         [TestMethod]
-        public void DeserializeWebFetchToolResponse_OldStyleFields_ShouldDeserializeCorrectly()
+        public void DeserializeWebFetchToolResponse_WithoutResponseMetadata_ShouldUseDefaults()
         {
             var json = """
                 {
@@ -49,8 +49,8 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.ToolResponse!.Url.Should().Contain("dotnet/whats-new");
             result.ToolResponse.Result.Should().Contain(".NET 9");
             result.ToolResponse.DurationMs.Should().Be(2350);
-            result.ToolResponse.Bytes.Should().BeNull();
-            result.ToolResponse.Code.Should().BeNull();
+            result.ToolResponse.Bytes.Should().Be(0);
+            result.ToolResponse.Code.Should().Be(0);
         }
 
         [TestMethod]
@@ -169,9 +169,9 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result!.Url.Should().Be(response.Url);
             result.Result.Should().Be(response.Result);
             result.DurationMs.Should().Be(response.DurationMs);
-            result.Bytes.Should().BeNull();
-            result.Code.Should().BeNull();
-            result.CodeText.Should().BeNull();
+            result.Bytes.Should().Be(0);
+            result.Code.Should().Be(0);
+            result.CodeText.Should().BeEmpty();
         }
 
         [TestMethod]

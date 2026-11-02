@@ -4,6 +4,7 @@ on:
   push:
     branches: [ main, dev ]
     paths-ignore:
+      - '.github/**'
       - 'src/CloudNimble.ClaudeEssentials.Docs/**'
       - '*.md'
   workflow_dispatch:
@@ -23,7 +24,7 @@ permissions:
   id-token: write
 
 env:
-  DOTNET_VERSION: '10.0.x'
+  DOTNET_VERSION: '11.0.x'
 
 jobs:
   build:
@@ -40,9 +41,10 @@ jobs:
     - name: Install .NET
       shell: pwsh
       run: |
-        Write-Host "📥 Installing .NET 10..."
+        Write-Host "📥 Installing the .NET 11 SDK from global.json and the .NET 10 runtime..."
         Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile "dotnet-install.ps1"
-        ./dotnet-install.ps1 -Channel 10.0 -InstallDir "$env:ProgramFiles\dotnet"
+        ./dotnet-install.ps1 -JSonFile src/global.json -InstallDir "$env:ProgramFiles\dotnet"
+        ./dotnet-install.ps1 -Channel 10.0 -Runtime dotnet -InstallDir "$env:ProgramFiles\dotnet"
         echo "$env:ProgramFiles\dotnet" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         dotnet --list-sdks
 
@@ -101,11 +103,24 @@ jobs:
       working-directory: src
       run: dotnet pack CloudNimble.ClaudeEssentials/CloudNimble.ClaudeEssentials.csproj --configuration Release --no-build --output ../artifacts /p:PackageVersion=${{ steps.version.outputs.VERSION }}
 
+    - name: Verify symbol packages
+      shell: pwsh
+      run: |
+        $packages = @(Get-ChildItem ./artifacts -Filter *.nupkg)
+        if ($packages.Count -eq 0) { throw "No .nupkg files were created." }
+        foreach ($package in $packages) {
+          $symbols = [IO.Path]::ChangeExtension($package.FullName, ".snupkg")
+          if (-not (Test-Path $symbols)) { throw "$($package.Name) has no matching .snupkg." }
+          Write-Host "Found symbols for $($package.Name)"
+        }
+
     - name: Upload artifacts
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: nuget-packages
-        path: ./artifacts/*.nupkg
+        path: |
+          ./artifacts/*.nupkg
+          ./artifacts/*.snupkg
         retention-days: 7
 
   deploy:
@@ -121,7 +136,7 @@ jobs:
       uses: actions/checkout@v6
 
     - name: Download artifacts
-      uses: actions/download-artifact@v7
+      uses: actions/download-artifact@v8
       with:
         name: nuget-packages
         path: ./artifacts
@@ -197,7 +212,7 @@ jobs:
       uses: actions/checkout@v6
 
     - name: Download artifacts
-      uses: actions/download-artifact@v7
+      uses: actions/download-artifact@v8
       with:
         name: nuget-packages
         path: ./artifacts
@@ -222,7 +237,7 @@ jobs:
         } >> $GITHUB_OUTPUT
 
     - name: Create GitHub Release
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         tag_name: v${{ needs.build.outputs.version }}
         name: Release v${{ needs.build.outputs.version }}

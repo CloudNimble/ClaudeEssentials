@@ -165,6 +165,20 @@ This represents the complete line count of the file, regardless of how many line
 were actually returned in this response. Use this to determine if the file was
 partially read (when [ReadToolFileInfo.NumLines](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ReadToolFileInfo#numlines) is less than [ReadToolFileInfo.TotalLines](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/ReadToolFileInfo#totallines)).
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TruncatedByTokenCap
+
+Gets or sets a value indicating whether a whole-file read was auto-paginated because it exceeded the token cap.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> TruncatedByTokenCap { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>`
+
 ## Methods
 
 ### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>

@@ -70,6 +70,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? Limit { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to read a text file, or a line range of one, that is over the usual size limits.
+        /// </summary>
+        [JsonPropertyName("allow_large")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? AllowLarge { get; set; }
+
     }
 
 }

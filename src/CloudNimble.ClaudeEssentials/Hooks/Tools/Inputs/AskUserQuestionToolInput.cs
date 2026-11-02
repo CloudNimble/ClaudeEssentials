@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using CloudNimble.ClaudeEssentials.Hooks.Tools.Responses;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
 {
@@ -40,6 +41,27 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         /// </summary>
         [JsonPropertyName("questions")]
         public List<AskUserQuestion> Questions { get; set; } = [];
+
+        /// <summary>
+        /// Gets or sets the user answers collected by the permission component, keyed by question text.
+        /// </summary>
+        [JsonPropertyName("answers")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public Dictionary<string, string>? Answers { get; set; }
+
+        /// <summary>
+        /// Gets or sets optional per-question annotations from the user, keyed by question text.
+        /// </summary>
+        [JsonPropertyName("annotations")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public Dictionary<string, AskUserQuestionAnnotation>? Annotations { get; set; }
+
+        /// <summary>
+        /// Gets or sets optional metadata for tracking and analytics purposes.
+        /// </summary>
+        [JsonPropertyName("metadata")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public AskUserQuestionMetadata? Metadata { get; set; }
 
     }
 

@@ -1,0 +1,75 @@
+---
+title: WebSearchResultContainerConverter
+description: "Converts an entry of the WebSearch `results` array, which is either a block of search hits or a string of text commentary from the model."
+icon: lock
+sidebarTitle: WebSearchResultContainerConverter
+tag: "SEALED"
+keywords: ['WebSearchResultContainerConverter', 'CloudNimble.ClaudeEssentials.Hooks.Converters.WebSearchResultContainerConverter', 'CloudNimble.ClaudeEssentials.Hooks.Converters', 'class', 'System.Text.Json.Serialization.JsonConverter<CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.WebSearchResultContainer>']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Converters
+
+**Inheritance:** System.Text.Json.Serialization.JsonConverter&lt;CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.WebSearchResultContainer&gt;
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Converters.WebSearchResultContainerConverter
+```
+
+## Summary
+
+Converts an entry of the WebSearch `results` array, which is either a block of search hits or a string of text commentary from the model.
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public WebSearchResultContainerConverter()
+```
+
+## Methods
+
+### <Icon icon="code-merge" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Read <Badge color="blue">Override</Badge>
+
+#### Syntax
+
+```csharp
+public override CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.WebSearchResultContainer Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `reader` | `System.Text.Json.Utf8JsonReader` | - |
+| `typeToConvert` | `System.Type` | - |
+| `options` | `System.Text.Json.JsonSerializerOptions` | - |
+
+#### Returns
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.WebSearchResultContainer?`
+
+### <Icon icon="code-merge" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Write <Badge color="blue">Override</Badge>
+
+#### Syntax
+
+```csharp
+public override void Write(System.Text.Json.Utf8JsonWriter writer, CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.WebSearchResultContainer value, System.Text.Json.JsonSerializerOptions options)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `writer` | `System.Text.Json.Utf8JsonWriter` | - |
+| `value` | `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.WebSearchResultContainer` | - |
+| `options` | `System.Text.Json.JsonSerializerOptions` | - |
+

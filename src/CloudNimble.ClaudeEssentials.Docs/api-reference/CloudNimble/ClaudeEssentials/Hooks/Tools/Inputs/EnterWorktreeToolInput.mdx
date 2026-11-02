@@ -48,7 +48,7 @@ public Object()
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Name
 
-Gets or sets an optional name for the worktree. Each "/"-separated segment may contain
+Gets or sets an optional name for a new worktree. Each "/"-separated segment may contain
 only letters, digits, dots, underscores, and dashes; max 64 chars total.
 A random name is generated if not provided.
 
@@ -61,6 +61,30 @@ public string Name { get; set; }
 #### Property Value
 
 Type: `string?`
+
+#### Remarks
+
+Mutually exclusive with [EnterWorktreeToolInput.Path](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EnterWorktreeToolInput#path).
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Path
+
+Gets or sets the path to an existing worktree of the current repository to switch into
+instead of creating a new one.
+
+#### Syntax
+
+```csharp
+public string Path { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+#### Remarks
+
+Must appear in `git worktree list` for the current repo. Mutually exclusive with
+[EnterWorktreeToolInput.Name](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/EnterWorktreeToolInput#name).
 
 ## Methods
 

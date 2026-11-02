@@ -9,7 +9,7 @@ This directory contains the GitHub Actions workflows for ClaudeEssentials.
 Builds, tests, and deploys the ClaudeEssentials NuGet package.
 
 **Triggers:**
-- Push to `main` or `dev` branches
+- Push to `main` or `dev` branches, unless only `.github/`, `src/CloudNimble.ClaudeEssentials.Docs/`, or root `*.md` files changed
 - Manual dispatch with optional NuGet deployment
 
 **Jobs:**
@@ -22,7 +22,7 @@ Builds, tests, and deploys the ClaudeEssentials NuGet package.
 Validates pull requests before merge.
 
 **Triggers:**
-- Pull requests to `main` or `dev` branches
+- Pull requests to `main` or `dev` branches, unless only `.github/`, `src/CloudNimble.ClaudeEssentials.Docs/`, or root `*.md` files changed
 
 **Checks:**
 - Build succeeds
@@ -61,5 +61,5 @@ Version variables are automatically updated after successful deployments.
 
 ## Requirements
 
-- .NET 10 (installed automatically)
-- Windows runner (for .NET 10 compatibility)
+- .NET 11 SDK from `src/global.json` and the .NET 10 runtime (installed automatically)
+- Windows runner

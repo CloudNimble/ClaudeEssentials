@@ -1,0 +1,44 @@
+---
+title: ArtifactAction
+description: "Represents the action performed by the Artifact tool."
+icon: list-ol
+tag: "ENUM"
+keywords: ['ArtifactAction', 'CloudNimble.ClaudeEssentials.Hooks.ArtifactAction', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks
+
+**Inheritance:** System.Enum
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.ArtifactAction
+```
+
+## Summary
+
+Represents the action performed by the Artifact tool.
+
+## Values
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `Publish` | 0 | Publishes a file. This is the default action. |
+| `List` | 1 | Lists artifacts. |
+| `Read` | 2 | Reads a published artifact. |
+| `ListTypes` | 3 | Lists the available artifact types. |
+| `Watch` | 4 | Starts watching an artifact for new versions. |
+| `Unwatch` | 5 | Stops watching an artifact. |
+| `Status` | 6 | Reports the artifact watches of this session. |
+| `UploadAsset` | 7 | Uploads files to an artifact's asset store. |
+| `ListAssets` | 8 | Lists the files in an artifact's asset store. |
+| `ReadAsset` | 9 | Saves an asset to a local file. |
+| `DeleteAsset` | 10 | Permanently removes an asset. |
+| `Pin` | 11 | Adds an artifact to the user's pinned list. |
+| `Unpin` | 12 | Removes an artifact from the user's pinned list. |
+

@@ -244,10 +244,8 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
                     },
                     "tool_response": {
                         "mode": "count",
-                        "counts": {
-                            "src\\Program.cs": 5,
-                            "src\\Utils.cs": 3
-                        },
+                        "filenames": [],
+                        "numMatches": 8,
                         "numFiles": 2
                     },
                     "tool_use_id": "toolu_01TestGrepCount001"
@@ -261,9 +259,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.Should().NotBeNull();
             result!.ToolResponse.Should().NotBeNull();
             result.ToolResponse!.Mode.Should().Be(GrepOutputMode.Count);
-            result.ToolResponse.Counts.Should().NotBeNull();
-            result.ToolResponse.Counts.Should().ContainKey("src\\Program.cs");
-            result.ToolResponse.Counts!["src\\Program.cs"].Should().Be(5);
+            result.ToolResponse.NumMatches.Should().Be(8);
         }
 
         [TestMethod]
@@ -358,11 +354,8 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             var response = new GrepToolResponse
             {
                 Mode = GrepOutputMode.Count,
-                Counts = new Dictionary<string, int>
-                {
-                    ["file1.cs"] = 10,
-                    ["file2.cs"] = 5
-                },
+                Filenames = [],
+                NumMatches = 15,
                 NumFiles = 2
             };
 
@@ -373,10 +366,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             // Assert
             result.Should().NotBeNull();
             result!.Mode.Should().Be(GrepOutputMode.Count);
-            result.Counts.Should().NotBeNull();
-            result.Counts.Should().ContainKey("file1.cs");
-            result.Counts!["file1.cs"].Should().Be(10);
-            result.Counts["file2.cs"].Should().Be(5);
+            result.NumMatches.Should().Be(15);
             result.NumFiles.Should().Be(2);
         }
 

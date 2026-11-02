@@ -70,6 +70,20 @@ public Object()
 
 ## Properties
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> CountIsComplete
+
+Gets or sets a value indicating whether `totalMatches` is the exact total rather than a lower bound.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> CountIsComplete { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DurationMs
 
 Gets or sets the duration of the glob operation in milliseconds.
@@ -136,6 +150,20 @@ is `true`, this represents only the number of files returned, not the total
 number of matches.
 
 A value of 0 indicates no files matched the specified pattern in the search directory.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TotalMatches
+
+Gets or sets the total number of matching files before truncation. A lower bound when `countIsComplete` is false.
+
+#### Syntax
+
+```csharp
+public System.Nullable<int> TotalMatches { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<int>`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Truncated
 

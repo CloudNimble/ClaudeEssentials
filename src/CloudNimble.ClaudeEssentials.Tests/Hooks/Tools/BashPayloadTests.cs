@@ -206,6 +206,61 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         }
 
         [TestMethod]
+        public void DeserializeBashPostToolUse_WithStaleReadFileStateHint_ShouldDeserializeCorrectly()
+        {
+            var json = """
+                {
+                    "tool_name": "Bash",
+                    "tool_input": {
+                        "command": "npm run build",
+                        "description": "Build and emit artifacts"
+                    },
+                    "tool_response": {
+                        "stdout": "Build complete\r\n",
+                        "stderr": "",
+                        "interrupted": false,
+                        "isImage": false,
+                        "staleReadFileStateHint": "Files modified during command: dist/bundle.js, dist/bundle.css"
+                    },
+                    "tool_use_id": "toolu_01TestBashStaleHint001"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.BashPostToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolResponse.Should().NotBeNull();
+            result.ToolResponse!.StaleReadFileStateHint.Should().Contain("dist/bundle.js");
+        }
+
+        [TestMethod]
+        public void DeserializeBashPostToolUse_WithoutStaleReadFileStateHint_ShouldHaveNullHint()
+        {
+            var json = """
+                {
+                    "tool_name": "Bash",
+                    "tool_input": {
+                        "command": "echo hi",
+                        "description": "no-op"
+                    },
+                    "tool_response": {
+                        "stdout": "hi\r\n",
+                        "stderr": "",
+                        "interrupted": false,
+                        "isImage": false
+                    },
+                    "tool_use_id": "toolu_01TestBashNoHint001"
+                }
+                """;
+
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.BashPostToolUsePayload);
+
+            result.Should().NotBeNull();
+            result!.ToolResponse.Should().NotBeNull();
+            result.ToolResponse!.StaleReadFileStateHint.Should().BeNull();
+        }
+
+        [TestMethod]
         public void DeserializeBashPostToolUse_WhenInterrupted_ShouldDeserializeCorrectly()
         {
             // Arrange
@@ -286,6 +341,26 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
             result.Stderr.Should().Be(response.Stderr);
             result.Interrupted.Should().Be(response.Interrupted);
             result.IsImage.Should().Be(response.IsImage);
+            json.Should().NotContain("staleReadFileStateHint");
+        }
+
+        [TestMethod]
+        public void BashToolResponse_RoundTrip_WithStaleReadFileStateHint_ShouldMaintainData()
+        {
+            var response = new BashToolResponse
+            {
+                Stdout = "done\r\n",
+                Stderr = "",
+                Interrupted = false,
+                IsImage = false,
+                StaleReadFileStateHint = "dist/app.js was rewritten"
+            };
+
+            var json = JsonSerializer.Serialize(response, ClaudeHooksJsonContext.Default.BashToolResponse);
+            var result = JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.BashToolResponse);
+
+            result.Should().NotBeNull();
+            result!.StaleReadFileStateHint.Should().Be("dist/app.js was rewritten");
         }
 
         #endregion

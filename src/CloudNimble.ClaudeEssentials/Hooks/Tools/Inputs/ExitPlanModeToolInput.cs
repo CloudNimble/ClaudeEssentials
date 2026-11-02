@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
 {
@@ -12,12 +13,17 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
     {
 
         /// <summary>
-        /// Gets or sets the prompt-based permissions needed to implement the plan.
-        /// These describe categories of actions rather than specific commands.
+        /// Gets or sets the allowed prompts. This value is deprecated and no longer used.
         /// </summary>
         [JsonPropertyName("allowedPrompts")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<ExitPlanModeAllowedPrompt>? AllowedPrompts { get; set; }
+
+        /// <summary>
+        /// Gets or sets any additional properties present in the payload that are not modeled explicitly.
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement>? ExtensionData { get; set; }
 
     }
 

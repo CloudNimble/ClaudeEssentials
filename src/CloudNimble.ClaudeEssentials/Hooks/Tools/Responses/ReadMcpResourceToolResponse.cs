@@ -38,6 +38,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Responses
         [JsonPropertyName("contents")]
         public List<McpResourceContent> Contents { get; set; } = [];
 
+        /// <summary>
+        /// Gets or sets a human-readable error when the server could not read the resource.
+        /// </summary>
+        [JsonPropertyName("error")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Error { get; set; }
+
     }
 
 }

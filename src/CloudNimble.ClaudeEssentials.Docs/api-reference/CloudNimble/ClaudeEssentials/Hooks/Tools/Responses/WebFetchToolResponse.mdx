@@ -37,16 +37,17 @@ Key features of the WebFetch tool:
 - Content is converted from HTML to markdown for easier processing
 - Large content may be summarized or truncated
 - Includes a 15-minute cache for repeated requests to the same URL
-- Redirects to different hosts are reported rather than followed automatically
 
 
 Example JSON payload:
 ```csharp
 {
   "url": "https://docs.anthropic.com/claude-code",
-  "content": "# Claude Code Documentation\n\nClaude Code is a CLI tool...",
-  "durationSeconds": 1.25,
-  "truncated": false
+  "bytes": 45210,
+  "code": 200,
+  "codeText": "OK",
+  "result": "Claude Code is a CLI tool...",
+  "durationMs": 1250
 }
 ```
 
@@ -72,6 +73,20 @@ public Object()
 
 ## Properties
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ArtifactRead
+
+Gets or sets the artifact and version that now count as viewed.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.ArtifactReadInfo ArtifactRead { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Tools.Responses.ArtifactReadInfo?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Bytes
 
 Gets or sets the number of bytes in the raw response body before processing.
@@ -79,12 +94,12 @@ Gets or sets the number of bytes in the raw response body before processing.
 #### Syntax
 
 ```csharp
-public System.Nullable<long> Bytes { get; set; }
+public long Bytes { get; set; }
 ```
 
 #### Property Value
 
-Type: `System.Nullable<long>?`
+Type: `long`
 
 #### Remarks
 
@@ -101,12 +116,12 @@ Gets or sets the HTTP status code returned by the server.
 #### Syntax
 
 ```csharp
-public System.Nullable<int> Code { get; set; }
+public int Code { get; set; }
 ```
 
 #### Property Value
 
-Type: `System.Nullable<int>?`
+Type: `int`
 
 #### Remarks
 
@@ -128,7 +143,7 @@ public string CodeText { get; set; }
 
 #### Property Value
 
-Type: `string?`
+Type: `string`
 
 #### Remarks
 
@@ -137,29 +152,6 @@ For example, `"OK"` for a 200 response or `"Moved Permanently"` for a 301 redire
 This property may be `null` for older-style responses that do not include
 the HTTP status text.
 
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Content
-
-Gets or sets the processed content from the fetched URL.
-
-#### Syntax
-
-```csharp
-public string Content { get; set; }
-```
-
-#### Property Value
-
-Type: `string`
-
-#### Remarks
-
-The content is the result of processing the URL with the prompt specified in
-[WebFetchToolInput.Prompt](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput#prompt). HTML content is converted to markdown
-before processing.
-
-If the content was very large, it may have been summarized by the processing
-model. Check [WebFetchToolResponse.Truncated](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebFetchToolResponse#truncated) to determine if truncation occurred.
-
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DurationMs
 
 Gets or sets the duration of the fetch and processing operation in milliseconds.
@@ -167,12 +159,12 @@ Gets or sets the duration of the fetch and processing operation in milliseconds.
 #### Syntax
 
 ```csharp
-public System.Nullable<int> DurationMs { get; set; }
+public int DurationMs { get; set; }
 ```
 
 #### Property Value
 
-Type: `System.Nullable<int>?`
+Type: `int`
 
 #### Remarks
 
@@ -180,60 +172,6 @@ This includes the time taken to fetch the URL content, convert HTML to markdown,
 and process the content with the specified prompt.
 
 This property may be `null` when duration information is not available.
-
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> DurationSeconds
-
-Gets or sets the duration of the fetch and processing operation in seconds.
-
-#### Syntax
-
-```csharp
-public System.Nullable<double> DurationSeconds { get; set; }
-```
-
-#### Property Value
-
-Type: `System.Nullable<double>?`
-
-#### Remarks
-
-This includes the time taken to:
-          
-
-          Cached responses (within the 15-minute cache window) will typically be faster.
-
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> RedirectUrl
-
-Gets or sets the redirect URL if the fetch resulted in a redirect to a different host.
-
-#### Syntax
-
-```csharp
-public string RedirectUrl { get; set; }
-```
-
-#### Property Value
-
-Type: `string?`
-
-#### Examples
-
-```csharp
-// Original URL: https://short.link/abc
-// Redirect URL: https://example.com/full-article
-```
-
-#### Remarks
-
-When a URL redirects to a different host (domain), the WebFetch tool does not
-automatically follow the redirect. Instead, it reports the redirect URL here
-so that a new fetch request can be made explicitly.
-
-This behavior provides transparency about where content is coming from and
-prevents unexpected cross-domain requests.
-
-If no cross-host redirect occurred, this property will be `null`.
-Same-host redirects (e.g., HTTP to HTTPS on the same domain) are followed automatically.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Result
 
@@ -247,35 +185,11 @@ public string Result { get; set; }
 
 #### Property Value
 
-Type: `string?`
+Type: `string`
 
 #### Remarks
 
-This is the result of processing the URL content with the prompt. In newer response
-schemas, this field is used instead of [WebFetchToolResponse.Content](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebFetchToolResponse#content).
-
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Truncated
-
-Gets or sets a value indicating whether the content was truncated due to size limits.
-
-#### Syntax
-
-```csharp
-public System.Nullable<bool> Truncated { get; set; }
-```
-
-#### Property Value
-
-Type: `System.Nullable<bool>?`
-
-#### Remarks
-
-When `true`, the original content exceeded the maximum size and was
-truncated or summarized. The [WebFetchToolResponse.Content](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebFetchToolResponse#content) will contain a condensed
-version of the information.
-
-For very large pages, consider using a more specific prompt in
-[WebFetchToolInput.Prompt](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Inputs/WebFetchToolInput#prompt) to extract only the relevant information.
+This is the result of applying the prompt to the fetched content.
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Url
 
@@ -295,9 +209,6 @@ Type: `string`
 
 This is the actual URL that was requested. If the original URL used HTTP,
 it will have been upgraded to HTTPS.
-
-If a redirect occurred to a different host, this will still show the original
-URL, and [WebFetchToolResponse.RedirectUrl](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Tools/Responses/WebFetchToolResponse#redirecturl) will contain the redirect destination.
 
 ## Methods
 

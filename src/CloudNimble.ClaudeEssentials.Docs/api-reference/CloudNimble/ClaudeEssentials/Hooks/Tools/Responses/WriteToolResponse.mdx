@@ -153,6 +153,20 @@ For overwrites, this contains the complete original content of the file
 before it was replaced, which can be useful for implementing undo functionality
 or auditing changes.
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Staged
+
+Gets or sets a value indicating whether the write was held for the machine owner to review instead of written. The file is unchanged.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> Staged { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> StructuredPatch
 
 Gets or sets the structured patch representing the changes made to the file.
@@ -193,6 +207,27 @@ Type: `CloudNimble.ClaudeEssentials.Hooks.WriteOperationType`
 #### Remarks
 
 See [WriteOperationType](/api-reference/CloudNimble/ClaudeEssentials/Hooks/WriteOperationType) for possible values.
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> UserModified
+
+Gets or sets a value indicating whether the user edited the proposed content in the
+permission dialog before accepting the write.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> UserModified { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>`
+
+#### Remarks
+
+When `true`, the final content persisted to disk differs from what Claude originally
+proposed because the user made changes during the approval step. This is optional and
+typically omitted when the user accepted the proposed content as-is.
 
 ## Methods
 
