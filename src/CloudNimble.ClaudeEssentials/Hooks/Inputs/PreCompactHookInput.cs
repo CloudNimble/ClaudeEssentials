@@ -21,6 +21,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
         /// Only set when the trigger is <see cref="CompactTrigger.Manual"/>.
         /// </summary>
         [JsonPropertyName("custom_instructions")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
         public string? CustomInstructions { get; set; }
 
     }

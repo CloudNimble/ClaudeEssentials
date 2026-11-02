@@ -21,7 +21,14 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
         /// Gets or sets the type of notification being sent.
         /// </summary>
         [JsonPropertyName("notification_type")]
-        public NotificationType NotificationType { get; set; }
+        public string NotificationType { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the notification title.
+        /// </summary>
+        [JsonPropertyName("title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Title { get; set; }
 
     }
 

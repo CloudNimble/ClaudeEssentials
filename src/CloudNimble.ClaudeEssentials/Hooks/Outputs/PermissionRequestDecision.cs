@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using CloudNimble.ClaudeEssentials.Hooks.Permissions;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
 {
@@ -40,8 +42,15 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
         /// Only applicable when <see cref="Behavior"/> is <see cref="PermissionRequestBehavior.Deny"/>.
         /// </summary>
         [JsonPropertyName("interrupt")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public bool Interrupt { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? Interrupt { get; set; }
+
+        /// <summary>
+        /// Gets or sets the permission updates to apply. Applies when the behavior is allow.
+        /// </summary>
+        [JsonPropertyName("updatedPermissions")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<PermissionUpdate>? UpdatedPermissions { get; set; }
 
     }
 

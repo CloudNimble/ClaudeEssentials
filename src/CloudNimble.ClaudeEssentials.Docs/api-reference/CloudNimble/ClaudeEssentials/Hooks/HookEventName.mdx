@@ -1,6 +1,6 @@
 ---
 title: HookEventName
-description: "Represents the different types of hook events that can be triggered in Claude Code."
+description: "Represents the hook event names that Claude Code can trigger."
 icon: list-ol
 tag: "ENUM"
 keywords: ['HookEventName', 'CloudNimble.ClaudeEssentials.Hooks.HookEventName', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
@@ -22,40 +22,43 @@ CloudNimble.ClaudeEssentials.Hooks.HookEventName
 
 ## Summary
 
-Represents the different types of hook events that can be triggered in Claude Code.
-
-## Remarks
-
-Hook event names use PascalCase on the wire (e.g., `"PreToolUse"`, `"SessionStart"`).
+Represents the hook event names that Claude Code can trigger.
 
 ## Values
 
 | Name | Value | Description |
 |------|-------|-------------|
-| `SessionStart` | 0 | Runs when Claude Code starts a new session or resumes one. |
-| `InstructionsLoaded` | 1 | Runs when instructions (CLAUDE.md files, etc.) are loaded. |
-| `UserPromptSubmit` | 2 | Runs when the user submits a prompt, before Claude processes it. |
-| `PreToolUse` | 3 | Runs before tool calls are executed. Can be used to block or modify tool inputs. |
-| `PermissionRequest` | 4 | Runs when a permission dialog is shown. Can be used to automatically allow or deny permissions. |
-| `PermissionDenied` | 5 | Runs when a permission request is denied. |
-| `PostToolUse` | 6 | Runs after tool calls complete. Can be used to inspect results or provide additional context. |
-| `PostToolUseFailure` | 7 | Runs after a tool call fails. |
-| `Notification` | 8 | Runs when Claude Code sends notifications. |
-| `SubagentStart` | 9 | Runs when a subagent task starts. |
-| `SubagentStop` | 10 | Runs when subagent tasks complete. |
-| `TaskCreated` | 11 | Runs when a task is created. |
-| `TaskCompleted` | 12 | Runs when a task completes. |
-| `Stop` | 13 | Runs when Claude Code finishes responding. |
-| `StopFailure` | 14 | Runs when a stop hook itself fails. |
-| `TeammateIdle` | 15 | Runs when a teammate agent becomes idle. |
-| `CwdChanged` | 16 | Runs when the current working directory changes. |
-| `FileChanged` | 17 | Runs when a file is changed externally. |
-| `WorktreeCreate` | 18 | Runs when a git worktree is created. |
-| `WorktreeRemove` | 19 | Runs when a git worktree is removed. |
-| `PreCompact` | 20 | Runs before a compact operation. |
-| `PostCompact` | 21 | Runs after a compact operation completes. |
-| `Elicitation` | 22 | Runs when an elicitation dialog is presented to the user. |
-| `ElicitationResult` | 23 | Runs when the user responds to an elicitation dialog. |
-| `SessionEnd` | 24 | Runs when a Claude Code session ends. |
-| `ConfigChange` | 25 | Runs when a configuration setting changes. |
+| `PreToolUse` | 0 | Runs before a tool executes. |
+| `PostToolUse` | 1 | Runs after a tool completes successfully. |
+| `PostToolUseFailure` | 2 | Runs after a tool fails. |
+| `PostToolBatch` | 3 | Runs once after every tool call in a batch has resolved, before the next model request. |
+| `Notification` | 4 | Runs when Claude Code sends a notification. |
+| `UserPromptSubmit` | 5 | Runs when the user submits a prompt. |
+| `UserPromptExpansion` | 6 | Runs when a slash command or MCP prompt expands into a prompt. |
+| `SessionStart` | 7 | Runs when a session starts or resumes. |
+| `SessionEnd` | 8 | Runs when a session ends. |
+| `Stop` | 9 | Runs when the main agent finishes responding. |
+| `StopFailure` | 10 | Runs when a turn ends because of an API error. |
+| `SubagentStart` | 11 | Runs when a subagent starts. |
+| `SubagentStop` | 12 | Runs when a subagent finishes. |
+| `PreCompact` | 13 | Runs before context compaction. |
+| `PostCompact` | 14 | Runs after context compaction. |
+| `PreModelSwitch` | 15 | Runs before the session switches models. |
+| `PostModelSwitch` | 16 | Runs after the session switches models. |
+| `PermissionRequest` | 17 | Runs when a permission dialog would be shown. |
+| `PermissionDenied` | 18 | Runs when a tool call is denied. |
+| `Setup` | 19 | Runs during repository setup or maintenance. |
+| `TeammateIdle` | 20 | Runs when a teammate is about to go idle. |
+| `TaskCreated` | 21 | Runs when a task is created. |
+| `TaskCompleted` | 22 | Runs when a task is completed. |
+| `Elicitation` | 23 | Runs when an MCP server requests user input. |
+| `ElicitationResult` | 24 | Runs after the user responds to an MCP elicitation, before the response is sent. |
+| `ConfigChange` | 25 | Runs when a configuration file changes during a session. |
+| `WorktreeCreate` | 26 | Runs when a worktree is created. |
+| `WorktreeRemove` | 27 | Runs when a worktree is removed. |
+| `InstructionsLoaded` | 28 | Runs when a CLAUDE.md or rules file is loaded into context. |
+| `CwdChanged` | 29 | Runs when the working directory changes. |
+| `FileChanged` | 30 | Runs when a watched file changes. |
+| `DirectoryAdded` | 31 | Runs when a directory is added to the session. |
+| `MessageDisplay` | 32 | Runs as assistant message text is displayed. |
 

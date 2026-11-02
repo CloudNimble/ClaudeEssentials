@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
 {
 
@@ -7,6 +8,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
     /// </summary>
     public class NotificationHookOutput : HookOutputBase
     {
+
+        /// <summary>
+        /// Gets or sets the hook-specific output.
+        /// </summary>
+        [JsonPropertyName("hookSpecificOutput")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public NotificationSpecificOutput? HookSpecificOutput { get; set; }
 
     }
 

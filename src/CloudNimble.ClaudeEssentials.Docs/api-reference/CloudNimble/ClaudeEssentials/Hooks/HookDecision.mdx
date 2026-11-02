@@ -1,6 +1,6 @@
 ---
 title: HookDecision
-description: "Represents a hook's decision to block an operation."
+description: "Represents the top-level decision a hook returns."
 icon: list-ol
 tag: "ENUM"
 keywords: ['HookDecision', 'CloudNimble.ClaudeEssentials.Hooks.HookDecision', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
@@ -22,17 +22,12 @@ CloudNimble.ClaudeEssentials.Hooks.HookDecision
 
 ## Summary
 
-Represents a hook's decision to block an operation.
-
-## Remarks
-
-In hook outputs, set `"decision": "block"` to prevent the operation.
-Omit the `decision` field entirely to allow the operation to proceed.
+Represents the top-level decision a hook returns.
 
 ## Values
 
 | Name | Value | Description |
 |------|-------|-------------|
-| `Allow` | 0 | Allow the operation to proceed normally. |
-| `Block` | 1 | Block the operation from proceeding. |
+| `Approve` | 0 | Approves the action. |
+| `Block` | 1 | Blocks the action. |
 

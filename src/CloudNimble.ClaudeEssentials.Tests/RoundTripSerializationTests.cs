@@ -135,7 +135,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
             var original = new PostToolUseHookOutput
             {
                 Continue = true,
-                Decision = HookDecision.Allow,
+                Decision = HookDecision.Approve,
                 HookSpecificOutput = new PostToolUseSpecificOutput
                 {
                     AdditionalContext = "File was modified successfully"
@@ -148,7 +148,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
 
             // Assert
             doc.RootElement.GetProperty("continue").GetBoolean().Should().BeTrue();
-            doc.RootElement.GetProperty("decision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("decision").GetString().Should().Be("approve");
             doc.RootElement.GetProperty("hookSpecificOutput")
                 .GetProperty("additionalContext").GetString()
                 .Should().Be("File was modified successfully");
@@ -201,8 +201,7 @@ namespace CloudNimble.ClaudeEssentials.Tests
                     "cwd": "/home/user/project",
                     "permission_mode": "acceptEdits",
                     "hook_event_name": "SessionStart",
-                    "source": "startup",
-                    "env_file": "/tmp/env_vars.txt"
+                    "source": "startup"
                 }
                 """;
 
@@ -212,7 +211,6 @@ namespace CloudNimble.ClaudeEssentials.Tests
             // Assert
             result.Should().NotBeNull();
             result!.Source.Should().Be(SessionStartSource.Startup);
-            result.EnvironmentFilePath.Should().Be("/tmp/env_vars.txt");
             result.PermissionMode.Should().Be(PermissionMode.AcceptEdits);
         }
 

@@ -1,0 +1,476 @@
+---
+title: PreModelSwitchHookInput
+description: "Represents the input received by a PreModelSwitch hook, which runs before the session switches models."
+icon: file-brackets-curly
+keywords: ['PreModelSwitchHookInput', 'CloudNimble.ClaudeEssentials.Hooks.Inputs.PreModelSwitchHookInput', 'CloudNimble.ClaudeEssentials.Hooks.Inputs', 'class', 'CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks.Inputs
+
+**Inheritance:** CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.Inputs.PreModelSwitchHookInput
+```
+
+## Summary
+
+Represents the input received by a PreModelSwitch hook, which runs before the session switches models.
+
+## Constructors
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor
+
+#### Syntax
+
+```csharp
+public PreModelSwitchHookInput()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase`</Note>
+
+#### Syntax
+
+```csharp
+protected ModelSwitchHookInputBase()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+#### Syntax
+
+```csharp
+protected HookInputBase()
+```
+
+### <Icon icon="hammer" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> .ctor <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public Object()
+```
+
+## Properties
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AgentId <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the subagent identifier. Present only when the hook fires from within a subagent.
+
+#### Syntax
+
+```csharp
+public string AgentId { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AgentType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the agent type name, present within a subagent or on the main thread of a session started with `--agent`.
+
+#### Syntax
+
+```csharp
+public string AgentType { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> CacheTtl <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase`</Note>
+
+Gets or sets the prompt cache time to live.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.PromptCacheTtl CacheTtl { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.PromptCacheTtl`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ContextTokens <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase`</Note>
+
+Gets or sets the prompt tokens the next request re-sends.
+
+#### Syntax
+
+```csharp
+public long ContextTokens { get; set; }
+```
+
+#### Property Value
+
+Type: `long`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> CurrentWorkingDirectory <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the current working directory where Claude Code is running.
+
+#### Syntax
+
+```csharp
+public string CurrentWorkingDirectory { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Effort <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the reasoning effort applied to the current turn.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Inputs.HookEffortInfo Effort { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookEffortInfo?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> EstimatedCacheWriteUsd <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase`</Note>
+
+Gets or sets the estimated cost of re-caching the context on the target model, excluding the response.
+
+#### Syntax
+
+```csharp
+public double EstimatedCacheWriteUsd { get; set; }
+```
+
+#### Property Value
+
+Type: `double`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> FromModel <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase`</Note>
+
+Gets or sets the resolved model ID the session was running before the switch.
+
+#### Syntax
+
+```csharp
+public string FromModel { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> HookEventName <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the name of the hook event that triggered this input.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.HookEventName HookEventName { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.HookEventName?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PermissionMode <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the permission mode under which Claude Code is operating.
+
+#### Syntax
+
+```csharp
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.PermissionMode> PermissionMode { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.PermissionMode?>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Pricing <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase`</Note>
+
+Gets or sets where the cost estimate came from.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.ModelSwitchPricing Pricing { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.ModelSwitchPricing`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PromptCacheWarm <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase`</Note>
+
+Gets or sets a value indicating whether the current model's prompt cache is likely still warm.
+
+#### Syntax
+
+```csharp
+public bool PromptCacheWarm { get; set; }
+```
+
+#### Property Value
+
+Type: `bool`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PromptId <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the UUID correlating a user prompt with all subsequent events until the next prompt.
+
+#### Syntax
+
+```csharp
+public string PromptId { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> RequestedModel <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase`</Note>
+
+Gets or sets what was asked for, such as an alias or full ID, or null for the default.
+
+#### Syntax
+
+```csharp
+public string RequestedModel { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SessionId <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the unique identifier for the current Claude Code session.
+
+#### Syntax
+
+```csharp
+public string SessionId { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Source <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase`</Note>
+
+Gets or sets what initiated the switch.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.ModelSwitchSource Source { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.ModelSwitchSource`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToModel <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.ModelSwitchHookInputBase`</Note>
+
+Gets or sets the resolved model ID the session runs after the switch.
+
+#### Syntax
+
+```csharp
+public string ToModel { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TranscriptPath <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the file path to the transcript JSONL file for the current session.
+This file contains the full conversation history.
+
+#### Syntax
+
+```csharp
+public string TranscriptPath { get; set; }
+```
+
+#### Property Value
+
+Type: `string`
+
+## Methods
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual bool Equals(object obj)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `obj` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Equals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool Equals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetHashCode <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual int GetHashCode()
+```
+
+#### Returns
+
+Type: `int`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> GetType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public System.Type GetType()
+```
+
+#### Returns
+
+Type: `System.Type`
+
+### <Icon icon="function" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> MemberwiseClone <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+protected internal object MemberwiseClone()
+```
+
+#### Returns
+
+Type: `object`
+
+### <Icon icon="thumbtack" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ReferenceEquals <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public static bool ReferenceEquals(object objA, object objB)
+```
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `objA` | `object?` | - |
+| `objB` | `object?` | - |
+
+#### Returns
+
+Type: `bool`
+
+### <Icon icon="code-fork" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ToString <Badge color="gray">Inherited</Badge> <Badge color="orange">Virtual</Badge>
+
+<Note>Inherited from `object`</Note>
+
+#### Syntax
+
+```csharp
+public virtual string ToString()
+```
+
+#### Returns
+
+Type: `string?`
+

@@ -4,34 +4,40 @@ namespace CloudNimble.ClaudeEssentials.Hooks
 {
 
     /// <summary>
-    /// Represents the source that triggered a session start event.
+    /// Represents how a session started.
     /// </summary>
     public enum SessionStartSource
     {
 
         /// <summary>
-        /// Session started from initial startup of Claude Code.
+        /// A new session started.
         /// </summary>
         [JsonStringEnumMemberName("startup")]
         Startup,
 
         /// <summary>
-        /// Session resumed from a previous session.
+        /// An existing session was resumed.
         /// </summary>
         [JsonStringEnumMemberName("resume")]
         Resume,
 
         /// <summary>
-        /// Session started after a clear command.
+        /// The session started after being cleared.
         /// </summary>
         [JsonStringEnumMemberName("clear")]
         Clear,
 
         /// <summary>
-        /// Session started after a compact operation.
+        /// The session started after compaction.
         /// </summary>
         [JsonStringEnumMemberName("compact")]
-        Compact
+        Compact,
+
+        /// <summary>
+        /// The session was forked from another session.
+        /// </summary>
+        [JsonStringEnumMemberName("fork")]
+        Fork
 
     }
 

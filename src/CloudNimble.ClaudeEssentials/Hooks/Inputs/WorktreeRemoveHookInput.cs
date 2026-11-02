@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
 {
 
@@ -7,6 +8,12 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
     /// </summary>
     public class WorktreeRemoveHookInput : HookInputBase
     {
+
+        /// <summary>
+        /// Gets or sets the path of the worktree.
+        /// </summary>
+        [JsonPropertyName("worktree_path")]
+        public string WorktreePath { get; set; } = string.Empty;
 
     }
 

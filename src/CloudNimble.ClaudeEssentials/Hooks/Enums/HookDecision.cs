@@ -4,23 +4,19 @@ namespace CloudNimble.ClaudeEssentials.Hooks
 {
 
     /// <summary>
-    /// Represents a hook's decision to block an operation.
+    /// Represents the top-level decision a hook returns.
     /// </summary>
-    /// <remarks>
-    /// In hook outputs, set <c>"decision": "block"</c> to prevent the operation.
-    /// Omit the <c>decision</c> field entirely to allow the operation to proceed.
-    /// </remarks>
     public enum HookDecision
     {
 
         /// <summary>
-        /// Allow the operation to proceed normally.
+        /// Approves the action.
         /// </summary>
-        [JsonStringEnumMemberName("allow")]
-        Allow,
+        [JsonStringEnumMemberName("approve")]
+        Approve,
 
         /// <summary>
-        /// Block the operation from proceeding.
+        /// Blocks the action.
         /// </summary>
         [JsonStringEnumMemberName("block")]
         Block

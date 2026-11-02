@@ -10,21 +10,6 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
     public class ConfigChangeHookOutput : HookOutputBase
     {
 
-        /// <summary>
-        /// Gets or sets the decision for the configuration change.
-        /// Set to <see cref="HookDecision.Block"/> to prevent the configuration change.
-        /// Cannot block changes from <see cref="ConfigSource.PolicySettings"/>.
-        /// </summary>
-        [JsonPropertyName("decision")]
-        public HookDecision? Decision { get; set; }
-
-        /// <summary>
-        /// Gets or sets the reason for blocking the configuration change.
-        /// Required when blocking to explain why the change was rejected.
-        /// </summary>
-        [JsonPropertyName("reason")]
-        public string? Reason { get; set; }
-
     }
 
 }

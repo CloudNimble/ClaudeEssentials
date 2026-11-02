@@ -1,0 +1,37 @@
+---
+title: UserPromptSource
+description: "Represents who authored or injected a prompt."
+icon: list-ol
+tag: "ENUM"
+keywords: ['UserPromptSource', 'CloudNimble.ClaudeEssentials.Hooks.UserPromptSource', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks
+
+**Inheritance:** System.Enum
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.UserPromptSource
+```
+
+## Summary
+
+Represents who authored or injected a prompt.
+
+## Values
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `User` | 0 | The interactive composer. |
+| `Sdk` | 1 | A non-interactive entrypoint, such as <c>-p</c> or the Agent SDK. |
+| `System` | 2 | Claude Code itself. |
+| `LoopWakeup` | 3 | A dynamic loop wakeup. |
+| `ScheduleWakeup` | 4 | A scheduled task. |
+| `PollEvent` | 5 | A polled event. |
+

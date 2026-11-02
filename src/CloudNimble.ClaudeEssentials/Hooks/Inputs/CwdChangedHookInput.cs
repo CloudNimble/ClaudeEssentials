@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
 {
 
@@ -7,6 +8,18 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
     /// </summary>
     public class CwdChangedHookInput : HookInputBase
     {
+
+        /// <summary>
+        /// Gets or sets the previous working directory.
+        /// </summary>
+        [JsonPropertyName("old_cwd")]
+        public string OldCwd { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the new working directory.
+        /// </summary>
+        [JsonPropertyName("new_cwd")]
+        public string NewCwd { get; set; } = string.Empty;
 
     }
 

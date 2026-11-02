@@ -34,7 +34,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Inputs
             // Assert
             result.Should().NotBeNull();
             result!.Message.Should().Be("Claude needs your permission to use Bash");
-            result.NotificationType.Should().Be(NotificationType.PermissionPrompt);
+            result.NotificationType.Should().Be("permission_prompt");
         }
 
         #endregion

@@ -4,28 +4,34 @@ namespace CloudNimble.ClaudeEssentials.Hooks
 {
 
     /// <summary>
-    /// Represents the decision for a PreToolUse permission check.
+    /// Represents a permission decision returned by a PreToolUse or PreModelSwitch hook.
     /// </summary>
     public enum PermissionDecision
     {
 
         /// <summary>
-        /// Allow the tool to execute without prompting the user.
+        /// Allows the action without prompting the user.
         /// </summary>
         [JsonStringEnumMemberName("allow")]
         Allow,
 
         /// <summary>
-        /// Deny the tool execution and inform Claude of the denial.
+        /// Denies the action and informs Claude of the reason.
         /// </summary>
         [JsonStringEnumMemberName("deny")]
         Deny,
 
         /// <summary>
-        /// Prompt the user to decide whether to allow the tool execution.
+        /// Asks the user to confirm the action.
         /// </summary>
         [JsonStringEnumMemberName("ask")]
-        Ask
+        Ask,
+
+        /// <summary>
+        /// Defers the decision to the normal permission flow.
+        /// </summary>
+        [JsonStringEnumMemberName("defer")]
+        Defer
 
     }
 

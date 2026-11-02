@@ -16,7 +16,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
 {
 
     /// <summary>
-    /// Verifies the C# surface against the <c>schema.json</c> file at the repository root, which is the
+    /// Verifies the C# surface against the <c>claude-code-schema.d.ts</c> file at the repository root, which is the
     /// <c>sdk-tools.d.ts</c> file published in the <c>@anthropic-ai/claude-code</c> package.
     /// </summary>
     /// <remarks>
@@ -96,13 +96,13 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Tools
         private static readonly Lazy<string[]> SchemaLines = new(() =>
         {
             var directory = new DirectoryInfo(AppContext.BaseDirectory);
-            while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "schema.json")))
+            while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "claude-code-schema.d.ts")))
             {
                 directory = directory.Parent;
             }
 
-            directory.Should().NotBeNull("schema.json should exist at the repository root");
-            return File.ReadAllLines(Path.Combine(directory!.FullName, "schema.json"));
+            directory.Should().NotBeNull("claude-code-schema.d.ts should exist at the repository root");
+            return File.ReadAllLines(Path.Combine(directory!.FullName, "claude-code-schema.d.ts"));
         });
 
         #endregion

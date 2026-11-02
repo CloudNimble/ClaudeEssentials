@@ -45,13 +45,39 @@ Console.WriteLine(ClaudeHooksSerializer.SerializePreToolUseOutput(output));
 
 | Hook | Purpose |
 |------|---------|
+| `ConfigChange` | React to configuration changes during a session |
+| `CwdChanged` | React when the working directory changes |
+| `DirectoryAdded` | React when a directory is added to the session |
+| `Elicitation` | Answer an MCP server's request for input |
+| `ElicitationResult` | Override the response before it reaches the MCP server |
+| `FileChanged` | React when a watched file changes |
+| `InstructionsLoaded` | See when CLAUDE.md and rules files load |
+| `MessageDisplay` | Change how assistant text appears on screen |
+| `Notification` | React to permission prompts and other notifications |
+| `PermissionDenied` | React to a denied tool call and optionally retry it |
+| `PermissionRequest` | Answer permission dialogs and apply permission updates |
+| `PostCompact` | Act on the summary compaction produced |
+| `PostModelSwitch` | Add context after a model switch |
+| `PostToolBatch` | Act once every tool call in a batch has resolved |
+| `PostToolUse` | Add context or replace a tool's output after it completes |
+| `PostToolUseFailure` | React when a tool fails |
+| `PreCompact` | Customize context compaction |
+| `PreModelSwitch` | Allow, deny, or confirm a model switch |
 | `PreToolUse` | Approve, deny, or modify tool calls before execution |
-| `PostToolUse` | Add context or take action after tools complete |
-| `Stop` | Enforce policies before Claude ends a session |
+| `SessionEnd` | Clean up when sessions end |
 | `SessionStart` | Inject project context when sessions begin |
-| `Notification` | React to permission prompts and notifications |
-| `UserPromptSubmit` | Process user prompts before they're sent |
-| `PreCompact` | Customize context compaction behavior |
+| `Setup` | Run repository setup or maintenance |
+| `Stop` | Enforce policies before Claude ends a turn |
+| `StopFailure` | React when a turn ends because of an API error |
+| `SubagentStart` | Add context when a subagent starts |
+| `SubagentStop` | Enforce policies before a subagent finishes |
+| `TaskCompleted` | React when a task is completed |
+| `TaskCreated` | React when a task is created |
+| `TeammateIdle` | React when a teammate is about to go idle |
+| `UserPromptExpansion` | Inspect or block slash command and MCP prompt expansions |
+| `UserPromptSubmit` | Process prompts before they're sent |
+| `WorktreeCreate` | Create a worktree your own way |
+| `WorktreeRemove` | Clean up when a worktree is removed |
 
 ## Features
 

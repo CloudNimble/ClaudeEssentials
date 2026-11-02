@@ -21,7 +21,8 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
         /// Set to true to signal that the model should attempt the permission request again.
         /// </summary>
         [JsonPropertyName("retry")]
-        public bool Retry { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? Retry { get; set; }
 
     }
 

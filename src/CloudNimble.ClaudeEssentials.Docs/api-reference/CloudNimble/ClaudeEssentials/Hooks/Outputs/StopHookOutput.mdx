@@ -78,10 +78,11 @@ Type: `bool`
 
 This property is always serialized to ensure explicit intent is communicated.
 
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Decision
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Decision <Badge color="gray">Inherited</Badge>
 
-Gets or sets the decision for the stop operation.
-Set to [HookDecision.Block](/api-reference/CloudNimble/ClaudeEssentials/Hooks/HookDecision#block) to prevent Claude from stopping.
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase`</Note>
+
+Gets or sets the top-level decision for this hook.
 
 #### Syntax
 
@@ -93,10 +94,25 @@ public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.HookDecision> Decision
 
 Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.HookDecision?>?`
 
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Reason
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> HookSpecificOutput
 
-Gets or sets the reason for blocking the stop operation.
-Required when blocking to explain why Claude should continue.
+Gets or sets the hook-specific output.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Outputs.StopSpecificOutput HookSpecificOutput { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Outputs.StopSpecificOutput?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Reason <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase`</Note>
+
+Gets or sets the reason for the decision.
 
 #### Syntax
 
@@ -154,6 +170,22 @@ This message is shown to Claude as additional context.
 
 ```csharp
 public string SystemMessage { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TerminalSequence <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase`</Note>
+
+Gets or sets a terminal escape sequence for Claude Code to emit. Only notification and title sequences (OSC 0, 1, 2, 9, 99, 777) and BEL are permitted.
+
+#### Syntax
+
+```csharp
+public string TerminalSequence { get; set; }
 ```
 
 #### Property Value

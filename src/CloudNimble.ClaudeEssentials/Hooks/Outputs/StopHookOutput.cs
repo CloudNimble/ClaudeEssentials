@@ -11,18 +11,11 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
     {
 
         /// <summary>
-        /// Gets or sets the decision for the stop operation.
-        /// Set to <see cref="HookDecision.Block"/> to prevent Claude from stopping.
+        /// Gets or sets the hook-specific output.
         /// </summary>
-        [JsonPropertyName("decision")]
-        public HookDecision? Decision { get; set; }
-
-        /// <summary>
-        /// Gets or sets the reason for blocking the stop operation.
-        /// Required when blocking to explain why Claude should continue.
-        /// </summary>
-        [JsonPropertyName("reason")]
-        public string? Reason { get; set; }
+        [JsonPropertyName("hookSpecificOutput")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public StopSpecificOutput? HookSpecificOutput { get; set; }
 
     }
 

@@ -16,6 +16,12 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
         [JsonPropertyName("trigger")]
         public CompactTrigger Trigger { get; set; }
 
+        /// <summary>
+        /// Gets or sets the conversation summary produced by compaction.
+        /// </summary>
+        [JsonPropertyName("compact_summary")]
+        public string CompactSummary { get; set; } = string.Empty;
+
     }
 
 }

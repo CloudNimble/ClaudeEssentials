@@ -336,6 +336,76 @@ namespace CloudNimble.ClaudeEssentials.Hooks
             return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.WorktreeRemoveHookInput);
         }
 
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="DirectoryAddedHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static DirectoryAddedHookInput? DeserializeDirectoryAddedInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.DirectoryAddedHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="MessageDisplayHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static MessageDisplayHookInput? DeserializeMessageDisplayInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.MessageDisplayHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="PostModelSwitchHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static PostModelSwitchHookInput? DeserializePostModelSwitchInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.PostModelSwitchHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="PostToolBatchHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static PostToolBatchHookInput? DeserializePostToolBatchInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.PostToolBatchHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="PreModelSwitchHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static PreModelSwitchHookInput? DeserializePreModelSwitchInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.PreModelSwitchHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to a <see cref="SetupHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static SetupHookInput? DeserializeSetupInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.SetupHookInput);
+        }
+
+        /// <summary>
+        /// Deserializes a JSON string to an <see cref="UserPromptExpansionHookInput"/>.
+        /// </summary>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <returns>The deserialized hook input, or null if deserialization fails.</returns>
+        public static UserPromptExpansionHookInput? DeserializeUserPromptExpansionInput(string json)
+        {
+            return JsonSerializer.Deserialize(json, ClaudeHooksJsonContext.Default.UserPromptExpansionHookInput);
+        }
+
         #endregion
 
         #region PreToolUse Deserialization
@@ -1511,6 +1581,86 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         public static string SerializeWorktreeRemoveOutput(WorktreeRemoveHookOutput output)
         {
             return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.WorktreeRemoveHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="DirectoryAddedHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeDirectoryAddedOutput(DirectoryAddedHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.DirectoryAddedHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="MessageDisplayHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeMessageDisplayOutput(MessageDisplayHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.MessageDisplayHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PostModelSwitchHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializePostModelSwitchOutput(PostModelSwitchHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.PostModelSwitchHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PostToolBatchHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializePostToolBatchOutput(PostToolBatchHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.PostToolBatchHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="PreModelSwitchHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializePreModelSwitchOutput(PreModelSwitchHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.PreModelSwitchHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="SetupHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeSetupOutput(SetupHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.SetupHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes an <see cref="UserPromptExpansionHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeUserPromptExpansionOutput(UserPromptExpansionHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.UserPromptExpansionHookOutput);
+        }
+
+        /// <summary>
+        /// Serializes an <see cref="AsyncHookOutput"/> to JSON.
+        /// </summary>
+        /// <param name="output">The hook output to serialize.</param>
+        /// <returns>The JSON string representation.</returns>
+        public static string SerializeAsyncOutput(AsyncHookOutput output)
+        {
+            return JsonSerializer.Serialize(output, ClaudeHooksJsonContext.Default.AsyncHookOutput);
         }
 
         #endregion

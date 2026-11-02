@@ -16,6 +16,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
         [JsonPropertyName("source")]
         public ConfigSource Source { get; set; }
 
+        /// <summary>
+        /// Gets or sets the path of the configuration file that changed.
+        /// </summary>
+        [JsonPropertyName("file_path")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? FilePath { get; set; }
+
     }
 
 }

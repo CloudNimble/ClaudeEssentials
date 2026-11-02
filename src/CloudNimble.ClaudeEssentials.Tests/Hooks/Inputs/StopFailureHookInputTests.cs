@@ -22,7 +22,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Inputs
             var json = """
                 {
                     "session_id": "sess-sf-01",
-                    "error_type": "rate_limit"
+                    "error": "rate_limit"
                 }
                 """;
 
@@ -30,7 +30,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Inputs
 
             result.Should().NotBeNull();
             result!.SessionId.Should().Be("sess-sf-01");
-            result.ErrorType.Should().Be(StopFailureErrorType.RateLimit);
+            result.Error.Should().Be(StopFailureErrorType.RateLimit);
         }
 
         [TestMethod]
@@ -38,14 +38,14 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Inputs
         {
             var json = """
                 {
-                    "error_type": "authentication_failed"
+                    "error": "authentication_failed"
                 }
                 """;
 
             var result = ClaudeHooksSerializer.DeserializeStopFailureInput(json);
 
             result.Should().NotBeNull();
-            result!.ErrorType.Should().Be(StopFailureErrorType.AuthenticationFailed);
+            result!.Error.Should().Be(StopFailureErrorType.AuthenticationFailed);
         }
 
         #endregion

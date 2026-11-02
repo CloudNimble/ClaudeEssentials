@@ -13,7 +13,8 @@
     <File Path="../.gitignore" />
     <File Path="../LICENSE" />
     <File Path="../README.md" />
-    <File Path="../schema.json" />
+    <File Path="../claude-agent-sdk-schema.d.ts" />
+    <File Path="../claude-code-schema.d.ts" />
     <File Path="Directory.Build.props" />
     <File Path="global.json" />
   </Folder>

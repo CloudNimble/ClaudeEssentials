@@ -56,6 +56,52 @@ public Object()
 
 ## Properties
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AgentId <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the subagent identifier. Present only when the hook fires from within a subagent.
+
+#### Syntax
+
+```csharp
+public string AgentId { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AgentType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the agent type name, present within a subagent or on the main thread of a session started with `--agent`.
+
+#### Syntax
+
+```csharp
+public string AgentType { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> BackgroundTasks
+
+Gets or sets the in-flight background work registered in this session.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Inputs.BackgroundTaskSummary> BackgroundTasks { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Inputs.BackgroundTaskSummary>?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> CurrentWorkingDirectory <Badge color="gray">Inherited</Badge>
 
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
@@ -72,6 +118,22 @@ public string CurrentWorkingDirectory { get; set; }
 
 Type: `string`
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Effort <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the reasoning effort applied to the current turn.
+
+#### Syntax
+
+```csharp
+public CloudNimble.ClaudeEssentials.Hooks.Inputs.HookEffortInfo Effort { get; set; }
+```
+
+#### Property Value
+
+Type: `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookEffortInfo?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> HookEventName <Badge color="gray">Inherited</Badge>
 
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
@@ -86,7 +148,21 @@ public CloudNimble.ClaudeEssentials.Hooks.HookEventName HookEventName { get; set
 
 #### Property Value
 
-Type: `CloudNimble.ClaudeEssentials.Hooks.HookEventName`
+Type: `CloudNimble.ClaudeEssentials.Hooks.HookEventName?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> LastAssistantMessage
+
+Gets or sets the text content of the last assistant message before stopping.
+
+#### Syntax
+
+```csharp
+public string LastAssistantMessage { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PermissionMode <Badge color="gray">Inherited</Badge>
 
@@ -97,12 +173,42 @@ Gets or sets the permission mode under which Claude Code is operating.
 #### Syntax
 
 ```csharp
-public CloudNimble.ClaudeEssentials.Hooks.PermissionMode PermissionMode { get; set; }
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.PermissionMode> PermissionMode { get; set; }
 ```
 
 #### Property Value
 
-Type: `CloudNimble.ClaudeEssentials.Hooks.PermissionMode`
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.PermissionMode?>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PromptId <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the UUID correlating a user prompt with all subsequent events until the next prompt.
+
+#### Syntax
+
+```csharp
+public string PromptId { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SessionCrons
+
+Gets or sets the session-scoped cron tasks that will wake this session later.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Inputs.SessionCronSummary> SessionCrons { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Inputs.SessionCronSummary>?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SessionId <Badge color="gray">Inherited</Badge>
 

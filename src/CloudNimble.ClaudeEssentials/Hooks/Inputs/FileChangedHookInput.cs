@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
 {
 
@@ -7,6 +8,18 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
     /// </summary>
     public class FileChangedHookInput : HookInputBase
     {
+
+        /// <summary>
+        /// Gets or sets the path of the file that changed.
+        /// </summary>
+        [JsonPropertyName("file_path")]
+        public string FilePath { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the kind of change.
+        /// </summary>
+        [JsonPropertyName("event")]
+        public FileChangeEvent Event { get; set; }
 
     }
 

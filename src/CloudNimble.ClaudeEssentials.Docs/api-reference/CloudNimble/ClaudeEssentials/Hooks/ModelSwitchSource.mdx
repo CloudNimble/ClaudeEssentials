@@ -1,0 +1,36 @@
+---
+title: ModelSwitchSource
+description: "Represents what initiated a model switch."
+icon: list-ol
+tag: "ENUM"
+keywords: ['ModelSwitchSource', 'CloudNimble.ClaudeEssentials.Hooks.ModelSwitchSource', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
+---
+
+## Definition
+
+**Assembly:** CloudNimble.ClaudeEssentials.dll
+
+**Namespace:** CloudNimble.ClaudeEssentials.Hooks
+
+**Inheritance:** System.Enum
+
+## Syntax
+
+```csharp
+CloudNimble.ClaudeEssentials.Hooks.ModelSwitchSource
+```
+
+## Summary
+
+Represents what initiated a model switch.
+
+## Values
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `Command` | 0 | A command, such as <c>/model</c>, or the configuration UI. |
+| `Picker` | 1 | An interactive model picker. |
+| `Sdk` | 2 | A headless request from the SDK, Remote Control, or an IDE. |
+| `Auto` | 3 | An automatic fallback. Reported only after the switch. |
+| `Resume` | 4 | Resuming a session. Reported only after the switch. |
+

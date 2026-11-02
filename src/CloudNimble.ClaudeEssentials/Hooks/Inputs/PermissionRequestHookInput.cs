@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using CloudNimble.ClaudeEssentials.Hooks.Permissions;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
 {
@@ -16,10 +18,11 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
     {
 
         /// <summary>
-        /// Gets or sets the message displayed in the permission dialog.
+        /// Gets or sets the permission updates Claude Code suggests applying.
         /// </summary>
-        [JsonPropertyName("message")]
-        public string? Message { get; set; }
+        [JsonPropertyName("permission_suggestions")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<PermissionUpdate>? PermissionSuggestions { get; set; }
 
     }
 

@@ -56,6 +56,52 @@ public Object()
 
 ## Properties
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AgentId <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the subagent identifier. Present only when the hook fires from within a subagent.
+
+#### Syntax
+
+```csharp
+public string AgentId { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> AgentType <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the agent type name, present within a subagent or on the main thread of a session started with `--agent`.
+
+#### Syntax
+
+```csharp
+public string AgentType { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ContextTokens
+
+Gets or sets the tokens in the resumed transcript's last response. Applies to resume and fork.
+
+#### Syntax
+
+```csharp
+public System.Nullable<long> ContextTokens { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<long>?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> CurrentWorkingDirectory <Badge color="gray">Inherited</Badge>
 
 <Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
@@ -72,21 +118,35 @@ public string CurrentWorkingDirectory { get; set; }
 
 Type: `string`
 
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> EnvironmentFilePath
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Effort <Badge color="gray">Inherited</Badge>
 
-Gets or sets the file path where environment variables can be persisted.
-This file can be written to during SessionStart to set environment variables
-that will be available throughout the session.
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the reasoning effort applied to the current turn.
 
 #### Syntax
 
 ```csharp
-public string EnvironmentFilePath { get; set; }
+public CloudNimble.ClaudeEssentials.Hooks.Inputs.HookEffortInfo Effort { get; set; }
 ```
 
 #### Property Value
 
-Type: `string?`
+Type: `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookEffortInfo?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> EstimatedCacheWriteUsd
+
+Gets or sets the estimated cost of re-caching the context on the session model. Applies to resume and fork.
+
+#### Syntax
+
+```csharp
+public System.Nullable<double> EstimatedCacheWriteUsd { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<double>?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> HookEventName <Badge color="gray">Inherited</Badge>
 
@@ -102,7 +162,21 @@ public CloudNimble.ClaudeEssentials.Hooks.HookEventName HookEventName { get; set
 
 #### Property Value
 
-Type: `CloudNimble.ClaudeEssentials.Hooks.HookEventName`
+Type: `CloudNimble.ClaudeEssentials.Hooks.HookEventName?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Model
+
+Gets or sets the session model.
+
+#### Syntax
+
+```csharp
+public string Model { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PermissionMode <Badge color="gray">Inherited</Badge>
 
@@ -113,12 +187,56 @@ Gets or sets the permission mode under which Claude Code is operating.
 #### Syntax
 
 ```csharp
-public CloudNimble.ClaudeEssentials.Hooks.PermissionMode PermissionMode { get; set; }
+public System.Nullable<CloudNimble.ClaudeEssentials.Hooks.PermissionMode> PermissionMode { get; set; }
 ```
 
 #### Property Value
 
-Type: `CloudNimble.ClaudeEssentials.Hooks.PermissionMode`
+Type: `System.Nullable<CloudNimble.ClaudeEssentials.Hooks.PermissionMode?>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PromptCacheLikelyExpired
+
+Gets or sets a value indicating whether the first request will re-cache the context because the prompt cache likely expired. Applies to resume and fork.
+
+#### Syntax
+
+```csharp
+public System.Nullable<bool> PromptCacheLikelyExpired { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<bool>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> PromptId <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Inputs.HookInputBase`</Note>
+
+Gets or sets the UUID correlating a user prompt with all subsequent events until the next prompt.
+
+#### Syntax
+
+```csharp
+public string PromptId { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SecondsSinceLastResponse
+
+Gets or sets the seconds since the resumed transcript's last assistant response. Applies to resume and fork.
+
+#### Syntax
+
+```csharp
+public System.Nullable<double> SecondsSinceLastResponse { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<double>?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SessionId <Badge color="gray">Inherited</Badge>
 
@@ -135,6 +253,20 @@ public string SessionId { get; set; }
 #### Property Value
 
 Type: `string`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> SessionTitle
+
+Gets or sets the session title.
+
+#### Syntax
+
+```csharp
+public string SessionTitle { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Source
 

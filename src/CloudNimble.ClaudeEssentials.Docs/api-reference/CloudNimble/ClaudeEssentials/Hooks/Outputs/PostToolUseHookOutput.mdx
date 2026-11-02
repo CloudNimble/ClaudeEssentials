@@ -78,10 +78,11 @@ Type: `bool`
 
 This property is always serialized to ensure explicit intent is communicated.
 
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Decision
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Decision <Badge color="gray">Inherited</Badge>
 
-Gets or sets the decision for the post-tool-use operation.
-Set to [HookDecision.Block](/api-reference/CloudNimble/ClaudeEssentials/Hooks/HookDecision#block) to block further processing.
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase`</Note>
+
+Gets or sets the top-level decision for this hook.
 
 #### Syntax
 
@@ -107,10 +108,11 @@ public CloudNimble.ClaudeEssentials.Hooks.Outputs.PostToolUseSpecificOutput Hook
 
 Type: `CloudNimble.ClaudeEssentials.Hooks.Outputs.PostToolUseSpecificOutput?`
 
-### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Reason
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Reason <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase`</Note>
 
 Gets or sets the reason for the decision.
-Required when [PostToolUseHookOutput.Decision](/api-reference/CloudNimble/ClaudeEssentials/Hooks/Outputs/PostToolUseHookOutput#decision) is set to explain the rationale.
 
 #### Syntax
 
@@ -168,6 +170,22 @@ This message is shown to Claude as additional context.
 
 ```csharp
 public string SystemMessage { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> TerminalSequence <Badge color="gray">Inherited</Badge>
+
+<Note>Inherited from `CloudNimble.ClaudeEssentials.Hooks.Outputs.HookOutputBase`</Note>
+
+Gets or sets a terminal escape sequence for Claude Code to emit. Only notification and title sequences (OSC 0, 1, 2, 9, 99, 777) and BEL are permitted.
+
+#### Syntax
+
+```csharp
+public string TerminalSequence { get; set; }
 ```
 
 #### Property Value

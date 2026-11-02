@@ -1,6 +1,6 @@
 ---
 title: PermissionDecision
-description: "Represents the decision for a PreToolUse permission check."
+description: "Represents a permission decision returned by a PreToolUse or PreModelSwitch hook."
 icon: list-ol
 tag: "ENUM"
 keywords: ['PermissionDecision', 'CloudNimble.ClaudeEssentials.Hooks.PermissionDecision', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
@@ -22,13 +22,14 @@ CloudNimble.ClaudeEssentials.Hooks.PermissionDecision
 
 ## Summary
 
-Represents the decision for a PreToolUse permission check.
+Represents a permission decision returned by a PreToolUse or PreModelSwitch hook.
 
 ## Values
 
 | Name | Value | Description |
 |------|-------|-------------|
-| `Allow` | 0 | Allow the tool to execute without prompting the user. |
-| `Deny` | 1 | Deny the tool execution and inform Claude of the denial. |
-| `Ask` | 2 | Prompt the user to decide whether to allow the tool execution. |
+| `Allow` | 0 | Allows the action without prompting the user. |
+| `Deny` | 1 | Denies the action and informs Claude of the reason. |
+| `Ask` | 2 | Asks the user to confirm the action. |
+| `Defer` | 3 | Defers the decision to the normal permission flow. |
 

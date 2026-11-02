@@ -71,6 +71,20 @@ public string AdditionalContext { get; set; }
 
 Type: `string?`
 
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> ClassifierContext
+
+Gets or sets host-asserted context shown to the auto-mode permission classifier alongside this tool call's result.
+
+#### Syntax
+
+```csharp
+public string ClassifierContext { get; set; }
+```
+
+#### Property Value
+
+Type: `string?`
+
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> HookEventName <Badge color="blue">Override</Badge>
 
 Gets the hook event name for this output type.
@@ -100,6 +114,34 @@ public abstract CloudNimble.ClaudeEssentials.Hooks.HookEventName HookEventName {
 #### Property Value
 
 Type: `CloudNimble.ClaudeEssentials.Hooks.HookEventName`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> UpdatedMCPToolOutput
+
+Gets or sets the value that replaces the output for MCP tools only. Prefer `updatedToolOutput`, which works for all tools.
+
+#### Syntax
+
+```csharp
+public System.Nullable<System.Text.Json.JsonElement> UpdatedMCPToolOutput { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<System.Text.Json.JsonElement?>?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> UpdatedToolOutput
+
+Gets or sets the value that replaces the tool output before it is sent to the model.
+
+#### Syntax
+
+```csharp
+public System.Nullable<System.Text.Json.JsonElement> UpdatedToolOutput { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Nullable<System.Text.Json.JsonElement?>?`
 
 ## Methods
 

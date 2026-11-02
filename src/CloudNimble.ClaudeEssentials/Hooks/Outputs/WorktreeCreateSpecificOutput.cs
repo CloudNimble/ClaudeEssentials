@@ -21,7 +21,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
         /// Hook failure or a missing path will fail the worktree creation.
         /// </summary>
         [JsonPropertyName("worktreePath")]
-        public string? WorktreePath { get; set; }
+        public string WorktreePath { get; set; } = string.Empty;
 
     }
 

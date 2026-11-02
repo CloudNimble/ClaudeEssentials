@@ -10,31 +10,37 @@ namespace CloudNimble.ClaudeEssentials.Hooks
     {
 
         /// <summary>
-        /// Default permission mode requiring explicit user approval for sensitive operations.
+        /// Standard behavior that prompts for dangerous operations.
         /// </summary>
         [JsonStringEnumMemberName("default")]
         Default,
 
         /// <summary>
-        /// Plan mode where Claude explores and plans but doesn't execute changes.
-        /// </summary>
-        [JsonStringEnumMemberName("plan")]
-        Plan,
-
-        /// <summary>
-        /// Mode that automatically accepts file edits without prompting.
+        /// Automatically accepts file edit operations.
         /// </summary>
         [JsonStringEnumMemberName("acceptEdits")]
         AcceptEdits,
 
         /// <summary>
-        /// Mode that bypasses all permission prompts. Use with caution.
+        /// Bypasses all permission checks. Use with caution.
         /// </summary>
         [JsonStringEnumMemberName("bypassPermissions")]
         BypassPermissions,
 
         /// <summary>
-        /// Automatic permission mode where Claude Code makes permission decisions without prompting the user.
+        /// Plans without executing changes.
+        /// </summary>
+        [JsonStringEnumMemberName("plan")]
+        Plan,
+
+        /// <summary>
+        /// Denies anything that is not already allowed instead of prompting.
+        /// </summary>
+        [JsonStringEnumMemberName("dontAsk")]
+        DontAsk,
+
+        /// <summary>
+        /// Claude Code makes permission decisions without prompting the user.
         /// </summary>
         [JsonStringEnumMemberName("auto")]
         Auto

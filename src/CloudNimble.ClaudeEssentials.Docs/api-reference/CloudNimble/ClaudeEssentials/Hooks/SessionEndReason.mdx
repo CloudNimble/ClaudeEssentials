@@ -1,6 +1,6 @@
 ---
 title: SessionEndReason
-description: "Represents the reason why a session ended."
+description: "Represents why a session ended."
 icon: list-ol
 tag: "ENUM"
 keywords: ['SessionEndReason', 'CloudNimble.ClaudeEssentials.Hooks.SessionEndReason', 'CloudNimble.ClaudeEssentials.Hooks', 'class', 'System.Enum']
@@ -22,16 +22,15 @@ CloudNimble.ClaudeEssentials.Hooks.SessionEndReason
 
 ## Summary
 
-Represents the reason why a session ended.
+Represents why a session ended.
 
 ## Values
 
 | Name | Value | Description |
 |------|-------|-------------|
-| `Clear` | 0 | Session ended due to a clear command. |
-| `Resume` | 1 | Session resumed, ending the previous session. |
-| `Logout` | 2 | Session ended due to user logout. |
-| `PromptInputExit` | 3 | Session ended due to user exiting from prompt input. |
-| `BypassPermissionsDisabled` | 4 | Session ended because bypass permissions mode was disabled. |
-| `Other` | 5 | Session ended for another unspecified reason. |
+| `Clear` | 0 | The session was cleared. |
+| `Resume` | 1 | Another session was resumed. |
+| `Logout` | 2 | The user logged out. |
+| `PromptInputExit` | 3 | The user exited at the prompt input. |
+| `Other` | 4 | Any other reason. |
 

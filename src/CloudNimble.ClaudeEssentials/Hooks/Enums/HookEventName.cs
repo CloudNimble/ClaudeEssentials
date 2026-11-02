@@ -4,79 +4,136 @@ namespace CloudNimble.ClaudeEssentials.Hooks
 {
 
     /// <summary>
-    /// Represents the different types of hook events that can be triggered in Claude Code.
+    /// Represents the hook event names that Claude Code can trigger.
     /// </summary>
-    /// <remarks>
-    /// Hook event names use PascalCase on the wire (e.g., <c>"PreToolUse"</c>, <c>"SessionStart"</c>).
-    /// </remarks>
     public enum HookEventName
     {
 
         /// <summary>
-        /// Runs when Claude Code starts a new session or resumes one.
-        /// </summary>
-        [JsonStringEnumMemberName("SessionStart")]
-        SessionStart,
-
-        /// <summary>
-        /// Runs when instructions (CLAUDE.md files, etc.) are loaded.
-        /// </summary>
-        [JsonStringEnumMemberName("InstructionsLoaded")]
-        InstructionsLoaded,
-
-        /// <summary>
-        /// Runs when the user submits a prompt, before Claude processes it.
-        /// </summary>
-        [JsonStringEnumMemberName("UserPromptSubmit")]
-        UserPromptSubmit,
-
-        /// <summary>
-        /// Runs before tool calls are executed. Can be used to block or modify tool inputs.
+        /// Runs before a tool executes.
         /// </summary>
         [JsonStringEnumMemberName("PreToolUse")]
         PreToolUse,
 
         /// <summary>
-        /// Runs when a permission dialog is shown. Can be used to automatically allow or deny permissions.
-        /// </summary>
-        [JsonStringEnumMemberName("PermissionRequest")]
-        PermissionRequest,
-
-        /// <summary>
-        /// Runs when a permission request is denied.
-        /// </summary>
-        [JsonStringEnumMemberName("PermissionDenied")]
-        PermissionDenied,
-
-        /// <summary>
-        /// Runs after tool calls complete. Can be used to inspect results or provide additional context.
+        /// Runs after a tool completes successfully.
         /// </summary>
         [JsonStringEnumMemberName("PostToolUse")]
         PostToolUse,
 
         /// <summary>
-        /// Runs after a tool call fails.
+        /// Runs after a tool fails.
         /// </summary>
         [JsonStringEnumMemberName("PostToolUseFailure")]
         PostToolUseFailure,
 
         /// <summary>
-        /// Runs when Claude Code sends notifications.
+        /// Runs once after every tool call in a batch has resolved, before the next model request.
+        /// </summary>
+        [JsonStringEnumMemberName("PostToolBatch")]
+        PostToolBatch,
+
+        /// <summary>
+        /// Runs when Claude Code sends a notification.
         /// </summary>
         [JsonStringEnumMemberName("Notification")]
         Notification,
 
         /// <summary>
-        /// Runs when a subagent task starts.
+        /// Runs when the user submits a prompt.
+        /// </summary>
+        [JsonStringEnumMemberName("UserPromptSubmit")]
+        UserPromptSubmit,
+
+        /// <summary>
+        /// Runs when a slash command or MCP prompt expands into a prompt.
+        /// </summary>
+        [JsonStringEnumMemberName("UserPromptExpansion")]
+        UserPromptExpansion,
+
+        /// <summary>
+        /// Runs when a session starts or resumes.
+        /// </summary>
+        [JsonStringEnumMemberName("SessionStart")]
+        SessionStart,
+
+        /// <summary>
+        /// Runs when a session ends.
+        /// </summary>
+        [JsonStringEnumMemberName("SessionEnd")]
+        SessionEnd,
+
+        /// <summary>
+        /// Runs when the main agent finishes responding.
+        /// </summary>
+        [JsonStringEnumMemberName("Stop")]
+        Stop,
+
+        /// <summary>
+        /// Runs when a turn ends because of an API error.
+        /// </summary>
+        [JsonStringEnumMemberName("StopFailure")]
+        StopFailure,
+
+        /// <summary>
+        /// Runs when a subagent starts.
         /// </summary>
         [JsonStringEnumMemberName("SubagentStart")]
         SubagentStart,
 
         /// <summary>
-        /// Runs when subagent tasks complete.
+        /// Runs when a subagent finishes.
         /// </summary>
         [JsonStringEnumMemberName("SubagentStop")]
         SubagentStop,
+
+        /// <summary>
+        /// Runs before context compaction.
+        /// </summary>
+        [JsonStringEnumMemberName("PreCompact")]
+        PreCompact,
+
+        /// <summary>
+        /// Runs after context compaction.
+        /// </summary>
+        [JsonStringEnumMemberName("PostCompact")]
+        PostCompact,
+
+        /// <summary>
+        /// Runs before the session switches models.
+        /// </summary>
+        [JsonStringEnumMemberName("PreModelSwitch")]
+        PreModelSwitch,
+
+        /// <summary>
+        /// Runs after the session switches models.
+        /// </summary>
+        [JsonStringEnumMemberName("PostModelSwitch")]
+        PostModelSwitch,
+
+        /// <summary>
+        /// Runs when a permission dialog would be shown.
+        /// </summary>
+        [JsonStringEnumMemberName("PermissionRequest")]
+        PermissionRequest,
+
+        /// <summary>
+        /// Runs when a tool call is denied.
+        /// </summary>
+        [JsonStringEnumMemberName("PermissionDenied")]
+        PermissionDenied,
+
+        /// <summary>
+        /// Runs during repository setup or maintenance.
+        /// </summary>
+        [JsonStringEnumMemberName("Setup")]
+        Setup,
+
+        /// <summary>
+        /// Runs when a teammate is about to go idle.
+        /// </summary>
+        [JsonStringEnumMemberName("TeammateIdle")]
+        TeammateIdle,
 
         /// <summary>
         /// Runs when a task is created.
@@ -85,88 +142,70 @@ namespace CloudNimble.ClaudeEssentials.Hooks
         TaskCreated,
 
         /// <summary>
-        /// Runs when a task completes.
+        /// Runs when a task is completed.
         /// </summary>
         [JsonStringEnumMemberName("TaskCompleted")]
         TaskCompleted,
 
         /// <summary>
-        /// Runs when Claude Code finishes responding.
-        /// </summary>
-        [JsonStringEnumMemberName("Stop")]
-        Stop,
-
-        /// <summary>
-        /// Runs when a stop hook itself fails.
-        /// </summary>
-        [JsonStringEnumMemberName("StopFailure")]
-        StopFailure,
-
-        /// <summary>
-        /// Runs when a teammate agent becomes idle.
-        /// </summary>
-        [JsonStringEnumMemberName("TeammateIdle")]
-        TeammateIdle,
-
-        /// <summary>
-        /// Runs when the current working directory changes.
-        /// </summary>
-        [JsonStringEnumMemberName("CwdChanged")]
-        CwdChanged,
-
-        /// <summary>
-        /// Runs when a file is changed externally.
-        /// </summary>
-        [JsonStringEnumMemberName("FileChanged")]
-        FileChanged,
-
-        /// <summary>
-        /// Runs when a git worktree is created.
-        /// </summary>
-        [JsonStringEnumMemberName("WorktreeCreate")]
-        WorktreeCreate,
-
-        /// <summary>
-        /// Runs when a git worktree is removed.
-        /// </summary>
-        [JsonStringEnumMemberName("WorktreeRemove")]
-        WorktreeRemove,
-
-        /// <summary>
-        /// Runs before a compact operation.
-        /// </summary>
-        [JsonStringEnumMemberName("PreCompact")]
-        PreCompact,
-
-        /// <summary>
-        /// Runs after a compact operation completes.
-        /// </summary>
-        [JsonStringEnumMemberName("PostCompact")]
-        PostCompact,
-
-        /// <summary>
-        /// Runs when an elicitation dialog is presented to the user.
+        /// Runs when an MCP server requests user input.
         /// </summary>
         [JsonStringEnumMemberName("Elicitation")]
         Elicitation,
 
         /// <summary>
-        /// Runs when the user responds to an elicitation dialog.
+        /// Runs after the user responds to an MCP elicitation, before the response is sent.
         /// </summary>
         [JsonStringEnumMemberName("ElicitationResult")]
         ElicitationResult,
 
         /// <summary>
-        /// Runs when a Claude Code session ends.
-        /// </summary>
-        [JsonStringEnumMemberName("SessionEnd")]
-        SessionEnd,
-
-        /// <summary>
-        /// Runs when a configuration setting changes.
+        /// Runs when a configuration file changes during a session.
         /// </summary>
         [JsonStringEnumMemberName("ConfigChange")]
-        ConfigChange
+        ConfigChange,
+
+        /// <summary>
+        /// Runs when a worktree is created.
+        /// </summary>
+        [JsonStringEnumMemberName("WorktreeCreate")]
+        WorktreeCreate,
+
+        /// <summary>
+        /// Runs when a worktree is removed.
+        /// </summary>
+        [JsonStringEnumMemberName("WorktreeRemove")]
+        WorktreeRemove,
+
+        /// <summary>
+        /// Runs when a CLAUDE.md or rules file is loaded into context.
+        /// </summary>
+        [JsonStringEnumMemberName("InstructionsLoaded")]
+        InstructionsLoaded,
+
+        /// <summary>
+        /// Runs when the working directory changes.
+        /// </summary>
+        [JsonStringEnumMemberName("CwdChanged")]
+        CwdChanged,
+
+        /// <summary>
+        /// Runs when a watched file changes.
+        /// </summary>
+        [JsonStringEnumMemberName("FileChanged")]
+        FileChanged,
+
+        /// <summary>
+        /// Runs when a directory is added to the session.
+        /// </summary>
+        [JsonStringEnumMemberName("DirectoryAdded")]
+        DirectoryAdded,
+
+        /// <summary>
+        /// Runs as assistant message text is displayed.
+        /// </summary>
+        [JsonStringEnumMemberName("MessageDisplay")]
+        MessageDisplay
 
     }
 

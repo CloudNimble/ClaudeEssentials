@@ -28,9 +28,10 @@ Represents the permission mode under which Claude Code is operating.
 
 | Name | Value | Description |
 |------|-------|-------------|
-| `Default` | 0 | Default permission mode requiring explicit user approval for sensitive operations. |
-| `Plan` | 1 | Plan mode where Claude explores and plans but doesn't execute changes. |
-| `AcceptEdits` | 2 | Mode that automatically accepts file edits without prompting. |
-| `BypassPermissions` | 3 | Mode that bypasses all permission prompts. Use with caution. |
-| `Auto` | 4 | Automatic permission mode where Claude Code makes permission decisions without prompting the user. |
+| `Default` | 0 | Standard behavior that prompts for dangerous operations. |
+| `AcceptEdits` | 1 | Automatically accepts file edit operations. |
+| `BypassPermissions` | 2 | Bypasses all permission checks. Use with caution. |
+| `Plan` | 3 | Plans without executing changes. |
+| `DontAsk` | 4 | Denies anything that is not already allowed instead of prompting. |
+| `Auto` | 5 | Claude Code makes permission decisions without prompting the user. |
 

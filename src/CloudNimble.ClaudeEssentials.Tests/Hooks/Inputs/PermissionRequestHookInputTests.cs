@@ -29,8 +29,7 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Inputs
                     "tool_input": {
                         "command": "rm -rf temp/"
                     },
-                    "tool_use_id": "toolu_01AAAAAAAAAAAAAAAAAAAAAA",
-                    "message": "Allow Bash to execute: rm -rf temp/?"
+                    "tool_use_id": "toolu_01AAAAAAAAAAAAAAAAAAAAAA"
                 }
                 """;
 
@@ -39,7 +38,6 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Inputs
             result.Should().NotBeNull();
             result!.ToolName.Should().Be("Bash");
             result.HookEventName.Should().Be(HookEventName.PermissionRequest);
-            result.Message.Should().Be("Allow Bash to execute: rm -rf temp/?");
             result.ToolInput.Should().NotBeNull();
         }
 
@@ -64,7 +62,6 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Inputs
 
             result.Should().NotBeNull();
             result!.ToolName.Should().Be("Write");
-            result.Message.Should().BeNull();
         }
 
         #endregion

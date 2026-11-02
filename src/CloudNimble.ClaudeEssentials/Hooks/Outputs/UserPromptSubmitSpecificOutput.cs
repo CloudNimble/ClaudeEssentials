@@ -23,6 +23,20 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
         [JsonPropertyName("additionalContext")]
         public string? AdditionalContext { get; set; }
 
+        /// <summary>
+        /// Gets or sets the session title.
+        /// </summary>
+        [JsonPropertyName("sessionTitle")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? SessionTitle { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to omit the original prompt from the block message when the decision is block.
+        /// </summary>
+        [JsonPropertyName("suppressOriginalPrompt")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? SuppressOriginalPrompt { get; set; }
+
     }
 
 }

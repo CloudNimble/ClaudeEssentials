@@ -27,6 +27,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
         [JsonPropertyName("tool_response")]
         public TToolResponse? ToolResponse { get; set; }
 
+        /// <summary>
+        /// Gets or sets the tool execution time in milliseconds, excluding permission-prompt and hook time.
+        /// </summary>
+        [JsonPropertyName("duration_ms")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public long? DurationMs { get; set; }
+
     }
 
 }

@@ -37,6 +37,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
         [JsonPropertyName("tool_use_id")]
         public string ToolUseId { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the MCP server that provides the tool, when it is an MCP tool.
+        /// </summary>
+        [JsonPropertyName("mcp_server")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public McpServerProvenance? McpServer { get; set; }
+
     }
 
 }

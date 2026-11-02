@@ -1,5 +1,5 @@
-using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
 {
@@ -21,7 +21,8 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
         /// Gets or sets the action to take for the elicitation dialog.
         /// </summary>
         [JsonPropertyName("action")]
-        public ElicitationAction Action { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public ElicitationAction? Action { get; set; }
 
         /// <summary>
         /// Gets or sets the form field values when the action is <see cref="ElicitationAction.Accept"/>.

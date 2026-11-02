@@ -52,8 +52,8 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Inputs
             var result = ClaudeHooksSerializer.DeserializeSubagentStartInput("{}");
             result.Should().NotBeNull();
             result!.SessionId.Should().BeEmpty();
-            result.AgentId.Should().BeEmpty();
-            result.AgentType.Should().BeEmpty();
+            result.AgentId.Should().BeNull();
+            result.AgentType.Should().BeNull();
         }
 
         #endregion

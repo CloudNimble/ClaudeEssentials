@@ -4,43 +4,37 @@ namespace CloudNimble.ClaudeEssentials.Hooks
 {
 
     /// <summary>
-    /// Represents the reason why a session ended.
+    /// Represents why a session ended.
     /// </summary>
     public enum SessionEndReason
     {
 
         /// <summary>
-        /// Session ended due to a clear command.
+        /// The session was cleared.
         /// </summary>
         [JsonStringEnumMemberName("clear")]
         Clear,
 
         /// <summary>
-        /// Session resumed, ending the previous session.
+        /// Another session was resumed.
         /// </summary>
         [JsonStringEnumMemberName("resume")]
         Resume,
 
         /// <summary>
-        /// Session ended due to user logout.
+        /// The user logged out.
         /// </summary>
         [JsonStringEnumMemberName("logout")]
         Logout,
 
         /// <summary>
-        /// Session ended due to user exiting from prompt input.
+        /// The user exited at the prompt input.
         /// </summary>
         [JsonStringEnumMemberName("prompt_input_exit")]
         PromptInputExit,
 
         /// <summary>
-        /// Session ended because bypass permissions mode was disabled.
-        /// </summary>
-        [JsonStringEnumMemberName("bypass_permissions_disabled")]
-        BypassPermissionsDisabled,
-
-        /// <summary>
-        /// Session ended for another unspecified reason.
+        /// Any other reason.
         /// </summary>
         [JsonStringEnumMemberName("other")]
         Other

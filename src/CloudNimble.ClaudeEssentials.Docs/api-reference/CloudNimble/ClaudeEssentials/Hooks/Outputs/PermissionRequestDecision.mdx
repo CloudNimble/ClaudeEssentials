@@ -73,12 +73,12 @@ Only applicable when `Behavior` is [PermissionRequestBehavior.Deny](/api-referen
 #### Syntax
 
 ```csharp
-public bool Interrupt { get; set; }
+public System.Nullable<bool> Interrupt { get; set; }
 ```
 
 #### Property Value
 
-Type: `bool`
+Type: `System.Nullable<bool>?`
 
 ### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> Message
 
@@ -109,6 +109,20 @@ public TToolInput UpdatedInput { get; set; }
 #### Property Value
 
 Type: `TToolInput?`
+
+### <Icon icon="tag" iconType="duotone" color="#419AC5" size={24} className="mr-2" /> UpdatedPermissions
+
+Gets or sets the permission updates to apply. Applies when the behavior is allow.
+
+#### Syntax
+
+```csharp
+public System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Permissions.PermissionUpdate> UpdatedPermissions { get; set; }
+```
+
+#### Property Value
+
+Type: `System.Collections.Generic.List<CloudNimble.ClaudeEssentials.Hooks.Permissions.PermissionUpdate>?`
 
 ## Methods
 

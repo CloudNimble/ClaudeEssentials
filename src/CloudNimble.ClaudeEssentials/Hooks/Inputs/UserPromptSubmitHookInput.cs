@@ -16,6 +16,20 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
         [JsonPropertyName("prompt")]
         public string Prompt { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Gets or sets who authored or injected the prompt.
+        /// </summary>
+        [JsonPropertyName("source")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public UserPromptSource? Source { get; set; }
+
+        /// <summary>
+        /// Gets or sets the session title.
+        /// </summary>
+        [JsonPropertyName("session_title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? SessionTitle { get; set; }
+
     }
 
 }

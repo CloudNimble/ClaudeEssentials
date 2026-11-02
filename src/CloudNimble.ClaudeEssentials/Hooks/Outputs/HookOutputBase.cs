@@ -44,6 +44,27 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
         [JsonPropertyName("systemMessage")]
         public string? SystemMessage { get; set; }
 
+        /// <summary>
+        /// Gets or sets the top-level decision for this hook.
+        /// </summary>
+        [JsonPropertyName("decision")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public HookDecision? Decision { get; set; }
+
+        /// <summary>
+        /// Gets or sets the reason for the decision.
+        /// </summary>
+        [JsonPropertyName("reason")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Reason { get; set; }
+
+        /// <summary>
+        /// Gets or sets a terminal escape sequence for Claude Code to emit. Only notification and title sequences (OSC 0, 1, 2, 9, 99, 777) and BEL are permitted.
+        /// </summary>
+        [JsonPropertyName("terminalSequence")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? TerminalSequence { get; set; }
+
     }
 
 }

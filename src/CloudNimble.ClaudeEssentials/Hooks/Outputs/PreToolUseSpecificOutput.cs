@@ -41,6 +41,13 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Outputs
         [JsonPropertyName("updatedInput")]
         public TToolInput? UpdatedInput { get; set; }
 
+        /// <summary>
+        /// Gets or sets additional context to add.
+        /// </summary>
+        [JsonPropertyName("additionalContext")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? AdditionalContext { get; set; }
+
     }
 
 }

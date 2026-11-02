@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using CloudNimble.ClaudeEssentials.Hooks.Inputs;
 using CloudNimble.ClaudeEssentials.Hooks.Outputs;
+using CloudNimble.ClaudeEssentials.Hooks.Permissions;
 using CloudNimble.ClaudeEssentials.Hooks.Tools;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs;
 using CloudNimble.ClaudeEssentials.Hooks.Tools.Responses;
@@ -49,7 +50,6 @@ namespace CloudNimble.ClaudeEssentials.Hooks
     [JsonSerializable(typeof(PermissionRequestBehavior))]
     [JsonSerializable(typeof(SessionStartSource))]
     [JsonSerializable(typeof(SessionEndReason))]
-    [JsonSerializable(typeof(NotificationType))]
     [JsonSerializable(typeof(CompactTrigger))]
     [JsonSerializable(typeof(WorktreeAction))]
     [JsonSerializable(typeof(TodoItemStatus))]
@@ -96,6 +96,17 @@ namespace CloudNimble.ClaudeEssentials.Hooks
     [JsonSerializable(typeof(AskUserQuestionUnansweredReason))]
     [JsonSerializable(typeof(PushNotificationStatus))]
     [JsonSerializable(typeof(PushNotificationDisabledReason))]
+    [JsonSerializable(typeof(ElicitationMode))]
+    [JsonSerializable(typeof(FileChangeEvent))]
+    [JsonSerializable(typeof(DirectoryAddedSource))]
+    [JsonSerializable(typeof(ModelSwitchSource))]
+    [JsonSerializable(typeof(PromptCacheTtl))]
+    [JsonSerializable(typeof(ModelSwitchPricing))]
+    [JsonSerializable(typeof(SetupTrigger))]
+    [JsonSerializable(typeof(PromptExpansionType))]
+    [JsonSerializable(typeof(UserPromptSource))]
+    [JsonSerializable(typeof(PermissionBehavior))]
+    [JsonSerializable(typeof(PermissionUpdateDestination))]
 
     // Input types (using object for generic parameters)
     [JsonSerializable(typeof(PreToolUseHookInput<object>), TypeInfoPropertyName = "PreToolUseHookInputObject")]
@@ -124,6 +135,26 @@ namespace CloudNimble.ClaudeEssentials.Hooks
     [JsonSerializable(typeof(TeammateIdleHookInput))]
     [JsonSerializable(typeof(WorktreeCreateHookInput))]
     [JsonSerializable(typeof(WorktreeRemoveHookInput))]
+    [JsonSerializable(typeof(HookEffortInfo))]
+    [JsonSerializable(typeof(McpServerProvenance))]
+    [JsonSerializable(typeof(BackgroundTaskSummary))]
+    [JsonSerializable(typeof(SessionCronSummary))]
+    [JsonSerializable(typeof(PostToolBatchToolCall))]
+    [JsonSerializable(typeof(PermissionUpdate))]
+    [JsonSerializable(typeof(PermissionRuleValue))]
+    [JsonSerializable(typeof(AddRulesPermissionUpdate))]
+    [JsonSerializable(typeof(ReplaceRulesPermissionUpdate))]
+    [JsonSerializable(typeof(RemoveRulesPermissionUpdate))]
+    [JsonSerializable(typeof(SetModePermissionUpdate))]
+    [JsonSerializable(typeof(AddDirectoriesPermissionUpdate))]
+    [JsonSerializable(typeof(RemoveDirectoriesPermissionUpdate))]
+    [JsonSerializable(typeof(DirectoryAddedHookInput))]
+    [JsonSerializable(typeof(MessageDisplayHookInput))]
+    [JsonSerializable(typeof(PostToolBatchHookInput))]
+    [JsonSerializable(typeof(PreModelSwitchHookInput))]
+    [JsonSerializable(typeof(PostModelSwitchHookInput))]
+    [JsonSerializable(typeof(SetupHookInput))]
+    [JsonSerializable(typeof(UserPromptExpansionHookInput))]
 
     // Output types (using object for generic parameters)
     [JsonSerializable(typeof(PreToolUseHookOutput<object>), TypeInfoPropertyName = "PreToolUseHookOutputObject")]
@@ -164,6 +195,25 @@ namespace CloudNimble.ClaudeEssentials.Hooks
     [JsonSerializable(typeof(WorktreeCreateHookOutput))]
     [JsonSerializable(typeof(WorktreeCreateSpecificOutput))]
     [JsonSerializable(typeof(WorktreeRemoveHookOutput))]
+    [JsonSerializable(typeof(CwdChangedSpecificOutput))]
+    [JsonSerializable(typeof(FileChangedSpecificOutput))]
+    [JsonSerializable(typeof(NotificationSpecificOutput))]
+    [JsonSerializable(typeof(SetupSpecificOutput))]
+    [JsonSerializable(typeof(StopSpecificOutput))]
+    [JsonSerializable(typeof(SubagentStopSpecificOutput))]
+    [JsonSerializable(typeof(PostToolBatchSpecificOutput))]
+    [JsonSerializable(typeof(PostModelSwitchSpecificOutput))]
+    [JsonSerializable(typeof(PreModelSwitchSpecificOutput))]
+    [JsonSerializable(typeof(MessageDisplaySpecificOutput))]
+    [JsonSerializable(typeof(UserPromptExpansionSpecificOutput))]
+    [JsonSerializable(typeof(DirectoryAddedHookOutput))]
+    [JsonSerializable(typeof(MessageDisplayHookOutput))]
+    [JsonSerializable(typeof(PostToolBatchHookOutput))]
+    [JsonSerializable(typeof(PreModelSwitchHookOutput))]
+    [JsonSerializable(typeof(PostModelSwitchHookOutput))]
+    [JsonSerializable(typeof(SetupHookOutput))]
+    [JsonSerializable(typeof(UserPromptExpansionHookOutput))]
+    [JsonSerializable(typeof(AsyncHookOutput))]
 
     // Tool input types
     [JsonSerializable(typeof(ReadToolInput))]

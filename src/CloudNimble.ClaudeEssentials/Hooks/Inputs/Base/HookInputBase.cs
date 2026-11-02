@@ -33,13 +33,42 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Inputs
         /// Gets or sets the permission mode under which Claude Code is operating.
         /// </summary>
         [JsonPropertyName("permission_mode")]
-        public PermissionMode PermissionMode { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public PermissionMode? PermissionMode { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the hook event that triggered this input.
         /// </summary>
         [JsonPropertyName("hook_event_name")]
         public HookEventName HookEventName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the UUID correlating a user prompt with all subsequent events until the next prompt.
+        /// </summary>
+        [JsonPropertyName("prompt_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? PromptId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the subagent identifier. Present only when the hook fires from within a subagent.
+        /// </summary>
+        [JsonPropertyName("agent_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? AgentId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the agent type name, present within a subagent or on the main thread of a session started with <c>--agent</c>.
+        /// </summary>
+        [JsonPropertyName("agent_type")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? AgentType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the reasoning effort applied to the current turn.
+        /// </summary>
+        [JsonPropertyName("effort")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public HookEffortInfo? Effort { get; set; }
 
     }
 

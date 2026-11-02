@@ -4,52 +4,88 @@ namespace CloudNimble.ClaudeEssentials.Hooks
 {
 
     /// <summary>
-    /// Represents the type of error that caused a stop failure in Claude Code.
+    /// Represents the API error that ended a turn.
     /// </summary>
     public enum StopFailureErrorType
     {
 
         /// <summary>
-        /// The request was rate limited by the API.
-        /// </summary>
-        [JsonStringEnumMemberName("rate_limit")]
-        RateLimit,
-
-        /// <summary>
-        /// Authentication with the API failed.
+        /// Authentication failed.
         /// </summary>
         [JsonStringEnumMemberName("authentication_failed")]
         AuthenticationFailed,
 
         /// <summary>
-        /// A billing error occurred with the API account.
+        /// The OAuth organization is not allowed.
+        /// </summary>
+        [JsonStringEnumMemberName("oauth_org_not_allowed")]
+        OauthOrgNotAllowed,
+
+        /// <summary>
+        /// The account is on hold.
+        /// </summary>
+        [JsonStringEnumMemberName("account_on_hold")]
+        AccountOnHold,
+
+        /// <summary>
+        /// Verification is required.
+        /// </summary>
+        [JsonStringEnumMemberName("verification_required")]
+        VerificationRequired,
+
+        /// <summary>
+        /// A billing error occurred.
         /// </summary>
         [JsonStringEnumMemberName("billing_error")]
         BillingError,
 
         /// <summary>
-        /// The API request was invalid.
+        /// The request was rate limited.
+        /// </summary>
+        [JsonStringEnumMemberName("rate_limit")]
+        RateLimit,
+
+        /// <summary>
+        /// The API is overloaded.
+        /// </summary>
+        [JsonStringEnumMemberName("overloaded")]
+        Overloaded,
+
+        /// <summary>
+        /// The request was invalid.
         /// </summary>
         [JsonStringEnumMemberName("invalid_request")]
         InvalidRequest,
 
         /// <summary>
-        /// An internal server error occurred on the API side.
+        /// The model was not found.
+        /// </summary>
+        [JsonStringEnumMemberName("model_not_found")]
+        ModelNotFound,
+
+        /// <summary>
+        /// A server error occurred.
         /// </summary>
         [JsonStringEnumMemberName("server_error")]
         ServerError,
 
         /// <summary>
-        /// The maximum output token limit was reached.
+        /// An unknown error occurred.
+        /// </summary>
+        [JsonStringEnumMemberName("unknown")]
+        Unknown,
+
+        /// <summary>
+        /// The response reached the maximum output tokens.
         /// </summary>
         [JsonStringEnumMemberName("max_output_tokens")]
         MaxOutputTokens,
 
         /// <summary>
-        /// An unknown error type occurred.
+        /// A cloud credential error occurred.
         /// </summary>
-        [JsonStringEnumMemberName("unknown")]
-        Unknown
+        [JsonStringEnumMemberName("cloud_credential_error")]
+        CloudCredentialError
 
     }
 

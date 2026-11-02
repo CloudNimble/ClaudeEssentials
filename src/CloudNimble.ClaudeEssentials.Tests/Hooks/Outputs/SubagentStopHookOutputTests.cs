@@ -35,18 +35,18 @@ namespace CloudNimble.ClaudeEssentials.Tests.Hooks.Outputs
         }
 
         [TestMethod]
-        public void SerializeSubagentStopOutput_WithAllowDecision_ShouldSerializeCorrectly()
+        public void SerializeSubagentStopOutput_WithApproveDecision_ShouldSerializeCorrectly()
         {
             var output = new SubagentStopHookOutput
             {
                 Continue = true,
-                Decision = HookDecision.Allow
+                Decision = HookDecision.Approve
             };
 
             var json = ClaudeHooksSerializer.SerializeSubagentStopOutput(output);
             var doc = JsonDocument.Parse(json);
 
-            doc.RootElement.GetProperty("decision").GetString().Should().Be("allow");
+            doc.RootElement.GetProperty("decision").GetString().Should().Be("approve");
         }
 
         [TestMethod]
