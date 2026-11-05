@@ -58,7 +58,7 @@ namespace CloudNimble.ClaudeEssentials.Hooks.Tools.Inputs
         public bool? RunInBackground { get; set; }
 
         /// <summary>
-        /// Gets or sets the name for the spawned agent. Makes it addressable via SendMessage({to: name}) while running.
+        /// Gets or sets the name for the spawned agent. Makes it addressable via <c>SendMessage({to: name})</c> while running.
         /// </summary>
         [JsonPropertyName("name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
